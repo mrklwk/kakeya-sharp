@@ -16,22 +16,22 @@ Fix an integer $n\ge2$. Let $dx$ be Lebesgue measure on $\mathbb R^n$ and
 $d\sigma$ the usual, unnormalized surface measure on $S^{n-1}$.
 For $0<\delta\le1$, $\omega\in S^{n-1}$ and $x\in\mathbb R^n$, put
 
-$$
+```math
  T_\delta(\omega,x)
  =\bigcup_{-1/2\le t\le1/2} B(x+t\omega,\delta),\qquad
  K_\delta f(\omega)
  =\sup_{x\in\mathbb R^n}\frac1{|T_\delta(\omega,x)|}
                    \int_{T_\delta(\omega,x)}|f(y)|\,dy.
-$$
+```
 
 There exists $C_n>0$ such that, for every $0<\delta\le1$ and every
 complex-valued $f\in L^n(\mathbb R^n)$, the maximal function belongs to
 $L^n(S^{n-1},d\sigma)$ and
 
-$$
+```math
  \|K_\delta f\|_{L^n(S^{n-1},d\sigma)}
  \le C_n[\log(2/\delta)]^{(n-1)/n}\|f\|_{L^n(\mathbb R^n)}.
-$$
+```
 
 The quantifier order is $\forall n\ge2\;\exists C_n>0\;\forall\delta\;
 \forall f$. Thus $C_n$ cannot depend on $\delta$, $f$, the tube center,
@@ -84,38 +84,38 @@ reported by Git. Reports are in
 Let $\kappa_j$ denote the volume of the unit ball in $\mathbb R^j$, and
 let $s_{n-1}=\sigma(S^{n-1})=n\kappa_n$. For $0<\delta\le1/256$, set
 
-$$
+```math
  f_\delta(y)=|y|^{-1}\mathbf1_{\{2\delta<|y|<1/2\}}(y).
-$$
+```
 
 This is a bounded, compactly supported, nonnegative function, hence an
 admissible complex-valued $L^n$ input. Polar coordinates give the exact
 identity
 
-$$
+```math
  \|f_\delta\|_n^n
  =s_{n-1}\int_{2\delta}^{1/2}\frac{dr}{r}
  =s_{n-1}\log\frac1{4\delta}
  \le s_{n-1}\log\frac1\delta.
-$$
+```
 
 Fix any unit direction $\omega$. Inside $T_\delta(\omega,0)$ integrate
 over the cylinder
 
-$$
+```math
  y=t\omega+z,\qquad 4\delta<t<1/4,\quad
  z\perp\omega,\quad |z|<\delta/2.
-$$
+```
 
 Here $t$ is in the defining unit segment, the distance to $t\omega$ is
 less than $\delta$, and $2\delta<|y|<1/2$. Moreover
 $|y|\le t+\delta/2\le2t$, so $f_\delta(y)\ge1/(2t)$. Therefore
 
-$$
+```math
  \int_{T_\delta(\omega,0)}f_\delta(y)\,dy
  \ge\frac{\kappa_{n-1}}{2^n}\delta^{n-1}
           \log\frac1{16\delta}.
-$$
+```
 
 The volume of a radius-$\delta$ neighborhood of a unit segment is
 $\kappa_{n-1}\delta^{n-1}+\kappa_n\delta^n$, and is at most
@@ -123,25 +123,25 @@ $(\kappa_{n-1}+\kappa_n)\delta^{n-1}$ when $\delta\le1$.
 Also $\log(1/(16\delta))\ge\tfrac12\log(1/\delta)$ for
 $\delta\le1/256$. It follows, for every $\omega$, that
 
-$$
+```math
  K_\delta f_\delta(\omega)\ge c_n\log(1/\delta),\qquad
  c_n=\frac{\kappa_{n-1}}
  {2^{n+1}(\kappa_{n-1}+\kappa_n)}>0.
-$$
+```
 
 Taking the norm on the sphere and dividing by the input norm gives
 
-$$
+```math
  \frac{\|K_\delta f_\delta\|_n}{\|f_\delta\|_n}
  \ge c_n[\log(1/\delta)]^{(n-1)/n}.
-$$
+```
 
 Together with the checked upper bound, this establishes
 
-$$
+```math
  \boxed{\quad\|K_\delta\|_{L^n(\mathbb R^n)\to L^n(S^{n-1})}
  \asymp_n [\log(2/\delta)]^{(n-1)/n}\quad(\delta\downarrow0).\quad}
-$$
+```
 
 Consequently no smaller logarithmic power works. More generally, the
 factor cannot be replaced by a function that is little-oh of it. In
@@ -159,10 +159,10 @@ above checks the lower bound directly for this submission's precise tubes.
 
 The second submitted theorem has $q=n/(n-1)$ and states
 
-$$
+```math
  \int\Big(\sum_i a_i\mathbf1_{T_{2\delta}(v_i,x_i)}\Big)^q
  \le C_n\log(2/\delta)\,\delta^{n-1}\sum_i a_i^q
-$$
+```
 
 for arbitrary finite $\delta$-separated unit directions, arbitrary centers,
 and nonnegative coefficients. Its one logarithm is also necessary.
@@ -178,13 +178,13 @@ a maximal separated set, and the usual cap-volume estimates, give at
 least $c_n r^{-(n-1)}$ such directions. Thus, writing $M$ for the sum of
 the tube indicators, polar coordinates yield
 
-$$
+```math
  \int M^q\gtrsim_n
  \int_{C\delta}^{c}r^{-(n-1)q}r^{n-1}\,dr
  =\int_{C\delta}^{c}\frac{dr}{r}
  \asymp\log(1/\delta),
  \qquad \delta^{n-1}\sum_i a_i^q\asymp_n1.
-$$
+```
 
 This also proves sharpness of the tube logarithm mathematically. This
 lower-bound construction, like the radial lower bound, is not formalized

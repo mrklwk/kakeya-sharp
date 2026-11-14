@@ -34,10 +34,10 @@ For `0 < delta <= 1`, let `K_delta f(omega)` be the supremum over all centers
 of the average of `|f|` over the open radius-delta neighborhood of a centered
 unit segment in direction `omega`. For every `n >= 2`, the main result is
 
-$$
+```math
 \|K_\delta f\|_{L^n(S^{n-1})}
 \le C_n [\log(2/\delta)]^{(n-1)/n}\|f\|_{L^n(\mathbb R^n)}.
-$$
+```
 
 The constant is positive and depends only on dimension. The theorem also
 gives `MemLp` for the maximal function. It uses complex-valued functions,
@@ -46,10 +46,10 @@ actual tube volumes, and the spherical measure induced by Lebesgue measure.
 For delta-separated unit directions, arbitrary centers, nonnegative
 coefficients `a_i`, and radius-`2*delta` tubes `T_i`, the second result is
 
-$$
+```math
 \int_{\mathbb R^n}\Big(\sum_i a_i\mathbf 1_{T_i}\Big)^{n/(n-1)}
 \le C_n\log(2/\delta)\,\delta^{n-1}\sum_i a_i^{n/(n-1)}.
-$$
+```
 
 The matching logarithmic lower bound is proved mathematically in
 `STATEMENT_AND_OPTIMALITY.md`; it is not formalized. The radial example there
@@ -58,10 +58,10 @@ No theorem about optimal constants or priority is claimed by this submission.
 
 Hölder's inequality gives the geometric consequence
 
-$$
+```math
 \left|\bigcup_{j=1}^N T_j\right|
 \ge c_n\frac{N\delta^{n-1}}{[\log(2/\delta)]^{n-1}}.
-$$
+```
 
 In particular, the delta-neighborhood of every Kakeya set has volume at
 least `c_n / log(2/delta)^(n-1)`. Fernández-Delgado and de la Salle's

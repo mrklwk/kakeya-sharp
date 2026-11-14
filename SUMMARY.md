@@ -16,16 +16,16 @@ For $0<\delta\le1$, put $L:=\log(2/\delta)$; every implicit constant depends onl
 Let $dx$ be Lebesgue measure on $\mathbb R^n$ and $d\sigma$ the unnormalized surface measure on $S^{n-1}$, so that $\sigma(S^{n-1})=n\kappa_n$ where $\kappa_j$ is the volume of the unit ball of $\mathbb R^j$.
 For $0<\delta\le1$, a unit vector $\omega$, and a center $x\in\mathbb R^n$ let
 
-$$
+```math
  T_\delta(\omega,x):=\bigcup_{-1/2\le t\le1/2}B(x+t\omega,\delta).
-$$
+```
 
 This is the open $\delta$-neighbourhood of a unit segment, with rounded end caps, and $|T_\delta(\omega,x)|=\kappa_{n-1}\delta^{n-1}+\kappa_n\delta^n\asymp_n\delta^{n-1}$.
 The Kakeya maximal operator is
 
-$$
+```math
  K_\delta f(\omega):=\sup_{x\in\mathbb R^n}\frac1{|T_\delta(\omega,x)|}\int_{T_\delta(\omega,x)}|f(y)|\,dy .
-$$
+```
 
 The supremum is over every center, and $f$ may be any complex-valued function in $L^n(\mathbb R^n)$.
 A Kakeya set is a subset of $\mathbb R^n$ containing a unit segment in every direction; $N_\delta(K)$ denotes the open $\delta$-neighbourhood of $K$.
@@ -35,9 +35,9 @@ A Kakeya set is a subset of $\mathbb R^n$ containing a unit segment in every dir
 **Theorem 1 (maximal estimate).**
 For every integer $n\ge2$ there is $C_n>0$ such that for every $0<\delta\le1$ and every $f\in L^n(\mathbb R^n)$ the function $K_\delta f$ belongs to $L^n(S^{n-1},d\sigma)$ and
 
-$$
+```math
  \|K_\delta f\|_{L^n(S^{n-1})}\le C_nL^{(n-1)/n}\|f\|_{L^n(\mathbb R^n)} .
-$$
+```
 
 This is `KakeyaPalomar.sharpMaximalBound` in `Solution.lean`.
 The constant is chosen before $\delta$ and $f$.
@@ -46,9 +46,9 @@ The constant is chosen before $\delta$ and $f$.
 Let $q:=n/(n-1)$.
 There is $C_n>0$ such that for every $0<\delta\le1$, every finite family of unit vectors $\omega_j$ with $|\omega_i-\omega_j|\ge\delta$ for $i\ne j$, every choice of centers $x_j$, and every choice of coefficients $a_j\ge0$,
 
-$$
+```math
  \int_{\mathbb R^n}\Bigl(\sum_ja_j1_{T_{2\delta}(\omega_j,x_j)}\Bigr)^q\,dx\le C_nL\,\delta^{n-1}\sum_ja_j^q .
-$$
+```
 
 This is `KakeyaPalomar.sharpTubeBound`.
 The radius $2\delta$ agrees with the formal statement; since $T_\delta\subset T_{2\delta}$, the same bound holds for radius-$\delta$ tubes.
@@ -61,9 +61,9 @@ Taking the $q$-th root in Theorem 2 produces $L^{1/q}=L^{(n-1)/n}$, and the proo
 **Corollary 3 (tube union).**
 For $N$ radius-$\delta$ tubes $T_j$ in $\delta$-separated directions with arbitrary centers,
 
-$$
+```math
  \Bigl|\bigcup_{j=1}^NT_j\Bigr|\ge c_n\frac{N\delta^{n-1}}{L^{n-1}} .
-$$
+```
 
 *Proof.*
 The empty family is trivial.
@@ -71,9 +71,9 @@ Otherwise put $M:=\sum_j1_{T_j}$, $U:=\bigcup_jT_j$, and $A:=N\delta^{n-1}$, so 
 Let $M_2:=\sum_j1_{T_{2\delta}(\omega_j,x_j)}$ be the overlap of the enlarged tubes; then $M\le M_2$ pointwise, and Theorem 2 with unit coefficients gives $\int M^q\le\int M_2^q\lesssim_nLA$.
 Hölder's inequality on $U$ yields
 
-$$
+```math
  A\lesssim_n\int_UM\le|U|^{1/n}\Bigl(\int M^q\Bigr)^{(n-1)/n}\lesssim_n|U|^{1/n}(LA)^{(n-1)/n}.
-$$
+```
 
 Raising to the $n$-th power and dividing by $A^{n-1}$ proves the claim. $\square$
 
@@ -106,9 +106,9 @@ Corollary 4 gives lower and upper Minkowski dimension $n$ for every bounded Kake
 Indeed, let $N(K,\delta)$ be the least number of radius-$\delta$ balls covering $K$.
 Their concentric radius-$2\delta$ balls cover $N_\delta(K)$, so
 
-$$
+```math
  N(K,\delta)\gtrsim_n\delta^{-n}[\log(2/\delta)]^{-(n-1)}.
-$$
+```
 
 Taking logarithms and dividing by $\log(1/\delta)$ gives lower Minkowski dimension at least $n$, because $\log\log(2/\delta)/\log(1/\delta)\to0$.
 Boundedness gives upper Minkowski dimension at most $n$.

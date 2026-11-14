@@ -20,10 +20,10 @@ The exact intended maximal theorem is: for every integer $n\ge2$, there
 exists $C_n>0$, chosen before $\delta$ and $f$, such that for every
 $0<\delta\le1$ and complex-valued $f\in L^n(\mathbb R^n)$,
 
-$$
+```math
  \|K_\delta f\|_{L^n(S^{n-1})}
  \le C_n[\log(2/\delta)]^{(n-1)/n}\|f\|_{L^n(\mathbb R^n)}.
-$$
+```
 
 Here $K_\delta$ takes the supremum over all centers of the absolute-value
 average over the open radius-$\delta$ neighborhood of a unit segment,
@@ -32,10 +32,10 @@ surface measure. Membership in strong $L^n$ is part of the conclusion.
 
 The second theorem is the weighted overlap inequality at $q=n/(n-1)$:
 
-$$
+```math
  \int\left(\sum_j a_j1_{T_{2\delta}(\omega_j,x_j)}\right)^q
  \le C_n\log(2/\delta)\delta^{n-1}\sum_j a_j^q,
-$$
+```
 
 for all finite $\delta$-separated unit directions, arbitrary centers and
 nonnegative real weights. The radius is exactly $2\delta$ in the Lean
