@@ -20,9 +20,9 @@ three-slot quaternionic Hessian and let `det` be its signed Moore determinant.
 For a nonnegative continuous density `mu`, consider the supremum over
 admissible zero-boundary functions `u` of
 
-\[
+$$
 J_\mu(u)=\int_B(-u)\mu-\frac1{m+1}\int_B(-u)\det Du.
-\]
+$$
 
 Admissibility means $C^3$ regularity near the closed ball, zero boundary values,
 and a positive semidefinite quaternionic Hessian. The development proves
@@ -33,9 +33,9 @@ Write a point of that ball as `(x,P)`, where `x` has `m` real coordinates
 and `P` has `2m` real coordinates; thus `|x|^2+|P|^2 < 1`.
 For a positive regularization parameter `eta`, the explicit test is
 
-\[
+$$
 v_\eta(x,P)=\log\frac{\eta^2+|P|^2}{\eta^2+1-|x|^2}.
-\]
+$$
 
 Its actual Hessian is positive semidefinite, its value is zero on
 `|x|^2+|P|^2=1`, and its
