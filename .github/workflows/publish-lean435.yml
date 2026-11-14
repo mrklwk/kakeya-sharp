@@ -1,0 +1,70 @@
+name: Publish and verify Lean 4.35 compatibility port
+
+"on":
+  push:
+    branches: [publish-kakeya-lean435]
+
+permissions:
+  contents: read
+
+jobs:
+  publish:
+    if: github.repository == 'mrklwk/kakeya-sharp'
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    permissions:
+      contents: write
+    outputs:
+      source_commit: ${{ steps.publish.outputs.source_commit }}
+    steps:
+      - uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262
+        with:
+          ref: main
+      - name: Verify and publish the corrected tree
+        id: publish
+        env:
+          K_STAGE: ${{ runner.temp }}/kakeya-lean435-source
+        shell: bash
+        run: |
+          set -euo pipefail
+          test "$(git rev-parse HEAD)" = 6fc8ecde3226728be72de7ac63a49ef8d48813cb
+          python3 - <<'PY'
+          from pathlib import Path, PurePosixPath
+          import os, hashlib, zipfile
+          archive = Path("Kakeya_Palomar_Lean435_port_2026-11-14.zip")
+          assert hashlib.sha256(archive.read_bytes()).hexdigest() == "aa7861724154f4385b19579e4d24f31a865eda3ef9f32d68191a9a448b7e27f6"
+          stage = Path(os.environ["K_STAGE"])
+          stage.mkdir()
+          with zipfile.ZipFile(archive) as z:
+              assert len(z.infolist()) == 1966
+              for info in z.infolist():
+                  rel = PurePosixPath(info.filename)
+                  assert not rel.is_absolute() and rel.parts[0] == "Kakeya_Palomar"
+                  assert ".." not in rel.parts and ".git" not in rel.parts
+                  target = stage.joinpath(*rel.parts[1:])
+                  target.parent.mkdir(parents=True, exist_ok=True)
+                  target.write_bytes(z.read(info))
+          PY
+          cmp .github/workflows/palomar.yml "$K_STAGE/.github/workflows/palomar.yml"
+          git --work-tree="$K_STAGE" add --all --force
+          test "$(git write-tree)" = 43d3650d70a3b0ce90e189019a66e67aa7a4d4d2
+          git --work-tree="$K_STAGE" diff --cached --exit-code -- .github/workflows
+          git config user.name "Mark Lewko"
+          git config user.email "244564904+mrklwk@users.noreply.github.com"
+          git --work-tree="$K_STAGE" commit -m "Port mathlib APIs for Lean 4.35 and record first Palomar preflight" -m "Source tree matches local candidate a55b9d04ac3df7b8b28e5e6253cab627956d306e exactly."
+          git push origin HEAD:refs/heads/main
+          echo "source_commit=$(git rev-parse HEAD)" >> "$GITHUB_OUTPUT"
+          git rev-parse HEAD
+
+  verify:
+    needs: publish
+    uses: PalomarRegistry/PalomarSubmission/.github/workflows/submission.yml@14aa8d6b3c2f14a8540605e37144560b9a00e7e7
+    with:
+      repository: ${{ github.repository }}
+      commit: ${{ needs.publish.outputs.source_commit }}
+      pipeline_commit: 14aa8d6b3c2f14a8540605e37144560b9a00e7e7
+      request_id: kakeyacheck2
+      mode: full
+      execution_profile: palomar-standard-v1
+      options: >-
+        {"comparator_config_path":"comparator.json","authorization_relationship":"I am a responsible author or maintainer"}
