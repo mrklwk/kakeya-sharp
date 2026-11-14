@@ -20,38 +20,35 @@ jobs:
       - uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262
         with:
           ref: main
-      - name: Verify and publish the corrected tree
+      - name: Publish exact mathematical rendering
         id: publish
-        env:
-          K_STAGE: ${{ runner.temp }}/kakeya-lean435-source
         shell: bash
         run: |
           set -euo pipefail
-          test "$(git rev-parse HEAD)" = 6d1efae10cc888f0d55d3cf2bfdb446e65096aa1
+          test "$(git rev-parse HEAD)" = 4debd63b173fe4aba9f30e474c36328ef1b8cc04
           python3 - <<'PY'
-          from pathlib import Path, PurePosixPath
-          import os, hashlib, zipfile
-          archive = Path("Kakeya_Palomar_Lean435_port_2026-11-14.zip")
-          assert hashlib.sha256(archive.read_bytes()).hexdigest() == "cbf727d549239a5d17e529e437141b2a159f0798e5c0495448e8653380f6361d"
-          stage = Path(os.environ["K_STAGE"])
-          stage.mkdir()
-          with zipfile.ZipFile(archive) as z:
-              assert len(z.infolist()) == 1966
-              for info in z.infolist():
-                  rel = PurePosixPath(info.filename)
-                  assert not rel.is_absolute() and rel.parts[0] == "Kakeya_Palomar"
-                  assert ".." not in rel.parts and ".git" not in rel.parts
-                  target = stage.joinpath(*rel.parts[1:])
-                  target.parent.mkdir(parents=True, exist_ok=True)
-                  target.write_bytes(z.read(info))
+          from pathlib import Path
+          names = ["README.md", "ABSTRACT.md", "SUMMARY.md", "STATEMENT_AND_OPTIMALITY.md", "INFORMAL.md", "review/claude/REQUEST.md"]
+          for name in names:
+              p = Path(name)
+              inside = False
+              out = []
+              for line in p.read_text().splitlines(keepends=True):
+                  if line.rstrip("\r\n") == "$$":
+                      out.append(("```math" if not inside else "```") + "\n")
+                      inside = not inside
+                  else:
+                      out.append(line)
+              assert not inside, name
+              p.write_text("".join(out))
           PY
-          cmp .github/workflows/palomar.yml "$K_STAGE/.github/workflows/palomar.yml"
-          git --work-tree="$K_STAGE" add --all --force
-          test "$(git write-tree)" = 884f4b35f291fc1f9a5c21f8a908bb4620f42bfa
-          git --work-tree="$K_STAGE" diff --cached --exit-code -- .github/workflows
+          python3 scripts/package_source.py --output "$RUNNER_TEMP/kakeya-source.zip"
+          git add -- README.md ABSTRACT.md SUMMARY.md STATEMENT_AND_OPTIMALITY.md INFORMAL.md review/claude/REQUEST.md SOURCE_SHA256.json
+          test "$(git write-tree)" = aa8edd4ee0f9093290118bc8aa30c9dfc4f9e0af
+          git diff --cached --exit-code -- .github/workflows
           git config user.name "Mark Lewko"
           git config user.email "244564904+mrklwk@users.noreply.github.com"
-          git --work-tree="$K_STAGE" commit -m "Render mathematical displays correctly on GitHub" -m "Source tree matches local candidate 21123b6ddc48e98b22746a4c4e133e7689e8d0f7 exactly."
+          git commit -m "Preserve mathematical escapes in GitHub display blocks" -m "Source tree matches local candidate 542d24cf77dd8f46ca9aab15bc11c602104f9c97 exactly."
           git push origin HEAD:refs/heads/main
           echo "source_commit=$(git rev-parse HEAD)" >> "$GITHUB_OUTPUT"
           git rev-parse HEAD
@@ -63,8 +60,9 @@ jobs:
       repository: ${{ github.repository }}
       commit: ${{ needs.publish.outputs.source_commit }}
       pipeline_commit: 14aa8d6b3c2f14a8540605e37144560b9a00e7e7
-      request_id: kakeyacheck3
+      request_id: kakeyacheck4
       mode: full
       execution_profile: palomar-standard-v1
       options: >-
         {"comparator_config_path":"comparator.json","authorization_relationship":"I am a responsible author or maintainer"}
+
