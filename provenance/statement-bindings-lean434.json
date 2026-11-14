@@ -1,0 +1,78 @@
+{
+  "status": "passed",
+  "lean": "Lean (version 4.34.1, arm64-apple-darwin24.6.0, commit 5045d0056413266e57c625dcd7c365b10e377c52, Release)",
+  "method": "Equality of Lean Expr representations in separately imported environments, after normalizing bound variable names and metadata only",
+  "definitions_compared": [
+    "Space",
+    "sphereMeasure",
+    "tube",
+    "kakeyaMaximal"
+  ],
+  "theorem_types_compared": [
+    "sharpMaximalBound",
+    "sharpTubeBound"
+  ],
+  "comparisons": [
+    {
+      "declaration": "KakeyaPalomar.Space",
+      "field": "type",
+      "expression_sha256": "89fb61007c44bcccb611c1c7f5689382b78e4d1afb42587c13114458153b2d9b",
+      "equal": true
+    },
+    {
+      "declaration": "KakeyaPalomar.Space",
+      "field": "value",
+      "expression_sha256": "e6732f46817ac3c025861cc21ecad63efffa8a41719a4da736c244dcba280e27",
+      "equal": true
+    },
+    {
+      "declaration": "KakeyaPalomar.sphereMeasure",
+      "field": "type",
+      "expression_sha256": "6bbe4b549b628650193d550703d0b036f057983b7ddc862e92efbb37a387f7b1",
+      "equal": true
+    },
+    {
+      "declaration": "KakeyaPalomar.sphereMeasure",
+      "field": "value",
+      "expression_sha256": "57affc48c53ba33645e05473de41d6592ac4b4dc9f71bacf8264ddaca92cd6fb",
+      "equal": true
+    },
+    {
+      "declaration": "KakeyaPalomar.tube",
+      "field": "type",
+      "expression_sha256": "371862613015208ab45076f80572eccda25909d48152a4347b5c7fddac0a68d0",
+      "equal": true
+    },
+    {
+      "declaration": "KakeyaPalomar.tube",
+      "field": "value",
+      "expression_sha256": "6b51f628d9f6e9491f3e57383e5d5ace4f4085b231bb36a23f721e1cc8b08b48",
+      "equal": true
+    },
+    {
+      "declaration": "KakeyaPalomar.kakeyaMaximal",
+      "field": "type",
+      "expression_sha256": "f3cbcabfe9186ed48eaa30f9e13661bfba3a074c49566cb1525cc8a43913a49b",
+      "equal": true
+    },
+    {
+      "declaration": "KakeyaPalomar.kakeyaMaximal",
+      "field": "value",
+      "expression_sha256": "b4030c8a3c6f80ded0f6195c085591d7925a5e58a8ae34ee813f77609bbccbe5",
+      "equal": true
+    },
+    {
+      "declaration": "KakeyaPalomar.sharpMaximalBound",
+      "field": "type",
+      "expression_sha256": "b5dcecf769c99d6944d381034df84c724dcf5129fcfa7d2d06af1f7d077d8cf9",
+      "equal": true
+    },
+    {
+      "declaration": "KakeyaPalomar.sharpTubeBound",
+      "field": "type",
+      "expression_sha256": "c00578f4d52dd3b290b7e51424ccfd2674a34692c2f9fdbd177643a3e73adbaa",
+      "equal": true
+    }
+  ],
+  "limitations": "Does not replace official Comparator, source rebuild, or independent kernel replay"
+}

@@ -1,0 +1,15 @@
+Kakeya maximal upper bounds: Palomar submission candidate
+
+This project substantially reuses source from openai/math at commit
+4eaee87548250b2682affda7d05d947c05554bae, distributed under Apache-2.0.
+UPSTREAM_DIRICHLET.json identifies the original vendored files and blob hashes.
+provenance/checkpoint-0.19.0-SOURCES.json identifies additional adaptations.
+
+The submission copy modifies the reused source to use Lean's module system.
+Each modified source carries a notice. MODULE_MIGRATION.json records the
+original and submission hashes; provenance/module-port.patch records changes
+beyond the uniform header, import, and exposure conversion.
+
+OpenAI, Lean, and mathlib contributors are not represented as authors or
+endorsers of this project's new results. Their works retain their respective
+licenses and attributions. AI assistance is described in formalization.yaml.

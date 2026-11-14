@@ -1,0 +1,12 @@
+{
+  "source_checks": "passed",
+  "lean_files": 1895,
+  "challenge_lines": 58,
+  "challenge_bytes": 2580,
+  "deliberate_challenge_placeholders": 2,
+  "proof_placeholders": 0,
+  "local_modules_reachable": 207,
+  "imported_upstream_modules": 1677,
+  "axiom_report": "supplied report passes axiom allowlist; toolchain recorded separately",
+  "palomar_full_preflight": "not established by this script"
+}

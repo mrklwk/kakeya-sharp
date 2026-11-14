@@ -1,0 +1,139 @@
+{
+  "date_utc": "2026-11-14",
+  "candidate_status": "prepared; supported-toolchain verification pending; not submitted",
+  "original_checkpoint": {
+    "version": "0.19.0",
+    "lean": "4.34.1",
+    "mathlib": "d13f23b723b8a846827a245b89c10fc7d3f11612",
+    "source_unchanged": true
+  },
+  "module_port": {
+    "status": "passed local compilation and axiom audits",
+    "lean": "4.34.1",
+    "mathlib": "d13f23b723b8a846827a245b89c10fc7d3f11612",
+    "build_command": "python3 scripts/build_checked.py build KakeyaSharp OAI Challenge Solution",
+    "build_report": "provenance/module-port-lean434-build.log",
+    "axiom_report": "provenance/module-port-lean434-axioms.txt",
+    "full_axiom_report": "provenance/module-port-lean434-full-audit.txt",
+    "allowed_axioms": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "build_report_scope": "Retained tail begins at job 9396 of 10819 and records successful completion; the complete build transcript was not retained. It does not establish a fresh rebuild of every upstream module."
+  },
+  "source_checks": {
+    "source_checks": "passed",
+    "lean_files": 1895,
+    "challenge_lines": 58,
+    "challenge_bytes": 2580,
+    "deliberate_challenge_placeholders": 2,
+    "proof_placeholders": 0,
+    "local_modules_reachable": 207,
+    "imported_upstream_modules": 1677,
+    "axiom_report": "supplied report passes axiom allowlist; toolchain recorded separately",
+    "palomar_full_preflight": "not established by this script"
+  },
+  "palomar_static_validation": {
+    "status": "passed metadata contract and textual source requirements",
+    "pipeline_commit": "14aa8d6b3c2f14a8540605e37144560b9a00e7e7",
+    "report": "provenance/palomar-static-validation.json"
+  },
+  "target_toolchain": {
+    "lean": "4.35.0",
+    "mathlib": "56a005855ea17e0b0958f73ec801ae140b0a1679",
+    "build_status": "not run",
+    "reason": "Only Lean 4.34.1 is installed in the preparation environment; GitHub toolchain downloads are unavailable from its shell.",
+    "manifest_source": "https://github.com/leanprover-community/mathlib4/blob/56a005855ea17e0b0958f73ec801ae140b0a1679/lake-manifest.json"
+  },
+  "palomar_full_preflight": {
+    "status": "not run",
+    "mode": "full",
+    "execution_profile": "palomar-standard-v1",
+    "workflow": ".github/workflows/palomar.yml",
+    "requires": "A public GitHub repository and exact commit, followed by the official passing full report."
+  },
+  "comparator": {
+    "status": "not run on the required toolchain",
+    "config": "comparator.json"
+  },
+  "independent_kernel_replay": {
+    "status": "not run"
+  },
+  "publication": {
+    "github_repository": null,
+    "palomar_submission": null,
+    "palomar_registration": null
+  },
+  "mathematical_scope": {
+    "upper_bound_dimensions": "all integer n >= 2",
+    "matching_logarithmic_lower_bound": "Written proof in STATEMENT_AND_OPTIMALITY.md; not formalized",
+    "independent_human_review": "not completed",
+    "novelty_assessment": "not claimed",
+    "logarithmic_optimality": "Written radial example matches maximal exponent (n-1)/n; separated tubes through the origin match the one-log overlap bound",
+    "geometric_volume_corollaries": "Written Holder and direction-net deductions in SUMMARY.md; not separate Lean targets",
+    "besicovitch_matching_construction": "External: Fernandez-Delgado and de la Salle, arXiv:2607.14824, Theorem 1.3; not formalized here",
+    "conjecture_and_dimension_consequences": "Written maximal-conjecture and bounded-Kakeya Minkowski-dimension deductions in SUMMARY.md; not separate Lean targets and no priority claim"
+  },
+  "semantic_audit": {
+    "date_utc": "2026-11-14",
+    "status": "passed",
+    "lean": "4.34.1",
+    "source": "SemanticAudit.lean",
+    "checked_declarations": 11,
+    "axiom_report": "provenance/semantic-audit-lean434.txt",
+    "allowed_axioms": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "statement_bindings": "provenance/statement-bindings-lean434.json",
+    "binding_expressions_compared": 10,
+    "comparison_method": "Equality of Lean Expr representations in separately imported environments, after normalizing bound variable names and metadata only",
+    "mathlib_source_status": "Git HEAD d13f23b723b8a846827a245b89c10fc7d3f11612; no tracked changes",
+    "scope": "Local checks using the previously compiled module port; does not replace Palomar Comparator or independent replay"
+  },
+  "review_preparation": {
+    "status": "abstract, summary, formal statement handoff, and release instructions prepared",
+    "claude_review_status": "completed; supported editorial corrections integrated; Lean sources unchanged",
+    "queue": "review/claude/QUEUE.json",
+    "request": "review/claude/REQUEST.md",
+    "narrative_files": [
+      "ABSTRACT.md",
+      "SUMMARY.md",
+      "README.md",
+      "STATEMENT_AND_OPTIMALITY.md",
+      "INFORMAL.md",
+      "formalization.yaml"
+    ],
+    "local_recheck_report": "provenance/review-preparation-checks.json",
+    "proof_sources_changed": false,
+    "integration_report": "review/claude/INTEGRATION.md"
+  },
+  "claude_review": {
+    "date_utc": "2026-11-14",
+    "review_type": "AI review, not independent human mathematical review or independent kernel replay",
+    "reviewed_commit": "f23da3e966c49a2ffba03d933aabb7521daedcd9",
+    "lean_source_identity_sha256": "1fec6ac9cb78d62dd06e6dd9aa696246f201e56d74258400e2369ef630b4a411",
+    "status": "completed; no semantic defect found in the two statements; narrative and evidence corrections integrated",
+    "report": "review/claude/accepted/claude-fable-20261114/formal-review.md",
+    "narrative_report": "review/claude/accepted/claude-fable-20261114/narrative-review.md",
+    "verdict": "review/claude/accepted/claude-fable-20261114/verdict.json",
+    "local_recompile": {
+      "lean": "4.34.1",
+      "local_files": 212,
+      "compiled_ok": 212,
+      "failures": 0,
+      "composition": "207 KakeyaSharp modules plus KakeyaSharp.lean, Solution, Challenge, SubmissionAudit, SemanticAudit",
+      "dependencies": "Cached OpenAI and mathlib artifacts; not recompiled in this review",
+      "report": "review/claude/accepted/claude-fable-20261114/local-rebuild-434/rebuild-summary.json"
+    },
+    "integration_proof_sources_changed": false,
+    "limitations": [
+      "No fresh compilation of the 1682 vendored OpenAI source files in the Claude run",
+      "No complete independent mathematical review of all upstream lemmas and their discharge chains",
+      "Lean 4.35.0 target build, official Comparator, and independent kernel replay not run",
+      "Independent human mathematical review not completed"
+    ]
+  }
+}

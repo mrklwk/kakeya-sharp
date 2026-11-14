@@ -1,0 +1,199 @@
+{
+  "run": "claude-fable-20261114",
+  "task_id": "kakeya-20261114-formal-and-narrative",
+  "date_utc": "2026-11-14",
+  "reviewer": {
+    "kind": "AI review, not an independent human mathematical review",
+    "model": "claude-fable-5-1",
+    "client": "Claude Code (desktop app) local session on the preparation Mac",
+    "delegated_subreviews": 3,
+    "subreview_report": "proof-route-subreviews.md"
+  },
+  "source_identity": {
+    "git_commit": "f23da3e966c49a2ffba03d933aabb7521daedcd9",
+    "working_tree": "clean except git-ignored review/claude/runs/",
+    "lean_source_identity_sha256": "1fec6ac9cb78d62dd06e6dd9aa696246f201e56d74258400e2369ef630b4a411",
+    "lean_source_files": 1895,
+    "Challenge.lean_sha256": "1a6b4fbdcab5148f254ae726ca6259877e401d218b969891f9e0fd44bb606cf3",
+    "Solution.lean_sha256": "73f2703c1ff28ef2a59ad02d94b0de0c449965b05199501853b94cb464b78fce",
+    "KakeyaSharp/Definitions.lean_sha256": "6dcf64e0c73e840a12f06a0f70f4dde23f5868eb4fcb10aba0c003c354aec49c",
+    "KakeyaSharp/SharpTheorem.lean_sha256": "068907c719eed4d32b7031a094df7988dab9d034aceafcd9a2d01d4678edd373",
+    "candidate_modified_by_review": false
+  },
+  "toolchain_used": {
+    "lean": "Lean (version 4.34.1, arm64-apple-darwin24.6.0, commit 5045d0056413266e57c625dcd7c365b10e377c52, Release)",
+    "lean_path_source": "~/.elan/toolchains/leanprover--lean4---v4.34.1 (lean, lake, elan not on PATH)",
+    "mathlib": "d13f23b723b8a846827a245b89c10fc7d3f11612",
+    "dependency_cache": "../kakeya_sharp/.lake/packages (revisions verified against its lake-manifest.json by the driver)"
+  },
+  "target_toolchain": {
+    "lean": "4.35.0",
+    "mathlib": "56a005855ea17e0b0958f73ec801ae140b0a1679",
+    "status": "not run; toolchain not installed on this machine and not installed by this review"
+  },
+  "formal_verdict": {
+    "statements": "faithful: both Lean statements encode exactly the intended maximal and weighted tube theorems with canonical mathlib notions; no missing hypothesis, changed definition, circular assumption, vacuous measure/norm, wrong exponent, or quantifier misorder found",
+    "proofs": "kernel-checked in Lean 4.34.1; all 212 local modules (207 KakeyaSharp + KakeyaSharp.lean, Solution, Challenge, SubmissionAudit, SemanticAudit) recompiled from current source by this review with 0 failures; the 1682 upstream OAI modules were loaded from the existing compiled cache, not recompiled",
+    "axioms": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "axioms_status": "independently verified from freshly compiled Solution module and from existing artifacts; 587-declaration report re-parsed, none outside the allowlist",
+    "statement_bindings": "independently verified: 10 elaborated expressions equal between the mathlib-only Challenge environment and the Solution environment",
+    "proof_route": "read; three delegated sub-reviews found no semantic gap; net logarithmic power one at the tube level and (n-1)/n after the q-th root; constants depend only on dimension; dimension two covered by the 1 <= m chain",
+    "issues": [
+      {
+        "id": "F1",
+        "severity": "medium",
+        "kind": "evidence",
+        "summary": "provenance/module-port-lean434-build.log is a tail excerpt (starts at job 9396/10819, 113 Built lines) but is described as a passed full build"
+      },
+      {
+        "id": "F2",
+        "severity": "medium",
+        "kind": "scope",
+        "summary": "1682 upstream OAI modules reused from compiled cache; correspondence of their current source bytes to the artifacts rests on SOURCE_SHA256.json and MODULE_MIGRATION.json, not on recompilation"
+      },
+      {
+        "id": "F3",
+        "severity": "low",
+        "kind": "robustness",
+        "summary": "sharpTubeBound uses a Bochner integral; integrand is always integrable so the statement is not vacuous, but a lintegral or explicit Integrable conjunct would make this self-evident"
+      },
+      {
+        "id": "F4",
+        "severity": "low",
+        "kind": "hygiene",
+        "summary": "dead lemmas with 2 <= m hypotheses remain beside the 1 <= m versions actually used"
+      },
+      {
+        "id": "F5",
+        "severity": "low",
+        "kind": "information",
+        "summary": "109 files raise maxHeartbeats or synthInstance.maxHeartbeats"
+      },
+      {
+        "id": "F6",
+        "severity": "info",
+        "kind": "information",
+        "summary": "lakefile default targets include Challenge, so builds warn on its two deliberate sorry placeholders"
+      },
+      {
+        "id": "F7",
+        "severity": "info",
+        "kind": "trust base",
+        "summary": "the theorems imply the Kakeya maximal function conjecture in every dimension; the pending independent replay and second-toolchain build should be treated as required"
+      }
+    ],
+    "independently_verified": [
+      "statement elaboration equality between Challenge and Solution environments (rerun)",
+      "semantic audit, 11 declarations (rerun on existing artifacts and from freshly compiled modules)",
+      "axiom footprint of both theorems",
+      "from-source compilation of all 212 local Lean files in Lean 4.34.1",
+      "source manifest hashes for all 1895 Lean files",
+      "migration patch contains only visibility, elaboration-budget, import and explicit-argument changes"
+    ],
+    "no_issue_found_but_not_independently_verified": [
+      "compilation of the 1682 upstream OAI modules (cache reused)",
+      "mathematical content of upstream lemmas invoked by the local chain",
+      "unitPacketFamily_weakSuperharmonic discharge chain"
+    ]
+  },
+  "narrative_verdict": {
+    "accuracy": "accurate about formal scope; three exponents correct; Holder, direction-net, radial and one-log lower-bound arguments verified; Fernandez-Delgado-de la Salle Theorem 1.3 and the OpenAI kakeya.tex powers verified against primary sources fetched 2026-11-14",
+    "issues": [
+      {
+        "id": "N1",
+        "severity": "important omission",
+        "summary": "no file states that Theorem 1 implies the Kakeya maximal function conjecture and Corollary 4 the Minkowski-dimension Kakeya set conjecture in every dimension; literature status to be confirmed by the author"
+      },
+      {
+        "id": "N2",
+        "severity": "clarity",
+        "summary": "'Lean formalization of sharp ... estimates' reads as if sharpness were formalized"
+      },
+      {
+        "id": "N3",
+        "severity": "precision",
+        "summary": "abstract omits 'delta-separated unit directions' and the radius-2delta convention"
+      },
+      {
+        "id": "N4",
+        "severity": "precision",
+        "summary": "cited construction holds for every delta in (0,1), not only small delta; its conjectural-optimality remark and the fact that Corollary 4 supplies the matching lower bound are unmentioned"
+      },
+      {
+        "id": "N5",
+        "severity": "stale text",
+        "summary": "TRACE_METHOD.md says the lower bound remains unfinished and fixes m >= 2"
+      },
+      {
+        "id": "N6",
+        "severity": "evidence description",
+        "summary": "build log described as full is a tail excerpt (same as F1)"
+      },
+      {
+        "id": "N7",
+        "severity": "minor",
+        "summary": "small wording and status items listed in narrative-review.md"
+      }
+    ],
+    "proposed_prose": [
+      "proposed-abstract.md",
+      "proposed-summary.md"
+    ],
+    "files_that_can_stand_with_small_edits": [
+      "README.md",
+      "STATEMENT_AND_OPTIMALITY.md",
+      "INFORMAL.md",
+      "formalization.yaml"
+    ]
+  },
+  "unresolved_blockers": [
+    "Lean 4.35.0 build with mathlib 56a005855ea17e0b0958f73ec801ae140b0a1679 not run",
+    "official Palomar Comparator not run",
+    "independent kernel replay not run",
+    "independent human mathematical review not performed",
+    "complete Lean 4.34.1 build log not retained (tail only)"
+  ],
+  "checks_run": [
+    {
+      "name": "review_local_434",
+      "command": "python3 scripts/review_local_434.py --output review/claude/runs/claude-fable-20261114/local-434",
+      "status": "passed",
+      "logs": [
+        "local-434/result.json",
+        "local-434/SubmissionAudit.lean.log",
+        "local-434/SemanticAudit.lean.log",
+        "local-434/bindings.json",
+        "local-434/bindings.log",
+        "local-434/source-checks.json",
+        "local-434-driver.log"
+      ]
+    },
+    {
+      "name": "from_source_recompile_local_modules",
+      "command": "python3 -I local-rebuild-434/rebuild_local.py <root> <scratch-out> 4",
+      "status": "passed",
+      "modules_total": 212,
+      "compiled_ok": 212,
+      "failed": [],
+      "elapsed_seconds": 348,
+      "logs": [
+        "local-rebuild-434/rebuild-summary.json",
+        "local-rebuild-434/rebuild.log"
+      ]
+    },
+    {
+      "name": "primary_source_checks",
+      "method": "WebFetch of arxiv.org/abs/2607.14824, arxiv.org/html/2607.14824 (v3), and raw openai/math kakeya.tex at 4eaee87548250b2682affda7d05d947c05554bae",
+      "status": "consistent with the narrative"
+    }
+  ],
+  "queue": {
+    "review_received": true,
+    "QUEUE.json_modified": false,
+    "proposed_update": "proposed-QUEUE.json"
+  }
+}

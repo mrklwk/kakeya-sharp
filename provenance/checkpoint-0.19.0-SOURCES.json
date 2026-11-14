@@ -1,0 +1,379 @@
+{
+  "date": "2026-11-14",
+  "lean": "4.34.1",
+  "mathlib": "d13f23b723b8a846827a245b89c10fc7d3f11612",
+  "license": "Apache-2.0",
+  "adaptations": [
+    {
+      "local": "KakeyaSharp/Geometry.lean",
+      "url": "https://github.com/openai/math/blob/main/lean/OAI/MeasureTheory/Kakeya/Geometry.lean",
+      "blob_sha": "22c103977d1fc3277256b01f230388656bbd835c"
+    },
+    {
+      "local": "KakeyaSharp/Caps.lean",
+      "url": "https://github.com/openai/math/blob/main/lean/OAI/MeasureTheory/Kakeya/Packets.lean",
+      "blob_sha": "132f68930791018fddb0acae201803c0817a27e3"
+    },
+    {
+      "local": "KakeyaSharp/Caps.lean",
+      "url": "https://github.com/openai/math/blob/main/lean/OAI/Analysis/Fourier/Restriction/Geometry.lean",
+      "blob_sha": "a97e2937e09c8a3a68b8cefa68f82fc81c707533"
+    },
+    {
+      "local": "KakeyaSharp/Volume.lean",
+      "url": "https://github.com/openai/math/blob/main/lean/OAI/MeasureTheory/Kakeya/Volume.lean",
+      "blob_sha": "7e4f29eaea471d0961f89ca71207af319c92233f"
+    },
+    {
+      "local": "KakeyaSharp/Measurability.lean",
+      "url": "https://github.com/openai/math/blob/main/lean/OAI/MeasureTheory/Kakeya/Measurability.lean",
+      "blob_sha": "40c9d882437958f58fcbe1a525ccd09dd2f23755"
+    },
+    {
+      "local": "KakeyaSharp/DirectionNets.lean",
+      "url": "https://github.com/openai/math/blob/main/lean/OAI/MeasureTheory/Kakeya/DirectionNets.lean",
+      "blob_sha": "87503bbb75895626384f55f2304aa53b7bbefd6c"
+    },
+    {
+      "local": "KakeyaSharp/Duality.lean",
+      "url": "https://github.com/openai/math/blob/main/lean/OAI/MeasureTheory/Kakeya/Duality.lean",
+      "blob_sha": "a6076cee7bc0a696bb3d688fe4bd56261204316e"
+    },
+    {
+      "local": "KakeyaSharp/Discrete.lean",
+      "url": "https://github.com/openai/math/blob/main/lean/OAI/MeasureTheory/Kakeya/MaximalDiscrete.lean",
+      "blob_sha": "4ab02915b1dcade7a6e118520cd0a32972806575"
+    },
+    {
+      "local": "KakeyaSharp/DirectionIntegral.lean",
+      "url": "https://github.com/openai/math/blob/main/lean/OAI/MeasureTheory/Kakeya/DirectionIntegral.lean",
+      "blob_sha": "1c4c7f37556a7b03b34f2d49bf5e3a6130f86c84"
+    },
+    {
+      "local": "KakeyaSharp/DirectionIntegral.lean",
+      "url": "https://github.com/openai/math/blob/main/lean/OAI/MeasureTheory/Kakeya/Maximal.lean",
+      "blob_sha": "708f0b7a0461a8a659c217beb948121e231c8b24"
+    },
+    {
+      "local": "KakeyaSharp/Definitions.lean",
+      "url": "https://github.com/openai/math/blob/main/lean/ComparatorChallenges/LocalSmoothing.lean",
+      "blob_sha": "9e712197a604ecb440b9dade7469ef44ba5f716a"
+    },
+    {
+      "local": "KakeyaSharp/QuaternionAlgebra.lean",
+      "url": "https://github.com/openai/math/blob/main/lean/OAI/Analysis/Calculus/Quaternion/Algebra.lean",
+      "blob_sha": "57e890f1cdf276c6a3011fcc58e1eca5a374ed23"
+    },
+    {
+      "local": "KakeyaSharp/Moore/Basic.lean",
+      "url": "https://github.com/openai/math/blob/main/lean/OAI/LinearAlgebra/Moore/Basic.lean",
+      "blob_sha": "0c2e274f1598cfdb1aa05059c41dec37f200ec4f"
+    },
+    {
+      "local": "KakeyaSharp/Moore/Normalize.lean",
+      "url": "https://github.com/openai/math/blob/main/lean/OAI/LinearAlgebra/Moore/Normalize.lean",
+      "blob_sha": "6e46bce9c5f5bdcbd0a58e9862a74d9f9952926a"
+    },
+    {
+      "local": "KakeyaSharp/Moore/RankOne.lean",
+      "url": "https://github.com/openai/math/blob/main/lean/OAI/LinearAlgebra/Moore/Rank/One.lean",
+      "blob_sha": "5e9b160014a2fab868f47b4813c33c167d5a1197"
+    },
+    {
+      "local": "KakeyaSharp/Moore/Derivative.lean",
+      "url": "https://github.com/openai/math/blob/main/lean/OAI/LinearAlgebra/Moore/Derivative.lean",
+      "blob_sha": "280478182269b6c14d95dffbd459d50b7b6a4e2f"
+    },
+    {
+      "local": "KakeyaSharp/Moore/Inverse.lean",
+      "url": "https://github.com/openai/math/blob/main/lean/OAI/LinearAlgebra/Moore/Inverse.lean",
+      "blob_sha": "24890ee68f7bf3a82e73ddbf24a362b3b62d7ec2"
+    },
+    {
+      "local": "KakeyaSharp/Moore/Outer.lean",
+      "url": "https://github.com/openai/math/blob/main/lean/OAI/LinearAlgebra/Moore/Outer.lean",
+      "blob_sha": "4655c700ad4d575c2afeaa7c95b685caa2494895"
+    },
+    {
+      "local": "KakeyaSharp/HessianCalculus.lean",
+      "url": "https://github.com/openai/math/blob/main/lean/OAI/Analysis/PDE/Dirichlet/Hessian.lean",
+      "blob_sha": "405713e092876826342850bb5eb19893d30ae2a9"
+    },
+    {
+      "local": "KakeyaSharp/Moore/ScalarOuter.lean",
+      "url": "https://github.com/openai/math/blob/main/lean/OAI/LinearAlgebra/Moore/Outer.lean",
+      "blob_sha": "4655c700ad4d575c2afeaa7c95b685caa2494895"
+    },
+    {
+      "local": "KakeyaSharp/Moore/Cofactor.lean",
+      "url": "https://github.com/openai/math/blob/main/lean/OAI/LinearAlgebra/Moore/Cofactor.lean",
+      "blob_sha": "e3894f2dbd10999f8836c959bf4a291deaffb392"
+    },
+    {
+      "local": "KakeyaSharp/Moore/Smooth.lean",
+      "url": "https://github.com/openai/math/blob/main/lean/OAI/LinearAlgebra/Moore/Smooth.lean",
+      "blob_sha": "6dc94161253023a34487d72313dff42ca02e9c43"
+    },
+    {
+      "local": "KakeyaSharp/Moore/NullLagrangian.lean",
+      "url": "https://github.com/openai/math/blob/main/lean/OAI/LinearAlgebra/Moore/NullLagrangian.lean",
+      "blob_sha": "0b86fc6e8bab1dbd6458e6f844b2a84aca1c1af7"
+    },
+    {
+      "local": "KakeyaSharp/Calculus/Polarization.lean",
+      "url": "https://github.com/openai/math/blob/main/lean/OAI/Analysis/Calculus/Quaternion/Polarization.lean",
+      "blob_sha": "4f7aee0737c93deae5f988d0acdba8d60287edd8"
+    },
+    {
+      "local": "KakeyaSharp/Calculus/ThirdTensor.lean",
+      "url": "https://github.com/openai/math/blob/main/lean/OAI/Analysis/Calculus/Quaternion/ThirdTensor.lean",
+      "blob_sha": "6a7e89b32844ccd52f6dd352dccdfe7695946622"
+    },
+    {
+      "local": "KakeyaSharp/Calculus/CofactorSymbol.lean",
+      "url": "https://github.com/openai/math/blob/main/lean/OAI/Analysis/Calculus/Quaternion/CofactorSymbol.lean",
+      "blob_sha": "5bee914272cdf166185ae70f8384f137d8903ee9"
+    },
+    {
+      "local": "KakeyaSharp/Calculus/ThirdDerivatives.lean",
+      "url": "https://github.com/openai/math/blob/main/lean/OAI/Analysis/Calculus/Quaternion/ThirdDerivatives.lean",
+      "blob_sha": "2510e7fd219518281e10d0c12c60101f920622ed"
+    },
+    {
+      "local": "KakeyaSharp/Calculus/DirectionalHessian.lean",
+      "url": "https://github.com/openai/math/blob/main/lean/OAI/Analysis/Calculus/Quaternion/DirectionalHessian.lean",
+      "blob_sha": "a8c44adb375d5c1997de8f20a3442bf6b11315b0"
+    },
+    {
+      "local": "KakeyaSharp/Calculus/CofactorDivergence.lean",
+      "url": "https://github.com/openai/math/blob/main/lean/OAI/Analysis/Calculus/Quaternion/CofactorDivergence.lean",
+      "blob_sha": "42137b7e5e4e977472c0bf26a95e66b37723ee78"
+    },
+    {
+      "local": "KakeyaSharp/Green/GreenReal.lean",
+      "url": "https://github.com/openai/math/blob/main/lean/OAI/Analysis/PDE/Green/GreenReal.lean",
+      "blob_sha": "eb7020f68f2f75140e68d269b043a67fa8a5c09e"
+    },
+    {
+      "local": "KakeyaSharp/Green/GreenOperator.lean",
+      "url": "https://github.com/openai/math/blob/main/lean/OAI/Analysis/PDE/Green/GreenOperator.lean",
+      "blob_sha": "59a74786ed5af820d06ccf28a3f732752b58027d"
+    },
+    {
+      "local": "KakeyaSharp/Green/GreenAlgebra.lean",
+      "url": "https://github.com/openai/math/blob/main/lean/OAI/Analysis/PDE/Green/GreenAlgebra.lean",
+      "blob_sha": "468d8fd431dc1335d23a8af4a08efa998ec5451b"
+    },
+    {
+      "local": "KakeyaSharp/Green/BoundaryExtension.lean",
+      "url": "https://github.com/openai/math/blob/main/lean/OAI/Analysis/PDE/Green/BoundaryExtension.lean",
+      "blob_sha": "0334538a0290e5d2332686846039eafc10dab100"
+    },
+    {
+      "local": "KakeyaSharp/Green/BoundaryGreen.lean",
+      "url": "https://github.com/openai/math/blob/main/lean/OAI/Analysis/PDE/Green/BoundaryGreen.lean",
+      "blob_sha": "36981433cf15a3b96e784e4e7ee61524789be576"
+    },
+    {
+      "local": "KakeyaSharp/Green/DirectionalCofactor.lean",
+      "url": "https://github.com/openai/math/blob/main/lean/OAI/Analysis/PDE/Green/BoundedGreen.lean",
+      "blob_sha": "910d0651439124f3f91a2d6c1ecc7421da64b474"
+    },
+    {
+      "local": "KakeyaSharp/Green/DirectionalCofactor.lean",
+      "url": "https://github.com/openai/math/blob/main/lean/OAI/Analysis/PDE/Green/GreenCofactor.lean",
+      "blob_sha": "34952c281d0e7650e955aca45f037218c9db5819"
+    },
+    {
+      "local": "KakeyaSharp/Moore/Elliptic.lean",
+      "url": "https://github.com/openai/math/blob/main/lean/OAI/LinearAlgebra/Moore/Elliptic.lean",
+      "blob_sha": "19fd70809efdf42b2481685374e2f9052a0d661c"
+    },
+    {
+      "local": "KakeyaSharp/Moore/Form.lean",
+      "url": "https://github.com/openai/math/blob/main/lean/OAI/LinearAlgebra/Moore/Form.lean",
+      "blob_sha": "b228ec0eba69d02bb4697300b178fe4597a58845"
+    },
+    {
+      "local": "KakeyaSharp/Moore/PositiveInverse.lean",
+      "url": "https://github.com/openai/math/blob/main/lean/OAI/LinearAlgebra/Moore/PositiveInverse.lean",
+      "blob_sha": "dd6687b469a5ba924eb861773e9b99445f95490d"
+    },
+    {
+      "local": "KakeyaSharp/Moore/ODE.lean",
+      "url": "https://github.com/openai/math/blob/main/lean/OAI/LinearAlgebra/Moore/ODE.lean",
+      "blob_sha": "c9066bfb90654f873037b44837c84baa7c66d637"
+    },
+    {
+      "local": "KakeyaSharp/Moore/Positive.lean",
+      "url": "https://github.com/openai/math/blob/main/lean/OAI/LinearAlgebra/Moore/Positive.lean",
+      "blob_sha": "cf98555d723bac24386b36ac3011f15352c4330c"
+    },
+    {
+      "local": "KakeyaSharp/Moore/Monotone.lean",
+      "url": "https://github.com/openai/math/blob/main/lean/OAI/LinearAlgebra/Moore/Monotone.lean",
+      "blob_sha": "530617d84cd60cf75e94d21302157214948237d3"
+    },
+    {
+      "local": "KakeyaSharp/Moore/Boundary.lean",
+      "url": "https://github.com/openai/math/blob/main/lean/OAI/LinearAlgebra/Moore/Boundary.lean",
+      "blob_sha": "521d40ac3d183604eda316ed5d21fabbf2d14618"
+    },
+    {
+      "local": "KakeyaSharp/Moore/CofactorPositive.lean",
+      "url": "https://github.com/openai/math/blob/main/lean/OAI/LinearAlgebra/Moore/Cofactor.lean",
+      "blob_sha": "e3894f2dbd10999f8836c959bf4a291deaffb392"
+    },
+    {
+      "local": "KakeyaSharp/Moore/CofactorPositive.lean",
+      "url": "https://github.com/openai/math/blob/main/lean/OAI/Analysis/PDE/Green/GreenAlgebra.lean",
+      "blob_sha": "468d8fd431dc1335d23a8af4a08efa998ec5451b"
+    },
+    {
+      "local": "KakeyaSharp/Calculus/Maximum.lean",
+      "url": "https://github.com/openai/math/blob/main/lean/OAI/Analysis/PDE/Dirichlet/Maximum.lean",
+      "blob_sha": "d8120e2550471a913c9aff3079a95bff412c83fe"
+    },
+    {
+      "local": "KakeyaSharp/Propagation/OuterRegion.lean",
+      "url": "https://github.com/openai/math/blob/4eaee87548250b2682affda7d05d947c05554bae/lean/OAI/Analysis/PDE/Concentration/OuterRegion.lean",
+      "blob_sha": "71384bff747dfa112ea25644c6e3875c3a18743b",
+      "role": "Localized fixed-region comparison in time; imports upstream radial/mixing lemmas unchanged."
+    },
+    {
+      "local": "KakeyaSharp/Propagation/OuterRegion.lean",
+      "url": "https://github.com/openai/math/blob/4eaee87548250b2682affda7d05d947c05554bae/lean/OAI/Analysis/PDE/Concentration/OuterTrace.lean",
+      "blob_sha": "f53f15da6caef7db3d46115c77eec4fa310d29ce",
+      "role": "Localized fixed-region comparison in time; imports upstream radial/mixing lemmas unchanged."
+    }
+  ],
+  "changes": "Selected source proofs were adapted into KakeyaSharp namespaces and compiled against pinned mathlib. No OAI result is imported as an axiom. The new thin-profile derivatives, determinant bounds, radial integrals, full energy estimate, variational lower bound, spatial scaling, ball geometry, compact differentiation, first and second variations, concavity, compact extension, supporting inequality, quadratic barrier, finiteness, and source structure are checked local proofs. Cofactor and positivity ports use the same signed Pfaffian-defined Moore determinant. Generic calculus and Green identities are generalized to constant directions on the actual product space. The fifth checkpoint proves finiteness for every continuous source without nonlinear PDE existence, and proves the PDE representation conditional on an actual admissible solution. It also proves real-valued source monotonicity, convexity, exact homogeneity, and relative stability. General nonlinear Dirichlet existence and its parameter dependence, the compact-packet current identity and quantitative trace/propagation/localization arguments, and the complete weighted tube bound remain unproved. The sixth checkpoint adds new local proofs of Lipschitz continuity of the actual finite variational value, convergence under nonnegative scalar source regularization, full quaternionic Green pairings tested by arbitrary real linear maps, exact cancellation between the three parameter directions, differentiation of actual first-order conservation laws, their specialization to quaternionic currents on the parameter/spatial product, boundary transfer of first and second derivatives, exact completion of squares, and the integrated comparison Q <= integral Re trace(S H). The last comparison assumes the explicitly displayed linearized conservation law. At the sixth checkpoint this had not yet been connected to derivatives of a smooth Dirichlet family or the actual variational value. The seventh checkpoint supplies that connection by new local proofs: actual spatial-slice and parameter derivative identities; differentiation of the signed Moore determinant and the Dirichlet equation; differentiation of zero boundary values; the current energy comparison for actual parameter derivatives; first and second coordinate derivatives of the actual variational supremum through its conditional PDE representation; two spatial integrations by parts; and the nonpositive sum of three actual second coordinate derivatives. The final theorem explicitly assumes a globally C3 admissible Dirichlet solution family, a globally C2 Hermitian conserved current, strictly positive solution Hessian at the parameter under consideration, a nonnegative finite rank-one decomposition, and zero spatial stress on the boundary. At checkpoint seven, nonlinear Dirichlet existence, local parameter-domain localization, distributional superharmonicity and its regularization limit, the packet construction, and the full weighted tube bound remained unproved. The eighth checkpoint proves joint C2 regularity of compact parameter integrals and hence of the conditional represented variational value; identifies the second-coordinate sum with mathlib's usual Euclidean Laplacian; proves the compact test-function integration identity; defines the weak superharmonicity predicate with local integrability and integrable test products; proves stability under locally bounded pointwise convergence on open parameter domains; passes the actual variational value through nonnegative scalar source regularization; constructs the conserved rank-one density regularizer A + epsilon e0 e0*, including all block and decomposition identities; and combines these into a weak superharmonicity theorem for the unregularized value conditional only on smooth strictly elliptic Dirichlet families for a positive sequence of regularizations. These are new local proofs against pinned mathlib, with no new upstream ports. Nonlinear Dirichlet existence and parameter dependence, localization to the packet parameter domains, explicit packet construction, quantitative trace and propagation/localization estimates, and the full weighted tube bound remain unproved. The ninth checkpoint proves the local-parameter-domain scalar transfer theorem: local transport and double-conservation identities; local determinant and boundary linearization; local first and second variational derivatives; local energy and stress transfer; the distributional criterion with only C2 regularity on an open set; normed-space-valued compact smooth extensions and a uniform parameter neighborhood for a compact spatial slice; preservation of admissibility, current conservation, and the actual variational value under those extensions; and the positive-source weak limit with convergence and source continuity only on the local domain. The final theorem now requires only local C3 germs of the supplied regularized solution families and local C2 germs of the current near the closed spatial ball, with equations on the open parameter domain times the spatial ball. No smoothness or equations are required outside that parameter domain. No new upstream sources were imported. Nonlinear Dirichlet existence and parameter regularity, explicit packet construction, quantitative trace and propagation/localization estimates, and the full weighted tube estimate remain unproved. The tenth checkpoint defines the explicit physical-coordinate packet, without the mass-normalizing constant, and proves its local smoothness wherever Y is nonzero, Hermitian symmetry, density/flux/stress block identities, and nonnegative density. It also proves exact quadratic minimization and uniqueness, the completed square, finite-dimensional deviation bounds, all-orientation quaternionic tangency and multiplication identities, actual curve derivatives of the minimizing center and residual and the six scalar transport identities, cancellation of the center derivative in the minimized phase, the positive prefactor and its actual derivatives, and the exact Frechet-derivative scalar-cutoff conservation theorem. The algebraic phaseGradient formula is not yet identified with the actual gradient of physicalPhase. Full strong conservation of rawPacket, the normalizing change of variables, and the quantitative spatial support bound remain unproved. All additions are new local proofs using the pinned mathlib; no new upstream files were ported. The eleventh checkpoint identifies the actual physical phase gradient, proves actual column derivatives in all directions and orientations, cancels the prefactor and acceleration terms, proves full strong and real column conservation of the cutoff packet, and derives quantitative support and boundary vanishing. It constructs arbitrary finite weighted packet families with their positive block decomposition and proves their scalar-transfer conclusion conditional only on the stated regularized Dirichlet families and numeric support bounds. These are new local proofs; no new upstream proof files were ported. The normalization change of variables, nonlinear Dirichlet existence and parameter regularity, quantitative trace/propagation/localization assembly, and unconditional weighted tube estimate remain outstanding. The twelfth checkpoint completes the staged coordinate, ball, existence, translation-invariance and descent adapters, including repair of the zero-Moore-determinant proof. It adds actual C4 admissible solutions on translated balls and attainment/PDE representation of the original variational value. It packages the ball as upstream data, constructs joint smooth boundary representatives via the proved smooth-family theorem, descends them, and glues them on compact parameter neighborhoods while preserving the actual spatial Hessians up to the boundary. It constructs solutions for every positive regularization of the explicit packet density and proves packetFamily_weakSuperharmonic without a supplied solution-family, PDE solvability or parameter-regularity assumption. This does not prove packet mass normalization, the weighted input trace inequality, the single-log scalar propagation, output assembly, the weighted tube estimate, the planar endpoint, or logarithmic optimality. All 1682 vendored upstream files are unchanged and pinned by Git blob hash. The thirteenth checkpoint proves volume-preserving physical coordinates, the explicit affine normalization and its block determinant, exact prefactor cancellation, the full change of variables for Lebesgue integrals, cutoff integrability and positive mass, mass-one packets and arbitrary finite weighted sums, and a fixed smooth cutoff. At r=delta^2 and h=delta^4 the raw mass is delta^(5m) times the cutoff mass. The Kakeya-scale family has mass delta^m times the sum of weights and uniform spatial support on -3<p0<5, 0<|Y|<4. Its weak scalar-transfer theorem now requires only the explicit scale and geometric bounds, with no solution-family or pointwise support-bound hypothesis. Jointly continuous source families give continuous variational values by compact uniform convergence and the proved source Lipschitz estimate. These six new modules use the pinned mathlib and existing OAI imports without adding or modifying upstream sources. The weighted trace estimate, single-log propagation, output assembly, sharp weighted tube theorem, planar endpoint, and logarithmic optimality remain unproved. The fourteenth checkpoint proves smooth determinant-mass comparison by differentiating along a segment and applying the first cofactor Green identity. A fixed smooth transition gives the scaled sublevel mass inequality; mathlib layer cake then gives the weighted trace bound with K_m=3^(m+1)(m+1), for the original local admissible class and H>=0. Scaled Young gives the weighted bound for the actual variational supremum, allowing discontinuous weights with integrable critical power against the determinant. No mixed-determinant positivity or PDE solution is assumed. The actual input logarithmic barrier is constructed in every unit transverse orientation, with D rho=8I, |G rho|^2=8rho, exact determinant 8^m h/(h+rho)^(m+1), bounds on the full closed ball, and height at h=delta^4 bounded by C_R log(2/delta). The barrier is identified with the actual packet ratio coordinates. Source domination and the normal-variable/direction-separation weighted integral estimate for the packet family remain outstanding, as do propagation, output assembly, the full weighted tube theorem, planar endpoint and logarithmic optimality. Seven new local modules reuse existing mathlib, cofactor and Green proofs; no upstream files are added or modified. The fifteenth checkpoint proves the actual weighted Kakeya packet input estimate in every unit transverse orientation, for m>=1, arbitrary nonnegative weights and delta-separated directions. It derives normalized density domination from actual cutoff support, proves a volume-preserving normal coordinate transformation, integrates the 2m-dimensional normal kernel uniformly in its scale, proves a cap overlap bound of 8^m, and integrates the critical power of the directional weight. The result is F_input<=C_(m,A,R) log(2/delta) delta^m sum weights^((m+1)/m), with an explicit positive constant and no supplied domination or integral hypothesis. It also reuses the pinned OpenAI radial comparison, averaging and compact mixing lemmas to prove single-log propagation from fixed radius one for smooth nonnegative superharmonic functions on a bounded time cylinder. This smooth propagation theorem has not yet been applied to the actual continuous weak packet value: regularization/limiting and enlargement of the fixed packet time domain remain. Output localization, tube assembly, planar endpoint and logarithmic optimality also remain unproved. Ten new local modules; all vendored OpenAI files remain unchanged. The sixteenth checkpoint constructs positive local smoothing of continuous weakly superharmonic functions and passes both cylinder integrals to the limit. The actual packet family is supported on the larger fixed propagation domain and satisfies the single-log propagation estimate; at radius delta^4 the input and propagation bounds give a squared-log integral upper bound. The pinned OpenAI comparison theorem is adapted to the actual translated balls, proving finite-ball localization for smooth nonnegative sources via positive regularization. The fixed packet cutoff is proved to equal one in an explicit thin output region, giving the actual normalized density lower bound c_m delta^(-10m) times the selected weight sum. This is combined with finite-ball localization and the logarithmic thin-source test on explicitly specified disjoint balls. Exact scale arithmetic gives delta^(m-2) times the critical weight power and log(r0/(epsilon0 delta)). The ball covering from tubes, time integration, logarithm cancellation, arbitrary tube placement/direction assembly, planar endpoint and logarithmic optimality remain unproved. Ten new local modules; all 1682 vendored OpenAI source files remain unchanged. The seventeenth checkpoint proves the actual normalized weighted graph-tube bound with one logarithm for every m>=2 (ambient dimension m+1), bounded intercepts, slopes of norm at most 1/4, delta-separated slopes, and arbitrary nonnegative weights. A finite separated spatial net replaces overlap maxima; the spatial majorant, integrability, disjoint scaled physical balls, fixed outer-ball containment and selected-axis geometry are proved. The localized output lower estimate controls each actual tube slice with a factor delta^2 and log(2/delta). Joint measurability and uniform integrability of the slice integral, continuity of the angular trace, exact time substitution, and restriction of the nonnegative propagation integral are proved, allowing cancellation of one logarithm. A second fixed finite cover enlarges the graph radius from delta/64 to 2 delta while preserving direction separation. Nine new local modules; no upstream source added or modified. Arbitrary tube placement and direction-chart assembly, the planar case, and a matching logarithmic lower-bound example remain unproved. The eighteenth checkpoint removes the graph intercept bound using a finite spatial partition with bounded overlap, includes delta=1, translates and sums time intervals, and enlarges the graph radius to 8 delta. It constructs volume-preserving head/tail coordinates and finitely many orthogonal direction charts, proves slope separation with the exact delta/2 loss, contains actual Euclidean tubes including end caps in graph windows, and proves product integrability and Fubini. A second weighted spatial partition removes all Euclidean center restrictions. Exact finite reindexing and orthogonal invariance combine the direction classes. The final theorems sharpTubeBound_of_three_le and sharpMaximalBound_of_three_le prove the original targets for every n>=3 without a tube-bound or other analytic hypothesis. Eighteen new local modules; no upstream source added or modified. The planar case and matching logarithmic lower-bound example remain unproved. The nineteenth checkpoint proves a boundary-energy estimate valid for every m>=1, bounding the radial kernel by 1+1/(eta^2+1-r), and enlarges only the dimension-dependent energy constant. It extends all thin-source variational and localization bounds to m>=1. Real-exponent output scale identities retain delta^(m-2) when m=1, where it is delta^(-1); multiplication by the delta^2 time factor gives delta^m. The final graph, arbitrary Euclidean tube and maximal assembly now holds for every n>=2, including the planar endpoint. New theorems sharpTubeBound_of_two_le and sharpMaximalBound_of_two_le have no analytic hypotheses. No upstream files are added or modified. The matching logarithmic lower-bound example remains unproved.",
+  "analytic_manuscript": "Kakeya_sharp_maximal_all_dimensions_2026-11-12.tex",
+  "analytic_status": "Unconditional SharpTubeBound n and SharpMaximalBound n proved for every n>=2, including n=2, with a single logarithm in the weighted overlap integral and log(2/delta)^((n-1)/n) in the maximal norm. Arbitrary Euclidean centers and directions; 0<delta<=1. Matching logarithmic lower bound remains unproved.",
+  "new_checkpoint_modules": [
+    "EnergyBoundaryAllDimensions"
+  ],
+  "checkpoint": "0.19.0",
+  "current_status": {
+    "nonlinear_dirichlet_existence": "proved for every positive smooth source on the actual translated thin ball, m >= 1",
+    "variational_attainment": "proved using the actual admissible Dirichlet solution",
+    "joint_parameter_regularity": "proved via upstream smooth representatives, descent and local gluing",
+    "packet_conservation": "proved from actual Frechet derivatives for every column and nonzero Y",
+    "packet_support": "proved with explicit physical-coordinate and uniform scale bounds",
+    "packet_scalar_transfer": "proved for normalized and Kakeya-scale packets without supplied PDE solutions or pointwise support bounds; geometric intercept/direction bounds remain explicit",
+    "packet_normalization": "proved: exact affine Jacobian, integrability, positive normalizer, unit mass and finite weighted sums",
+    "weighted_input_trace": "proved: original admissible class, locally C3 barrier, no barrier boundary condition, singular Hessians and H=0; K_m=3^(m+1)(m+1)",
+    "single_log_propagation": "proved for continuous nonnegative weakly superharmonic functions on an open neighborhood of the compact cylinder, by positive local smoothing and dominated convergence; applied to the actual normalized packet value on an enlarged fixed domain",
+    "output_localization_and_assembly": "proved through spatial covering, finite-ball localization, time/angular integration, logarithm cancellation, arbitrary locations, finite orthogonal direction charts, and actual Euclidean tube containment",
+    "sharp_tube_bound": "proved for every n>=2 by sharpTubeBound_of_two_le; arbitrary centers, delta-separated unit directions, nonnegative coefficients and 0<delta<=1",
+    "sharp_maximal_bound": "proved for every n>=2 by sharpMaximalBound_of_two_le; actual supremum over all centers and actual tube-volume normalization; no analytic hypotheses",
+    "logarithmic_optimality_lower_bound": "unproved",
+    "kakeya_scale_family": "proved: r=delta^2, h=delta^4, mass delta^m times each weight; support in a spatial ball independent of delta on a fixed parameter domain",
+    "parameter_value_continuity": "proved for jointly continuous sources, including sources which vanish; applied to the actual scaled packet family",
+    "weighted_variational_bound": "proved for the actual supremum: F_B(mu)<=C_m H integral b^((m+1)/m) det(D phi); continuous source, discontinuous nonnegative weights allowed when the displayed integrand is integrable",
+    "packet_input_barrier": "proved in every unit transverse orientation: actual Hessian, PSD, exact determinant, packet ratio identification, height O_R(log(2/delta)), and application of the weighted variational theorem",
+    "weighted_packet_input_estimate": "proved for the actual normalized family: all unit orientations, m>=1, arbitrary nonnegative weights, bounded unscaled intercepts and delta-separated directions; explicit positive constant and single log",
+    "normal_kernel_integration": "proved whole-space integrability and dimension-only bound, uniform in h>0",
+    "directional_weight_bound": "proved from delta-separation: overlap at most 8^m and critical-power integral bounded by C_m delta^m sum weights^((m+1)/m)",
+    "packet_propagation_upper_bound": "proved for actual weighted packets: at radius delta^4, the integral over t in [1,2] and all angles is <= C_(m,A,V) log(2/delta)^2 delta^m sum weights^((m+1)/m), 0<delta<1",
+    "finite_ball_localization": "proved: for finitely many pairwise disjoint open balls with closures inside the outer ball, sum of local variational values <= global value, for every smooth source nonnegative on the closed outer ball",
+    "packet_output_density": "proved for the fixed standard cutoff in explicit physical-coordinate regions: density >= (5^(-m/2)/Z_m) delta^(-10m) times the selected weight sum",
+    "localized_packet_output_lower_bound": "proved for m>=1 under explicit disjoint-ball, radius, thickness, small-direction and axis-distance hypotheses; no analytic source-bound or PDE hypothesis supplied",
+    "output_scale_arithmetic": "proved for m>=1 using real exponents: spatial radius r0 delta^3 and transverse thickness epsilon0 delta^4 give delta^((m:Real)-2) M^((m+1)/m) log(r0/(epsilon0 delta)); in m=1 the power is delta^(-1) and the delta^2 time-change factor recovers delta^m",
+    "normalized_weighted_tube_bound": "proved for m>=1, arbitrary intercepts, slopes of norm at most 1/4, delta-separated slopes, 0<delta<=1, arbitrary nonnegative coefficients; also graph radius 8 delta and translated integer-length time intervals",
+    "fixed_graph_radius_enlargement": "proved up to radius 8 delta by fixed finite spatial covers, without changing the slope-separation hypothesis",
+    "unrestricted_tube_geometry": "proved: arbitrary centers, finite orthogonal direction charts, delta/2 slope separation, translated finite time intervals, Euclidean end caps and delta=1",
+    "planar_case": "proved by the same energy/variational/packet argument after a radial boundary estimate valid for m>=1 and real-exponent output bookkeeping; explicit n=2 applications checked",
+    "euclidean_product_integration": "proved: head/tail coordinate map preserves Lebesgue volume; graph windows are jointly measurable and integrable; exact Fubini and interval integration",
+    "weighted_spatial_partition": "proved twice, for graph intercepts and actual Euclidean tube centers, with dimension-only overlap factors and exact coefficient-power partition",
+    "thin_energy_all_dimensions": "proved for m>=1 with enlarged dimension constant; radial Jacobian bounded by 1 instead of r, and boundary kernel by 1+1/(eta^2+1-r)"
+  },
+  "inspected_not_imported": [
+    {
+      "url": "https://arxiv.org/abs/2611.03214",
+      "role": "Mathematical reference for smooth nonlinear Dirichlet existence. Not introduced as an axiom; the actual Lean existence theorem is now imported from the pinned OpenAI development and adapted to the thin ball."
+    },
+    {
+      "url": "https://github.com/openai/math/blob/4eaee87548250b2682affda7d05d947c05554bae/lean/OAI/MeasureTheory/Kakeya/CapReduction.lean",
+      "blob_sha": "9931086e9a0339e0031043f6319d1427b19d33cc",
+      "role": "Restriction-to-tube route; not needed in the direct packet-to-tube assembly."
+    },
+    {
+      "url": "https://github.com/openai/math/blob/4eaee87548250b2682affda7d05d947c05554bae/lean/OAI/MeasureTheory/Kakeya/Log/VolumeLocalization.lean",
+      "blob_sha": "a7f2cf485909fcee8a2d7999439cf57bde10ef10",
+      "role": "Unweighted tube-union localization and reindexing. The weighted spatial grouping and exact coefficient-power partition are proved locally."
+    },
+    {
+      "url": "https://github.com/openai/math/blob/4eaee87548250b2682affda7d05d947c05554bae/lean/OAI/MeasureTheory/Kakeya/Log/TubeBound.lean",
+      "blob_sha": "d58e7d286fef0065073eae20140fee38ea76a979",
+      "role": "Critical restriction/extension route to tube estimates; not imported."
+    },
+    {
+      "url": "https://github.com/openai/math/blob/4eaee87548250b2682affda7d05d947c05554bae/lean/OAI/MeasureTheory/Kakeya/Log/Volume.lean",
+      "blob_sha": "38d3511b9564a68ec4201665e82d80b0b97c6ea2",
+      "role": "Overlap-to-volume consequences; not required for the weighted maximal proof."
+    },
+    {
+      "url": "https://github.com/openai/math/blob/4eaee87548250b2682affda7d05d947c05554bae/lean/OAI/MeasureTheory/Kakeya/Log/Overlap.lean",
+      "blob_sha": "75aa7e59756825218322ca097fd2b45c07e3c7cf",
+      "role": "Localized extension-to-overlap implications; not a standalone planar single-log proof and not imported."
+    }
+  ],
+  "integrated_upstream": {
+    "repository": "openai/math",
+    "commit": "4eaee87548250b2682affda7d05d947c05554bae",
+    "manifest": "UPSTREAM_DIRICHLET.json",
+    "source_files": 1682,
+    "modified_upstream_files": 0,
+    "entry_points": [
+      "OAI.Analysis.PDE.Dirichlet.exists_periodic_moore_dirichlet_C4",
+      "OAI.Analysis.Fourier.WavePackets.exists_smooth_periodic_dirichlet_family",
+      "OAI.Analysis.Calculus.SmoothExtension.exists_contDiff_extension_of_local_on",
+      "OAI.Analysis.PDE.Concentration.cylinderAverage_logarithmic_lower_on",
+      "OAI.Analysis.PDE.Concentration.exists_uniform_local_compact_volume_mixing",
+      "OAI.Analysis.PDE.Concentration.exists_cylinder_trace_volume_constant",
+      "OAI.Analysis.PDE.Concentration.cylinderTimeTrace_le_average_on",
+      "OAI.Analysis.PDE.Schauder.fderiv_scalarConvolution_data",
+      "OAI.Analysis.PDE.Schauder.smoothData_tendsto",
+      "OAI.Analysis.PDE.Dirichlet.quaternionic_dirichlet_comparison_continuous_lattice"
+    ]
+  },
+  "verification": {
+    "lean_version": "4.34.1",
+    "project_build": "passed: python3 scripts/build_checked.py build KakeyaSharp, 10809 jobs",
+    "audit": "passed: lake env lean Audit.lean; includes explicit n=2 tube and maximal instances",
+    "axiom_reports": 587,
+    "allowed_axioms": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "proof_placeholders": 0,
+    "local_library_modules": 207,
+    "imported_upstream_modules": 1677,
+    "vendored_upstream_files": 1682,
+    "source_audit": "passed: python3 scripts/audit_sources.py; import reachability, axiom allowlist, placeholder/unsafe scan and all upstream Git blob hashes"
+  },
+  "modified_checkpoint_modules": [
+    "AllDirectionTubes",
+    "ChartTubes",
+    "GlobalChartTubes",
+    "Packet/BroadGraphTubes",
+    "Packet/EnlargedGraphTubes",
+    "Packet/GlobalGraphTubes",
+    "Packet/GraphEndpoint",
+    "Packet/GraphTimeIntervals",
+    "Packet/NormalizedTubes",
+    "Packet/OutputLocalization",
+    "Packet/OutputScaling",
+    "Packet/OutputSlice",
+    "ScaledVariational",
+    "SharpTheorem",
+    "ThinEnergy",
+    "ThinVariational",
+    "VariationalLocalization",
+    "VariationalStructure",
+    "VariationalTest",
+    "VariationalValue"
+  ]
+}

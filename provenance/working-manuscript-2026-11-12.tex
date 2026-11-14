@@ -1,0 +1,1199 @@
+\documentclass[11pt]{article}
+\usepackage[margin=1in]{geometry}
+\usepackage[T1]{fontenc}
+\usepackage{lmodern}
+\usepackage{amsmath,amssymb,amsthm,mathtools}
+\usepackage[colorlinks=true,linkcolor=blue,urlcolor=blue]{hyperref}
+\urlstyle{same}
+\emergencystretch=2em
+\newtheorem{theorem}{Theorem}
+\newtheorem{lemma}{Lemma}
+\newtheorem{proposition}{Proposition}
+\newtheorem{corollary}{Corollary}
+\numberwithin{equation}{section}
+\newcommand{\R}{\mathbb R}
+\newcommand{\C}{\mathbb C}
+\newcommand{\HH}{\mathbb H}
+\newcommand{\dd}{\,d}
+\newcommand{\Rea}{\operatorname{Re}}
+\DeclareMathOperator{\cof}{cof}
+\DeclareMathOperator{\tr}{tr}
+\title{Sharp logarithmic estimates for Kakeya tubes}
+\author{Working manuscript}
+\date{November 12, 2026}
+\begin{document}
+\maketitle
+
+\begin{abstract}
+We give a detailed argument for a sharp logarithmic overlap estimate
+for direction-separated tubes in Euclidean space. The estimate allows
+arbitrary nonnegative coefficients and is equivalent to the critical
+Kakeya maximal inequality with logarithmic power $(n-1)/n$.
+The proof associates compact conserved positive matrix fields to
+tubes. A Dirichlet determinant energy is superharmonic in three
+auxiliary parameters. A mixed-determinant trace inequality gives the
+weighted input bound, while a logarithmic test function gives a
+matching improvement at the output. Smooth Dirichlet solvability is
+taken from the theorem of Ma and Zhu on flat quaternionic quotients.
+The remaining calculus, packet identities, estimates, and maximal
+duality are proved below.
+\end{abstract}
+
+\section{The tube estimate}
+
+For $a\in\R^n$, $\omega\in S^{n-1}$, and $0<\delta\le1/2$, let
+$T_\delta(\omega,a)$ denote the open $\delta$-neighborhood of
+$a+[-1/2,1/2]\omega$. Its volume is comparable to $\delta^{n-1}$.
+Write $1_T$ for the indicator of a measurable set $T$.
+
+\begin{theorem}[Weighted tube estimate]\label{thm:tubes}
+Fix $n\ge3$ and set $q=n/(n-1)$. There is a constant $C_n$ such that,
+for every $0<\delta\le1/2$, every finite $\delta$-separated set
+$\{\omega_j\}\subset S^{n-1}$, every choice of centers
+$a_j\in\R^n$, and every choice of coefficients $\lambda_j\ge0$,
+\begin{equation}\label{eq:maintubes}
+ \int_{\R^n}\left(\sum_j\lambda_j
+              1_{T_\delta(\omega_j,a_j)}(X)\right)^q\dd X
+ \le C_n\log(2/\delta)\,\delta^{n-1}\sum_j\lambda_j^q.
+\end{equation}
+The power one on the logarithm is optimal.
+\end{theorem}
+
+The analytic input used to prove this theorem is precisely the smooth
+Dirichlet theorem stated in Section~\ref{sec:dirichlet}.
+Its application to the present domains is proved there.
+This manuscript is a research deduction and has not been independently
+verified. All coefficients and tube positions in
+Theorem~\ref{thm:tubes} are unrestricted apart from the stated
+direction separation.
+
+Define the Kakeya maximal operator by
+\[
+ K_\delta f(\omega)=\sup_{a\in\R^n}
+ \frac{1}{|T_\delta(\omega,a)|}
+                   \int_{T_\delta(\omega,a)}|f(X)|\dd X.
+\]
+
+\begin{corollary}\label{cor:maximal}
+For $n\ge3$ and $0<\delta\le1/2$,
+\begin{equation}\label{eq:maximal}
+ \|K_\delta f\|_{L^n(S^{n-1})}
+ \le C_n[\log(2/\delta)]^{(n-1)/n}\|f\|_{L^n(\R^n)}.
+\end{equation}
+This logarithmic power is optimal. Conversely,
+\eqref{eq:maximal} implies \eqref{eq:maintubes}, with a change in
+the dimensional constant.
+\end{corollary}
+
+For the unweighted family in Theorem~\ref{thm:tubes}, H\"older's
+inequality gives
+\[
+ \left|\bigcup_jT_\delta(\omega_j,a_j)\right|
+ \ge c_n\,\frac{\#\{j\}\delta^{n-1}}
+                  {[\log(2/\delta)]^{n-1}}.
+\]
+In particular, every Kakeya set $K\subset\R^n$ satisfies
+\begin{equation}\label{eq:neighborhood}
+ |N_\delta(K)|\ge c_n[\log(2/\delta)]^{-(n-1)}
+\end{equation}
+for $0<\delta\le1/2$, where $N_\delta(K)$ is its open
+$\delta$-neighborhood.
+
+Here is the normalized estimate from which the theorem will follow.
+Put $m=n-1$ and $q=(m+1)/m$. Fix $B_0>0$ and a sufficiently small
+dimensional constant $\gamma>0$. Consider a finite family
+\[
+ T=\{(y,z)\in\R^m\times[0,1]:|y-b_T-zv_T|\le\delta\},
+ \qquad |b_T|\le B_0,\quad |v_T|\le\gamma,
+\]
+with $\delta$-separated slopes $v_T$.
+For $\lambda_T\ge0$ set
+\[
+ M(y,z)=\sum_T\lambda_T1_T(y,z),\qquad
+ E=\delta^m\sum_T\lambda_T^q,\qquad L=\log(2/\delta).
+\]
+
+\begin{proposition}[Normalized tube estimate]\label{thm:main}
+For sufficiently small $\delta$, depending on $m$ and $B_0$,
+\begin{equation}\label{eq:overlap}
+ \int_0^1\int_{\R^m}M(y,z)^q\dd y\dd z\le C_{m,B_0}EL.
+\end{equation}
+\end{proposition}
+
+The proof has three quantitative steps. With $r=\delta^2$ and
+$h=\delta^4$, the packet construction gives a nonnegative
+superharmonic function $F(t,Y)$ for $t\in\R$ and
+$Y\in\C\setminus\{0\}$ in a fixed bounded parameter region.
+The weighted trace estimate gives $F(0,Y)\lesssim EL$ on $|Y|=1$.
+Scalar propagation costs one logarithm. The output test gives
+$F(1+rz,Y)\gtrsim r^{-1}L\int M(y,z)^q\dd y$ on $|Y|=h$.
+Integration in $t$ and cancellation of one $L$ prove
+Proposition~\ref{thm:main}.
+
+The weighted input estimate uses repeated integration by parts for
+mixed determinants. A related complex inequality is recorded in
+\cite[proof of Lemma 5.1]{KN}; the version needed here is proved in
+Lemma~\ref{lem:weightedenergy}. No decomposition into coefficient
+ranges is needed.
+
+Acknowledgments and AI usage. This manuscript was developed with an
+OpenAI model. The conserved-current and determinant-energy strategy
+comes from \cite{OpenAI}; its compact packets and quadratic
+specialization were studied in \cite{Draft}. The logarithmic output
+test and the preceding unweighted argument appear in
+\cite{Addendum,AllDimensions}. The smooth Dirichlet theorem is due to
+Ma and Zhu \cite{MZ}. The present manuscript supplies the weighted
+input estimate and gives the full tube and maximal-function deduction.
+
+\section{The three-coordinate Hessian and its cofactor}
+
+Use coordinates $\zeta=(x,P)\in\R^m\times\C_{\mathrm{k}}^m$, where
+$\C_{\mathrm{k}}=\R+\mathrm{k}\R$ and
+$P_j=p_j+\mathrm{k} s_j$.
+The three real coordinates of index $j$ are $(x_j,p_j,s_j)$.
+Set $(e_0,e_1,e_2)=(1,\mathrm{i},\mathrm{j})$, where
+$\mathrm{i}\mathrm{j}=\mathrm{k}$ and
+$\mathrm{i}^2=\mathrm{j}^2=\mathrm{k}^2=-1$.
+For a real smooth function $v$ define
+\[
+ G_jv=\sum_{\alpha=0}^2 e_\alpha v_{j\alpha},\qquad
+ D_{jk}v=\sum_{\alpha,\beta=0}^2e_\alpha\bar e_\beta
+                                      v_{j\alpha,k\beta}.
+\]
+Then $Dv$ is Hermitian and $\tr Dv=\Delta v$.
+We call $v$ admissible if $Dv\ge0$.
+The determinant is the Moore determinant. For Hermitian matrices put
+$A:B=\Rea\tr(AB)$, and write $C_v=\cof Dv$.
+For a matrix $A$ its real representation has entries
+$A^{\R}_{j\alpha,k\beta}=\Rea(\bar e_\alpha A_{jk}e_\beta)$.
+Thus $A:Dv=A^{\R}:D^2v$ and positivity is preserved.
+
+We use the elementary Moore determinant identities
+\[
+ C_v:Dv=m\det Dv,\qquad
+ \cof H=(\det H)H^{-1}\quad(H>0),\qquad
+ D\phi(v)=\phi'(v)Dv+\phi''(v)Gv(Gv)^*.
+\]
+Here the cofactor is the polynomial matrix characterized by
+$\left.\frac{d}{ds}\right|_{s=0}\det(H+sA)=(\cof H):A$.
+It is positive semidefinite when $H\ge0$.
+In particular $D(|\zeta|^2)=6I$.
+
+\begin{lemma}[Cofactor and Green identities]\label{lem:cofactor}
+For every real smooth $v$,
+\begin{equation}\label{eq:cofactor}
+ \sum_{j=1}^m\sum_{\alpha=0}^2
+       \bar e_\alpha\partial_{j\alpha}(C_v)_{jk}=0
+       \qquad(1\le k\le m).
+\end{equation}
+If $g,h$ are real smooth functions vanishing on the boundary of a ball,
+then
+\begin{equation}\label{eq:pairing}
+ \int (Gg)^*C_vGh=-\int g(C_v:Dh)\in\R,
+\end{equation}
+and this real pairing is symmetric in $g,h$.
+The divergence identity also holds for polarized cofactor matrices.
+\end{lemma}
+\begin{proof}
+For $m=1$ the cofactor is constant. Suppose $m\ge2$.
+Polarize the cofactor, a polynomial of degree $m-1$.
+Given quaternionic columns $g_1,\ldots,g_{m-1}$, put
+$H(t)=\sum_{\ell=1}^{m-1}t_\ell g_\ell g_\ell^*$ with $t_\ell>0$.
+Its image is the span of the $g_\ell$ and its rank is at most $m-1$.
+Diagonalizing $H(t)$ shows that $\cof H(t)$ kills its image:
+when the rank is $m-1$ the cofactor is supported on its kernel,
+and at smaller rank it is zero.
+Thus every coefficient of the polynomial $\cof H(t)$ kills each
+$g_\ell$. In particular this holds for its fully polarized coefficient.
+That coefficient is Hermitian, so it is also killed on the left by
+each $g_\ell^*$.
+
+Apply this observation to real exponential functions
+$v_\ell(\zeta)=\exp(\xi_\ell\cdot\zeta)$.
+Their Hessian symbols are $g_\ell g_\ell^*$, where
+$(g_\ell)_j=\sum_\alpha e_\alpha(\xi_\ell)_{j\alpha}$.
+The symbol of the divergence of the polarized cofactor is
+$(\sum_\ell g_\ell)^*$ times that coefficient, and hence vanishes.
+The polarized divergence is a constant-coefficient multilinear
+differential expression. Its symbol is a polynomial in the
+$\xi_\ell$; vanishing for all real $\xi_\ell$ proves the identity
+for arbitrary smooth inputs. Taking equal inputs proves
+\eqref{eq:cofactor}.
+
+Integrate the derivative of $g$ once in the left side of
+\eqref{eq:pairing}. The differentiated-cofactor term vanishes by
+\eqref{eq:cofactor}, and the boundary term vanishes because $g=0$.
+The remaining expression is
+\[
+ -\int g\sum_{j,k,\alpha,\beta}
+         \bar e_\alpha(C_v)_{jk}e_\beta h_{j\alpha,k\beta}.
+\]
+The inner sum is real: quaternionic conjugation followed by
+interchanging $(j,\alpha)$ and $(k,\beta)$ leaves it unchanged.
+Its real value is $C_v:Dh$ by the definition of the real
+representation. Finally, interchanging $g,h$ conjugates the original
+pairing, so its real value is symmetric.
+\end{proof}
+
+The real representation of each mixed cofactor is symmetric and
+divergence free. Consequently, when a real smooth function $f$ and
+its first derivatives vanish on the boundary, the corresponding
+linear operator can be transferred from any smooth function to $f$
+by two integrations by parts, without a boundary term. We use this
+observation in the weighted trace inequality.
+
+\section{Smooth Dirichlet solutions on ordinary balls}\label{sec:dirichlet}
+
+We use the following exact part of Ma--Zhu's theorem: on a connected
+smooth relatively compact domain in $\HH^m/\Gamma$, where $\Gamma$
+is any discrete additive subgroup and $m\ge2$, a smooth positive
+prescribed density and smooth boundary data have a unique smooth
+admissible Dirichlet solution if a smooth strictly plurisubharmonic
+subsolution with those boundary data exists.
+
+\begin{proposition}\label{prop:dirichlet}
+For a Euclidean ball $B\subset\R^{3m}$ and $\mu>0$ smooth on
+$\overline B$, there is a unique smooth solution
+\[
+ Du>0,\qquad\det Du=\mu\quad\hbox{in }B,
+ \qquad u|_{\partial B}=0.
+\]
+It is nonpositive and depends smoothly on smooth finite-dimensional
+families of strictly positive densities. If $v$ is smooth and
+admissible on a smooth subdomain, $\det Dv\ge\det Du$ there, and
+$v\le u$ on its boundary, then $v\le u$ throughout that subdomain.
+\end{proposition}
+\begin{proof}
+Adjoin fourth coordinates $w\in\R^m/\mathbb Z^m$ and consider
+\[
+ \widetilde B=B\times(\R^m/\mathbb Z^m)
+ \Subset\HH^m/(\mathrm{k}\mathbb Z^m).
+\]
+The ball coordinates occupy the $1,\mathrm{i},\mathrm{j}$ slots.
+This domain is connected, relatively compact, and has smooth nonempty
+boundary. If $B=B_R(\zeta_0)$, the globally defined function
+$r(\zeta,w)=|\zeta-\zeta_0|^2-R^2$ has full quaternionic Hessian
+$H(r)=6I$. Consequently $Cr$ is a strict plurisubharmonic subsolution
+with zero boundary data and determinant $(6C)^m\ge\sup\mu$ for
+sufficiently large $C$.
+
+Extend $\mu$ constantly in $w$ and apply \cite[Theorem 1.1]{MZ}.
+Uniqueness makes the solution invariant under all translations in $w$.
+It descends to $B$, and the full Hessian there becomes exactly $D$.
+Its Laplacian is positive, so its zero boundary values imply $u\le0$.
+
+For comparison, the difference of two log determinants is an average
+of positive inverse Hessians contracted with the Hessian difference.
+This is a real elliptic operator, and the maximum principle gives
+$v\le u$ when $\det Dv\ge\det Du$ and $v\le u$ on the boundary.
+The solution has positive Hessian on the closed ball: its Hessian
+is nonnegative at the boundary by continuity, and its determinant
+equals the positive boundary value of $\mu$ there. A semidefinite
+comparison function can be replaced by
+$v+\eta(|\zeta-\zeta_0|^2-R^2)$ on a containing ball, with the
+constant chosen so that the added quadratic is nonpositive on the
+subdomain; then let $\eta\downarrow0$.
+At any fixed positive source the linearization
+$(Du)^{-1}:Dh$ is uniformly elliptic on the closed ball. Its zero-boundary
+Dirichlet map is an isomorphism in H\"older spaces. The implicit
+function theorem and elliptic bootstrapping give smooth parameter
+dependence. No uniform estimate as $\inf\mu\downarrow0$ is needed.
+\end{proof}
+
+\section{The scalar determinant energy}
+
+For any smooth nonnegative source on a ball define
+\[
+ \mathcal C_B=\{v\in C^\infty(\overline B):v|_{\partial B}=0,\ Dv\ge0\}.
+\]
+Set
+\[
+ J_\mu(v)=\int_B(-v)\mu-\frac1{m+1}\int_B(-v)\det Dv,
+ \qquad F_B(\mu)=\sup_{v\in\mathcal C_B}J_\mu(v).
+\]
+Every admissible test is nonpositive because its ordinary Laplacian
+is nonnegative and its boundary value is zero.
+For smooth variations $g$ with zero boundary value, the Green
+identity and $C_v:Dv=m\det Dv$ give
+\[
+ \left.\frac{d}{ds}\right|_{s=0}
+       \int_B[-(v+sg)]\det D(v+sg)
+       =-(m+1)\int_B g\det Dv.
+\]
+Indeed the differentiated determinant contributes
+$-\int v(C_v:Dg)=-\int g(C_v:Dv)$.
+It follows that
+\[
+ dJ_\mu(v)[g]=\int g(\det Dv-\mu),\qquad
+ d^2J_\mu(v)[g,g]=-\int(Gg)^*C_vGg\le0.
+\]
+The admissible class is convex, so the second variation proves
+concavity along its line segments. The positive-source Dirichlet
+solution is a stationary point and hence a global maximizer. Thus
+Proposition~\ref{prop:dirichlet} gives
+\begin{equation}\label{eq:value}
+ F_B(\mu)=J_\mu(u)=\frac m{m+1}\int_B(-u)\mu.
+\end{equation}
+
+The definition shows that $F_B$ is monotone and convex in the source,
+and $F_B(c\mu)=c^qF_B(\mu)$ for $c\ge0$.
+The source $1$ has the solution $(|\zeta-\zeta_0|^2-R^2)/6$ on $B_R$,
+so $F_B(1)<\infty$. Hence for $0\le\mu,\nu\le A$ and
+$a=\|\mu-\nu\|_\infty\le1$,
+\begin{equation}\label{eq:continuity}
+ F_B(\mu)\le F_B(\nu+a)
+ \le(1-a)F_B(\nu)+aF_B(\nu+1)
+ \le F_B(\nu)+a(A+1)^qF_B(1).
+\end{equation}
+Interchanging the sources gives local Lipschitz continuity, including
+at sources that vanish.
+
+Let $p=(p_0,p_1,p_2)\in\R^3$ be parameters. Include this triple as
+coordinate index $0$, and suppose
+\[
+ A=\sum_\ell\rho_\ell
+       \begin{pmatrix}1\\b_\ell\end{pmatrix}
+       \begin{pmatrix}1\\b_\ell\end{pmatrix}^{\!*}
+   =\begin{pmatrix}\mu&\xi^*\\\xi&S\end{pmatrix},\qquad\rho_\ell\ge0,
+\]
+is smooth on an open parameter set times $\overline B$.
+Real-column conservation means
+\begin{equation}\label{eq:realconservation}
+ \sum_{a=0}^m\sum_{\alpha=0}^2
+ \partial_{a\alpha}\Rea(\bar e_\alpha A_{ab}e_\beta)=0
+ \qquad(0\le b\le m,\ 0\le\beta\le2),
+\end{equation}
+where $\partial_{0\alpha}=\partial_{p_\alpha}$.
+Assume also that $S$ vanishes in a spatial boundary collar locally
+uniformly in $p$. Positivity then forces $\xi=0$ in that collar.
+
+\begin{proposition}[Scalar transfer]\label{prop:transfer}
+The function $F(p)=F_B(\mu(p,\cdot))$ is nonnegative, locally Lipschitz,
+and distributionally superharmonic. If $v$ is a smooth admissible
+barrier with $\det Dv\ge\mu$ and $v\le0$ on $\partial B$, then
+\begin{equation}\label{eq:barrierupper}
+ F(p)\le\frac m{m+1}\int_B(-v)\mu.
+\end{equation}
+For pairwise disjoint balls $B_j\subset B$,
+\begin{equation}\label{eq:localization}
+ F_B(\mu)\ge\sum_jF_{B_j}(\mu|_{B_j}).
+\end{equation}
+\end{proposition}
+\begin{proof}
+First suppose $\mu>0$ on the closed ball. Let $u(p,\zeta)$ be its
+Dirichlet solution and write
+\[
+ H=Du,\quad C=\cof H=\mu H^{-1},\quad
+ g_\beta=\partial_{p_\beta}u,\quad
+ w=\sum_{\beta=0}^2Gg_\beta\bar e_\beta.
+\]
+Smooth parameter dependence justifies all derivatives below.
+Each $g_\beta$ has zero boundary value.
+Differentiating the equation gives
+$\partial_{p_\beta}\mu=C:Dg_\beta$, and hence
+\begin{equation}\label{eq:parameterpairing}
+ Q:=\sum_\beta\int_B(Gg_\beta)^*CGg_\beta
+   =-\sum_\beta\int_Bg_\beta\partial_{p_\beta}\mu.
+\end{equation}
+By Lemma~\ref{lem:cofactor}, the integrated pairings
+$\int(Gg_\beta)^*CGg_\gamma$ are real and symmetric.
+Expanding $w^*Cw$ and using
+$e_\beta\bar e_\gamma+e_\gamma\bar e_\beta=0$ for
+$\beta\ne\gamma$ therefore gives
+\begin{equation}\label{eq:threepairings}
+ \int_Bw^*Cw=Q.
+\end{equation}
+
+The $b=0$ columns of \eqref{eq:realconservation} say
+\begin{equation}\label{eq:massconservation}
+ \partial_{p_\beta}\mu+
+ \sum_{j,\alpha}\partial_{j\alpha}
+               \Rea(\bar e_\alpha\xi_j e_\beta)=0.
+\end{equation}
+Differentiating these equations in $p_\beta$, summing over $\beta$,
+and using the remaining columns of \eqref{eq:realconservation}
+gives
+\begin{equation}\label{eq:doubledconservation}
+ \Delta_p\mu
+ =\sum_{j,k,\alpha,\beta}\partial_{j\alpha}\partial_{k\beta}
+                                      S^\R_{j\alpha,k\beta}.
+\end{equation}
+The passage between the two sets of columns uses
+$\Rea(\bar e_\alpha\xi_j e_\beta)
+ =\Rea(\bar e_\beta\bar\xi_j e_\alpha)$.
+Also, integrating \eqref{eq:massconservation} against $g_\beta$
+and summing gives, with \eqref{eq:parameterpairing},
+\begin{equation}\label{eq:crosspairing}
+ \int_B\Rea(w^*\xi)
+ =\sum_\beta\int_Bg_\beta\partial_{p_\beta}\mu=-Q.
+\end{equation}
+
+Since the first variation of $J_{\mu(p)}$ vanishes at $u(p)$,
+\[
+ \partial_{p_\beta}F=-\int_Bu\,\partial_{p_\beta}\mu,\qquad
+ \Delta_pF=Q-\int_Bu\,\Delta_p\mu.
+\]
+Two spatial integrations in \eqref{eq:doubledconservation} have no
+boundary terms because $S$ vanishes in a collar. They give
+$\int u\,\Delta_p\mu=\int S:H$.
+Combining this with \eqref{eq:threepairings} and
+\eqref{eq:crosspairing}, we obtain the exact identity
+\begin{align}
+ \Delta_pF
+ &=-\int_B\big(S:H+w^*Cw+2\Rea(w^*\xi)\big)\nonumber\\
+ &=-\int_B\sum_\ell\rho_\ell
+       (b_\ell+H^{-1}w)^*H(b_\ell+H^{-1}w)\le0.
+       \label{eq:energyidentity}
+\end{align}
+The last equality uses
+$S=\sum_\ell\rho_\ell b_\ell b_\ell^*$,
+$\xi=\sum_\ell\rho_\ell b_\ell$, and
+$\mu=\sum_\ell\rho_\ell$.
+
+For an upper barrier, comparison gives $v\le u$, so
+\eqref{eq:value} proves \eqref{eq:barrierupper}.
+For localization, let $u_j$ be the zero-boundary solution on $B_j$
+for the restricted source. The global solution satisfies $u\le0=u_j$
+on $\partial B_j$ and has the same determinant there and inside.
+Comparison gives $u\le u_j$ in $B_j$.
+Since $-u\ge0$, integration over the disjoint balls and
+\eqref{eq:value} give
+\[
+ F_B(\mu)=\frac{m}{m+1}\int_B(-u)\mu
+ \ge\sum_j\frac{m}{m+1}\int_{B_j}(-u_j)\mu
+ =\sum_jF_{B_j}(\mu|_{B_j}).
+\]
+
+Finally let $\mu\ge0$. Add
+$\epsilon\operatorname{diag}(1,0,\ldots,0)$ to the current.
+This is a constant conserved positive field; it changes the source
+to $\mu+\epsilon$ and leaves $S$ unchanged. Equivalently it adds
+one term with $\rho=\epsilon$ and $b=0$.
+The continuity estimate \eqref{eq:continuity} gives locally uniform
+convergence of the scalar energies as $\epsilon\downarrow0$.
+Nonnegativity, distributional superharmonicity, and finite-ball
+localization pass to this limit.
+For the barrier assertion set
+$v_\epsilon=v+\epsilon^{1/m}(|\zeta-\zeta_0|^2-R^2)/6$ on $B_R$.
+The nonnegative mixed determinants imply
+$\det Dv_\epsilon\ge\det Dv+\epsilon$.
+Apply the positive-source barrier bound and let $\epsilon\downarrow0$.
+\end{proof}
+
+\section{Compact packets in arbitrary dimension}
+
+Use parameters $(t,Y)\in\R\times\C_{\mathrm{k}}$, encoded by
+$t+Y\mathrm{i}$, and spatial triples $x_j+P_j\mathrm{i}$.
+Set
+\[
+ r=\delta^2,\quad h=\delta^4,\quad \tau=t-1,\quad s=|Y|>0,
+ \quad K_0=r+s,\quad D_0=K_0^2+\tau^2.
+\]
+Also put $W=P/Y=\alpha+\mathrm{k}\beta$ and $\varepsilon=Y/s$.
+For a tube set $a=rb_T$, $v=v_T$, and define
+\[
+ \Phi_T=\min_{w\in\R^m}\left(
+ r|w-v|^2+\frac{|x-a-\tau w|^2}{K_0}
+                 +s|\alpha-w|^2+s|\beta|^2\right).
+\]
+Let $c$ be the minimizer and $d=(x-a-\tau c)/K_0$. Equivalently,
+\[
+ K_0c-\tau d=rv+s\alpha,\qquad \tau c+K_0d=x-a.
+\]
+Define a quaternionic column $B$ of length $m+1$ by
+\[
+ B_0=1,\qquad B_j=\tfrac12(W_j+c_j-\varepsilon\mathrm{i} d_j),
+ \qquad f_0=(s^2D_0)^{-m/2}.
+\]
+
+\begin{lemma}\label{lem:packets}
+With $G$ now including the parameter triple,
+\begin{equation}\label{eq:packetidentities}
+ \sum_{j=0}^m\sum_{\alpha=0}^2
+       \bar e_\alpha\partial_{j\alpha}(f_0B_j\bar B_k)=0
+       \quad(0\le k\le m),\qquad B^*G\Phi_T=0.
+\end{equation}
+\end{lemma}
+\begin{proof}
+It suffices to calculate at $Y=s>0$.
+Indeed, for $\eta=\exp(\mathrm{k}\theta)$ the rotation
+$(Y,P)\mapsto(\eta Y,\eta P)$ preserves $\Phi_T$, $s$, $W$, and $f_0$.
+With $u=\exp(\mathrm{k}\theta/2)$, it sends each encoded triple
+$x+P\mathrm{i}$ to $u(x+P\mathrm{i})\bar u$, and sends each $B_j$
+to $uB_j\bar u$. The gradient and divergence expressions in
+\eqref{eq:packetidentities} transform by the same conjugation.
+Thus their vanishing is preserved under this rotation.
+For each spatial coordinate, regard $c,d$ first as functions of
+$(\tau,s,x,\alpha)$, with the other quantities fixed.
+Differentiation in these coordinates gives
+\[
+ c_\tau+d_s+\alpha c_x=0,\quad
+ d_\tau-c_s+\alpha d_x=0,\quad
+ c_\alpha=sd_x,\quad d_\alpha=-sc_x,
+ \qquad c_x=\tau/D_0,\quad d_x=K_0/D_0.
+\]
+These identities follow directly from
+$c+\mathrm i d=(rv+s\alpha+\mathrm i(x-a))/(K_0+\mathrm i\tau)$,
+where $\mathrm i$ in this formula is an ordinary complex unit.
+For an actual derivative in $\Rea Y$ with $P$ fixed at $Y=s>0$,
+the chain rule replaces $\partial_s$ by
+$\partial_s-(\alpha/s)\partial_\alpha-(\beta/s)\partial_\beta$;
+$c,d$ themselves are independent of $\beta$ in these coordinates.
+At $Y=s$, also
+$\alpha_{\operatorname{Im}_{\mathrm{k}}Y}=\beta/s$,
+$\beta_{\operatorname{Im}_{\mathrm{k}}Y}=-\alpha/s$, and
+$\varepsilon_{\operatorname{Im}_{\mathrm{k}}Y}=\mathrm{k}/s$.
+
+For each $j\ge1$,
+\[
+ \sum_{\alpha=0}^2\bar e_\alpha\partial_{j\alpha}B_j
+   =\tau/D_0-\mathrm{i}(K_0/D_0+1/s).
+\]
+These $m$ terms cancel the time derivatives of $f_0$, since
+$(\log f_0)_\tau=-m\tau/D_0$ and
+$(\log f_0)_s=-m/s-mK_0/D_0$.
+This proves the first-column identity.
+
+For column $k\ge1$, the product rule leaves the acceleration
+$\sum_{j,\alpha}\bar e_\alpha B_j\partial_{j\alpha}\bar B_k$.
+Its spatial terms with $j\ne k$ vanish.
+Its time contribution is
+\[
+ \tfrac12\big(d_k/s-\mathrm{j}\beta_k(d_k)_{x_k}
+                         -\mathrm{k}\beta_k(c_k)_{x_k}\big).
+\]
+Writing $B=(\alpha_k+c_k-\mathrm{i} d_k+\mathrm{k}\beta_k)/2$,
+the remaining spatial term is
+\[
+ \tfrac12\big[(c_k)_{x_k}(B+\mathrm{i} B\mathrm{i})
+ +(d_k)_{x_k}(B\mathrm{i}-\mathrm{i} B)
+ +(\mathrm{j}B\mathrm{k}-\mathrm{i} B)/s\big],
+\]
+which is its negative because the three expressions in parentheses
+are $\mathrm{k}\beta_k$, $\mathrm{j}\beta_k$, and $-d_k$.
+
+Finally differentiation of the minimum gives
+\[
+ G_j\Phi_T=2[d_j+\mathrm{i}(\alpha_j-c_j)+\mathrm{j}\beta_j],
+\]
+\[
+ G_0\Phi_T=-2c\cdot d+
+ \mathrm{i}(|c|^2-|d|^2-|\alpha|^2-|\beta|^2)-2\mathrm{j} c\cdot\beta.
+\]
+Direct multiplication yields
+\[
+ \bar B_jG_j\Phi_T=2c_jd_j+
+ \mathrm{i}(\alpha_j^2+\beta_j^2-c_j^2+d_j^2)+2\mathrm{j} c_j\beta_j.
+\]
+Summing proves tangency. All calculations are independent of $m$
+apart from the first-column sum.
+\end{proof}
+
+Choose a fixed nonnegative smooth compactly supported function $\chi$
+on $[0,\infty)$ equal to one on a sufficiently large fixed interval,
+and set $Z_\chi=\int_{\R^{3m}}\chi(|u|^2)\dd u$. Define
+\begin{equation}\label{eq:normalizedpacket}
+ A_T=\frac{\delta^m r^{m/2}}{Z_\chi h^{3m/2}}
+       f_0\chi(\Phi_T/h)BB^*,\qquad \mu_T=(A_T)_{00}.
+\end{equation}
+The cutoff preserves the strong conservation identity:
+the additional differentiated-cutoff term in column $k$ is a real
+multiple of
+$\overline{B^*G\Phi_T}\,\bar B_k$, which vanishes.
+Taking real parts after multiplication by each $e_\beta$ gives
+\eqref{eq:realconservation}. Completing the square gives
+\[
+ \Phi_T=\frac{rs}{K_0}|\alpha-v|^2
+ +\frac{K_0}{D_0}\left|x-a-\frac{\tau(rv+s\alpha)}{K_0}\right|^2
+ +s|\beta|^2.
+\]
+Since $\dd P=s^{2m}\dd\alpha\dd\beta$, the change of variables yields
+\[
+ \int\chi(\Phi_T/h)\dd x\dd P
+   =Z_\chi h^{3m/2}s^mD_0^{m/2}r^{-m/2},\qquad
+ \int\mu_T=\delta^m.
+\]
+On packet support,
+\[
+ |c-v|\lesssim\sqrt{h/r},\quad |d|\lesssim\sqrt{h/K_0},\quad
+ |\alpha-c|+|\beta|\lesssim\sqrt{h/s}.
+\]
+Thus for bounded $t,s$, both $|x-a-\tau v|$ and $|P-Yv|$ are
+$O(\delta)$. Work on $-3<t<5$, $0<s<4$. For sufficiently small
+$\gamma$, then small $\delta$ depending on $B_0$, every packet lies
+in the spatial ball $B_{1/2}\subset\R^{3m}$ throughout this domain.
+The weighted sum $A=\sum_T\lambda_TA_T$ therefore satisfies
+Proposition~\ref{prop:transfer} on $B_1$. Its source is
+$\mu=\sum_T\lambda_T\mu_T$ and has mass
+$\delta^m\sum_T\lambda_T$ at every parameter point. This mass is
+different from $E$; the following estimate gives the required $E$
+dependence directly.
+
+\section{A weighted energy estimate}
+
+For Hermitian matrices write
+$\mathcal D(A_1,\ldots,A_m)$ for the symmetric multilinear
+polarization of the Moore determinant, normalized by
+$\mathcal D(A,\ldots,A)=\det A$.
+Repeated arguments are indicated by brackets, for example
+$\mathcal D((Dv)[j],(D\phi)[m-j])$.
+Mixed determinants of positive semidefinite matrices are nonnegative
+\cite[Lemma 2.38]{MZ}. This also follows by decomposing each input
+into nonnegative rank-one matrices and using
+$\mathcal D(g_1g_1^*,\ldots,g_mg_m^*)=\det(GG^*)/m!$,
+where $G$ has columns $g_1,\ldots,g_m$.
+Polarization of \eqref{eq:cofactor} shows that the mixed cofactor
+matrices are divergence free as well.
+
+\begin{lemma}[Trace and weighted energy]\label{lem:weightedenergy}
+Let $\phi\in C^\infty(\overline B)$ be admissible and
+$-H\le\phi\le0$, where $H\ge0$.
+For every $v\in\mathcal C_B$,
+\begin{equation}\label{eq:trace}
+ \int_B(-v)^{m+1}\det D\phi
+ \le (m+1)!\,H^m\int_B(-v)\det Dv.
+\end{equation}
+Consequently, if a nonnegative source satisfies
+$\mu\le b\det D\phi$ for a nonnegative measurable $b$, then
+\begin{equation}\label{eq:weightedenergy}
+ F_B(\mu)\le C_mH\int_B b^q\det D\phi.
+\end{equation}
+No boundary condition on $\phi$ is needed.
+\end{lemma}
+\begin{proof}
+Put $U=-v\ge0$ and, for $0\le j\le m$, define
+\[
+ I_j=\int_B U^{j+1}
+           \mathcal D((Dv)[m-j],(D\phi)[j]).
+\]
+Thus $I_0=\int U\det Dv$ and $I_m$ is the left side of
+\eqref{eq:trace}. For $j\ge1$, integrate twice in one $D\phi$
+factor. The mixed cofactor identity gives
+\[
+ I_j=\int_B\phi\,
+ \mathcal D(D(U^{j+1}),(Dv)[m-j],(D\phi)[j-1]).
+\]
+There are no boundary terms: $U^{j+1}=0$ and
+$\nabla(U^{j+1})=0$ on $\partial B$ because $j+1\ge2$.
+The remaining factors may be nonzero there.
+The chain rule gives
+\[
+ D(U^{j+1})=-(j+1)U^jDv
+             +j(j+1)U^{j-1}Gv(Gv)^*.
+\]
+The mixed determinant involving the last, positive semidefinite,
+term is nonnegative. Since $\phi\le0$, its contribution to $I_j$
+is nonpositive. The other contribution is bounded by
+\[
+ I_j\le (j+1)H I_{j-1}.
+\]
+Iteration proves \eqref{eq:trace}. This argument uses only smooth
+functions and remains valid when one of the Hessians is singular.
+
+Let $V=\int b^q\det D\phi$ and
+$\mathcal A(v)=\int(-v)\det Dv$. H\"older's inequality and
+\eqref{eq:trace} give
+\begin{align*}
+ \int(-v)\mu
+ &\le V^{m/(m+1)}
+      \left(\int(-v)^{m+1}\det D\phi\right)^{1/(m+1)}\\
+ &\le [(m+1)!]^{1/(m+1)}
+          H^{m/(m+1)}V^{m/(m+1)}
+          \mathcal A(v)^{1/(m+1)}.
+\end{align*}
+Subtract $\mathcal A(v)/(m+1)$ and maximize over
+$\mathcal A(v)\ge0$. The resulting upper bound is
+\[
+ \frac{m}{m+1}[(m+1)!]^{1/m}HV.
+\]
+Taking the supremum over $v\in\mathcal C_B$ proves
+\eqref{eq:weightedenergy}. The cases $H=0$ or $V=0$ follow directly;
+if $V=\infty$ there is nothing to prove.
+\end{proof}
+
+\section{The weighted input bound and parameter propagation}
+
+At $t=0$, $|Y|=1$, packet support implies
+\[
+ |\alpha-v_T|\le C\delta,\qquad
+ |x+\alpha|+|\beta|\le C\sqrt h,
+\]
+where $C$ may depend on the fixed intercept bound $B_0$.
+Indeed $|w-v_T|\lesssim\delta$ for a minimizer,
+$|\alpha-w|+|\beta|\lesssim\sqrt h$, and, since $\tau=-1$,
+$|x-rb_T+w|\lesssim\sqrt h$.
+Define the directional weight function
+\[
+ b_\delta(\alpha)=\sum_T\lambda_T
+                        1_{\{|\alpha-v_T|\le C\delta\}}.
+\]
+At these parameter values the scalar prefactor in
+\eqref{eq:normalizedpacket} is $O(h^{-m})$.
+Consequently, with
+$\rho=|x+\alpha|^2+2|\beta|^2$,
+\begin{equation}\label{eq:inputdomination}
+ \mu\le C h^{-m}b_\delta(\alpha)1_{\{\rho\le Ch\}}.
+\end{equation}
+
+At $|Y|=1$ one has $D\rho=8I$, $|G\rho|^2=8\rho$, and
+$\rho\le2$ on $B_1$. Thus the same logarithmic barrier as in the
+unweighted argument,
+\[
+ \phi_h=C_0\log\frac{h+\rho}{h+2},
+\]
+is admissible, nonpositive on $B_1$, and satisfies
+\[
+ H_h:=\|\phi_h\|_\infty
+       =C_0\log\frac{h+2}{h}\lesssim L,\qquad
+ \det D\phi_h=(8C_0)^m\frac{h}{(h+\rho)^{m+1}}.
+\]
+Choose the fixed $C_0$ large enough that
+\eqref{eq:inputdomination} implies
+$\mu\le b_\delta(\alpha)\det D\phi_h$.
+This choice is independent of every coefficient $\lambda_T$.
+
+The determinant measure has uniformly bounded mass in the normal
+variables. At fixed $\alpha$, translate $u=x+\alpha$ and rescale
+$\beta$ by $\sqrt2$ to obtain the exact whole-space identity
+\[
+ \int_{\R^m\times\R^m}
+ \frac{h}{(h+|x+\alpha|^2+2|\beta|^2)^{m+1}}
+       \dd x\dd\beta
+ =2^{-m/2}\frac{\pi^m}{m!}.
+\]
+Extending the positive integral from $B_1$ to these normal spaces
+therefore gives
+\[
+ \int_{B_1}b_\delta(\alpha)^q\det D\phi_h
+ \le C_{m,B_0}\int_{\R^m}b_\delta(\alpha)^q\dd\alpha
+ \le C_{m,B_0}\delta^m\sum_T\lambda_T^q=C_{m,B_0}E.
+\]
+The last inequality follows because $\delta$-separation bounds the
+number of balls $\{|\alpha-v_T|\le C\delta\}$ through each point by
+a dimensional constant depending also on the fixed $C$.
+Lemma~\ref{lem:weightedenergy} now proves
+\begin{equation}\label{eq:input}
+ F(0,Y)\le C E L\qquad(|Y|=1).
+\end{equation}
+This is the only additional estimate needed for arbitrary coefficients.
+
+\begin{lemma}[Scalar propagation]\label{lem:propagation}
+There are absolute constants $h_0>0$ and $C$ such that, for
+$0<h<h_0$ and any nonnegative continuous distributionally
+superharmonic function $G$ on
+$(-2,4)\times\{Y\in\C:h/2<|Y|<3\}$,
+\begin{equation}\label{eq:propagation}
+ \int_1^2\operatorname{avg}_{|Y|=h}G(t,Y)\dd t
+ \le C\log(2/h)\operatorname{avg}_{|Y|=1}G(0,Y).
+\end{equation}
+The circle averages are with respect to normalized angular measure.
+\end{lemma}
+\begin{proof}
+We first treat smooth $G$. Circular averaging produces a function
+$H(t,s)$ satisfying
+$H_{tt}+H_{ss}+s^{-1}H_s\le0$.
+Set $\nu=\pi/3$ and
+$a(s)=\int_0^3\sin(\nu t)H(t,s)\dd t$.
+Twice integrating in $t$ gives
+\[
+ a''+s^{-1}a'-\nu^2a
+ \le-\nu[H(0,s)+H(3,s)]\le0.
+\]
+Fix $R_0=1/4$ and write $\ell(s)=\log(R_0/s)$.
+The function
+\[
+ b(s)=\left(1+\frac{\nu^2s^2}{4}\right)\ell(s)
+                       +\frac{\nu^2}{4}(s^2-R_0^2)
+\]
+vanishes at $R_0$ and satisfies, for $0<s<R_0$,
+\[
+ (1-\nu^2R_0^2/4)\ell(s)\le b(s)\le\ell(s),\qquad
+ b''+s^{-1}b'-\nu^2b
+ =\frac{\nu^4}{4}
+       [R_0^2-s^2-s^2\ell(s)]\ge0.
+\]
+For the first bounds use
+$0\le1-e^{-2u}(u+1)\le u$ for $u\ge0$.
+The last sign follows from $e^{-2u}(1+u)\le1$.
+Comparison for the operator
+$d^2/ds^2+s^{-1}d/ds-\nu^2$ on $[h,R_0]$ gives
+$a(s)\ge a(h)b(s)/b(h)$.
+On the fixed interval $[R_0/3,R_0/2]$, $b$ is bounded below,
+so
+\[
+ a(h)\le C\log(2/h)\int_{R_0/3}^{R_0/2}a(s)\dd s.
+\]
+
+We record why the last integral is controlled by $H(0,1)$.
+The circularly averaged function
+$\overline G(t,Y)=H(t,|Y|)$ is nonnegative and superharmonic.
+The fixed compact set
+$[0,3]\times\{R_0/3\le|Y|\le R_0/2\}$ and the point $(0,1)$
+can be joined and covered by finitely many balls whose concentric
+quadruples lie in a fixed connected region away from $Y=0$.
+The mean inequality first controls the integral on a ball centered
+at $(0,1)$ by a constant times $H(0,1)$.
+For consecutive equal-radius balls with nearby centers, select a
+point in the first where the function does not exceed its average.
+A ball of three times the radius centered at that point contains
+the second ball and remains in the region. The mean inequality and
+nonnegativity control the integral on the second by a constant times
+the integral on the first. Iterating over the finite covering
+controls the integral on the compact set by $CH(0,1)$.
+All radii and the number of balls are independent of $h$.
+Since $s$ stays in a fixed positive interval there, cylindrical
+volume is comparable to $\dd t\dd s\dd\theta$.
+Consequently
+$\int_{R_0/3}^{R_0/2}a(s)\dd s\le CH(0,1)$.
+
+On $1\le t\le2$, $\sin(\nu t)\ge\sqrt3/2$, so the bound for $a(h)$
+proves \eqref{eq:propagation}.
+For continuous distributionally superharmonic $G$, convolve with a
+nonnegative smooth approximate identity on a slightly smaller
+region still containing the points and compact sets just used.
+The convolutions are nonnegative and superharmonic and converge
+uniformly on those compact sets. Letting the convolution radius
+tend to zero proves the assertion.
+\end{proof}
+
+Applying Lemma~\ref{lem:propagation} to the scalar energy and using
+\eqref{eq:input} yields
+\begin{equation}\label{eq:totalupper}
+ \int_1^2\operatorname{avg}_{|Y|=h}F(t,Y)\dd t\le C E L^2.
+\end{equation}
+
+\section{The logarithmic output test}
+
+\begin{lemma}\label{lem:thin}
+Let $B=B_R((x_0,0))\subset\R^m\times\C_{\mathrm{k}}^m$ and
+$0<\epsilon<R/10$. If $\mu\ge a\ge0$ on
+$|x-x_0|\le R/2$, $|P|\le\epsilon$, then
+\begin{equation}\label{eq:thin}
+ F_B(\mu)\ge c_mR^m\epsilon^{2m+2}a^q\log(R/\epsilon).
+\end{equation}
+\end{lemma}
+\begin{proof}
+Put $\eta=\epsilon/R$. On the unit ball take
+\[
+ v_\eta=\log\frac{b}{d},\qquad
+ b=\eta^2+|P|^2,\quad d=\eta^2+1-|x|^2.
+\]
+It is smooth, nonpositive, and zero on the sphere. Its Hessian is
+\[
+ Dv_\eta=\frac4b I-\frac{gg^*}{b^2}
+                    +\frac2d I+\frac{4xx^{\top}}{d^2},
+ \qquad g=G(|P|^2),\quad |g|^2=4|P|^2.
+\]
+The first two terms together have eigenvalues $4/b$ with multiplicity
+$m-1$ and $4\eta^2/b^2$ with multiplicity one. Thus $Dv_\eta>0$.
+Since $b\le d$, add $2I/d$ first, then the rank-one last term, to get
+\[
+ \det Dv_\eta\le C_m\left(
+ \frac{\eta^2}{b^{m+1}}+
+ \frac1{d b^{m-1}}+\frac{|x|^2}{d^2b^{m-1}}\right).
+\]
+In fact the determinant before the last addition is
+$(4\eta^2/b^2+2/d)(4/b+2/d)^{m-1}$, and its cofactor norm is at
+most $(6/b)^{m-1}$.
+
+For fixed $x$, write $s_0=1-|x|^2$, $t_0=|P|^2\in[0,s_0]$.
+Radial integration in $P$ has measure $c_mt_0^{m-1}\dd t_0$.
+For the first term use
+\[
+ \int_0^{s_0}\frac{t_0^{m-1}\eta^2}{(\eta^2+t_0)^{m+1}}\dd t_0
+ \le C_m,
+\]
+and bound $-v_\eta$ by $\log((\eta^2+s_0)/\eta^2)$.
+For the other two terms use
+\[
+ \int_0^{s_0}\frac{t_0^{m-1}}{(\eta^2+t_0)^{m-1}}
+       \log\frac{\eta^2+s_0}{\eta^2+t_0}\dd t_0\le s_0.
+\]
+The remaining $x$ integral is bounded by
+\[
+ C_m\int_{|x|<1}s_0\left(\frac1{\eta^2+s_0}
+                  +\frac{|x|^2}{(\eta^2+s_0)^2}\right)\dd x
+ \le C_m\log(1/\eta).
+\]
+Near $|x|=1$, radial measure is comparable to $\dd s_0$; away from
+that boundary the integral is bounded. Consequently
+\[
+ \int_{B_1}(-v_\eta)\det Dv_\eta\le C_m\log(1/\eta).
+\]
+On $|x|\le1/2$, $|P|\le\eta$, its depth is at least
+$c_m\log(1/\eta)$.
+The test $A_0v_\eta((x-x_0)/R,P/R)$ in the variational functional
+therefore has value at least
+\[
+ R^m\log(R/\epsilon)
+          [c_m A_0a\epsilon^{2m}-C_m A_0^{m+1}].
+\]
+Choose $A_0=c'_ma^{1/m}\epsilon^2$ with $c'_m>0$ small.
+This proves \eqref{eq:thin}; the zero case follows from $F_B\ge0$.
+\end{proof}
+
+\section{Output localization and the final cancellation}
+
+Fix $z\in[0,1]$ and set $t=1+rz$, $|Y|=h$.
+Partition $\R^m$ into cubes $Q$ of side $\delta$ with centers $y_Q$.
+Let $M_Q=\sup_{y\in Q}M(y,z)$, choose a point attaining this
+value, and select the tubes present there. The maximum is attained
+because a finite weighted family gives only finitely many possible
+values of $M$. For the finitely many cubes with $M_Q>0$, take
+disjoint spatial balls
+\[
+ B_Q=B_R((r y_Q,0)),\qquad R=c_0r\delta,
+\]
+with $c_0=1/10$. These balls are pairwise disjoint.
+Since $|y_Q|\le B_0+\gamma+C_m\delta$ for the cubes in question,
+they all lie in $B_{1/2}$ for sufficiently small $\delta$. On
+\[
+ |x-r y_Q|\le R/2,\qquad |P|\le\epsilon=h/100,
+\]
+the packets satisfy
+\begin{equation}\label{eq:outputsource}
+ \mu(t,Y,x,P)\ge c h^{-5m/2}M_Q.
+\end{equation}
+Indeed, for each selected tube choose $w=v_T$ in $\Phi_T$. The tube condition at the chosen
+point of $Q$ gives $|x-rb_T-rzv_T|\le Cr\delta$, so its quadratic
+term is at most $Cr\delta^2=Ch$. Also $|P/Y|\le1/100$,
+and the other terms are at most $Ch$. Choose the fixed flat interval
+of $\chi$ to contain this range. At the output,
+$D_0\asymp r^2=h$, so the scalar prefactor in
+\eqref{eq:normalizedpacket} is comparable to
+$h^{-m}(h^3)^{-m/2}=h^{-5m/2}$.
+Multiplying the lower bound for each selected packet by $\lambda_T$
+and summing gives \eqref{eq:outputsource}.
+
+The source cylinder just used lies inside $B_Q$.
+Since $\epsilon/R=\delta/10$, one has
+$\epsilon<R/10$ and $\log(R/\epsilon)\asymp L$. Localization
+\eqref{eq:localization} and Lemma~\ref{lem:thin} give
+\begin{align*}
+ F(1+rz,Y)
+ &\ge c L\sum_Q R^m h^{2m+2}(h^{-5m/2}M_Q)^q\\
+ &=c L\sum_Q R^m h^{-(m+1)/2}M_Q^q\\
+ &\ge c r^{-1}L\int_{\R^m}M(y,z)^q\dd y.
+\end{align*}
+Here $R^m\asymp r^m\delta^m$, $h=r^2$, and
+$\int_QM^q\le\delta^mM_Q^q$.
+Integrating over $t=1+rz$ and using \eqref{eq:totalupper},
+\[
+ c L\int_0^1\int_{\R^m}M^q
+ \le\int_1^{1+r}\operatorname{avg}_{|Y|=h}F(t,Y)\dd t
+ \le C E L^2.
+\]
+One logarithm cancels, proving Proposition~\ref{thm:main}.
+
+\section{Arbitrary tube locations and the maximal operator}
+
+First \eqref{eq:overlap} implies the global weighted tube estimate
+\begin{equation}\label{eq:globaloverlap}
+ \left\|\sum_j\lambda_j1_{T_\delta(\omega_j,a_j)}
+             \right\|_{L^q(\R^n)}
+ \le C_n L^{1/q}
+               \left(\delta^m\sum_j\lambda_j^q\right)^{1/q}
+\end{equation}
+for arbitrary centers $a_j$ and $\delta$-separated
+$\omega_j\in S^{n-1}$.
+Here are the elementary localization details.
+Partition the sphere into a fixed number of sufficiently small caps,
+and rotate one cap to the vertical direction.
+The corresponding slopes have size at most $\gamma$ and mutual
+separation at least $c_n\delta$.
+Partition the centers into unit lattice cubes.
+In each cube, translate the cube to the origin. Every tube in that
+group is contained in
+\[
+ \{(y,z): |y-b_j-zv_j|\le C_n\delta,\ z\in I\},
+\]
+where $I$ is a common interval of fixed length and $|b_j|\le C_n$.
+A fixed dilation and a translation in $z$ put $I$ into $[0,1]$.
+The thickening caused by this covering changes $\delta$ only by a
+fixed factor. Partition the directions a further fixed number of
+times so that their separations are at least that new radius.
+Such a partition exists because a ball of fixed multiple of $\delta$
+contains only a bounded number of the original separated directions.
+Apply \eqref{eq:overlap} to each family. Each tube lies in a fixed
+enlargement of its center cube; these enlarged cubes have bounded
+overlap. The inequality
+$(\sum_{\ell=1}^N u_\ell)^q\le N^{q-1}\sum_{\ell=1}^N u_\ell^q$
+for bounded $N$ therefore permits summing the estimates. The same
+inequality handles the finitely many direction partitions.
+All dilation factors are dimensional constants, and
+$\log(2/(c\delta))\asymp L$. This proves
+\eqref{eq:globaloverlap} for small $\delta$.
+For $\delta$ bounded below, the number of separated directions is
+bounded, so the estimate is immediate.
+Raising \eqref{eq:globaloverlap} to the power $q$ proves
+Theorem~\ref{thm:tubes}.
+
+We next prove Corollary~\ref{cor:maximal}.
+Choose a maximal $\delta$-separated set $\{\omega_j\}$ on the sphere.
+Assign each $\omega$ to a nearest $\omega_j$. Each resulting piece
+has surface measure at most $C_n\delta^m$, and
+\[
+ T_\delta(\omega,a)\subset T_{C_n\delta}(\omega_j,a).
+\]
+Consequently
+\[
+ \|K_\delta f\|_{L^n(S^{n-1})}
+ \le C_n\left(\delta^m\sum_j
+                  K_{C_n\delta}f(\omega_j)^n\right)^{1/n}.
+\]
+The same finite direction partition used above allows
+\eqref{eq:globaloverlap} for radius $C_n\delta$.
+Test the discrete norm by coefficients $\lambda_j\ge0$ with
+$\delta^m\sum_j\lambda_j^q=1$.
+For any choices of centers, writing
+$T_j=T_{C_n\delta}(\omega_j,a_j)$, H\"older gives
+\[
+ \delta^m\sum_j\frac{\lambda_j}{|T_j|}
+                  \int_{T_j}|f|
+ \le C_n\int_{\R^n}|f|\sum_j\lambda_j1_{T_j}
+ \le C_nL^{1/q}\|f\|_{L^n(\R^n)}.
+\]
+There are finitely many directions, so centers may be chosen
+independently to approach every supremum. Taking these suprema and
+then the discrete dual supremum proves \eqref{eq:maximal}, since
+$1/q=(n-1)/n$. Tube averages depend continuously on direction and
+center for $f\in L^n$ by the $L^q$ continuity of the tube indicators;
+their suprema are measurable.
+
+\subsection*{The converse implication}
+
+Suppose \eqref{eq:maximal} holds. Let $\omega_j$ be
+$\delta$-separated, and choose pairwise disjoint spherical caps
+$U_j$ of radius $c\delta$ around them, for a small dimensional $c$.
+Then $\sigma(U_j)\asymp\delta^m$.
+For each fixed $a_j$ and $\omega\in U_j$,
+\[
+ T_\delta(\omega_j,a_j)\subset T_{2\delta}(\omega,a_j).
+\]
+The ratio of tube volumes is bounded. Therefore, for every
+$f\in L^n(\R^n)$,
+\[
+ \delta^m\sum_j\left(
+       \frac1{|T_\delta(\omega_j,a_j)|}
+           \int_{T_\delta(\omega_j,a_j)}|f|\right)^n
+ \le C_n\|K_{2\delta}f\|_n^n
+ \le C_nL^{n-1}\|f\|_n^n.
+\]
+For sufficiently small $\delta$ this uses the assumed maximal
+estimate at $2\delta$; the remaining scales follow directly from
+H\"older's inequality on a tube.
+Discrete H\"older, with exponents $q,n$, now gives
+\[
+ \int |f|\sum_j\lambda_j1_{T_\delta(\omega_j,a_j)}
+ \le C_n
+ \left(\delta^m\sum_j\lambda_j^q\right)^{1/q}
+       L^{1/q}\|f\|_n.
+\]
+The fact that all these tubes have the same volume, comparable to
+$\delta^m$, is used in this step.
+Duality in $L^q(\R^n)$ proves \eqref{eq:globaloverlap} and hence
+\eqref{eq:maintubes}. This establishes the asserted equivalence.
+
+\section{Volume and sharpness}
+
+Specialize Theorem~\ref{thm:tubes} to $\lambda_j=1$.
+Put $M=\sum_j1_{T_j}$, $V=\bigcup_jT_j$, and
+$E=\delta^m\#\{j\}$. Then $\int M\asymp E$, so H\"older gives
+\[
+ E\lesssim\int M
+ \le |V|^{1/(m+1)}\left(\int M^q\right)^{m/(m+1)}
+ \le C_n|V|^{1/(m+1)}(EL)^{m/(m+1)}.
+\]
+Thus $|V|\ge c_nEL^{-m}$; the empty family is immediate.
+
+For a Kakeya set $K$, choose a maximal $\delta$-separated set of
+directions, of cardinality comparable to $\delta^{-m}$, and choose
+one unit segment in $K$ in each of these finitely many directions.
+Their $\delta$-neighborhoods are tubes $T_j\subset N_\delta(K)$.
+Since $E\asymp1$, the union estimate gives
+\eqref{eq:neighborhood}. No boundedness or measurability of $K$
+is needed: $N_\delta(K)$ is open, and the inequality is automatic
+if it has infinite volume.
+
+\subsection*{Sharpness}
+
+For the maximal logarithm, take $\delta>0$ sufficiently small and let
+\[
+ f_\delta(X)=|X|^{-1}1_{\{2\delta<|X|<1/2\}}.
+\]
+Then $\|f_\delta\|_n\asymp L^{1/n}$. Every unit tube centered at the
+origin has average at least
+$c_n\int_{4\delta}^{1/4}t^{-1}\dd t\gtrsim L$.
+Thus $\|K_\delta f_\delta\|_n/\|f_\delta\|_n
+\gtrsim L^{(n-1)/n}$.
+For overlap sharpness, take a full separated grid of slopes in a
+fixed cone and let all tubes start at the origin, with
+$\lambda_T=1$. At height $z$ between $C\delta$ and a fixed small
+constant, the multiplicity on an interior cone is comparable to
+$z^{-m}$ and the time-slice volume is comparable to $z^m$.
+Hence $\int M^q\gtrsim\int_{C\delta}^c z^{-1}\dd z\gtrsim L$
+while $E\asymp1$.
+For neighborhood sharpness, \cite[Theorem 1.3]{Construction}
+constructs Kakeya sets with
+$|N_\delta(K)|\lesssim L^{-(n-1)}$.
+
+\section{Dependencies and scope}
+
+The only nonlinear existence theorem invoked is the smooth Dirichlet
+result of Ma--Zhu. Proposition~\ref{prop:dirichlet} checks its domain,
+boundary data, and subsolution hypotheses on
+$B^{3m}\times\mathbb T^m$ and explains smooth dependence on the
+auxiliary parameters. The cofactor and Green identities, scalar
+superharmonicity, source regularization, localization, weighted trace
+bound, compact packets, scalar propagation, and thin-source estimate
+are all supplied above.
+
+The proof treats arbitrary finite families and arbitrary nonnegative
+coefficients. Constants may depend on dimension; they are independent
+of coefficient ratios, tube locations, and the number of tubes in
+Theorem~\ref{thm:tubes}. The normalization in
+Proposition~\ref{thm:main} temporarily introduces a bounded-intercept
+constant, which is made uniform by the spatial decomposition in the
+proof of \eqref{eq:globaloverlap}.
+
+The complete mathematical deduction remains subject to independent
+verification. The computational checks accompanying its development
+test algebraic identities and scaling; they are not used as proof
+of any lemma.
+
+\clearpage
+\begin{thebibliography}{9}
+\bibitem{MZ}
+X.-N. Ma and J. Zhu,
+\emph{The Dirichlet problem for quaternionic Monge--Amp\`ere equations
+on flat quaternionic quotients}, arXiv:2611.03214, November 2, 2026.
+Theorem 1.1 and Sections 5--6.
+\url{https://arxiv.org/abs/2611.03214}.
+\bibitem{OpenAI}
+OpenAI, \emph{Local smoothing for the Euclidean wave equation},
+October 25, 2026. Source sections \emph{calculus.tex},
+\emph{current.tex}, \emph{energy.tex}, and \emph{dirichlet.tex}.
+\href{https://github.com/openai/math/tree/main/preprints/Local-smoothing-for-the-Euclidean-wave-equation-October-25-2026}{Manuscript and source}.
+\bibitem{Draft}
+M. Lewko, \emph{A quadratic positive-current argument for Minkowski
+dimension in three dimensions}, project research draft,
+November 10, 2026.
+\bibitem{Addendum}
+\emph{Recovering the sharp logarithm in the three-dimensional tube
+argument}, project research addendum, November 11, 2026.
+\bibitem{AllDimensions}
+\emph{A sharp logarithmic tube estimate in every dimension},
+project research draft, November 11, 2026.
+\bibitem{KN}
+S. Ko{\l}odziej and N. C. Nguyen,
+\emph{The Dirichlet problem for the Monge--Amp\`ere equation on
+Hermitian manifolds with boundary},
+Calc. Var. Partial Differential Equations \textbf{62} (2023), article 1.
+\url{https://doi.org/10.1007/s00526-022-02336-y}.
+\bibitem{Construction}
+R. J. Fern\'andez-Delgado and M. de la Salle,
+\emph{A construction of Kakeya Sets in Arbitrary Dimension},
+arXiv:2607.14824, version 3, September 17, 2026.
+\url{https://arxiv.org/abs/2607.14824}.
+\end{thebibliography}
+\end{document}

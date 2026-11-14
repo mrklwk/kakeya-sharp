@@ -1,0 +1,1295 @@
+{
+  "lean": "Lean (version 4.34.1, arm64-apple-darwin24.6.0, commit 5045d0056413266e57c625dcd7c365b10e377c52, Release)",
+  "modules_total": 212,
+  "compiled_ok": 212,
+  "failed": [],
+  "elapsed_seconds": 348,
+  "workers": 4,
+  "lean_path": [
+    "/private/tmp/claude-501/-Users-mlewko--claude-spares-spare-ekqEkQ/7afbef02-9065-43e0-9dd0-6fea84f49c09/scratchpad/rebuild-local",
+    "/Users/mlewko/Documents/ChatGPT/OpenAI Eucliean Harmonic/lean/kakeya_palomar/.lake/build/lib/lean",
+    "/Users/mlewko/Documents/ChatGPT/OpenAI Eucliean Harmonic/lean/kakeya_sharp/.lake/packages/mathlib/.lake/build/lib/lean",
+    "/Users/mlewko/Documents/ChatGPT/OpenAI Eucliean Harmonic/lean/kakeya_sharp/.lake/packages/plausible/.lake/build/lib/lean",
+    "/Users/mlewko/Documents/ChatGPT/OpenAI Eucliean Harmonic/lean/kakeya_sharp/.lake/packages/LeanSearchClient/.lake/build/lib/lean",
+    "/Users/mlewko/Documents/ChatGPT/OpenAI Eucliean Harmonic/lean/kakeya_sharp/.lake/packages/importGraph/.lake/build/lib/lean",
+    "/Users/mlewko/Documents/ChatGPT/OpenAI Eucliean Harmonic/lean/kakeya_sharp/.lake/packages/proofwidgets/.lake/build/lib/lean",
+    "/Users/mlewko/Documents/ChatGPT/OpenAI Eucliean Harmonic/lean/kakeya_sharp/.lake/packages/aesop/.lake/build/lib/lean",
+    "/Users/mlewko/Documents/ChatGPT/OpenAI Eucliean Harmonic/lean/kakeya_sharp/.lake/packages/Qq/.lake/build/lib/lean",
+    "/Users/mlewko/Documents/ChatGPT/OpenAI Eucliean Harmonic/lean/kakeya_sharp/.lake/packages/batteries/.lake/build/lib/lean",
+    "/Users/mlewko/.elan/toolchains/leanprover--lean4---v4.34.1/lib/lean"
+  ],
+  "results": {
+    "KakeyaSharp.Calculus.Maximum": {
+      "returncode": 0,
+      "seconds": 2.5,
+      "source_sha256": "ef92f7da8544e7afc2ae8b551e6adfb7f55d692d38c9955ab23f9eff9f446b2d",
+      "log": ""
+    },
+    "KakeyaSharp.Definitions": {
+      "returncode": 0,
+      "seconds": 7.1,
+      "source_sha256": "6dcf64e0c73e840a12f06a0f70f4dde23f5868eb4fcb10aba0c003c354aec49c",
+      "log": ""
+    },
+    "KakeyaSharp.Green.GreenReal": {
+      "returncode": 0,
+      "seconds": 4.7,
+      "source_sha256": "2799e4b2d92f863ac4a56c5bd63dff3e93cd318f065617f48c067c3dfb576530",
+      "log": ""
+    },
+    "KakeyaSharp.Calculus.Polarization": {
+      "returncode": 0,
+      "seconds": 7.3,
+      "source_sha256": "01e4eb048c905d927b006b19abe07f9ee215673cef1fb1b436e52f8ac9c3ebd4",
+      "log": ""
+    },
+    "KakeyaSharp.CompactVariation": {
+      "returncode": 0,
+      "seconds": 7.3,
+      "source_sha256": "4c8770400239fc8466713e83d37bbe63048482bda2697615da90fcf94ac16bf2",
+      "log": ""
+    },
+    "KakeyaSharp.Moore.ODE": {
+      "returncode": 0,
+      "seconds": 3.9,
+      "source_sha256": "0d2c9b95b9a884e21d24db1f3b02cd1370130b2a5a9a79e28e7baddd150a0033",
+      "log": ""
+    },
+    "KakeyaSharp.Propagation.OuterRegion": {
+      "returncode": 0,
+      "seconds": 4.1,
+      "source_sha256": "666cd741172ff1d174152ee2db68cab76cde6d74c456515ce652d21b540bea9f",
+      "log": ""
+    },
+    "KakeyaSharp.Packet.Phase": {
+      "returncode": 0,
+      "seconds": 4.1,
+      "source_sha256": "3a9a9d09fac35091116887ed5bac2013291d9294d7d9a24de2e3f63129752b41",
+      "log": ""
+    },
+    "KakeyaSharp.Moore.Basic": {
+      "returncode": 0,
+      "seconds": 5.1,
+      "source_sha256": "2ea0d1cd68fb359205792363cabe09a10f47d0a33eebf128657bae2083e7bb96",
+      "log": ""
+    },
+    "Challenge": {
+      "returncode": 0,
+      "seconds": 3.6,
+      "source_sha256": "1a6b4fbdcab5148f254ae726ca6259877e401d218b969891f9e0fd44bb606cf3",
+      "log": "/Users/mlewko/Documents/ChatGPT/OpenAI Eucliean Harmonic/lean/kakeya_palomar/Challenge.lean:35:8: warning: declaration uses `sorry`\n/Users/mlewko/Documents/ChatGPT/OpenAI Eucliean Harmonic/lean/kakeya_palomar/Challenge.lean:47:8: warning: declaration uses `sorry`\n"
+    },
+    "KakeyaSharp.Trace.LayerCake": {
+      "returncode": 0,
+      "seconds": 3.7,
+      "source_sha256": "472f700e7e3c753642a41e249131ad2e35d1f6b0bd688aa564c3505bfa50e972",
+      "log": ""
+    },
+    "KakeyaSharp.QuaternionAlgebra": {
+      "returncode": 0,
+      "seconds": 4.0,
+      "source_sha256": "fb3ae9308da9ae9c58e98c8540d05cdc983577e75460d30b38fa13675070990a",
+      "log": ""
+    },
+    "KakeyaSharp.Duality": {
+      "returncode": 0,
+      "seconds": 3.3,
+      "source_sha256": "49c874eb41ede6a0839e7f7afa2a4b5929087f3bebf2660ab9cc2b84c1f9cfc4",
+      "log": ""
+    },
+    "KakeyaSharp.Geometry": {
+      "returncode": 0,
+      "seconds": 3.9,
+      "source_sha256": "7a154f1b28b7b66e46f25e8a364e903d68bc4e4f3a9193f5eb9e3b90a8294db4",
+      "log": ""
+    },
+    "KakeyaSharp.RadialIntegrals": {
+      "returncode": 0,
+      "seconds": 3.9,
+      "source_sha256": "1be0f8bc9731b90341d67af57bb2ecba39a13613d5de5a0df67a7cab41041c78",
+      "log": ""
+    },
+    "KakeyaSharp.ThinProfile": {
+      "returncode": 0,
+      "seconds": 4.1,
+      "source_sha256": "21650505f7393ba12bcba1c6b35832abf4070195ee7b44f798fa69db6bfc175f",
+      "log": ""
+    },
+    "KakeyaSharp.Green.BoundaryExtension": {
+      "returncode": 0,
+      "seconds": 3.7,
+      "source_sha256": "bd7d8273cdaee86e23b302d872bd7c0f57791ef9019dcb2eeef88385d1462e98",
+      "log": ""
+    },
+    "KakeyaSharp.Green.GreenOperator": {
+      "returncode": 0,
+      "seconds": 3.7,
+      "source_sha256": "5107bd1d6d82661cbd3962526a4f8b66f7f0573aa349f94518cff3cdc332e484",
+      "log": ""
+    },
+    "KakeyaSharp.Calculus.ThirdTensor": {
+      "returncode": 0,
+      "seconds": 3.9,
+      "source_sha256": "d7550f7f5b22205f6e51babe0fd6eec1b3bd9302df38e499ee071a937d7ca834",
+      "log": ""
+    },
+    "KakeyaSharp.Propagation.SingleLog": {
+      "returncode": 0,
+      "seconds": 3.8,
+      "source_sha256": "db1ae3e74b30002e9b24e5ebc0121d8382c9e8f9a231fda30d77ec6297a7c7e0",
+      "log": ""
+    },
+    "KakeyaSharp.CompactParameterIntegral": {
+      "returncode": 0,
+      "seconds": 4.3,
+      "source_sha256": "c4d03ae9cc72eb8d05cd57f3c94f2e160a6be217d33825d74609f89496234f02",
+      "log": ""
+    },
+    "KakeyaSharp.Packet.Prefactor": {
+      "returncode": 0,
+      "seconds": 3.6,
+      "source_sha256": "4e1d880c0487a48fbb1ce48da3cfcca930e8334147b776aa44973d34e8eb0b7b",
+      "log": ""
+    },
+    "KakeyaSharp.Packet.Transport": {
+      "returncode": 0,
+      "seconds": 3.8,
+      "source_sha256": "72469e448896b55286c7822a1ba21a83dc059faa67fe0867116da949a097828a",
+      "log": ""
+    },
+    "KakeyaSharp.Moore.Normalize": {
+      "returncode": 0,
+      "seconds": 3.9,
+      "source_sha256": "9d4849f1d536f72daa27bcd375148dfe069e840d6f3c02d899a15aa54384ac28",
+      "log": ""
+    },
+    "KakeyaSharp.Moore.RankOne": {
+      "returncode": 0,
+      "seconds": 3.8,
+      "source_sha256": "23475ad7bdd061685f3c06b6f11b925d768817ea073df4ec5d62ffb7beaab7a2",
+      "log": ""
+    },
+    "KakeyaSharp.Packet.Quaternion": {
+      "returncode": 0,
+      "seconds": 3.8,
+      "source_sha256": "dc65aed2744003f4409784674f10a1c3c9cbb42524a8d73c1a2a38d464c77fe5",
+      "log": ""
+    },
+    "KakeyaSharp.QuaternionPositive": {
+      "returncode": 0,
+      "seconds": 3.6,
+      "source_sha256": "07540a990d575ca78cc78a0958948d57eb5aa613833b64a54c4ca7eb36950cd7",
+      "log": ""
+    },
+    "KakeyaSharp.BoundaryIntegrals": {
+      "returncode": 0,
+      "seconds": 3.6,
+      "source_sha256": "bf2a91effd723e321111428935e4cbc567c8985033ddfa0d7e521a5bde52d66c",
+      "log": ""
+    },
+    "KakeyaSharp.Caps": {
+      "returncode": 0,
+      "seconds": 4.4,
+      "source_sha256": "02c02cb40045b280a5d7129bd7e596409aa1ce853dde66ace30d20010233afc1",
+      "log": ""
+    },
+    "KakeyaSharp.RadialVolume": {
+      "returncode": 0,
+      "seconds": 3.7,
+      "source_sha256": "a542d70d4656811a6fcd424a900afc54c278eb3a742b1d79589f61f58a623182",
+      "log": ""
+    },
+    "KakeyaSharp.HessianCalculus": {
+      "returncode": 0,
+      "seconds": 4.4,
+      "source_sha256": "f6af4077005d976190c1cf2484238c34ed3a9b5ee346c27a275af31fe02078bf",
+      "log": ""
+    },
+    "KakeyaSharp.Calculus.CurrentConservation": {
+      "returncode": 0,
+      "seconds": 3.7,
+      "source_sha256": "443d97dc998ea2e5c49a76338cfb94ce6608364fe3051c2e539cb9cc98374146",
+      "log": ""
+    },
+    "KakeyaSharp.Calculus.CofactorSymbol": {
+      "returncode": 0,
+      "seconds": 3.3,
+      "source_sha256": "fae15a7cccc9c391c4003d9119febe12638afb0d5d7a885939a31db058dc6222",
+      "log": ""
+    },
+    "KakeyaSharp.Packet.PhaseDerivative": {
+      "returncode": 0,
+      "seconds": 3.5,
+      "source_sha256": "a939d24530ca1b6135863346403f7f7b6db9c69c0218c2397cc7db477515253a",
+      "log": ""
+    },
+    "KakeyaSharp.Packet.FinitePhase": {
+      "returncode": 0,
+      "seconds": 3.7,
+      "source_sha256": "fc725655f13ecd5fa4adf4d7880b9ef894022e7d6e8175b9f698a380380bf0f5",
+      "log": ""
+    },
+    "KakeyaSharp.Moore.Derivative": {
+      "returncode": 0,
+      "seconds": 4.1,
+      "source_sha256": "c73fb21b8cce3ac83bc1ec374bad7a9d9590f36fa21cb603e33b4b79913960c2",
+      "log": ""
+    },
+    "KakeyaSharp.EnergyKernels": {
+      "returncode": 0,
+      "seconds": 3.8,
+      "source_sha256": "b837039d7a4b6422425d92b5fa5a145c62d9615ad5df60702fb96d738589f1ab",
+      "log": ""
+    },
+    "KakeyaSharp.Volume": {
+      "returncode": 0,
+      "seconds": 3.5,
+      "source_sha256": "0a2fd372b5518f6420d09173ff8110a0f836fb77c6a1673e9f0db18d20e68774",
+      "log": ""
+    },
+    "KakeyaSharp.Packet.NormalKernel": {
+      "returncode": 0,
+      "seconds": 3.7,
+      "source_sha256": "3e7acd99a027ddffa1796f4c40b3f18676c902f12537fa996c898b33064afb11",
+      "log": ""
+    },
+    "KakeyaSharp.Calculus.LocalConservation": {
+      "returncode": 0,
+      "seconds": 3.8,
+      "source_sha256": "305fb86a3b1d464fc077cd7403420b991d7fef1398f09d89c650e31a08ed1965",
+      "log": ""
+    },
+    "KakeyaSharp.ThinHessian": {
+      "returncode": 0,
+      "seconds": 5.7,
+      "source_sha256": "0ce96d915b0b8419a13920a4a34070e1c7ef22c8bd438c38a44d31cd7a51c154",
+      "log": ""
+    },
+    "KakeyaSharp.Calculus.ThirdDerivatives": {
+      "returncode": 0,
+      "seconds": 3.5,
+      "source_sha256": "068a4fba63513649a6f9590226cbea2188c942e1349763b08e82a7f2bc7c13ba",
+      "log": ""
+    },
+    "KakeyaSharp.Measurability": {
+      "returncode": 0,
+      "seconds": 3.6,
+      "source_sha256": "4cbed034a4b369701d140dfa72dbd54eb48438e43dd4506019d4d161eecbafba",
+      "log": ""
+    },
+    "KakeyaSharp.Moore.Inverse": {
+      "returncode": 0,
+      "seconds": 4.9,
+      "source_sha256": "ac5721dcf3f719dd69ae8ec902cd4773ac5a9a6a13b37ada6f0dcc742dd554ae",
+      "log": ""
+    },
+    "KakeyaSharp.ThinPositive": {
+      "returncode": 0,
+      "seconds": 3.6,
+      "source_sha256": "6075272f4e2df174eed9f47ce3ed06802a61c6ae321f8f272e5d767e9ac86a9f",
+      "log": ""
+    },
+    "KakeyaSharp.Calculus.DirectionalHessian": {
+      "returncode": 0,
+      "seconds": 4.0,
+      "source_sha256": "9cafec959f2ca98bdab5c8d58a95dca6dbc84b5c4d54216d8dc14f7237d5e3bd",
+      "log": ""
+    },
+    "KakeyaSharp.DirectionNets": {
+      "returncode": 0,
+      "seconds": 3.4,
+      "source_sha256": "1d480348da2d45684d12db2c33408dc3b2880955a812cef87c7fbc01b31d3084",
+      "log": ""
+    },
+    "KakeyaSharp.Discrete": {
+      "returncode": 0,
+      "seconds": 3.3,
+      "source_sha256": "0e65f2e59057c7c4b9322bd5fb0987cb61452773114470da857437cc528d69bd",
+      "log": ""
+    },
+    "KakeyaSharp.Moore.Elliptic": {
+      "returncode": 0,
+      "seconds": 3.1,
+      "source_sha256": "136a68aef17ee54b64aeda4ddc95a4083652673289be98e71c8e4637dbd75db9",
+      "log": ""
+    },
+    "KakeyaSharp.Moore.Outer": {
+      "returncode": 0,
+      "seconds": 3.6,
+      "source_sha256": "92bf216320e7701eb0a85e597fddf454b72db121a72d04aedb2fa0de042d1e5f",
+      "log": ""
+    },
+    "KakeyaSharp.Calculus.SliceDerivatives": {
+      "returncode": 0,
+      "seconds": 4.0,
+      "source_sha256": "38f21c3f2c432e1df61846340da2654b67f12e891aa089e0fb8ac3ea8167cc4f",
+      "log": ""
+    },
+    "KakeyaSharp.DirectionIntegral": {
+      "returncode": 0,
+      "seconds": 3.5,
+      "source_sha256": "7b70ab8fbf073048e561e22eaabe8fd316d8abab7efaf6e66b8da32f2938fcac",
+      "log": ""
+    },
+    "KakeyaSharp.Moore.Form": {
+      "returncode": 0,
+      "seconds": 3.4,
+      "source_sha256": "a5c888d801b543dfb1e5a552b815febfbad4b805fb1f6d6219c6e66d133bb599",
+      "log": ""
+    },
+    "KakeyaSharp.Moore.ScalarOuter": {
+      "returncode": 0,
+      "seconds": 3.1,
+      "source_sha256": "5923e61d2e8084fb2d845ae5280ecf6288f56b797d2f0f4a6dd483499fcfee5e",
+      "log": ""
+    },
+    "KakeyaSharp.SharpTransfer": {
+      "returncode": 0,
+      "seconds": 3.6,
+      "source_sha256": "ce7adfaf8f8e1ea1cb9f7e5c6f4495efe79427fe67bcc14461ac037f62c8d96b",
+      "log": ""
+    },
+    "KakeyaSharp.Moore.PositiveInverse": {
+      "returncode": 0,
+      "seconds": 3.3,
+      "source_sha256": "ccc076e31beebda10366d801b4e52950eef339e94a1ac001619f45e085640b5e",
+      "log": ""
+    },
+    "KakeyaSharp.Moore.Cofactor": {
+      "returncode": 0,
+      "seconds": 3.8,
+      "source_sha256": "a208454a25ff3efeee1ab40e4862a83c3fd72f6301c122d938bb8c9b65937a00",
+      "log": ""
+    },
+    "KakeyaSharp.Moore.RankTwoBound": {
+      "returncode": 0,
+      "seconds": 4.6,
+      "source_sha256": "a08bdeae28d5624f45f32f75e62a8166a4c4f2a9e164363a347252990c19aa0f",
+      "log": ""
+    },
+    "KakeyaSharp.Moore.Positive": {
+      "returncode": 0,
+      "seconds": 3.3,
+      "source_sha256": "e081b9a1557450089ad78eef6fbd2aeec9c06b19efc4089040622b3390ace832",
+      "log": ""
+    },
+    "KakeyaSharp.Moore.Smooth": {
+      "returncode": 0,
+      "seconds": 3.9,
+      "source_sha256": "5eea63bc49272e8d8eeda8dfe46d035bfbea328d7dd11434baee19fefe2fcd61",
+      "log": ""
+    },
+    "KakeyaSharp.Green.GreenAlgebra": {
+      "returncode": 0,
+      "seconds": 4.1,
+      "source_sha256": "816e821c59bec31e02c65058183b87dc34d72900ea3e7fd376d5923d6972fbcb",
+      "log": ""
+    },
+    "KakeyaSharp.ThinDeterminant": {
+      "returncode": 0,
+      "seconds": 3.7,
+      "source_sha256": "d96bdaf8626a4a4e17f3789096dd0577cfdf1c7f66771d3930c128dc08b56140",
+      "log": ""
+    },
+    "KakeyaSharp.Moore.Monotone": {
+      "returncode": 0,
+      "seconds": 3.1,
+      "source_sha256": "daf6bbfba41c4e8638ef95032b94f97dcfb53b8987d372f34400e761ae5846fc",
+      "log": ""
+    },
+    "KakeyaSharp.Green.BoundaryGreen": {
+      "returncode": 0,
+      "seconds": 3.5,
+      "source_sha256": "234d03aed4294b634f03c200fe691e53d916b656c264f6cd1b29b26893d8c428",
+      "log": ""
+    },
+    "KakeyaSharp.Moore.Boundary": {
+      "returncode": 0,
+      "seconds": 3.5,
+      "source_sha256": "c609668252524208d2e492ee9129222b11819ed2b14a7c7328249fbee5bb4e57",
+      "log": ""
+    },
+    "KakeyaSharp.Moore.NullLagrangian": {
+      "returncode": 0,
+      "seconds": 4.6,
+      "source_sha256": "4a1a6ada0b07d7786d39e81f0cf9a917d45c855b4d21786c1014e0479ffdd2b1",
+      "log": ""
+    },
+    "KakeyaSharp.EnergyIntegrability": {
+      "returncode": 0,
+      "seconds": 4.6,
+      "source_sha256": "de785105e7ab11a114ce0c7200d9a2d215c46e3f7868fe2cb6910f664902a9c5",
+      "log": ""
+    },
+    "KakeyaSharp.Moore.CofactorPositive": {
+      "returncode": 0,
+      "seconds": 3.5,
+      "source_sha256": "1a33d636ee0d3e0ec42cd63ad24301da27f13b7780586cbb621a5e3ba86ad75f",
+      "log": ""
+    },
+    "KakeyaSharp.Calculus.CofactorDivergence": {
+      "returncode": 0,
+      "seconds": 3.5,
+      "source_sha256": "dd2cdebc47f8237166b2d9a74f744f00e01415dba1bc8617eea16990ba043a67",
+      "log": ""
+    },
+    "KakeyaSharp.EnergySlices": {
+      "returncode": 0,
+      "seconds": 3.9,
+      "source_sha256": "6890429f86c572b7a7400278f5da897683523b80309be2efafd4b7fd1ae77269",
+      "log": ""
+    },
+    "KakeyaSharp.Green.DirectionalCofactor": {
+      "returncode": 0,
+      "seconds": 3.2,
+      "source_sha256": "75ca8ec5d3d3bd427439c1a9ffc5eea3270e4e2951550d99e2153c017040ad2c",
+      "log": ""
+    },
+    "KakeyaSharp.EnergyFubini": {
+      "returncode": 0,
+      "seconds": 3.0,
+      "source_sha256": "ba634d16a75014225015445871aadf23e70469671eea3874ea1e3baa2f60193a",
+      "log": ""
+    },
+    "KakeyaSharp.Green.EnergyIdentities": {
+      "returncode": 0,
+      "seconds": 3.5,
+      "source_sha256": "77c3291a50c1a021ffa34577907b81795daa44bbaac12ba67350a02dd15def51",
+      "log": ""
+    },
+    "KakeyaSharp.Green.QuaternionPairing": {
+      "returncode": 0,
+      "seconds": 4.4,
+      "source_sha256": "0fedfac79b61f31c0c20e90254f47be3b0ed240dae554d4f16275c612accb643",
+      "log": ""
+    },
+    "KakeyaSharp.EnergyBoundary": {
+      "returncode": 0,
+      "seconds": 3.8,
+      "source_sha256": "67766f9fcca9373f961857fd6fcb3127fc5ca293eea2d779cb04d9817efdb3c0",
+      "log": ""
+    },
+    "KakeyaSharp.Green.QuaternionGreen": {
+      "returncode": 0,
+      "seconds": 3.4,
+      "source_sha256": "062f66e656aba725d22e600abb46aa8dbff0a3e1f8e41606d457b589cc37d1f7",
+      "log": ""
+    },
+    "KakeyaSharp.EnergyBoundaryAllDimensions": {
+      "returncode": 0,
+      "seconds": 3.8,
+      "source_sha256": "51196cd456b469a554b0282789967650345243f4218452fafae4c472f61f4e73",
+      "log": ""
+    },
+    "KakeyaSharp.Green.CurrentIntegrals": {
+      "returncode": 0,
+      "seconds": 3.1,
+      "source_sha256": "8cb43c102856dd67cec1478b5d5f343d9ffc0b84ff6ab52af894dcbf31b68bf8",
+      "log": ""
+    },
+    "KakeyaSharp.ThinEnergy": {
+      "returncode": 0,
+      "seconds": 3.4,
+      "source_sha256": "4e68528be01cb6f98bddd5268ffbb36662f9d5bc38c7e0f2586643095359a697",
+      "log": ""
+    },
+    "KakeyaSharp.Green.DoubleDivergence": {
+      "returncode": 0,
+      "seconds": 3.1,
+      "source_sha256": "7ec126829256340cdbd84f2ce35f5ec20805ce980392fb642d0c9a6a12552e2a",
+      "log": ""
+    },
+    "KakeyaSharp.VariationalTest": {
+      "returncode": 0,
+      "seconds": 3.4,
+      "source_sha256": "4e53ab8d9d7d3b2333808f5ee7d53f025081b173112b5c6574a05a0b5516af0c",
+      "log": ""
+    },
+    "KakeyaSharp.Green.DistributionalLaplacian": {
+      "returncode": 0,
+      "seconds": 3.4,
+      "source_sha256": "b5ea50b295440ea6c39775bfb86382bec28cc07f4e486b532397a64a59343e93",
+      "log": ""
+    },
+    "KakeyaSharp.ThinSource": {
+      "returncode": 0,
+      "seconds": 3.4,
+      "source_sha256": "8cc32ff4f84360ef688e848da5fc46fc6f70c6461e5e10285170e8b9bdde5ca7",
+      "log": ""
+    },
+    "KakeyaSharp.Green.WeakSuperharmonicLimit": {
+      "returncode": 0,
+      "seconds": 3.6,
+      "source_sha256": "6f58487d464823129407f29a5fff259a439fb5565a521ef79bac5fa1997dff42",
+      "log": ""
+    },
+    "KakeyaSharp.Propagation.Mollifier": {
+      "returncode": 0,
+      "seconds": 4.0,
+      "source_sha256": "d1b01e72d6d153dd4ea0c166aedb13035521339150f1f5861738d8c3e3e967a6",
+      "log": ""
+    },
+    "KakeyaSharp.ThinVariational": {
+      "returncode": 0,
+      "seconds": 3.2,
+      "source_sha256": "76cf64285bfff662b060135d6dc0781b323ce884dd0bae9471db12f7a63d14b6",
+      "log": ""
+    },
+    "KakeyaSharp.Green.LocalWeakLimit": {
+      "returncode": 0,
+      "seconds": 3.3,
+      "source_sha256": "2d376f1bc0e3f5da6fa4d02b17d53566bb46c4337a95151633e9e52d172fac48",
+      "log": ""
+    },
+    "KakeyaSharp.SpatialScaling": {
+      "returncode": 0,
+      "seconds": 4.0,
+      "source_sha256": "2af591c7407ecd63dd81952454830336d52b77d07f26d54b991e369f8d6c4871",
+      "log": ""
+    },
+    "KakeyaSharp.ScaledVariational": {
+      "returncode": 0,
+      "seconds": 3.2,
+      "source_sha256": "d254da0c76ea87fec56599494c6207c31971718b4f398dbb279731d69f8dae9f",
+      "log": ""
+    },
+    "KakeyaSharp.AdmissibleIntegrability": {
+      "returncode": 0,
+      "seconds": 3.2,
+      "source_sha256": "3d65c01713f4edeea9cfd2ef03a40788bc78c260019d255ffac1ab5a1d41c8ca",
+      "log": ""
+    },
+    "KakeyaSharp.VariationalValue": {
+      "returncode": 0,
+      "seconds": 3.2,
+      "source_sha256": "2a86a96c32adaceaea40ab8839cacf50f67a5351a05eaa84fe23830c1eba19f2",
+      "log": ""
+    },
+    "KakeyaSharp.ThinDomain": {
+      "returncode": 0,
+      "seconds": 3.6,
+      "source_sha256": "02fa330dbbc247459acd23f67db664a57995a6136d5feb87f405010ed05c3ae6",
+      "log": ""
+    },
+    "KakeyaSharp.ThinCofactor": {
+      "returncode": 0,
+      "seconds": 3.9,
+      "source_sha256": "3256e65c89a8f9ce85e4c3e7814f34bad97b7429fd7ac3233f8da88e07bb965d",
+      "log": ""
+    },
+    "KakeyaSharp.ThinVariation": {
+      "returncode": 0,
+      "seconds": 4.0,
+      "source_sha256": "118ba320244be2d69b99199cac81b74ca545646c8ea3ccdfe41cf2abfb965945",
+      "log": ""
+    },
+    "KakeyaSharp.ThinSecondVariation": {
+      "returncode": 0,
+      "seconds": 3.8,
+      "source_sha256": "8aef6984281382440b73c1a683c62dbd5ef3e1b04feba4e6bbd6b56b921e5ac2",
+      "log": ""
+    },
+    "KakeyaSharp.ThinConcavity": {
+      "returncode": 0,
+      "seconds": 3.5,
+      "source_sha256": "8836545b3745d77fbd388856eb80bf5620f9dca2ea2e79c08ca6da914ab92ed0",
+      "log": ""
+    },
+    "KakeyaSharp.ThinPairings": {
+      "returncode": 0,
+      "seconds": 4.1,
+      "source_sha256": "6365c1a0173fb031ff7bebd714cd94f23136d859a4355ae1349402a245217210",
+      "log": ""
+    },
+    "KakeyaSharp.LocalExtension": {
+      "returncode": 0,
+      "seconds": 3.9,
+      "source_sha256": "a5fe6f6a4e18a3b2edcb12d98a89710f8eaf590218830fac1d1eea1caec15ef3",
+      "log": ""
+    },
+    "KakeyaSharp.CurrentSquare": {
+      "returncode": 0,
+      "seconds": 3.8,
+      "source_sha256": "d14b895ab49d305dd1e255b7cc2e2a4a63a8108383457d5916259d654f24d8c4",
+      "log": ""
+    },
+    "KakeyaSharp.ThinCrossPairing": {
+      "returncode": 0,
+      "seconds": 4.3,
+      "source_sha256": "f12fc5c75a79e8032a1759e7c0ca153cd865105742acabee3a8ca349cfd82650",
+      "log": ""
+    },
+    "KakeyaSharp.Trace.Comparison": {
+      "returncode": 0,
+      "seconds": 5.3,
+      "source_sha256": "bd2b349619977cb63b2384db2646ba84dc01300d0c06ce068e4ef6f5aebf7967",
+      "log": ""
+    },
+    "KakeyaSharp.CompactLocalExtension": {
+      "returncode": 0,
+      "seconds": 3.3,
+      "source_sha256": "7aaa1b768c1824eb950dac4c76e011bd08da0871d51b9c9d2529abf87541d46a",
+      "log": ""
+    },
+    "KakeyaSharp.ThinCurrent": {
+      "returncode": 0,
+      "seconds": 3.9,
+      "source_sha256": "77004bb01e10fbf5357654a1765dfce276e58fadb19f1e4e79b9d8da965c0a25",
+      "log": ""
+    },
+    "KakeyaSharp.Green.LocalLaplacian": {
+      "returncode": 0,
+      "seconds": 3.5,
+      "source_sha256": "41e412c4c7d12645a0b3bb8b078b4fcad4e23906f9b8f03d5918422f5ef5c5d4",
+      "log": ""
+    },
+    "KakeyaSharp.Propagation.LocalApproximation": {
+      "returncode": 0,
+      "seconds": 3.3,
+      "source_sha256": "c8da32f88906ac313213c9d4bfb997338fe7286c8c8308a9da29730acb2df72f",
+      "log": ""
+    },
+    "KakeyaSharp.VariationalRepresentation": {
+      "returncode": 0,
+      "seconds": 3.8,
+      "source_sha256": "cfb12ecc778910527d83ca142498739dbd0e7e00c91276a59e2bd6f22fea5e01",
+      "log": ""
+    },
+    "KakeyaSharp.ThinCurrentEnergy": {
+      "returncode": 0,
+      "seconds": 4.1,
+      "source_sha256": "49a7ee725a67fbcd5b687b7f11888fca60c099b57ba800a6f258d946c1b9cbca",
+      "log": ""
+    },
+    "KakeyaSharp.Trace.Sublevel": {
+      "returncode": 0,
+      "seconds": 4.1,
+      "source_sha256": "c29cf7eaa9cbb6f076e9a85346b3ca158846cbcd3cbac288ad04bffd9c4d11c3",
+      "log": ""
+    },
+    "KakeyaSharp.ThinCurrentLocal": {
+      "returncode": 0,
+      "seconds": 4.2,
+      "source_sha256": "90e84aa6bb6d725eefcb8b9eda88e77b1afbfc090bbcdcb9e33de9d865869832",
+      "log": ""
+    },
+    "KakeyaSharp.ThinParameterHessian": {
+      "returncode": 0,
+      "seconds": 3.8,
+      "source_sha256": "75b6aefcaa8b821df2e6e51bb0659458a94961a81d5e962d7e75038fc0674adc",
+      "log": ""
+    },
+    "KakeyaSharp.Propagation.WeakSingleLog": {
+      "returncode": 0,
+      "seconds": 3.5,
+      "source_sha256": "0d65845075f64c81a39cb68545f50b3b98047884e2fc164a2faeec0b38c9cd8b",
+      "log": ""
+    },
+    "KakeyaSharp.Packet.Cutoff": {
+      "returncode": 0,
+      "seconds": 4.6,
+      "source_sha256": "e08debe0e313ebd780303907f366c87bdbcb660e6ebc87b39929ab9c36149202",
+      "log": ""
+    },
+    "KakeyaSharp.ThinMaximum": {
+      "returncode": 0,
+      "seconds": 5.8,
+      "source_sha256": "c67d7ec0144ee2179ef5090f8da3d5559b7b9bb0a8d2a02864b2f8a187e2a7ee",
+      "log": ""
+    },
+    "KakeyaSharp.ThinParameterLocal": {
+      "returncode": 0,
+      "seconds": 3.6,
+      "source_sha256": "7ee806739d3a326571240f41385d699784d1aed3b8f182aec5c3b3aa56c8e9cd",
+      "log": ""
+    },
+    "KakeyaSharp.ThinSolutionCurrent": {
+      "returncode": 0,
+      "seconds": 3.5,
+      "source_sha256": "6213eba38f9ec8d2f8cf3170cc9a6889a479b6e56b415074bbef915b70588fb7",
+      "log": ""
+    },
+    "KakeyaSharp.Propagation.ContinuousTrace": {
+      "returncode": 0,
+      "seconds": 3.0,
+      "source_sha256": "35b606a2b4a13faa141baa10cc3c287c589421a78e2210adf0828067be98bfc5",
+      "log": ""
+    },
+    "KakeyaSharp.VariationalFinite": {
+      "returncode": 0,
+      "seconds": 3.6,
+      "source_sha256": "fd72f6766d3739556137059f14703d80332451fd1b47bfc32dfe2a302ea96d04",
+      "log": ""
+    },
+    "KakeyaSharp.Trace.Estimate": {
+      "returncode": 0,
+      "seconds": 3.9,
+      "source_sha256": "2b49f4dc43d532c498b4ac1c19a1f8adf1ca8dd2f911ab3dfac297bb26a18044",
+      "log": ""
+    },
+    "KakeyaSharp.ThinSolutionCurrentLocal": {
+      "returncode": 0,
+      "seconds": 3.3,
+      "source_sha256": "3f7f2ef7763a558e09b92d7cd9ab68bf60a74bc0726c9aa581f51611075f2b54",
+      "log": ""
+    },
+    "KakeyaSharp.Dirichlet.Coordinates": {
+      "returncode": 0,
+      "seconds": 6.3,
+      "source_sha256": "57e1d7b31ed1fef7cdadcb0a25ac7c3c3a88cac58b6f0eaf1975071bbd85b9ef",
+      "log": ""
+    },
+    "KakeyaSharp.VariationalStructure": {
+      "returncode": 0,
+      "seconds": 3.1,
+      "source_sha256": "f820ce570b4df04b1fcf988694b9793e8cf4205f99b0c59eb1044b7394255478",
+      "log": ""
+    },
+    "KakeyaSharp.Dirichlet.Ball": {
+      "returncode": 0,
+      "seconds": 3.7,
+      "source_sha256": "839cd46a6be9559660db3675600e4d2fb8aa4b66c5cc7271bd529c83a08fb487",
+      "log": ""
+    },
+    "KakeyaSharp.VariationalContinuity": {
+      "returncode": 0,
+      "seconds": 3.8,
+      "source_sha256": "679e349de0139451e565deb16d2f5245d9d55e3d2cc860a252ee3d81a864fe1d",
+      "log": ""
+    },
+    "KakeyaSharp.Trace.Weighted": {
+      "returncode": 0,
+      "seconds": 4.3,
+      "source_sha256": "389e39c427a8d5fba1a210a5a956df8bb4bdf5e2f8aef347ef4d60b4d8c6a1de",
+      "log": ""
+    },
+    "KakeyaSharp.ThinValueDerivative": {
+      "returncode": 0,
+      "seconds": 6.0,
+      "source_sha256": "7d705a39bda6e377cfe06d38a617098b41700ec745d3324b56a19500934701fc",
+      "log": ""
+    },
+    "KakeyaSharp.ThinValueLocalWeakLimit": {
+      "returncode": 0,
+      "seconds": 3.2,
+      "source_sha256": "cbc0c835625b5f3a03f6b0e551fb17f911d692a0ade62c1645d0b232e3cbb262",
+      "log": ""
+    },
+    "KakeyaSharp.Dirichlet.Existence": {
+      "returncode": 0,
+      "seconds": 6.1,
+      "source_sha256": "8639b3b88034ed5a1cdc1d85d144818cbd9af08bd95e9258308050957da83292",
+      "log": ""
+    },
+    "KakeyaSharp.ThinValueWeakLimit": {
+      "returncode": 0,
+      "seconds": 3.0,
+      "source_sha256": "054b27d575924d468795f601fdaa289febeff476ae181d5abc890060e9ea6023",
+      "log": ""
+    },
+    "KakeyaSharp.Dirichlet.Translation": {
+      "returncode": 0,
+      "seconds": 6.0,
+      "source_sha256": "73bfc1626666e21e29c018f6bb99394e9eb383c24fe7dc1e7b227300971854bf",
+      "log": ""
+    },
+    "KakeyaSharp.VariationalParameterContinuity": {
+      "returncode": 0,
+      "seconds": 3.3,
+      "source_sha256": "8ed65d8252efe579dd00f1b5a2b96964c5f7d91da525cdcb903bfd19f7c0bc61",
+      "log": ""
+    },
+    "KakeyaSharp.Trace.LogBarrier": {
+      "returncode": 0,
+      "seconds": 3.6,
+      "source_sha256": "44154572e397449f51c40ca3d54755f695e3c7524e12aea747ed292971cab8c6",
+      "log": ""
+    },
+    "KakeyaSharp.Dirichlet.Descent": {
+      "returncode": 0,
+      "seconds": 3.4,
+      "source_sha256": "1099e08b214c50187d6f2987017dbf18a90154d9ced733b67546c1b425c1ff0e",
+      "log": ""
+    },
+    "KakeyaSharp.ThinValueCurvature": {
+      "returncode": 0,
+      "seconds": 5.4,
+      "source_sha256": "22e050dcc7294f7dc822dfeff8513bda2295bf816c2ebee97590f5cfe4a3c9f9",
+      "log": ""
+    },
+    "KakeyaSharp.Dirichlet.Solution": {
+      "returncode": 0,
+      "seconds": 3.2,
+      "source_sha256": "906578b7c8637e02b3dce4d0f130e368d0337e7dde12fc12439414e01375840e",
+      "log": ""
+    },
+    "KakeyaSharp.ThinCurrentCurvature": {
+      "returncode": 0,
+      "seconds": 4.4,
+      "source_sha256": "2ea15922ffc55d96e66bd6a2f913e1a5a54429a8afeab4b4ea2107787b5b1cba",
+      "log": ""
+    },
+    "KakeyaSharp.Dirichlet.Comparison": {
+      "returncode": 0,
+      "seconds": 3.9,
+      "source_sha256": "3d22856aa457215a73ae5b2f9cd9fad275da1ad0a6c347b0f209790e4c8400f7",
+      "log": ""
+    },
+    "KakeyaSharp.ThinValueLocal": {
+      "returncode": 0,
+      "seconds": 6.0,
+      "source_sha256": "b0d7042915503a160b72a65e1b8073e79f5dd90800855a425cbb295119b40bb7",
+      "log": ""
+    },
+    "KakeyaSharp.Dirichlet.Data": {
+      "returncode": 0,
+      "seconds": 5.0,
+      "source_sha256": "c36beb0e3579634f15a5455ad20eba3f373581c61f120108d7edd183e7c8d77f",
+      "log": ""
+    },
+    "KakeyaSharp.Dirichlet.LocalFamily": {
+      "returncode": 0,
+      "seconds": 4.4,
+      "source_sha256": "a78271e745a6586f2e61353135a23191e02073c41906178a83d165b9b1106dbb",
+      "log": ""
+    },
+    "KakeyaSharp.ThinValueSmooth": {
+      "returncode": 0,
+      "seconds": 3.6,
+      "source_sha256": "276dad306666789afb7848852122ff0c9259cbeb6d648ad024251ab2d72f9920",
+      "log": ""
+    },
+    "KakeyaSharp.VariationalLocalization": {
+      "returncode": 0,
+      "seconds": 3.7,
+      "source_sha256": "e2ee5c13352023432961b3a1e98a7c35cb36685a030aaf224e2ec067cf7e1914",
+      "log": ""
+    },
+    "KakeyaSharp.ThinCurrentCurvatureLocal": {
+      "returncode": 0,
+      "seconds": 4.1,
+      "source_sha256": "972c79706f776f166d728eb321ac236d189aedfb5ba34c1910510d5dd4756745",
+      "log": ""
+    },
+    "KakeyaSharp.ThinCurrentRegularization": {
+      "returncode": 0,
+      "seconds": 3.2,
+      "source_sha256": "b3c9dcc3ea1527d77d0a59cb4d1c9f1dbc69256562dbf4c88e3dca3c3803d0a1",
+      "log": ""
+    },
+    "KakeyaSharp.Dirichlet.Family": {
+      "returncode": 0,
+      "seconds": 4.0,
+      "source_sha256": "b8b96e2559d570659f3d78e93ea9de8f47e05f3af0b94abeeaa842f8a18aa6c8",
+      "log": ""
+    },
+    "KakeyaSharp.ThinValueSmoothLocal": {
+      "returncode": 0,
+      "seconds": 3.1,
+      "source_sha256": "4eb6652e9b232485541fda586de1624cdf701a52deddc60f3376968158962a79",
+      "log": ""
+    },
+    "KakeyaSharp.Packet.Physical": {
+      "returncode": 0,
+      "seconds": 3.3,
+      "source_sha256": "f117b773494b437a88598252874765135c06e3848fe7fa446ca7b3daf7a7ff33",
+      "log": ""
+    },
+    "KakeyaSharp.ThinCurrentWeakLimit": {
+      "returncode": 0,
+      "seconds": 3.3,
+      "source_sha256": "21cacda2f9f168a7f168bdddf83ec62b1f33e1652764f5783099c2d2c74c879b",
+      "log": ""
+    },
+    "KakeyaSharp.ThinLocalCongruence": {
+      "returncode": 0,
+      "seconds": 2.9,
+      "source_sha256": "b6e2c47cc6d17c9ea42751ce294d0d4118a379b520cdc7f03e8f302f7f7f608d",
+      "log": ""
+    },
+    "KakeyaSharp.Packet.Smooth": {
+      "returncode": 0,
+      "seconds": 3.9,
+      "source_sha256": "54d9cf478ffe7bc01f1b2f8a33baf7b38d50e33fb41ed657b8ed31cfd943eace",
+      "log": ""
+    },
+    "KakeyaSharp.Packet.Coordinates": {
+      "returncode": 0,
+      "seconds": 4.5,
+      "source_sha256": "7a5e312acf4a9ef41b924868aff3acde08af7df2686a9fa607e41454935b05b5",
+      "log": ""
+    },
+    "KakeyaSharp.Packet.Support": {
+      "returncode": 0,
+      "seconds": 4.8,
+      "source_sha256": "61ece268fc099fa37e56c5d9687d439136839591188b650f666a70ee1a8b3356",
+      "log": ""
+    },
+    "KakeyaSharp.ThinCurrentWeakLimitLocal": {
+      "returncode": 0,
+      "seconds": 3.3,
+      "source_sha256": "b2c3712fcab37ab3bd23798fdc2f57bdf51c0aeaebd44b244e8e81b54fd81f1c",
+      "log": ""
+    },
+    "KakeyaSharp.ThinValueSmoothOn": {
+      "returncode": 0,
+      "seconds": 3.5,
+      "source_sha256": "26bea793ea29551037ce6cf6449f601d3ae04cbdc956c1822088d3ec73c66360",
+      "log": ""
+    },
+    "KakeyaSharp.Packet.CoordinateDerivative": {
+      "returncode": 0,
+      "seconds": 3.6,
+      "source_sha256": "48dd3ebfa3d1878d2729df13eaddb2b59868715153291f6d3d4a013d669a05da",
+      "log": ""
+    },
+    "KakeyaSharp.Packet.Affine": {
+      "returncode": 0,
+      "seconds": 3.4,
+      "source_sha256": "ed333ff9b8dde585ac1ff96ef69f777db3c4cac744f6b2846ced07ea50ee086d",
+      "log": ""
+    },
+    "KakeyaSharp.ThinCurrentWeakOn": {
+      "returncode": 0,
+      "seconds": 3.2,
+      "source_sha256": "d445dc4885ff29129fd055c97f9db434fc67774b570e26913a8507b85274de7c",
+      "log": ""
+    },
+    "KakeyaSharp.Packet.ColumnDerivative": {
+      "returncode": 0,
+      "seconds": 3.5,
+      "source_sha256": "151b36630acceb79e434d2377438d302367c9488d8d8d4433628dbfad82f3c13",
+      "log": ""
+    },
+    "KakeyaSharp.Packet.PhysicalGradient": {
+      "returncode": 0,
+      "seconds": 3.9,
+      "source_sha256": "a58d37543c657fb66f96446824aefc12e06b3eb7a1d1146124df19cc7551170c",
+      "log": ""
+    },
+    "KakeyaSharp.Packet.RankOneDerivative": {
+      "returncode": 0,
+      "seconds": 3.4,
+      "source_sha256": "810b4ad138fd860562adf4a807a9486804630b8751184362849335271b5e926b",
+      "log": ""
+    },
+    "KakeyaSharp.Packet.InputBarrier": {
+      "returncode": 0,
+      "seconds": 15.2,
+      "source_sha256": "e12a073906ab26ebcdd3a85e1726d7f1fe798ee78ae4bc6083eadd584c88d65b",
+      "log": ""
+    },
+    "KakeyaSharp.Packet.Mass": {
+      "returncode": 0,
+      "seconds": 3.3,
+      "source_sha256": "3b89446bf301fe3687265fb8d8291389733dd432ddf62fe083fe71dd73826156",
+      "log": ""
+    },
+    "KakeyaSharp.Packet.ColumnJet": {
+      "returncode": 0,
+      "seconds": 5.9,
+      "source_sha256": "1ab9639b31055fa19bad81cfacc53924b262095cfb9e44fc075b6d0c118f2951",
+      "log": ""
+    },
+    "KakeyaSharp.Packet.WeightDerivative": {
+      "returncode": 0,
+      "seconds": 3.7,
+      "source_sha256": "623930ab8da8b6449948acc3b05dc02c2ea5cf34ba00619e081c433c5aa8fa4f",
+      "log": ""
+    },
+    "KakeyaSharp.Packet.Conservation": {
+      "returncode": 0,
+      "seconds": 3.3,
+      "source_sha256": "cdb1ea1a82572618e1da420115dca8feb80346870c7ab929accd498a749a4dab",
+      "log": ""
+    },
+    "KakeyaSharp.Packet.Family": {
+      "returncode": 0,
+      "seconds": 6.8,
+      "source_sha256": "aa39dccec790bd585011fb251744a3435df944f601615c97909a9e9e2acc2667",
+      "log": ""
+    },
+    "KakeyaSharp.Packet.Transfer": {
+      "returncode": 0,
+      "seconds": 3.1,
+      "source_sha256": "33ae7ae57fbd577f61ceb8bc0cfd4b21cee3310b53b6a4df238d0be9c4e3ce20",
+      "log": ""
+    },
+    "KakeyaSharp.Packet.Dirichlet": {
+      "returncode": 0,
+      "seconds": 3.5,
+      "source_sha256": "acafa9c1e838ebaeb22d32a20635add47d9424767bc652d5b0f922aa6fe116fe",
+      "log": ""
+    },
+    "KakeyaSharp.Packet.ScalarTransfer": {
+      "returncode": 0,
+      "seconds": 3.5,
+      "source_sha256": "18e945f435c4639194d557a805bca767e98becd0f2b2be2a2a9339a880baaf53",
+      "log": ""
+    },
+    "KakeyaSharp.Packet.Normalized": {
+      "returncode": 0,
+      "seconds": 3.4,
+      "source_sha256": "5cdaa43ad8b4402c33915d318b0393bb40162f27d202da8b67277f03d41dd75b",
+      "log": ""
+    },
+    "KakeyaSharp.Packet.KakeyaFamily": {
+      "returncode": 0,
+      "seconds": 3.4,
+      "source_sha256": "f65e6f4d06fcd56ff9c7790dfa96dc6c5e71b3581c917961e6b1633bae07d7ed",
+      "log": ""
+    },
+    "KakeyaSharp.Packet.InputSupport": {
+      "returncode": 0,
+      "seconds": 4.4,
+      "source_sha256": "bdacaed34ca5f36c832c031d4cac82adbf69fa658bce8624bccf50d98ce49a22",
+      "log": ""
+    },
+    "KakeyaSharp.Packet.PropagationDomain": {
+      "returncode": 0,
+      "seconds": 4.8,
+      "source_sha256": "b1b6c5e526ec36bb6c70abff5d9ec1de26876d9a35952e2615ff17d861b54853",
+      "log": ""
+    },
+    "KakeyaSharp.Packet.InputDomination": {
+      "returncode": 0,
+      "seconds": 3.3,
+      "source_sha256": "e4b4fd5361e9d85bd17ab4ac04fc5ae87b4f55e2831027a0343ad538ca9502f1",
+      "log": ""
+    },
+    "KakeyaSharp.Packet.DirectionPacking": {
+      "returncode": 0,
+      "seconds": 4.1,
+      "source_sha256": "3dd2331af301b1af8fbbef41033c6837e5649e5df9cce5feb45c34ecda44ad92",
+      "log": ""
+    },
+    "KakeyaSharp.Packet.OutputDensity": {
+      "returncode": 0,
+      "seconds": 4.9,
+      "source_sha256": "00006f44ccfa7f5961ac69bb12cdb1ecc062daa134d54f59ba77a95066f8efd8",
+      "log": ""
+    },
+    "KakeyaSharp.Packet.InputCoordinates": {
+      "returncode": 0,
+      "seconds": 5.2,
+      "source_sha256": "b1a04c673fc33386f5357242e9ff413add92234ffd8008dd32eb9a12550b0229",
+      "log": ""
+    },
+    "KakeyaSharp.Packet.DirectionIntegral": {
+      "returncode": 0,
+      "seconds": 3.4,
+      "source_sha256": "16d2a993b93f4ee2b1c2a08eab7d3418a08f9a57f06245ed85a93ff48c2d57c8",
+      "log": ""
+    },
+    "KakeyaSharp.Packet.OutputLocalization": {
+      "returncode": 0,
+      "seconds": 3.8,
+      "source_sha256": "817e6fb74e80005caddf9c9ac5d40d9d39729c558535dea5e752df66a0522e1d",
+      "log": ""
+    },
+    "KakeyaSharp.Packet.InputIntegration": {
+      "returncode": 0,
+      "seconds": 3.7,
+      "source_sha256": "ead801c34314775dabcf804c20263ca78a8048e39aab44b33fcb98752a358b6c",
+      "log": ""
+    },
+    "KakeyaSharp.Packet.InputEstimate": {
+      "returncode": 0,
+      "seconds": 3.4,
+      "source_sha256": "c4bb5b5da861c54f3cc4b2fb9f79642e17fa2ac4dff1a3740faa2b2490a8e349",
+      "log": ""
+    },
+    "KakeyaSharp.Packet.Propagation": {
+      "returncode": 0,
+      "seconds": 3.6,
+      "source_sha256": "5ea1d1960bdb86f374cc29517be1e8957f706f4f78dbc7957e56ca9fdc7cb143",
+      "log": ""
+    },
+    "KakeyaSharp.Packet.OutputScaling": {
+      "returncode": 0,
+      "seconds": 3.3,
+      "source_sha256": "d5a56d81233fba3f8fbc00ef7f7b160f7058d9b823fb856672d810dc6ffe8e9b",
+      "log": ""
+    },
+    "KakeyaSharp.Packet.TubeSlices": {
+      "returncode": 0,
+      "seconds": 3.6,
+      "source_sha256": "16a443e74ebceb6b14faf6eadff6aaf2fd0decd0cd98dd90207eb079d472b5c5",
+      "log": ""
+    },
+    "KakeyaSharp.Packet.TubeSliceIntegral": {
+      "returncode": 0,
+      "seconds": 3.7,
+      "source_sha256": "1b97d53d54159af996279e2a63785510c662c09f5dcb0b51d6530e521baef9f0",
+      "log": ""
+    },
+    "KakeyaSharp.Packet.CoverIntegral": {
+      "returncode": 0,
+      "seconds": 3.7,
+      "source_sha256": "8fd0e82b589713b693704b1acb85bfeefba477e387e13caaeaea0fa60f5d8ced",
+      "log": ""
+    },
+    "KakeyaSharp.Packet.OutputGeometry": {
+      "returncode": 0,
+      "seconds": 4.3,
+      "source_sha256": "ba0e9064cee77d062a1b84e85fad8d920f83dd5d52f9b999cc1028ad2b765023",
+      "log": ""
+    },
+    "KakeyaSharp.Packet.OutputSlice": {
+      "returncode": 0,
+      "seconds": 4.3,
+      "source_sha256": "381bfef3f65243f3a0314a767fafa088c02160f972d9966584826afd88981e71",
+      "log": ""
+    },
+    "KakeyaSharp.Packet.NormalizedTubes": {
+      "returncode": 0,
+      "seconds": 3.6,
+      "source_sha256": "5487f1d71aa9a549eff3cce7ca54b622edb5998dc55979e6c446c93d7a286f5d",
+      "log": ""
+    },
+    "KakeyaSharp.Packet.GraphCover": {
+      "returncode": 0,
+      "seconds": 3.5,
+      "source_sha256": "aea98d8d2bf55c42cc6c6d29f0b2ed2404f3f6cff28c783ac2fa3625e91648cc",
+      "log": ""
+    },
+    "KakeyaSharp.Packet.EnlargedGraphTubes": {
+      "returncode": 0,
+      "seconds": 3.3,
+      "source_sha256": "21c9fb91c0650b9ccc6fbab5bf3201496236faad4f3d4916b9dc427693c4656b",
+      "log": ""
+    },
+    "KakeyaSharp.Packet.SpatialGroups": {
+      "returncode": 0,
+      "seconds": 3.4,
+      "source_sha256": "4c724c1b8ca21909c5c8762c7c9b5d15d80a55c8ede0f1858fd18edd8149ad0a",
+      "log": ""
+    },
+    "KakeyaSharp.Packet.SpatialLocalization": {
+      "returncode": 0,
+      "seconds": 3.5,
+      "source_sha256": "ae291af907de74899f08fac51520849c828012ac2264da16c536d0208c28b463",
+      "log": ""
+    },
+    "KakeyaSharp.Packet.GlobalGraphTubes": {
+      "returncode": 0,
+      "seconds": 3.3,
+      "source_sha256": "3483c9fd79ea8284e5f124bf08dbf75a71dd97f4b5ffd5c2bb7837bcbd16d16d",
+      "log": ""
+    },
+    "KakeyaSharp.Packet.GraphEndpoint": {
+      "returncode": 0,
+      "seconds": 3.6,
+      "source_sha256": "55c224a2f6eb3a22e76e916d8e6c30e178328fd96e942206f87345b176b108fd",
+      "log": ""
+    },
+    "KakeyaSharp.Packet.GraphTimeIntervals": {
+      "returncode": 0,
+      "seconds": 3.2,
+      "source_sha256": "3a332ffd2d0fc14a1c10f74ff8bace2b76aaf468651cfb968eb50951cd732ed0",
+      "log": ""
+    },
+    "KakeyaSharp.Packet.BroadGraphTubes": {
+      "returncode": 0,
+      "seconds": 3.7,
+      "source_sha256": "92ea0b0d3a6d8dafce231f2fec2379036023dcf6778da4987c7b4c76ac694598",
+      "log": ""
+    },
+    "KakeyaSharp.GraphCoordinates": {
+      "returncode": 0,
+      "seconds": 4.6,
+      "source_sha256": "64143b8b3d252848aa32b7b466de4c03b71a11a4410c1fc8179c696c3d9b450d",
+      "log": ""
+    },
+    "KakeyaSharp.GraphWindow": {
+      "returncode": 0,
+      "seconds": 3.8,
+      "source_sha256": "2b46dc50387b836011ee79650fa7900b7e6b1ed6289ef8038671e931c3ddc011",
+      "log": ""
+    },
+    "KakeyaSharp.GraphSlopes": {
+      "returncode": 0,
+      "seconds": 4.0,
+      "source_sha256": "b68e9684fc1a87f58c93416d9c178f4b3d1dc0052bcf10bd8779fffae9621ea1",
+      "log": ""
+    },
+    "KakeyaSharp.GraphTubeGeometry": {
+      "returncode": 0,
+      "seconds": 3.4,
+      "source_sha256": "eef477dbe1f806069b8b551e629bcec02dcdb18ef6164df265e1b5c719221f20",
+      "log": ""
+    },
+    "KakeyaSharp.DirectionCharts": {
+      "returncode": 0,
+      "seconds": 3.3,
+      "source_sha256": "ad569bb79b8f911cc2dc88df7aa6bc62334fc621c8c425f78e0d6517da66e151",
+      "log": ""
+    },
+    "KakeyaSharp.ChartTubes": {
+      "returncode": 0,
+      "seconds": 3.5,
+      "source_sha256": "e34929a86c8dcc6815f253ce368eaf6237ae002f7d1d38274eedb07a20c9b610",
+      "log": ""
+    },
+    "KakeyaSharp.TubeGroups": {
+      "returncode": 0,
+      "seconds": 3.4,
+      "source_sha256": "0980497fc451431272c81d28af54c499b98f111278cac0a1a628053486a1e755",
+      "log": ""
+    },
+    "KakeyaSharp.TubeReindex": {
+      "returncode": 0,
+      "seconds": 3.7,
+      "source_sha256": "b8e7440a2f053286107230bc3ad5de4d1c96a703f171684860a64c494dfdea51",
+      "log": ""
+    },
+    "KakeyaSharp.TubeSpatialLocalization": {
+      "returncode": 0,
+      "seconds": 3.8,
+      "source_sha256": "564c2647a5f44811942109b60db0a1f97065503de34796f4553f7c49998249c5",
+      "log": ""
+    },
+    "KakeyaSharp.GlobalChartTubes": {
+      "returncode": 0,
+      "seconds": 3.3,
+      "source_sha256": "0bfb2695787d963c1ddb5f09221330f68e17a8dbe1dcbf1ec16f8f437733494e",
+      "log": ""
+    },
+    "KakeyaSharp.AllDirectionTubes": {
+      "returncode": 0,
+      "seconds": 3.4,
+      "source_sha256": "8b3968ad95bd04e99e9846adfc13e00a83b3877f1305955c340f48cda17370a2",
+      "log": ""
+    },
+    "KakeyaSharp.SharpTheorem": {
+      "returncode": 0,
+      "seconds": 3.2,
+      "source_sha256": "068907c719eed4d32b7031a094df7988dab9d034aceafcd9a2d01d4678edd373",
+      "log": ""
+    },
+    "KakeyaSharp": {
+      "returncode": 0,
+      "seconds": 3.0,
+      "source_sha256": "f77cceb970a9472bc3126ad4df95de78c37e8565b203e63b66e639996375e867",
+      "log": ""
+    },
+    "Solution": {
+      "returncode": 0,
+      "seconds": 3.3,
+      "source_sha256": "73f2703c1ff28ef2a59ad02d94b0de0c449965b05199501853b94cb464b78fce",
+      "log": ""
+    },
+    "SubmissionAudit": {
+      "returncode": 0,
+      "seconds": 3.3,
+      "source_sha256": "6fc54ff52b3e1bfb515873c792c17fbec16985f502ee7ab61017f958f39259a4",
+      "log": "'KakeyaPalomar.sharpMaximalBound' depends on axioms: [propext, Classical.choice, Quot.sound]\n'KakeyaPalomar.sharpTubeBound' depends on axioms: [propext, Classical.choice, Quot.sound]\ntheorem KakeyaPalomar.sharpMaximalBound : \u2200 {n : \u2115},\n  2 \u2264 n \u2192\n    \u2203 C,\n      0 < C \u2227\n        \u2200 (\u03b4 : \u211d),\n          0 < \u03b4 \u2192\n            \u03b4 \u2264 1 \u2192\n              \u2200 (f : KakeyaPalomar.Space n \u2192 \u2102),\n                MeasureTheory.MemLp f (\u2191n) MeasureTheory.volume \u2192\n                  MeasureTheory.MemLp (KakeyaPalomar.kakeyaMaximal \u03b4 f) (\u2191n) (KakeyaPalomar.sphereMeasure n) \u2227\n                    MeasureTheory.eLpNorm (KakeyaPalomar.kakeyaMaximal \u03b4 f) (\u2191n) (KakeyaPalomar.sphereMeasure n) \u2264\n                      ENNReal.ofReal (C * Real.log (2 / \u03b4) ^ ((\u2191n - 1) / \u2191n)) *\n                        MeasureTheory.eLpNorm f (\u2191n) MeasureTheory.volume :=\n<not imported>\ntheorem KakeyaPalomar.sharpTubeBound : \u2200 {n : \u2115},\n  2 \u2264 n \u2192\n    \u2203 C,\n      0 < C \u2227\n        \u2200 (m : \u2115) (\u03b4 : \u211d),\n          0 < \u03b4 \u2192\n            \u03b4 \u2264 1 \u2192\n              \u2200 (v x : Fin m \u2192 KakeyaPalomar.Space n),\n                (\u2200 (i : Fin m), \u2016v i\u2016 = 1) \u2192\n                  (\u2200 (i j : Fin m), i \u2260 j \u2192 \u03b4 \u2264 dist (v i) (v j)) \u2192\n                    \u2200 (a : Fin m \u2192 \u211d),\n                      (\u2200 (i : Fin m), 0 \u2264 a i) \u2192\n                        \u222b (y : KakeyaPalomar.Space n),\n                            (\u2211 i, (KakeyaPalomar.tube (2 * \u03b4) (v i) (x i)).indicator (fun x => a i) y) ^\n                              (\u2191n / (\u2191n - 1)) \u2264\n                          C * Real.log (2 / \u03b4) * \u03b4 ^ (n - 1) * \u2211 i, a i ^ (\u2191n / (\u2191n - 1)) :=\n<not imported>\n"
+    },
+    "SemanticAudit": {
+      "returncode": 0,
+      "seconds": 4.0,
+      "source_sha256": "89e264b9bbf3481c520cd698a2e937084408fb29e313e2ebe2edc34c8aa1f372",
+      "log": "'KakeyaSemanticAudit.literal_maximal_statement' depends on axioms: [propext, Classical.choice, Quot.sound]\n'KakeyaSemanticAudit.space_dimension' depends on axioms: [propext, Classical.choice, Quot.sound]\n'KakeyaSemanticAudit.extended_output_norm_is_identity' depends on axioms: [propext, Classical.choice, Quot.sound]\n'KakeyaSemanticAudit.sphere_total_mass' depends on axioms: [propext, Classical.choice, Quot.sound]\n'KakeyaSemanticAudit.sphere_mass_positive' depends on axioms: [propext, Classical.choice, Quot.sound]\n'KakeyaSemanticAudit.sphere_mass_finite' depends on axioms: [propext, Classical.choice, Quot.sound]\n'KakeyaSemanticAudit.sphere_supported_on_unit_vectors' depends on axioms: [propext, Classical.choice, Quot.sound]\n'KakeyaSemanticAudit.tube_membership' depends on axioms: [propext, Classical.choice, Quot.sound]\n'KakeyaSemanticAudit.actual_tube_volume_positive_finite' depends on axioms: [propext, Classical.choice, Quot.sound]\n'KakeyaSemanticAudit.includes_every_center' depends on axioms: [propext, Classical.choice, Quot.sound]\n'KakeyaSemanticAudit.indicator_of_tube_is_nontrivial' depends on axioms: [propext, Classical.choice, Quot.sound]\n"
+    }
+  }
+}

@@ -1,0 +1,217 @@
+version: "v0.4"
+
+project:
+  name: "Sharp logarithmic Kakeya estimates in every dimension"
+  description: |-
+    We formalize in Lean two logarithmic upper bounds for the Euclidean Kakeya maximal operator and tube overlap in every integer dimension $n\ge2$.
+    For $r>0$, a unit vector $\omega$, and a center $x\in\mathbb R^n$, let $T_r(\omega,x)$ be the open radius-$r$ neighborhood of the unit segment centered at $x$ in direction $\omega$.
+    Write $|T_r(\omega,x)|$ for its Lebesgue volume, and define
+
+    $$
+    K_\delta f(\omega)
+    :=\sup_{x\in\mathbb R^n}
+    \frac{1}{|T_\delta(\omega,x)|}
+    \int_{T_\delta(\omega,x)} |f(y)|\,dy.
+    $$
+
+    For every $0<\delta\le1$ and every complex-valued $f\in L^n(\mathbb R^n)$, we prove
+
+    $$
+    \|K_\delta f\|_{L^n(S^{n-1})}
+    \le C_n\bigl[\log(2/\delta)\bigr]^{(n-1)/n}
+    \|f\|_{L^n(\mathbb R^n)}.
+    $$
+
+    For the tube estimate, fix $0<\delta\le1$ and any finite family of directions $\omega_1,\ldots,\omega_N\in S^{n-1}$ satisfying $|\omega_i-\omega_j|\ge\delta$ for $i\ne j$.
+    Choose arbitrary centers $x_1,\ldots,x_N\in\mathbb R^n$ and nonnegative real weights $a_1,\ldots,a_N$.
+    Writing $1_T$ for the indicator of a tube $T$, we prove
+
+    $$
+    \int_{\mathbb R^n}
+    \left(\sum_{j=1}^{N} a_j\,1_{T_{2\delta}(\omega_j,x_j)}(y)\right)^{\!\frac{n}{n-1}}
+    \,dy
+    \le
+    C_n\,\log(2/\delta)\,\delta^{n-1}
+    \sum_{j=1}^{N} a_j^{\frac{n}{n-1}}.
+    $$
+
+    The constants depend only on $n$.
+    The same inequality holds for radius-$\delta$ tubes by inclusion.
+    Hölder's inequality therefore gives, for $N$ such tubes $T_j=T_\delta(\omega_j,x_j)$,
+
+    $$
+    \left|\bigcup_{j=1}^{N}T_j\right|
+    \ge c_n\,\frac{N\delta^{n-1}}{[\log(2/\delta)]^{n-1}}.
+    $$
+
+    A direction net gives volume at least $c_n[\log(2/\delta)]^{-(n-1)}$ for the $\delta$-neighborhood of every Kakeya set, matching the construction of Fernández-Delgado and de la Salle.
+    Consequently every bounded Kakeya set has Minkowski dimension $n$, and the maximal estimate implies the Kakeya maximal function conjecture in every dimension.
+    Written lower-bound arguments establish the optimality of the logarithmic powers, including the exclusion of a growing iterated-logarithm improvement in the maximal estimate.
+
+    Only the two upper estimates are Lean theorems; the geometric consequences and sharpness arguments are not formalized here.
+  authors:
+    - name: "Mark Lewko"
+      github: "mrklwk"
+  responsible_maintainers:
+    - name: "Mark Lewko"
+      github: "mrklwk"
+  license: "Apache-2.0"
+
+sources:
+  - title: "Sharp logarithmic estimates for Kakeya tubes"
+    type: "paper"
+    id: "provenance/working-manuscript-2026-11-12.tex"
+    location: "Weighted tube estimate and Kakeya maximal corollary"
+    relationship: "adapts"
+    contributors:
+      - name: "Mark Lewko"
+        role: "Research direction and formulation of the target problem"
+      - name: "OpenAI ChatGPT/Codex"
+        role: "AI-assisted mathematical development and Lean implementation"
+    note: >-
+      Included verbatim for provenance. Its title page says Working manuscript
+      and does not give bibliographic authors. It was developed in this project,
+      is not independently peer reviewed, and is not a claim of an externally
+      published source. The formal proof replaces its mixed-determinant trace
+      step by smooth comparison, sublevel estimates, layer cake, and Young's
+      inequality. It also includes dimension two and scales up to one.
+      The manuscript's optimality assertions are outside the formal scope.
+    author_endorsement: "n/a"
+  - title: "OpenAI mathematical formalizations"
+    type: "other"
+    id: "https://github.com/openai/math/tree/4eaee87548250b2682affda7d05d947c05554bae/lean/OAI"
+    location: "The 1682 files identified in UPSTREAM_DIRICHLET.json"
+    relationship: "background"
+    note: >-
+      The source checkpoint vendors these files at the indicated commit.
+      This submission ports them to Lean's module system, with every change
+      recorded in MODULE_MIGRATION.json and provenance/module-port.patch.
+      Reuse includes the Dirichlet, quaternionic calculus, variational,
+      superharmonic propagation, and packet infrastructure. Additional
+      adapted files are identified in provenance/checkpoint-0.19.0-SOURCES.json.
+      No endorsement by the upstream authors is claimed.
+    license: "Apache-2.0"
+    author_endorsement: "not-contacted"
+  - title: "Fernandez-Delgado and de la Salle: A construction of Kakeya Sets in Arbitrary Dimension"
+    type: "paper"
+    id: "https://arxiv.org/abs/2607.14824"
+    location: "Theorem 1.3"
+    relationship: "background"
+    note: >-
+      Supplies the matching Kakeya-neighborhood volume upper bound in every
+      dimension, for comparison with the written consequences of the two
+      formalized upper estimates. This construction is not formalized here
+      and is not an assumption used by either Lean upper-bound theorem.
+    author_endorsement: "not-contacted"
+
+related_formalizations:
+  - id: "https://github.com/openai/math"
+    relationship: "builds-on"
+    note: >-
+      Exact source commit 4eaee87548250b2682affda7d05d947c05554bae.
+      This is substantial reuse, not an independent implementation of all
+      analytic infrastructure. The local logarithmic test and weighted trace
+      argument, together with the final tube and maximal deductions, are
+      described in INFORMAL.md and TRACE_METHOD.md.
+
+classification:
+  arxiv: ["math.CA"]
+  msc2020: ["42B25", "28A75"]
+
+status:
+  scope: >-
+    Two upper-bound theorems for all integer dimensions n >= 2. The original
+    checkpoint builds in Lean 4.34.1. See VALIDATION.json for the distinct
+    status of module migration, the targeted Lean 4.35.0 build, and Palomar
+    Comparator and independent kernel replay. No formal optimality theorem,
+    explicit best dimensional constant, or independent novelty claim.
+  sorry_count: 0
+  sorry_in_definitions: 0
+  axioms: ["propext", "Classical.choice", "Quot.sound"]
+  main_results:
+    - declaration: "KakeyaPalomar.sharpMaximalBound"
+      file: "Solution.lean"
+      sorry_count: 0
+      axioms: ["propext", "Classical.choice", "Quot.sound"]
+      comparator_config: "comparator.json"
+      literature_dependencies: []
+    - declaration: "KakeyaPalomar.sharpTubeBound"
+      file: "Solution.lean"
+      sorry_count: 0
+      axioms: ["propext", "Classical.choice", "Quot.sound"]
+      comparator_config: "comparator.json"
+      literature_dependencies: []
+
+automation:
+  methods:
+    - method: "agent"
+      models: ["OpenAI ChatGPT/Codex; exact per-session model versions not fully recorded"]
+      framework: "ChatGPT Codex Work Mode"
+      tool_setup: >-
+        Lean, Lake, mathlib, local shell execution, repository retrieval,
+        iterative proof compilation, source hashing, and Lean axiom reports.
+      prompting_notes: >-
+        The human requested a formalization of Kakeya maximal bounds in all
+        dimensions with the optimal logarithmic factor, encouraged reuse of
+        available formalizations, and requested continued proof development.
+        The AI generated and revised the Lean implementation and submission
+        materials in response to this research direction.
+  spend_usd: "Subscription-based usage; project-specific cost not recorded"
+  notes: >-
+    Substantial AI assistance is disclosed explicitly. The named human provides
+    research direction and is the proposed responsible maintainer. Human
+    line-by-line verification of the generated mathematics is not claimed.
+    Bibliographic authorship of upstream sources is not inferred from reuse.
+
+fidelity:
+  divergences: >-
+    The source manuscript states dimensions at least three and scales at most
+    one half. The formal statement includes dimension two and scales at most
+    one. The weighted statement uses radius 2*delta tubes and real nonnegative
+    coefficients. The maximal statement uses radius delta tubes, complex-valued
+    L^n functions, actual tube-volume normalization, and mathlib's spherical
+    measure induced by Lebesgue measure. Its dimensional normalization is
+    absorbed in the constant. The source trace proof is replaced as explained
+    above. The lower-bound and converse-optimality discussions in the manuscript
+    are not submitted as formal results.
+
+review:
+  status: "agent-reviewed"
+  notes: >-
+    The generating assistant performed compilation, source checks, and axiom
+    inspection. Additional Lean 4.34.1 checks expand the maximal statement,
+    verify nondegeneracy of its measures and operator, and compare elaborated
+    statement types and definition bodies against the mathlib-only challenge
+    in separate environments. STATEMENT_AND_OPTIMALITY.md gives a written
+    matching lower bound; that lower bound is not formalized.
+    This is not an independent human mathematical review, a
+    completed Palomar review, or a determination of priority. VALIDATION.json
+    distinguishes completed checks from checks still pending. A separate Claude
+    AI review completed on 14 November 2026 and found no semantic defect in
+    the two statements. It recompiled all 212 local source files in Lean
+    4.34.1 against cached OpenAI and mathlib artifacts; those dependencies
+    were not rebuilt. The retained earlier Lake build log is a completion
+    tail. The review and accepted editorial changes are recorded in
+    review/claude/INTEGRATION.md. The Lean proof sources are unchanged.
+
+alignment:
+  namespace: "KakeyaPalomar"
+  statements:
+    - source: "Working manuscript: Kakeya maximal corollary"
+      lean: "KakeyaPalomar.sharpMaximalBound"
+      module: "Solution"
+      status: "proved in the source checkpoint; submission validation recorded separately"
+      note: "Definitionally the same target as KakeyaSharp.SharpMaximalBound."
+    - source: "Working manuscript: weighted tube estimate"
+      lean: "KakeyaPalomar.sharpTubeBound"
+      module: "Solution"
+      status: "proved in the source checkpoint; submission validation recorded separately"
+      note: "Definitionally the same target as KakeyaSharp.SharpTubeBound."
+    - source: "Working manuscript: optimality of the logarithmic power"
+      status: "not-formalized"
+
+acknowledgements: >-
+  This development uses Lean and mathlib and substantially reuses the OpenAI
+  mathematical formalization identified above. Their original licenses and
+  provenance are retained. AI systems are credited under automation and as
+  contributors, not listed as responsible human authors.

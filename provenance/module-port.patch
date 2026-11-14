@@ -1,0 +1,684 @@
+--- uniform-port/OAI/Analysis/Fourier/Wave/Basic.lean
++++ submission/OAI/Analysis/Fourier/Wave/Basic.lean
+@@ -1,6 +1,6 @@
+ /- Modified for the Palomar submission: module header, public imports,
+-and exposed public declarations. Original proof bodies are retained.
+-See MODULE_MIGRATION.json for the checkpoint and ported file hashes. -/
++and exposed public declarations. Additional porting changes are recorded
++in provenance/module-port.patch; file hashes are in MODULE_MIGRATION.json. -/
+ module
+ 
+ public import Mathlib.Analysis.Fourier.LpSpace
+@@ -31,7 +31,7 @@
+   unfold wavePhase
+   fun_prop
+ 
+-private theorem memLp_wavePhase_mul {n : ℕ} (t : ℝ) (f : WaveL2 n) :
++theorem memLp_wavePhase_mul {n : ℕ} (t : ℝ) (f : WaveL2 n) :
+     MemLp (fun ξ ↦ wavePhase t ξ * f ξ) 2 := by
+   apply (Lp.memLp f).congr_norm
+     ((continuous_wavePhase t).aestronglyMeasurable.mul (Lp.aestronglyMeasurable f))
+--- uniform-port/OAI/Analysis/Fourier/WavePackets/Dirichlet/ParameterBase.lean
++++ submission/OAI/Analysis/Fourier/WavePackets/Dirichlet/ParameterBase.lean
+@@ -1,6 +1,6 @@
+ /- Modified for the Palomar submission: module header, public imports,
+-and exposed public declarations. Original proof bodies are retained.
+-See MODULE_MIGRATION.json for the checkpoint and ported file hashes. -/
++and exposed public declarations. Additional porting changes are recorded
++in provenance/module-port.patch; file hashes are in MODULE_MIGRATION.json. -/
+ module
+ 
+ public import OAI.Analysis.Fourier.WavePackets.Dirichlet.Closed
+@@ -9,6 +9,8 @@
+ public import OAI.Analysis.PDE.Dirichlet.Boundary.Tangential
+ 
+ @[expose] public section
++
++set_option synthInstance.maxHeartbeats 200000
+ 
+ noncomputable section
+ namespace OAI.Analysis.Fourier.WavePackets
+--- uniform-port/OAI/Analysis/Fourier/WavePackets/Dirichlet/ParameterFamily.lean
++++ submission/OAI/Analysis/Fourier/WavePackets/Dirichlet/ParameterFamily.lean
+@@ -1,6 +1,6 @@
+ /- Modified for the Palomar submission: module header, public imports,
+-and exposed public declarations. Original proof bodies are retained.
+-See MODULE_MIGRATION.json for the checkpoint and ported file hashes. -/
++and exposed public declarations. Additional porting changes are recorded
++in provenance/module-port.patch; file hashes are in MODULE_MIGRATION.json. -/
+ module
+ 
+ public import OAI.Analysis.Fourier.WavePackets.Dirichlet.ParameterBase
+@@ -10,6 +10,8 @@
+ public import OAI.Analysis.PDE.Schauder.Calculus.PositiveImplicitFamilyOpen
+ 
+ @[expose] public section
++
++set_option synthInstance.maxHeartbeats 200000
+ 
+ noncomputable section
+ namespace OAI.Analysis.Fourier.WavePackets
+--- uniform-port/OAI/Analysis/PDE/Dirichlet/Boundary/Continuity/Inverse.lean
++++ submission/OAI/Analysis/PDE/Dirichlet/Boundary/Continuity/Inverse.lean
+@@ -1,6 +1,6 @@
+ /- Modified for the Palomar submission: module header, public imports,
+-and exposed public declarations. Original proof bodies are retained.
+-See MODULE_MIGRATION.json for the checkpoint and ported file hashes. -/
++and exposed public declarations. Additional porting changes are recorded
++in provenance/module-port.patch; file hashes are in MODULE_MIGRATION.json. -/
+ module
+ 
+ public import OAI.Analysis.PDE.Dirichlet.Rough.Boundary.Invertibility
+@@ -8,6 +8,8 @@
+ public import OAI.Analysis.PDE.Dirichlet.UnconditionalLinear
+ 
+ @[expose] public section
++
++set_option synthInstance.maxHeartbeats 200000
+ 
+ noncomputable section
+ open Set Filter Module
+--- uniform-port/OAI/Analysis/PDE/Dirichlet/Boundary/InverseOperator.lean
++++ submission/OAI/Analysis/PDE/Dirichlet/Boundary/InverseOperator.lean
+@@ -1,12 +1,14 @@
+ /- Modified for the Palomar submission: module header, public imports,
+-and exposed public declarations. Original proof bodies are retained.
+-See MODULE_MIGRATION.json for the checkpoint and ported file hashes. -/
++and exposed public declarations. Additional porting changes are recorded
++in provenance/module-port.patch; file hashes are in MODULE_MIGRATION.json. -/
+ module
+ 
+ public import OAI.Analysis.PDE.Dirichlet.UnconditionalLinear
+ public import OAI.Analysis.PDE.Dirichlet.Boundary.OperatorLower
+ 
+ @[expose] public section
++
++set_option synthInstance.maxHeartbeats 200000
+ 
+ noncomputable section
+ open Set Module Filter
+--- uniform-port/OAI/Analysis/PDE/Dirichlet/Boundary/UniformInverse.lean
++++ submission/OAI/Analysis/PDE/Dirichlet/Boundary/UniformInverse.lean
+@@ -1,6 +1,6 @@
+ /- Modified for the Palomar submission: module header, public imports,
+-and exposed public declarations. Original proof bodies are retained.
+-See MODULE_MIGRATION.json for the checkpoint and ported file hashes. -/
++and exposed public declarations. Additional porting changes are recorded
++in provenance/module-port.patch; file hashes are in MODULE_MIGRATION.json. -/
+ module
+ 
+ public import OAI.Analysis.PDE.Dirichlet.Boundary.InverseFamilyCompactness
+@@ -8,6 +8,8 @@
+ public import OAI.Analysis.PDE.Dirichlet.Uniform.InverseCompactness
+ 
+ @[expose] public section
++
++set_option synthInstance.maxHeartbeats 200000
+ 
+ noncomputable section
+ open Set Module Filter
+--- uniform-port/OAI/Analysis/PDE/Dirichlet/C2HolderNonlinear.lean
++++ submission/OAI/Analysis/PDE/Dirichlet/C2HolderNonlinear.lean
+@@ -1,12 +1,14 @@
+ /- Modified for the Palomar submission: module header, public imports,
+-and exposed public declarations. Original proof bodies are retained.
+-See MODULE_MIGRATION.json for the checkpoint and ported file hashes. -/
++and exposed public declarations. Additional porting changes are recorded
++in provenance/module-port.patch; file hashes are in MODULE_MIGRATION.json. -/
+ module
+ 
+ public import OAI.Analysis.PDE.Dirichlet.C2HolderQuaternion
+ public import OAI.Analysis.Normed.Function.Holder.MooreDerivative
+ 
+ @[expose] public section
++
++set_option synthInstance.maxHeartbeats 200000
+ 
+ open Set
+ open scoped Matrix.Norms.Elementwise ContDiff
+--- uniform-port/OAI/Analysis/PDE/Dirichlet/C2HolderPeriodicDerivative.lean
++++ submission/OAI/Analysis/PDE/Dirichlet/C2HolderPeriodicDerivative.lean
+@@ -1,6 +1,6 @@
+ /- Modified for the Palomar submission: module header, public imports,
+-and exposed public declarations. Original proof bodies are retained.
+-See MODULE_MIGRATION.json for the checkpoint and ported file hashes. -/
++and exposed public declarations. Additional porting changes are recorded
++in provenance/module-port.patch; file hashes are in MODULE_MIGRATION.json. -/
+ module
+ 
+ public import OAI.Analysis.PDE.Dirichlet.C2HolderPeriodicSmooth
+@@ -8,6 +8,8 @@
+ public import OAI.Analysis.PDE.Dirichlet.C2HolderSubtypeDerivative
+ 
+ @[expose] public section
++
++set_option synthInstance.maxHeartbeats 200000
+ 
+ open Set Module
+ open scoped ContDiff Matrix.Norms.Elementwise
+--- uniform-port/OAI/Analysis/PDE/Dirichlet/C2HolderPeriodicDerivativeValue.lean
++++ submission/OAI/Analysis/PDE/Dirichlet/C2HolderPeriodicDerivativeValue.lean
+@@ -1,11 +1,13 @@
+ /- Modified for the Palomar submission: module header, public imports,
+-and exposed public declarations. Original proof bodies are retained.
+-See MODULE_MIGRATION.json for the checkpoint and ported file hashes. -/
++and exposed public declarations. Additional porting changes are recorded
++in provenance/module-port.patch; file hashes are in MODULE_MIGRATION.json. -/
+ module
+ 
+ public import OAI.Analysis.PDE.Dirichlet.C2HolderNonlinear
+ 
+ @[expose] public section
++
++set_option synthInstance.maxHeartbeats 200000
+ 
+ open Set
+ open scoped Matrix.Norms.Elementwise ContDiff
+--- uniform-port/OAI/Analysis/PDE/Dirichlet/C2HolderPeriodicSmooth.lean
++++ submission/OAI/Analysis/PDE/Dirichlet/C2HolderPeriodicSmooth.lean
+@@ -1,12 +1,14 @@
+ /- Modified for the Palomar submission: module header, public imports,
+-and exposed public declarations. Original proof bodies are retained.
+-See MODULE_MIGRATION.json for the checkpoint and ported file hashes. -/
++and exposed public declarations. Additional porting changes are recorded
++in provenance/module-port.patch; file hashes are in MODULE_MIGRATION.json. -/
+ module
+ 
+ public import OAI.Analysis.PDE.Dirichlet.C2HolderPeriodicOperator
+ public import OAI.Analysis.Normed.Operator.ClosedSubspace.Smooth
+ 
+ @[expose] public section
++
++set_option synthInstance.maxHeartbeats 200000
+ 
+ open Set Module
+ open scoped ContDiff
+--- uniform-port/OAI/Analysis/PDE/Dirichlet/Path/FourthLimit.lean
++++ submission/OAI/Analysis/PDE/Dirichlet/Path/FourthLimit.lean
+@@ -1,6 +1,6 @@
+ /- Modified for the Palomar submission: module header, public imports,
+-and exposed public declarations. Original proof bodies are retained.
+-See MODULE_MIGRATION.json for the checkpoint and ported file hashes. -/
++and exposed public declarations. Additional porting changes are recorded
++in provenance/module-port.patch; file hashes are in MODULE_MIGRATION.json. -/
+ module
+ 
+ public import OAI.Analysis.PDE.Dirichlet.Closed.FourthLimit
+@@ -16,7 +16,7 @@
+ open OAI.Analysis.Calculus.Quaternion OAI.Analysis.Normed.Function.Holder
+ 
+ @[instance_reducible]
+-private def fourthPathHolderNorm (X Y : Type*) [MetricSpace X]
++def fourthPathHolderNorm (X Y : Type*) [MetricSpace X]
+     [NormedAddCommGroup Y] [NormedSpace ℝ Y] (α : ℝ) : Norm (OAI.Analysis.Normed.Function.Holder.HolderMap X Y α) :=
+   inferInstance
+ 
+--- uniform-port/OAI/Analysis/PDE/Dirichlet/Periodic/DerivativeInjective.lean
++++ submission/OAI/Analysis/PDE/Dirichlet/Periodic/DerivativeInjective.lean
+@@ -1,6 +1,6 @@
+ /- Modified for the Palomar submission: module header, public imports,
+-and exposed public declarations. Original proof bodies are retained.
+-See MODULE_MIGRATION.json for the checkpoint and ported file hashes. -/
++and exposed public declarations. Additional porting changes are recorded
++in provenance/module-port.patch; file hashes are in MODULE_MIGRATION.json. -/
+ module
+ 
+ public import OAI.Analysis.PDE.Dirichlet.C2HolderPeriodicDerivative
+@@ -8,6 +8,8 @@
+ public import OAI.LinearAlgebra.Moore.Monotone
+ 
+ @[expose] public section
++
++set_option synthInstance.maxHeartbeats 200000
+ 
+ open Set Module
+ open scoped ContDiff Matrix.Norms.Elementwise ComplexOrder
+--- uniform-port/OAI/Analysis/PDE/Dirichlet/Rough/GeometricIFT.lean
++++ submission/OAI/Analysis/PDE/Dirichlet/Rough/GeometricIFT.lean
+@@ -1,6 +1,6 @@
+ /- Modified for the Palomar submission: module header, public imports,
+-and exposed public declarations. Original proof bodies are retained.
+-See MODULE_MIGRATION.json for the checkpoint and ported file hashes. -/
++and exposed public declarations. Additional porting changes are recorded
++in provenance/module-port.patch; file hashes are in MODULE_MIGRATION.json. -/
+ module
+ 
+ public import OAI.Analysis.PDE.Dirichlet.Rough.GeometricFields
+@@ -12,6 +12,8 @@
+ public import OAI.Analysis.Normed.Function.Holder.C2HolderEquationLimit
+ 
+ @[expose] public section
++
++set_option synthInstance.maxHeartbeats 200000
+ 
+ noncomputable section
+ open Set Filter Module Metric
+--- uniform-port/OAI/Analysis/PDE/Dirichlet/Rough/Moore/C4Regularity.lean
++++ submission/OAI/Analysis/PDE/Dirichlet/Rough/Moore/C4Regularity.lean
+@@ -1,6 +1,6 @@
+ /- Modified for the Palomar submission: module header, public imports,
+-and exposed public declarations. Original proof bodies are retained.
+-See MODULE_MIGRATION.json for the checkpoint and ported file hashes. -/
++and exposed public declarations. Additional porting changes are recorded
++in provenance/module-port.patch; file hashes are in MODULE_MIGRATION.json. -/
+ module
+ 
+ public import OAI.Analysis.PDE.Dirichlet.Rough.GeometricIFT
+@@ -8,6 +8,8 @@
+ public import OAI.Analysis.PDE.Dirichlet.Rough.Moore.C2Representative
+ 
+ @[expose] public section
++
++set_option synthInstance.maxHeartbeats 200000
+ 
+ noncomputable section
+ open Set Module
+--- uniform-port/OAI/Analysis/PDE/Dirichlet/Rough/Moore/DerivativeShift.lean
++++ submission/OAI/Analysis/PDE/Dirichlet/Rough/Moore/DerivativeShift.lean
+@@ -1,11 +1,13 @@
+ /- Modified for the Palomar submission: module header, public imports,
+-and exposed public declarations. Original proof bodies are retained.
+-See MODULE_MIGRATION.json for the checkpoint and ported file hashes. -/
++and exposed public declarations. Additional porting changes are recorded
++in provenance/module-port.patch; file hashes are in MODULE_MIGRATION.json. -/
+ module
+ 
+ public import OAI.Analysis.PDE.Dirichlet.C2HolderPeriodicDerivative
+ 
+ @[expose] public section
++
++set_option synthInstance.maxHeartbeats 200000
+ 
+ noncomputable section
+ open Set Module
+--- uniform-port/OAI/Analysis/PDE/Dirichlet/Rough/Moore/Inverse.lean
++++ submission/OAI/Analysis/PDE/Dirichlet/Rough/Moore/Inverse.lean
+@@ -1,6 +1,6 @@
+ /- Modified for the Palomar submission: module header, public imports,
+-and exposed public declarations. Original proof bodies are retained.
+-See MODULE_MIGRATION.json for the checkpoint and ported file hashes. -/
++and exposed public declarations. Additional porting changes are recorded
++in provenance/module-port.patch; file hashes are in MODULE_MIGRATION.json. -/
+ module
+ 
+ public import OAI.Analysis.PDE.Dirichlet.Rough.Moore.Solvability
+@@ -8,6 +8,8 @@
+ public import OAI.Analysis.PDE.Dirichlet.C2HolderImplicit
+ 
+ @[expose] public section
++
++set_option synthInstance.maxHeartbeats 200000
+ 
+ open Set Module Filter
+ open scoped Topology ContDiff Matrix.Norms.Elementwise ComplexOrder
+--- uniform-port/OAI/Analysis/PDE/Dirichlet/Rough/Moore/SmoothData.lean
++++ submission/OAI/Analysis/PDE/Dirichlet/Rough/Moore/SmoothData.lean
+@@ -1,6 +1,6 @@
+ /- Modified for the Palomar submission: module header, public imports,
+-and exposed public declarations. Original proof bodies are retained.
+-See MODULE_MIGRATION.json for the checkpoint and ported file hashes. -/
++and exposed public declarations. Additional porting changes are recorded
++in provenance/module-port.patch; file hashes are in MODULE_MIGRATION.json. -/
+ module
+ 
+ public import OAI.Analysis.PDE.Dirichlet.Periodic.SmoothJet
+@@ -8,6 +8,8 @@
+ public import OAI.Analysis.Normed.Function.Holder.C2HolderEquationLimit
+ 
+ @[expose] public section
++
++set_option synthInstance.maxHeartbeats 200000
+ 
+ noncomputable section
+ open Set Module
+--- uniform-port/OAI/Analysis/PDE/Dirichlet/Rough/Parameter/Base.lean
++++ submission/OAI/Analysis/PDE/Dirichlet/Rough/Parameter/Base.lean
+@@ -1,12 +1,14 @@
+ /- Modified for the Palomar submission: module header, public imports,
+-and exposed public declarations. Original proof bodies are retained.
+-See MODULE_MIGRATION.json for the checkpoint and ported file hashes. -/
++and exposed public declarations. Additional porting changes are recorded
++in provenance/module-port.patch; file hashes are in MODULE_MIGRATION.json. -/
+ module
+ 
+ public import OAI.Analysis.PDE.Dirichlet.Rough.Parameter.SolutionCurves
+ public import OAI.Analysis.PDE.Schauder.Calculus.Parameter.Zero
+ 
+ @[expose] public section
++
++set_option synthInstance.maxHeartbeats 200000
+ 
+ noncomputable section
+ open Set Module
+--- uniform-port/OAI/Analysis/PDE/Dirichlet/Rough/Parameter/IFT.lean
++++ submission/OAI/Analysis/PDE/Dirichlet/Rough/Parameter/IFT.lean
+@@ -1,6 +1,6 @@
+ /- Modified for the Palomar submission: module header, public imports,
+-and exposed public declarations. Original proof bodies are retained.
+-See MODULE_MIGRATION.json for the checkpoint and ported file hashes. -/
++and exposed public declarations. Additional porting changes are recorded
++in provenance/module-port.patch; file hashes are in MODULE_MIGRATION.json. -/
+ module
+ 
+ public import OAI.Analysis.PDE.Dirichlet.Rough.Parameter.Base
+@@ -10,6 +10,8 @@
+ public import OAI.Analysis.Normed.Function.Holder.C2HolderEquationLimit
+ 
+ @[expose] public section
++
++set_option synthInstance.maxHeartbeats 200000
+ 
+ noncomputable section
+ open Set Filter Module Metric
+--- uniform-port/OAI/Analysis/PDE/Elliptic/Boundary/Fourth/Jet.lean
++++ submission/OAI/Analysis/PDE/Elliptic/Boundary/Fourth/Jet.lean
+@@ -1,6 +1,6 @@
+ /- Modified for the Palomar submission: module header, public imports,
+-and exposed public declarations. Original proof bodies are retained.
+-See MODULE_MIGRATION.json for the checkpoint and ported file hashes. -/
++and exposed public declarations. Additional porting changes are recorded
++in provenance/module-port.patch; file hashes are in MODULE_MIGRATION.json. -/
+ module
+ 
+ public import OAI.Analysis.PDE.Elliptic.Boundary.Fourth.Tensor
+@@ -15,7 +15,7 @@
+ open OAI.Analysis.PDE.Dirichlet OAI.Analysis.Calculus.Quaternion OAI.Analysis.PDE.Nonlinear OAI.Analysis.Normed.Function.Holder
+ 
+ @[instance_reducible]
+-private def fourthJetHolderNorm (X Y : Type*) [MetricSpace X]
++def fourthJetHolderNorm (X Y : Type*) [MetricSpace X]
+     [NormedAddCommGroup Y] [NormedSpace ℝ Y] (α : ℝ) : Norm (OAI.Analysis.Normed.Function.Holder.HolderMap X Y α) :=
+   inferInstance
+ 
+--- uniform-port/OAI/Analysis/PDE/Elliptic/Boundary/Fourth/Pullback.lean
++++ submission/OAI/Analysis/PDE/Elliptic/Boundary/Fourth/Pullback.lean
+@@ -1,12 +1,14 @@
+ /- Modified for the Palomar submission: module header, public imports,
+-and exposed public declarations. Original proof bodies are retained.
+-See MODULE_MIGRATION.json for the checkpoint and ported file hashes. -/
++and exposed public declarations. Additional porting changes are recorded
++in provenance/module-port.patch; file hashes are in MODULE_MIGRATION.json. -/
+ module
+ 
+ public import OAI.Analysis.PDE.Elliptic.Boundary.Fourth.ComposeTensor
+ public import OAI.Analysis.PDE.Elliptic.Boundary.InverseThirdHolder
+ 
+ @[expose] public section
++
++set_option maxHeartbeats 1000000
+ 
+ noncomputable section
+ open Set
+@@ -15,7 +17,7 @@
+ open OAI.Analysis.Normed.Function.Holder OAI.Analysis.PDE.Dirichlet
+ 
+ @[instance_reducible]
+-private def fourthPullHolderNorm (X F : Type*) [MetricSpace X]
++def fourthPullHolderNorm (X F : Type*) [MetricSpace X]
+     [NormedAddCommGroup F] [NormedSpace ℝ F] (α : ℝ) : Norm (OAI.Analysis.Normed.Function.Holder.HolderMap X F α) := inferInstance
+ 
+ variable {I : Type*} [Fintype I] [DecidableEq I]
+--- uniform-port/OAI/Analysis/PDE/Elliptic/Boundary/Fourth/Tangential.lean
++++ submission/OAI/Analysis/PDE/Elliptic/Boundary/Fourth/Tangential.lean
+@@ -1,6 +1,6 @@
+ /- Modified for the Palomar submission: module header, public imports,
+-and exposed public declarations. Original proof bodies are retained.
+-See MODULE_MIGRATION.json for the checkpoint and ported file hashes. -/
++and exposed public declarations. Additional porting changes are recorded
++in provenance/module-port.patch; file hashes are in MODULE_MIGRATION.json. -/
+ module
+ 
+ public import OAI.Analysis.PDE.Elliptic.Boundary.Fourth.Jet
+@@ -14,7 +14,7 @@
+ open OAI.Analysis.PDE.Dirichlet OAI.Analysis.Normed.Function.Holder
+ 
+ @[instance_reducible]
+-private def fourthTanHolderNorm (X Y : Type*) [MetricSpace X]
++def fourthTanHolderNorm (X Y : Type*) [MetricSpace X]
+     [NormedAddCommGroup Y] [NormedSpace ℝ Y] (α : ℝ) : Norm (OAI.Analysis.Normed.Function.Holder.HolderMap X Y α) :=
+   inferInstance
+ 
+--- uniform-port/OAI/Analysis/PDE/Green/BoundaryBound.lean
++++ submission/OAI/Analysis/PDE/Green/BoundaryBound.lean
+@@ -1,9 +1,10 @@
+ /- Modified for the Palomar submission: module header, public imports,
+-and exposed public declarations. Original proof bodies are retained.
+-See MODULE_MIGRATION.json for the checkpoint and ported file hashes. -/
++and exposed public declarations. Additional porting changes are recorded
++in provenance/module-port.patch; file hashes are in MODULE_MIGRATION.json. -/
+ module
+ 
+ public import OAI.Analysis.PDE.Green.RegularBoundary
++import all Mathlib.Analysis.Calculus.Implicit
+ 
+ @[expose] public section
+ 
+@@ -27,7 +28,7 @@
+       ‖q y‖ ≤ B + C * ‖φ.leftFun y - φ.leftFun φ.pt‖ := by
+   have hG := φ.hasStrictFDerivAt.to_localInverse
+   rw [HasStrictFDerivAt.localInverse_def] at hG
+-  change HasStrictFDerivAt φ.implicitFunction.uncurry _ _ at hG
++  change HasStrictFDerivAt (𝕜 := ℝ) φ.implicitFunction.uncurry _ _ at hG
+   obtain ⟨K, U, hU, hKU⟩ := hG.exists_lipschitzOnWith
+   obtain ⟨L, V, hV, hLV⟩ := hq.exists_lipschitzOnWith
+   let R : E → E := fun y => φ.implicitFunction (φ.leftFun φ.pt) (φ.rightFun y)
+--- uniform-port/OAI/Analysis/PDE/Green/Localized/Flux.lean
++++ submission/OAI/Analysis/PDE/Green/Localized/Flux.lean
+@@ -1,10 +1,11 @@
+ /- Modified for the Palomar submission: module header, public imports,
+-and exposed public declarations. Original proof bodies are retained.
+-See MODULE_MIGRATION.json for the checkpoint and ported file hashes. -/
++and exposed public declarations. Additional porting changes are recorded
++in provenance/module-port.patch; file hashes are in MODULE_MIGRATION.json. -/
+ module
+ 
+ public import OAI.Analysis.PDE.Green.WeightedFlux
+ public import OAI.Analysis.PDE.Green.Localized.Divergence
++import all Mathlib.Analysis.Calculus.Implicit
+ 
+ @[expose] public section
+ 
+--- uniform-port/OAI/Analysis/PDE/Green/RegularBoundary.lean
++++ submission/OAI/Analysis/PDE/Green/RegularBoundary.lean
+@@ -1,10 +1,11 @@
+ /- Modified for the Palomar submission: module header, public imports,
+-and exposed public declarations. Original proof bodies are retained.
+-See MODULE_MIGRATION.json for the checkpoint and ported file hashes. -/
++and exposed public declarations. Additional porting changes are recorded
++in provenance/module-port.patch; file hashes are in MODULE_MIGRATION.json. -/
+ module
+ 
+ public import OAI.Analysis.PDE.Green.TangentialFlux
+ public import OAI.Analysis.PDE.Dirichlet.LevelSet
++import all Mathlib.Analysis.Calculus.Implicit
+ 
+ @[expose] public section
+ 
+@@ -29,7 +30,7 @@
+       ‖q y‖ ≤ C * ‖φ.leftFun y - φ.leftFun φ.pt‖ := by
+   have hG := φ.hasStrictFDerivAt.to_localInverse
+   rw [HasStrictFDerivAt.localInverse_def] at hG
+-  change HasStrictFDerivAt φ.implicitFunction.uncurry _ _ at hG
++  change HasStrictFDerivAt (𝕜 := ℝ) φ.implicitFunction.uncurry _ _ at hG
+   obtain ⟨K, U, hU, hKU⟩ := hG.exists_lipschitzOnWith
+   obtain ⟨L, V, hV, hLV⟩ := hq.exists_lipschitzOnWith
+   let R : E → E := fun y => φ.implicitFunction (φ.leftFun φ.pt) (φ.rightFun y)
+--- uniform-port/OAI/Analysis/PDE/Schauder/Calculus/Deformation/Base.lean
++++ submission/OAI/Analysis/PDE/Schauder/Calculus/Deformation/Base.lean
+@@ -1,12 +1,14 @@
+ /- Modified for the Palomar submission: module header, public imports,
+-and exposed public declarations. Original proof bodies are retained.
+-See MODULE_MIGRATION.json for the checkpoint and ported file hashes. -/
++and exposed public declarations. Additional porting changes are recorded
++in provenance/module-port.patch; file hashes are in MODULE_MIGRATION.json. -/
+ module
+ 
+ public import OAI.Analysis.PDE.Schauder.Calculus.PositiveImplicitCurve
+ public import OAI.Analysis.PDE.Schauder.Calculus.Deformation.Zero
+ 
+ @[expose] public section
++
++set_option synthInstance.maxHeartbeats 200000
+ 
+ open Set Metric Module
+ open scoped ContDiff ComplexOrder Matrix.Norms.Elementwise
+--- uniform-port/OAI/Analysis/PDE/Schauder/Calculus/Deformation/Differential.lean
++++ submission/OAI/Analysis/PDE/Schauder/Calculus/Deformation/Differential.lean
+@@ -1,6 +1,6 @@
+ /- Modified for the Palomar submission: module header, public imports,
+-and exposed public declarations. Original proof bodies are retained.
+-See MODULE_MIGRATION.json for the checkpoint and ported file hashes. -/
++and exposed public declarations. Additional porting changes are recorded
++in provenance/module-port.patch; file hashes are in MODULE_MIGRATION.json. -/
+ module
+ 
+ public import OAI.Analysis.PDE.Schauder.Calculus.Deformation.Zero
+@@ -9,6 +9,8 @@
+ public import OAI.Analysis.PDE.Schauder.Calculus.LinearizationAlgebra
+ 
+ @[expose] public section
++
++set_option synthInstance.maxHeartbeats 200000
+ 
+ open Set Module
+ open scoped ContDiff Matrix.Norms.Elementwise
+--- uniform-port/OAI/Analysis/PDE/Schauder/Calculus/Deformation/Inverse.lean
++++ submission/OAI/Analysis/PDE/Schauder/Calculus/Deformation/Inverse.lean
+@@ -1,12 +1,14 @@
+ /- Modified for the Palomar submission: module header, public imports,
+-and exposed public declarations. Original proof bodies are retained.
+-See MODULE_MIGRATION.json for the checkpoint and ported file hashes. -/
++and exposed public declarations. Additional porting changes are recorded
++in provenance/module-port.patch; file hashes are in MODULE_MIGRATION.json. -/
+ module
+ 
+ public import OAI.Analysis.PDE.Schauder.Calculus.Deformation.Differential
+ public import OAI.Analysis.PDE.Dirichlet.C2HolderPeriodicDerivative
+ 
+ @[expose] public section
++
++set_option synthInstance.maxHeartbeats 200000
+ 
+ open Set Module
+ open scoped ContDiff Matrix.Norms.Elementwise
+--- uniform-port/OAI/Analysis/PDE/Schauder/Calculus/LatticeLinearization.lean
++++ submission/OAI/Analysis/PDE/Schauder/Calculus/LatticeLinearization.lean
+@@ -1,12 +1,14 @@
+ /- Modified for the Palomar submission: module header, public imports,
+-and exposed public declarations. Original proof bodies are retained.
+-See MODULE_MIGRATION.json for the checkpoint and ported file hashes. -/
++and exposed public declarations. Additional porting changes are recorded
++in provenance/module-port.patch; file hashes are in MODULE_MIGRATION.json. -/
+ module
+ 
+ public import OAI.Analysis.PDE.Schauder.Calculus.Deformation.Differential
+ public import OAI.Analysis.PDE.Schauder.Calculus.ImplicitLinearizationAlgebra
+ 
+ @[expose] public section
++
++set_option synthInstance.maxHeartbeats 200000
+ 
+ open Set Module
+ open scoped ContDiff Matrix.Norms.Elementwise
+--- uniform-port/OAI/Analysis/PDE/Schauder/Calculus/Parameter/Inverse.lean
++++ submission/OAI/Analysis/PDE/Schauder/Calculus/Parameter/Inverse.lean
+@@ -1,6 +1,6 @@
+ /- Modified for the Palomar submission: module header, public imports,
+-and exposed public declarations. Original proof bodies are retained.
+-See MODULE_MIGRATION.json for the checkpoint and ported file hashes. -/
++and exposed public declarations. Additional porting changes are recorded
++in provenance/module-port.patch; file hashes are in MODULE_MIGRATION.json. -/
+ module
+ 
+ public import OAI.Analysis.PDE.Schauder.Calculus.LatticeLinearization
+@@ -9,6 +9,8 @@
+ public import OAI.Analysis.PDE.Dirichlet.C2HolderPeriodicDerivative
+ 
+ @[expose] public section
++
++set_option synthInstance.maxHeartbeats 200000
+ 
+ open Set Module
+ open scoped ContDiff Matrix.Norms.Elementwise
+--- uniform-port/OAI/Analysis/PDE/Schauder/Calculus/Schauder/CutoffEquation.lean
++++ submission/OAI/Analysis/PDE/Schauder/Calculus/Schauder/CutoffEquation.lean
+@@ -1,6 +1,6 @@
+ /- Modified for the Palomar submission: module header, public imports,
+-and exposed public declarations. Original proof bodies are retained.
+-See MODULE_MIGRATION.json for the checkpoint and ported file hashes. -/
++and exposed public declarations. Additional porting changes are recorded
++in provenance/module-port.patch; file hashes are in MODULE_MIGRATION.json. -/
+ module
+ 
+ public import OAI.Analysis.PDE.Schauder.Calculus.Schauder.LowerHolder
+@@ -28,6 +28,7 @@
+   have hholder := (compact_C1_holder f hf hfc hα hα1).choose_spec.2.2
+   exact OAI.Analysis.Normed.Function.Holder.HolderMap.ofBounded hα
+     (BoundedContinuousFunction.ofNormedAddCommGroup f hf.continuous C hsup)
++    (C := C)
+     (by
+       intro x y
+       change ‖f x - f y‖ ≤ _
+--- uniform-port/OAI/Analysis/PDE/Schauder/Calculus/Schauder/HolderPullback.lean
++++ submission/OAI/Analysis/PDE/Schauder/Calculus/Schauder/HolderPullback.lean
+@@ -1,6 +1,6 @@
+ /- Modified for the Palomar submission: module header, public imports,
+-and exposed public declarations. Original proof bodies are retained.
+-See MODULE_MIGRATION.json for the checkpoint and ported file hashes. -/
++and exposed public declarations. Additional porting changes are recorded
++in provenance/module-port.patch; file hashes are in MODULE_MIGRATION.json. -/
+ module
+ 
+ public import OAI.Analysis.Normed.Function.Holder.Banach.Norm
+@@ -22,6 +22,7 @@
+ def holderIsometricPullbackValue (hα : 0 ≤ α) (g : X → Y) (hg : Isometry g)
+     (f : OAI.Analysis.Normed.Function.Holder.HolderMap Y F α) : OAI.Analysis.Normed.Function.Holder.HolderMap X F α :=
+   OAI.Analysis.Normed.Function.Holder.HolderMap.ofBounded hα ((OAI.Analysis.Normed.Function.Holder.HolderMap.value f).compContinuous ⟨g, hg.continuous⟩)
++    (C := ‖f‖)
+     (fun x y => by
+       change ‖OAI.Analysis.Normed.Function.Holder.HolderMap.value f (g x) - OAI.Analysis.Normed.Function.Holder.HolderMap.value f (g y)‖ ≤ ‖f‖ * (dist x y) ^ α
+       rw [← hg.dist_eq x y]
+--- uniform-port/OAI/Analysis/PDE/Schauder/Calculus/Schauder/UniformCutoff.lean
++++ submission/OAI/Analysis/PDE/Schauder/Calculus/Schauder/UniformCutoff.lean
+@@ -1,6 +1,6 @@
+ /- Modified for the Palomar submission: module header, public imports,
+-and exposed public declarations. Original proof bodies are retained.
+-See MODULE_MIGRATION.json for the checkpoint and ported file hashes. -/
++and exposed public declarations. Additional porting changes are recorded
++in provenance/module-port.patch; file hashes are in MODULE_MIGRATION.json. -/
+ module
+ 
+ public import OAI.Analysis.PDE.Schauder.Calculus.Schauder.JetForcing
+@@ -16,10 +16,10 @@
+ 
+ open OAI.Analysis.Normed.Function.Holder
+ 
+-private abbrev ScalarHolder (m : ℕ) (α : ℝ) := OAI.Analysis.Normed.Function.Holder.HolderMap (EuclideanSpace ℝ (Fin m)) ℝ α
+-private abbrev GradientHolder (m : ℕ) (α : ℝ) :=
++abbrev ScalarHolder (m : ℕ) (α : ℝ) := OAI.Analysis.Normed.Function.Holder.HolderMap (EuclideanSpace ℝ (Fin m)) ℝ α
++abbrev GradientHolder (m : ℕ) (α : ℝ) :=
+   OAI.Analysis.Normed.Function.Holder.HolderMap (EuclideanSpace ℝ (Fin m)) (EuclideanSpace ℝ (Fin m) →L[ℝ] ℝ) α
+-private abbrev MatrixHolder (m : ℕ) (α : ℝ) :=
++abbrev MatrixHolder (m : ℕ) (α : ℝ) :=
+   OAI.Analysis.Normed.Function.Holder.HolderMap (EuclideanSpace ℝ (Fin m)) (Matrix (Fin m) (Fin m) ℝ) α
+ 
+ local instance uniformMatrixNG (m : ℕ) : NormedAddCommGroup (Matrix (Fin m) (Fin m) ℝ) :=
+--- uniform-port/OAI/Analysis/PDE/Weak/Elliptic/BoundaryTraceEnergy.lean
++++ submission/OAI/Analysis/PDE/Weak/Elliptic/BoundaryTraceEnergy.lean
+@@ -1,6 +1,6 @@
+ /- Modified for the Palomar submission: module header, public imports,
+-and exposed public declarations. Original proof bodies are retained.
+-See MODULE_MIGRATION.json for the checkpoint and ported file hashes. -/
++and exposed public declarations. Additional porting changes are recorded
++in provenance/module-port.patch; file hashes are in MODULE_MIGRATION.json. -/
+ module
+ 
+ public import OAI.Analysis.PDE.Weak.Elliptic.H1
+@@ -108,6 +108,7 @@
+ def indicatorL2 (s : Set X) (hs : MeasurableSet s) : Lp E 2 μ →L[ℝ] Lp E 2 μ :=
+   fieldMultiplierCLM (s.indicator fun _ ↦ ContinuousLinearMap.id ℝ E)
+     (aestronglyMeasurable_const.indicator hs)
++    (M := 1)
+     (ae_of_all _ fun x ↦ by
+       by_cases hx : x ∈ s
+       · simpa only [indicator_of_mem hx] using ContinuousLinearMap.norm_id_le (𝕜 := ℝ) (E := E)

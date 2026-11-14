@@ -1,0 +1,1468 @@
+KakeyaSharp.sharpMaximal_of_sharpTube {n : ℕ} (hn : 2 ≤ n) (hTube : KakeyaSharp.SharpTubeBound n) :
+  KakeyaSharp.SharpMaximalBound n
+def KakeyaSharp.SharpTubeBound : ℕ → Prop :=
+fun n =>
+  ∃ C,
+    0 < C ∧
+      ∀ (m : ℕ) (δ : ℝ),
+        0 < δ →
+          δ ≤ 1 →
+            ∀ (v x : Fin m → KakeyaSharp.Space n),
+              (∀ (i : Fin m), ‖v i‖ = 1) →
+                (∀ (i j : Fin m), i ≠ j → δ ≤ dist (v i) (v j)) →
+                  ∀ (a : Fin m → ℝ),
+                    (∀ (i : Fin m), 0 ≤ a i) →
+                      ∫ (y : KakeyaSharp.Space n),
+                          (∑ i, (KakeyaSharp.tube (2 * δ) (v i) (x i)).indicator (fun x => a i) y) ^
+                            KakeyaSharp.overlapExponent n ≤
+                        C * Real.log (2 / δ) * δ ^ (n - 1) * ∑ i, a i ^ KakeyaSharp.overlapExponent n
+def KakeyaSharp.SharpMaximalBound : ℕ → Prop :=
+fun n =>
+  ∃ C,
+    0 < C ∧
+      ∀ (δ : ℝ),
+        0 < δ →
+          δ ≤ 1 →
+            ∀ (f : KakeyaSharp.Space n → ℂ),
+              MeasureTheory.MemLp f (↑n) MeasureTheory.volume →
+                MeasureTheory.MemLp (KakeyaSharp.kakeyaMaximal δ f) (↑n) (KakeyaSharp.sphereMeasure n) ∧
+                  MeasureTheory.eLpNorm (KakeyaSharp.kakeyaMaximal δ f) (↑n) (KakeyaSharp.sphereMeasure n) ≤
+                    ENNReal.ofReal (C * KakeyaSharp.logLoss n δ) * MeasureTheory.eLpNorm f (↑n) MeasureTheory.volume
+'KakeyaSharp.sharpMaximal_of_sharpTube' depends on axioms: [propext, Classical.choice, Quot.sound]
+'KakeyaSharp.thinProfile_core_depth' depends on axioms: [propext, Classical.choice, Quot.sound]
+'KakeyaSharp.thinProfile_smooth' depends on axioms: [propext, Classical.choice, Quot.sound]
+'KakeyaSharp.radial_kernel_integral_le' depends on axioms: [propext, Classical.choice, Quot.sound]
+'KakeyaSharp.weighted_log_kernel_integral_le' depends on axioms: [propext, Classical.choice, Quot.sound]
+KakeyaSharp.thinProfile_quaternionHessian {m : ℕ} {η : ℝ} (hη : 0 < η) {z : KakeyaSharp.ThinSpace m}
+  (hz : ‖z.1‖ ^ 2 + ‖z.2‖ ^ 2 ≤ 1) :
+  KakeyaSharp.thinQuaternionHessian (KakeyaSharp.thinProfile η) z =
+    (4 / KakeyaSharp.thinNumerator η z) • 1 -
+          (1 / KakeyaSharp.thinNumerator η z ^ 2) • KakeyaSharp.QuaternionAlgebra.outer (KakeyaSharp.thinPGradient z) +
+        (2 / KakeyaSharp.thinDenominator η z) • 1 +
+      (4 / KakeyaSharp.thinDenominator η z ^ 2) • KakeyaSharp.QuaternionAlgebra.outer (KakeyaSharp.thinXVector z)
+KakeyaSharp.thinProfile_quaternionHessian_positive {m : ℕ} {η : ℝ} (hη : 0 < η) {z : KakeyaSharp.ThinSpace m}
+  (hz : ‖z.1‖ ^ 2 + ‖z.2‖ ^ 2 ≤ 1) {w : Fin m → Quaternion ℝ} (hw : w ≠ 0) :
+  0 < KakeyaSharp.quaternionForm (KakeyaSharp.thinQuaternionHessian (KakeyaSharp.thinProfile η) z) w
+KakeyaSharp.thinProfile_determinant_bound {m : ℕ} (hm : 1 ≤ m) {η : ℝ} (hη : 0 < η) {z : KakeyaSharp.ThinSpace m}
+  (hz : ‖z.1‖ ^ 2 + ‖z.2‖ ^ 2 ≤ 1) :
+  KakeyaSharp.Moore.mooreDet m (KakeyaSharp.thinQuaternionHessian (KakeyaSharp.thinProfile η) z) ≤
+    4 * 6 ^ (m - 1) *
+      (η ^ 2 / KakeyaSharp.thinNumerator η z ^ (m + 1) +
+          1 / (KakeyaSharp.thinDenominator η z * KakeyaSharp.thinNumerator η z ^ (m - 1)) +
+        ‖z.1‖ ^ 2 / (KakeyaSharp.thinDenominator η z ^ 2 * KakeyaSharp.thinNumerator η z ^ (m - 1)))
+'KakeyaSharp.thinProfile_hessian' depends on axioms: [propext, Classical.choice, Quot.sound]
+'KakeyaSharp.thinProfile_quaternionHessian' depends on axioms: [propext, Classical.choice, Quot.sound]
+'KakeyaSharp.thinProfile_quaternionHessian_positive' depends on axioms: [propext, Classical.choice, Quot.sound]
+'KakeyaSharp.Moore.mooreDet_scalar_outer' depends on axioms: [propext, Classical.choice, Quot.sound]
+'KakeyaSharp.Moore.mooreDet_rankTwo_bound' depends on axioms: [propext, Classical.choice, Quot.sound]
+'KakeyaSharp.thinHessianBase_determinant' depends on axioms: [propext, Classical.choice, Quot.sound]
+'KakeyaSharp.thinProfile_determinant_bound' depends on axioms: [propext, Classical.choice, Quot.sound]
+'KakeyaSharp.boundary_kernel_integral_log' depends on axioms: [propext, Classical.choice, Quot.sound]
+KakeyaSharp.thinEnergy_le_log {m : ℕ} (hm : 1 ≤ m) {η : ℝ} (hη : 0 < η) (hη10 : η ≤ 1 / 10) :
+  KakeyaSharp.thinEnergy m η ≤ KakeyaSharp.thinEnergyConstant m * Real.log (1 / η)
+KakeyaSharp.thinSource_variational_lower_scaled {m : ℕ} (hm : 1 ≤ m) {R ε a : ℝ} (hR : 0 < R) (hε : 0 < ε)
+  (hεR : ε ≤ R / 10) (ha : 0 ≤ a) (o : KakeyaSharp.ThinSpace m) {μ : KakeyaSharp.ThinSpace m → ℝ}
+  (hμ : ContinuousOn μ (KakeyaSharp.thinClosedBallAt R o)) (hμ0 : ∀ z ∈ KakeyaSharp.thinBallAt R o, 0 ≤ μ z)
+  (hμa : ∀ z ∈ KakeyaSharp.thinCoreAt R ε o, a ≤ μ z) :
+  ∃ v,
+    KakeyaSharp.ThinAdmissibleAt R o v ∧
+      KakeyaSharp.thinLowerConstant m * R ^ m * ε ^ (2 * m + 2) * a ^ ((↑m + 1) / ↑m) * Real.log (R / ε) ≤
+        KakeyaSharp.thinFunctionalAt R o μ v
+KakeyaSharp.thinSource_value_lower_scaled {m : ℕ} (hm : 1 ≤ m) {R ε a : ℝ} (hR : 0 < R) (hε : 0 < ε) (hεR : ε ≤ R / 10)
+  (ha : 0 ≤ a) (o : KakeyaSharp.ThinSpace m) {μ : KakeyaSharp.ThinSpace m → ℝ}
+  (hμ : ContinuousOn μ (KakeyaSharp.thinClosedBallAt R o)) (hμ0 : ∀ z ∈ KakeyaSharp.thinBallAt R o, 0 ≤ μ z)
+  (hμa : ∀ z ∈ KakeyaSharp.thinCoreAt R ε o, a ≤ μ z) :
+  ↑(KakeyaSharp.thinLowerConstant m * R ^ m * ε ^ (2 * m + 2) * a ^ ((↑m + 1) / ↑m) * Real.log (R / ε)) ≤
+    KakeyaSharp.thinVariationalValueAt R o μ
+def KakeyaSharp.ThinAdmissibleAt : {m : ℕ} → ℝ → KakeyaSharp.ThinSpace m → (KakeyaSharp.ThinSpace m → ℝ) → Prop :=
+fun {m} R o f =>
+  (∀ z ∈ KakeyaSharp.thinClosedBallAt R o, ContDiffAt ℝ 3 f z) ∧
+    (∀ (z : KakeyaSharp.ThinSpace m), ‖z.1 - o.1‖ ^ 2 + ‖z.2 - o.2‖ ^ 2 = R ^ 2 → f z = 0) ∧
+      ∀ z ∈ KakeyaSharp.thinClosedBallAt R o,
+        ∀ (w : Fin m → Quaternion ℝ), 0 ≤ KakeyaSharp.quaternionForm (KakeyaSharp.thinQuaternionHessian f z) w
+def KakeyaSharp.thinVariationalValueAt : {m : ℕ} →
+  ℝ → KakeyaSharp.ThinSpace m → (KakeyaSharp.ThinSpace m → ℝ) → EReal :=
+fun {m} R o μ => ⨆ f, ↑(KakeyaSharp.thinFunctionalAt R o μ ↑f)
+'KakeyaSharp.integral_ball_norm_sq_even' depends on axioms: [propext, Classical.choice, Quot.sound]
+'KakeyaSharp.thinEnergyDensity_integrableOn' depends on axioms: [propext, Classical.choice, Quot.sound]
+'KakeyaSharp.thinEnergy_eq_slices' depends on axioms: [propext, Classical.choice, Quot.sound]
+'KakeyaSharp.thinEnergy_le_log' depends on axioms: [propext, Classical.choice, Quot.sound]
+'KakeyaSharp.thinEnergyConstant_pos' depends on axioms: [propext, Classical.choice, Quot.sound]
+'KakeyaSharp.determinantEnergy_smul' depends on axioms: [propext, Classical.choice, Quot.sound]
+'KakeyaSharp.thinSource_variational_lower' depends on axioms: [propext, Classical.choice, Quot.sound]
+'KakeyaSharp.integral_rescale' depends on axioms: [propext, Classical.choice, Quot.sound]
+'KakeyaSharp.determinantEnergyAt_rescale' depends on axioms: [propext, Classical.choice, Quot.sound]
+'KakeyaSharp.ThinAdmissibleAt.energy_integrableOn' depends on axioms: [propext, Classical.choice, Quot.sound]
+'KakeyaSharp.ThinAdmissibleAt.source_integrableOn' depends on axioms: [propext, Classical.choice, Quot.sound]
+'KakeyaSharp.thinLowerConstant_pos' depends on axioms: [propext, Classical.choice, Quot.sound]
+'KakeyaSharp.thinSource_variational_lower_scaled' depends on axioms: [propext, Classical.choice, Quot.sound]
+'KakeyaSharp.thinSource_value_lower_scaled' depends on axioms: [propext, Classical.choice, Quot.sound]
+KakeyaSharp.thinCofactor_divergence {m : ℕ} {f : KakeyaSharp.ThinSpace m → ℝ} {z : KakeyaSharp.ThinSpace m}
+  (hf : ContDiffAt ℝ 3 f z) (b : Fin m) :
+  KakeyaSharp.QuaternionAlgebra.strongDivergence KakeyaSharp.QuaternionAlgebra.threeSlots
+      (fun p => (fderiv ℝ (KakeyaSharp.thinCofactor f) z) (KakeyaSharp.thinDirection p.1 p.2)) b =
+    0
+KakeyaSharp.thinCofactor_selfAdjoint {m : ℕ} {R : ℝ} (hR : 0 < R) (o : KakeyaSharp.ThinSpace m)
+  {ψ u v : KakeyaSharp.ThinSpace m → ℝ} (hψ : ContDiff ℝ 3 ψ) (hu : ContDiff ℝ 2 u) (hv : ContDiff ℝ 2 v)
+  (hzu : ∀ (z : KakeyaSharp.ThinSpace m), ‖z.1 - o.1‖ ^ 2 + ‖z.2 - o.2‖ ^ 2 = R ^ 2 → u z = 0)
+  (hzv : ∀ (z : KakeyaSharp.ThinSpace m), ‖z.1 - o.1‖ ^ 2 + ‖z.2 - o.2‖ ^ 2 = R ^ 2 → v z = 0) :
+  ∫ (z : KakeyaSharp.ThinSpace m) in KakeyaSharp.thinBallAt R o,
+      u z *
+        KakeyaSharp.Moore.mooreDifferential m (KakeyaSharp.thinQuaternionHessian ψ z)
+          (KakeyaSharp.thinQuaternionHessian v z) =
+    ∫ (z : KakeyaSharp.ThinSpace m) in KakeyaSharp.thinBallAt R o,
+      v z *
+        KakeyaSharp.Moore.mooreDifferential m (KakeyaSharp.thinQuaternionHessian ψ z)
+          (KakeyaSharp.thinQuaternionHessian u z)
+KakeyaSharp.hasDerivAt_determinantEnergyAt {m : ℕ} {R : ℝ} (hR : 0 < R) (o : KakeyaSharp.ThinSpace m)
+  {u v : KakeyaSharp.ThinSpace m → ℝ} (hu : ContDiff ℝ 3 u) (hv : ContDiff ℝ 3 v)
+  (hzu : ∀ (z : KakeyaSharp.ThinSpace m), ‖z.1 - o.1‖ ^ 2 + ‖z.2 - o.2‖ ^ 2 = R ^ 2 → u z = 0)
+  (hzv : ∀ (z : KakeyaSharp.ThinSpace m), ‖z.1 - o.1‖ ^ 2 + ‖z.2 - o.2‖ ^ 2 = R ^ 2 → v z = 0) :
+  HasDerivAt (fun t => KakeyaSharp.determinantEnergyAt R o (u + t • v))
+    (-(↑m + 1) *
+      ∫ (z : KakeyaSharp.ThinSpace m) in KakeyaSharp.thinBallAt R o,
+        v z * KakeyaSharp.Moore.mooreDet m (KakeyaSharp.thinQuaternionHessian u z))
+    0
+KakeyaSharp.hasDerivAt_thinFunctionalAt {m : ℕ} {R : ℝ} (hR : 0 < R) (o : KakeyaSharp.ThinSpace m)
+  {ρ u v : KakeyaSharp.ThinSpace m → ℝ} (hρ : ContinuousOn ρ (KakeyaSharp.thinClosedBallAt R o)) (hu : ContDiff ℝ 3 u)
+  (hv : ContDiff ℝ 3 v) (hzu : ∀ (z : KakeyaSharp.ThinSpace m), ‖z.1 - o.1‖ ^ 2 + ‖z.2 - o.2‖ ^ 2 = R ^ 2 → u z = 0)
+  (hzv : ∀ (z : KakeyaSharp.ThinSpace m), ‖z.1 - o.1‖ ^ 2 + ‖z.2 - o.2‖ ^ 2 = R ^ 2 → v z = 0) :
+  HasDerivAt (fun t => KakeyaSharp.thinFunctionalAt R o ρ (u + t • v))
+    (∫ (z : KakeyaSharp.ThinSpace m) in KakeyaSharp.thinBallAt R o,
+      v z * (KakeyaSharp.Moore.mooreDet m (KakeyaSharp.thinQuaternionHessian u z) - ρ z))
+    0
+KakeyaSharp.thinFunctional_stationary_of_detEquation {m : ℕ} {R : ℝ} (hR : 0 < R) (o : KakeyaSharp.ThinSpace m)
+  {ρ u v : KakeyaSharp.ThinSpace m → ℝ} (hρ : ContinuousOn ρ (KakeyaSharp.thinClosedBallAt R o)) (hu : ContDiff ℝ 3 u)
+  (hv : ContDiff ℝ 3 v) (hzu : ∀ (z : KakeyaSharp.ThinSpace m), ‖z.1 - o.1‖ ^ 2 + ‖z.2 - o.2‖ ^ 2 = R ^ 2 → u z = 0)
+  (hzv : ∀ (z : KakeyaSharp.ThinSpace m), ‖z.1 - o.1‖ ^ 2 + ‖z.2 - o.2‖ ^ 2 = R ^ 2 → v z = 0)
+  (hEq : ∀ z ∈ KakeyaSharp.thinBallAt R o, KakeyaSharp.Moore.mooreDet m (KakeyaSharp.thinQuaternionHessian u z) = ρ z) :
+  HasDerivAt (fun t => KakeyaSharp.thinFunctionalAt R o ρ (u + t • v)) 0 0
+'KakeyaSharp.Moore.mooreCofactor_pairing' depends on axioms: [propext, Classical.choice, Quot.sound]
+'KakeyaSharp.Moore.mooreCofactor_fderiv_outer_vecMul' depends on axioms: [propext, Classical.choice, Quot.sound]
+'KakeyaSharp.QuaternionAlgebra.mooreCofactor_directionalHessian_divergence' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'KakeyaSharp.Green.integral_directional_by_parts_zero_boundary' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'KakeyaSharp.Green.moore_cofactor_green_bounded' depends on axioms: [propext, Classical.choice, Quot.sound]
+'KakeyaSharp.thinBallAt_null_frontier' depends on axioms: [propext, Classical.choice, Quot.sound]
+'KakeyaSharp.thinCofactor_divergence' depends on axioms: [propext, Classical.choice, Quot.sound]
+'KakeyaSharp.thinCofactor_euler' depends on axioms: [propext, Classical.choice, Quot.sound]
+'KakeyaSharp.thinCofactor_selfAdjoint' depends on axioms: [propext, Classical.choice, Quot.sound]
+'KakeyaSharp.thinEnergy_linearization' depends on axioms: [propext, Classical.choice, Quot.sound]
+'KakeyaSharp.hasDerivAt_setIntegral_compact' depends on axioms: [propext, Classical.choice, Quot.sound]
+'KakeyaSharp.hasDerivAt_determinantEnergyAt' depends on axioms: [propext, Classical.choice, Quot.sound]
+'KakeyaSharp.hasDerivAt_thinFunctionalAt' depends on axioms: [propext, Classical.choice, Quot.sound]
+'KakeyaSharp.thinFunctional_stationary_of_detEquation' depends on axioms: [propext, Classical.choice, Quot.sound]
+KakeyaSharp.ThinAdmissibleAt.supporting_inequality {m : ℕ} {R : ℝ} (hR : 0 < R) {o : KakeyaSharp.ThinSpace m}
+  {ρ u v : KakeyaSharp.ThinSpace m → ℝ} (hρ : ContinuousOn ρ (KakeyaSharp.thinClosedBallAt R o))
+  (hu : KakeyaSharp.ThinAdmissibleAt R o u) (hv : KakeyaSharp.ThinAdmissibleAt R o v) :
+  KakeyaSharp.thinFunctionalAt R o ρ v - KakeyaSharp.thinFunctionalAt R o ρ u ≤
+    ∫ (z : KakeyaSharp.ThinSpace m) in KakeyaSharp.thinBallAt R o,
+      (v z - u z) * (KakeyaSharp.Moore.mooreDet m (KakeyaSharp.thinQuaternionHessian u z) - ρ z)
+KakeyaSharp.thinVariationalValueAt_PDE_representation {m : ℕ} {R : ℝ} (hR : 0 < R) {o : KakeyaSharp.ThinSpace m}
+  {ρ u : KakeyaSharp.ThinSpace m → ℝ} (hρ : ContinuousOn ρ (KakeyaSharp.thinClosedBallAt R o))
+  (hu : KakeyaSharp.ThinAdmissibleAt R o u)
+  (hEq : ∀ z ∈ KakeyaSharp.thinBallAt R o, KakeyaSharp.Moore.mooreDet m (KakeyaSharp.thinQuaternionHessian u z) = ρ z) :
+  KakeyaSharp.thinVariationalValueAt R o ρ =
+    ↑(↑m / (↑m + 1) * ∫ (z : KakeyaSharp.ThinSpace m) in KakeyaSharp.thinBallAt R o, -u z * ρ z)
+KakeyaSharp.thinVariationalValueAt_finite {m : ℕ} (hm : 1 ≤ m) {R : ℝ} (hR : 0 < R) (o : KakeyaSharp.ThinSpace m)
+  {ρ : KakeyaSharp.ThinSpace m → ℝ} (hρ : ContinuousOn ρ (KakeyaSharp.thinClosedBallAt R o)) :
+  ∃ A, 0 ≤ A ∧ KakeyaSharp.thinVariationalValueAt R o ρ = ↑A
+KakeyaSharp.thinValueRealAt_smul {m : ℕ} (hm : 1 ≤ m) {R : ℝ} (hR : 0 < R) (o : KakeyaSharp.ThinSpace m)
+  {ρ : KakeyaSharp.ThinSpace m → ℝ} (hρ : ContinuousOn ρ (KakeyaSharp.thinClosedBallAt R o)) {a : ℝ} (ha : 0 ≤ a) :
+  KakeyaSharp.thinValueRealAt R o (a • ρ) = a ^ ((↑m + 1) / ↑m) * KakeyaSharp.thinValueRealAt R o ρ
+KakeyaSharp.thinSource_realValue_lower_scaled {m : ℕ} (hm : 1 ≤ m) {R ε a : ℝ} (hR : 0 < R) (hε : 0 < ε)
+  (hεR : ε ≤ R / 10) (ha : 0 ≤ a) (o : KakeyaSharp.ThinSpace m) {ρ : KakeyaSharp.ThinSpace m → ℝ}
+  (hρ : ContinuousOn ρ (KakeyaSharp.thinClosedBallAt R o)) (hρ0 : ∀ z ∈ KakeyaSharp.thinBallAt R o, 0 ≤ ρ z)
+  (hρa : ∀ z ∈ KakeyaSharp.thinCoreAt R ε o, a ≤ ρ z) :
+  KakeyaSharp.thinLowerConstant m * R ^ m * ε ^ (2 * m + 2) * a ^ ((↑m + 1) / ↑m) * Real.log (R / ε) ≤
+    KakeyaSharp.thinValueRealAt R o ρ
+'KakeyaSharp.Moore.mooreDet_pos_of_complexify_posDef' depends on axioms: [propext, Classical.choice, Quot.sound]
+'KakeyaSharp.Moore.mooreDifferential_nonneg_of_posSemidef' depends on axioms: [propext, Classical.choice, Quot.sound]
+'KakeyaSharp.Moore.mooreCofactor_posSemidef' depends on axioms: [propext, Classical.choice, Quot.sound]
+'KakeyaSharp.Moore.mooreCofactor_quaternionForm_nonneg' depends on axioms: [propext, Classical.choice, Quot.sound]
+'KakeyaSharp.Green.realCoefficients_quadratic' depends on axioms: [propext, Classical.choice, Quot.sound]
+'KakeyaSharp.thinCofactor_energy_identity' depends on axioms: [propext, Classical.choice, Quot.sound]
+'KakeyaSharp.thinCofactor_energy_nonneg' depends on axioms: [propext, Classical.choice, Quot.sound]
+'KakeyaSharp.hasDerivAt_thinFunctionalAt_line' depends on axioms: [propext, Classical.choice, Quot.sound]
+'KakeyaSharp.hasDerivAt_thinLineDerivative' depends on axioms: [propext, Classical.choice, Quot.sound]
+'KakeyaSharp.thinFunctional_concave_line' depends on axioms: [propext, Classical.choice, Quot.sound]
+'KakeyaSharp.exists_global_C3_extension' depends on axioms: [propext, Classical.choice, Quot.sound]
+'KakeyaSharp.ThinAdmissibleAt.supporting_inequality' depends on axioms: [propext, Classical.choice, Quot.sound]
+'KakeyaSharp.ThinAdmissibleAt.maximizes_of_detEquation' depends on axioms: [propext, Classical.choice, Quot.sound]
+'KakeyaSharp.thinVariationalValueAt_PDE_representation' depends on axioms: [propext, Classical.choice, Quot.sound]
+'KakeyaSharp.thinQuadraticAt_hessian' depends on axioms: [propext, Classical.choice, Quot.sound]
+'KakeyaSharp.ThinAdmissibleAt.nonpos' depends on axioms: [propext, Classical.choice, Quot.sound]
+'KakeyaSharp.thinFunctionalAt_le_constant_quadratic' depends on axioms: [propext, Classical.choice, Quot.sound]
+'KakeyaSharp.thinVariationalValueAt_finite' depends on axioms: [propext, Classical.choice, Quot.sound]
+'KakeyaSharp.coe_thinValueRealAt' depends on axioms: [propext, Classical.choice, Quot.sound]
+'KakeyaSharp.thinValueRealAt_mono' depends on axioms: [propext, Classical.choice, Quot.sound]
+'KakeyaSharp.thinValueRealAt_smul' depends on axioms: [propext, Classical.choice, Quot.sound]
+'KakeyaSharp.thinValueRealAt_convex' depends on axioms: [propext, Classical.choice, Quot.sound]
+'KakeyaSharp.thinValueRealAt_relative_stability' depends on axioms: [propext, Classical.choice, Quot.sound]
+'KakeyaSharp.thinSource_realValue_lower_scaled' depends on axioms: [propext, Classical.choice, Quot.sound]
+KakeyaSharp.thinValueRealAt_lipschitz_bound {m : ℕ} (hm : 1 ≤ m) {R : ℝ} (hR : 0 < R) (o : KakeyaSharp.ThinSpace m)
+  {ρ σ : KakeyaSharp.ThinSpace m → ℝ} (hρ : ContinuousOn ρ (KakeyaSharp.thinClosedBallAt R o))
+  (hσ : ContinuousOn σ (KakeyaSharp.thinClosedBallAt R o)) {A a : ℝ} (hA : 0 ≤ A) (ha : a ∈ Set.Icc 0 1)
+  (hρA : ∀ z ∈ KakeyaSharp.thinBallAt R o, ρ z ≤ A) (hσA : ∀ z ∈ KakeyaSharp.thinBallAt R o, σ z ≤ A)
+  (hclose : ∀ z ∈ KakeyaSharp.thinBallAt R o, |ρ z - σ z| ≤ a) :
+  |KakeyaSharp.thinValueRealAt R o ρ - KakeyaSharp.thinValueRealAt R o σ| ≤
+    a * ((A + 1) ^ ((↑m + 1) / ↑m) * KakeyaSharp.thinValueRealAt R o fun x => 1)
+KakeyaSharp.thinValueRealAt_regularization.{u_1} {m : ℕ} (hm : 1 ≤ m) {R : ℝ} (hR : 0 < R) (o : KakeyaSharp.ThinSpace m)
+  {ρ : KakeyaSharp.ThinSpace m → ℝ} (hρ : ContinuousOn ρ (KakeyaSharp.thinClosedBallAt R o)) {ι : Type u_1}
+  {l : Filter ι} {ε : ι → ℝ} (hε : Filter.Tendsto ε l (nhds 0)) (hε0 : ∀ᶠ (i : ι) in l, 0 ≤ ε i) :
+  Filter.Tendsto (fun i => KakeyaSharp.thinValueRealAt R o fun z => ρ z + ε i) l
+    (nhds (KakeyaSharp.thinValueRealAt R o ρ))
+KakeyaSharp.thinCofactor_three_pairings {m : ℕ} {R : ℝ} (hR : 0 < R) (o : KakeyaSharp.ThinSpace m)
+  {ψ : KakeyaSharp.ThinSpace m → ℝ} (hψ : ContDiff ℝ 3 ψ) (g : Fin 3 → KakeyaSharp.ThinSpace m → ℝ)
+  (hg : ∀ (β : Fin 3), ContDiff ℝ 2 (g β))
+  (hzg : ∀ (β : Fin 3) (z : KakeyaSharp.ThinSpace m), ‖z.1 - o.1‖ ^ 2 + ‖z.2 - o.2‖ ^ 2 = R ^ 2 → g β z = 0) :
+  ∫ (z : KakeyaSharp.ThinSpace m) in KakeyaSharp.thinBallAt R o,
+      KakeyaSharp.quaternionForm (KakeyaSharp.thinCofactor ψ z) (KakeyaSharp.thinParameterGradient g z) =
+    ∑ β,
+      ∫ (z : KakeyaSharp.ThinSpace m) in KakeyaSharp.thinBallAt R o,
+        KakeyaSharp.quaternionForm (KakeyaSharp.thinCofactor ψ z) (KakeyaSharp.thinQuaternionGradient (g β) z)
+KakeyaSharp.current_double_conservation {m : ℕ}
+  {A : KakeyaSharp.ThinCurrentSpace m → Matrix (Fin (m + 1)) (Fin (m + 1)) (Quaternion ℝ)} (hA : ContDiff ℝ 2 A)
+  (hH : ∀ (z : KakeyaSharp.ThinCurrentSpace m), (A z).IsHermitian) (hd : KakeyaSharp.RealColumnConservation A)
+  (z : KakeyaSharp.ThinCurrentSpace m) :
+  ∑ a,
+      ((fderiv ℝ (fderiv ℝ (KakeyaSharp.currentDensity A)) z) (KakeyaSharp.parameterDirection a))
+        (KakeyaSharp.parameterDirection a) =
+    ∑ p,
+      ∑ q,
+        ((fderiv ℝ (fderiv ℝ (KakeyaSharp.currentRealStress A q p)) z) (KakeyaSharp.spatialDirection p))
+          (KakeyaSharp.spatialDirection q)
+KakeyaSharp.thinCurrent_energy_le_stress {m N : ℕ} {R : ℝ} (hR : 0 < R) (o : KakeyaSharp.ThinSpace m)
+  {ψ : KakeyaSharp.ThinSpace m → ℝ} (hψ : ContDiff ℝ 3 ψ)
+  (hpos :
+    ∀ z ∈ KakeyaSharp.thinBallAt R o,
+      ∀ (w : Fin m → Quaternion ℝ), w ≠ 0 → 0 < KakeyaSharp.quaternionForm (KakeyaSharp.thinQuaternionHessian ψ z) w)
+  (g : Fin 3 → KakeyaSharp.ThinSpace m → ℝ) (hg : ∀ (β : Fin 3), ContDiff ℝ 2 (g β))
+  (hzg : ∀ (β : Fin 3) (z : KakeyaSharp.ThinSpace m), ‖z.1 - o.1‖ ^ 2 + ‖z.2 - o.2‖ ^ 2 = R ^ 2 → g β z = 0)
+  (ξ : KakeyaSharp.ThinSpace m → Fin m → Quaternion ℝ) (hξ : ContDiff ℝ 1 ξ)
+  (S : KakeyaSharp.ThinSpace m → Matrix (Fin m) (Fin m) (Quaternion ℝ)) (hS : Continuous S)
+  (ρ : KakeyaSharp.ThinSpace m → Fin N → ℝ) (b : KakeyaSharp.ThinSpace m → Fin N → Fin m → Quaternion ℝ)
+  (hρ : ∀ z ∈ KakeyaSharp.thinBallAt R o, ∀ (l : Fin N), 0 ≤ ρ z l)
+  (hmass :
+    ∀ z ∈ KakeyaSharp.thinBallAt R o, KakeyaSharp.Moore.mooreDet m (KakeyaSharp.thinQuaternionHessian ψ z) = ∑ l, ρ z l)
+  (hflux : ∀ z ∈ KakeyaSharp.thinBallAt R o, ξ z = ∑ l, ρ z l • b z l)
+  (hstress : ∀ z ∈ KakeyaSharp.thinBallAt R o, S z = ∑ l, ρ z l • KakeyaSharp.QuaternionAlgebra.outer (b z l))
+  (hlaw :
+    ∀ (β : Fin 3),
+      ∀ z ∈ KakeyaSharp.thinBallAt R o,
+        KakeyaSharp.Moore.mooreDifferential m (KakeyaSharp.thinQuaternionHessian ψ z)
+              (KakeyaSharp.thinQuaternionHessian (g β) z) +
+            ∑ p, (fderiv ℝ (KakeyaSharp.thinVectorFlux ξ β p) z) (KakeyaSharp.thinDirection p.1 p.2) =
+          0) :
+  ∑ β,
+      ∫ (z : KakeyaSharp.ThinSpace m) in KakeyaSharp.thinBallAt R o,
+        KakeyaSharp.quaternionForm (KakeyaSharp.thinCofactor ψ z) (KakeyaSharp.thinQuaternionGradient (g β) z) ≤
+    ∫ (z : KakeyaSharp.ThinSpace m) in KakeyaSharp.thinBallAt R o,
+      KakeyaSharp.Moore.realTrace (S z * KakeyaSharp.thinQuaternionHessian ψ z)
+'KakeyaSharp.thinValueRealAt_lipschitz_bound' depends on axioms: [propext, Classical.choice, Quot.sound]
+'KakeyaSharp.thinValueRealAt_regularization' depends on axioms: [propext, Classical.choice, Quot.sound]
+'KakeyaSharp.Green.quaternion_hessian_contraction' depends on axioms: [propext, Classical.choice, Quot.sound]
+'KakeyaSharp.Green.quaternion_current_pairing_bounded' depends on axioms: [propext, Classical.choice, Quot.sound]
+'KakeyaSharp.Green.moore_cofactor_pairing_bounded' depends on axioms: [propext, Classical.choice, Quot.sound]
+'KakeyaSharp.thinCofactor_tested_pairing' depends on axioms: [propext, Classical.choice, Quot.sound]
+'KakeyaSharp.thinCofactor_three_pairings' depends on axioms: [propext, Classical.choice, Quot.sound]
+'KakeyaSharp.Current.double_conservation' depends on axioms: [propext, Classical.choice, Quot.sound]
+'KakeyaSharp.realColumnConservation_of_strong' depends on axioms: [propext, Classical.choice, Quot.sound]
+'KakeyaSharp.current_mass_conservation' depends on axioms: [propext, Classical.choice, Quot.sound]
+'KakeyaSharp.current_momentum_conservation' depends on axioms: [propext, Classical.choice, Quot.sound]
+'KakeyaSharp.current_double_conservation' depends on axioms: [propext, Classical.choice, Quot.sound]
+'KakeyaSharp.Green.integral_directional_by_parts_bounded' depends on axioms: [propext, Classical.choice, Quot.sound]
+'KakeyaSharp.Green.integral_second_derivative_transfer' depends on axioms: [propext, Classical.choice, Quot.sound]
+'KakeyaSharp.current_square_identity' depends on axioms: [propext, Classical.choice, Quot.sound]
+'KakeyaSharp.current_square_nonneg' depends on axioms: [propext, Classical.choice, Quot.sound]
+'KakeyaSharp.thinParameterGradient_flux' depends on axioms: [propext, Classical.choice, Quot.sound]
+'KakeyaSharp.thinCofactor_cross_pairing' depends on axioms: [propext, Classical.choice, Quot.sound]
+'KakeyaSharp.thinCurrent_energy_le_stress' depends on axioms: [propext, Classical.choice, Quot.sound]
+KakeyaSharp.thinSolution_linearized {m : ℕ} {R : ℝ} (o : KakeyaSharp.ThinSpace m)
+  {U ρ : KakeyaSharp.ThinCurrentSpace m → ℝ} (hU : ContDiff ℝ 3 U) (hρ : ContDiff ℝ 1 ρ)
+  (hEq :
+    ∀ (p : KakeyaSharp.Space 3),
+      ∀ z ∈ KakeyaSharp.thinBallAt R o,
+        KakeyaSharp.Moore.mooreDet m (KakeyaSharp.thinQuaternionHessian (KakeyaSharp.thinSlice U p) z) = ρ (p, z))
+  (p : KakeyaSharp.Space 3) (z : KakeyaSharp.ThinSpace m) (hz : z ∈ KakeyaSharp.thinBallAt R o) (a : Fin 3) :
+  KakeyaSharp.Moore.mooreDifferential m (KakeyaSharp.thinQuaternionHessian (KakeyaSharp.thinSlice U p) z)
+      (KakeyaSharp.thinQuaternionHessian (KakeyaSharp.thinParameterDerivative U a p) z) =
+    (fderiv ℝ ρ (p, z)) (KakeyaSharp.parameterDirection a)
+KakeyaSharp.thinSolution_current_energy {m N : ℕ} {R : ℝ} (hR : 0 < R) (o : KakeyaSharp.ThinSpace m)
+  {U : KakeyaSharp.ThinCurrentSpace m → ℝ} (hU : ContDiff ℝ 3 U)
+  (hb :
+    ∀ (p : KakeyaSharp.Space 3) (z : KakeyaSharp.ThinSpace m), ‖z.1 - o.1‖ ^ 2 + ‖z.2 - o.2‖ ^ 2 = R ^ 2 → U (p, z) = 0)
+  {A : KakeyaSharp.ThinCurrentSpace m → Matrix (Fin (m + 1)) (Fin (m + 1)) (Quaternion ℝ)} (hA : ContDiff ℝ 1 A)
+  (hH : ∀ (y : KakeyaSharp.ThinCurrentSpace m), (A y).IsHermitian) (hd : KakeyaSharp.RealColumnConservation A)
+  (hEq :
+    ∀ (p : KakeyaSharp.Space 3),
+      ∀ z ∈ KakeyaSharp.thinBallAt R o,
+        KakeyaSharp.Moore.mooreDet m (KakeyaSharp.thinQuaternionHessian (KakeyaSharp.thinSlice U p) z) =
+          KakeyaSharp.currentDensity A (p, z))
+  (p : KakeyaSharp.Space 3)
+  (hpos :
+    ∀ z ∈ KakeyaSharp.thinBallAt R o,
+      ∀ (w : Fin m → Quaternion ℝ),
+        w ≠ 0 → 0 < KakeyaSharp.quaternionForm (KakeyaSharp.thinQuaternionHessian (KakeyaSharp.thinSlice U p) z) w)
+  (ρ : KakeyaSharp.ThinSpace m → Fin N → ℝ) (b : KakeyaSharp.ThinSpace m → Fin N → Fin m → Quaternion ℝ)
+  (hρ : ∀ z ∈ KakeyaSharp.thinBallAt R o, ∀ (l : Fin N), 0 ≤ ρ z l)
+  (hmass : ∀ z ∈ KakeyaSharp.thinBallAt R o, KakeyaSharp.currentDensity A (p, z) = ∑ l, ρ z l)
+  (hflux : ∀ z ∈ KakeyaSharp.thinBallAt R o, KakeyaSharp.currentFlux A (p, z) = ∑ l, ρ z l • b z l)
+  (hstress :
+    ∀ z ∈ KakeyaSharp.thinBallAt R o,
+      KakeyaSharp.currentStress A (p, z) = ∑ l, ρ z l • KakeyaSharp.QuaternionAlgebra.outer (b z l)) :
+  ∑ a,
+      ∫ (z : KakeyaSharp.ThinSpace m) in KakeyaSharp.thinBallAt R o,
+        KakeyaSharp.quaternionForm (KakeyaSharp.thinCofactor (KakeyaSharp.thinSlice U p) z)
+          (KakeyaSharp.thinQuaternionGradient (KakeyaSharp.thinParameterDerivative U a p) z) ≤
+    ∫ (z : KakeyaSharp.ThinSpace m) in KakeyaSharp.thinBallAt R o,
+      KakeyaSharp.Moore.realTrace
+        (KakeyaSharp.currentStress A (p, z) * KakeyaSharp.thinQuaternionHessian (KakeyaSharp.thinSlice U p) z)
+KakeyaSharp.hasDerivAt_thinValueRealAt_parameter {m : ℕ} {R : ℝ} (hR : 0 < R) (o : KakeyaSharp.ThinSpace m)
+  {U ρ : KakeyaSharp.ThinCurrentSpace m → ℝ} (hU : ContDiff ℝ 3 U) (hρ : ContDiff ℝ 1 ρ)
+  (hadm : ∀ (p : KakeyaSharp.Space 3), KakeyaSharp.ThinAdmissibleAt R o (KakeyaSharp.thinSlice U p))
+  (hEq :
+    ∀ (p : KakeyaSharp.Space 3),
+      ∀ z ∈ KakeyaSharp.thinBallAt R o,
+        KakeyaSharp.Moore.mooreDet m (KakeyaSharp.thinQuaternionHessian (KakeyaSharp.thinSlice U p) z) = ρ (p, z))
+  (p : KakeyaSharp.Space 3) (a : Fin 3) (t : ℝ) :
+  HasDerivAt (fun s => KakeyaSharp.thinValueRealAt R o (KakeyaSharp.thinSlice ρ (KakeyaSharp.parameterLine p a s)))
+    (-∫ (z : KakeyaSharp.ThinSpace m) in KakeyaSharp.thinBallAt R o,
+        U (KakeyaSharp.parameterLine p a t, z) *
+          (fderiv ℝ ρ (KakeyaSharp.parameterLine p a t, z)) (KakeyaSharp.parameterDirection a))
+    t
+KakeyaSharp.hasDerivAt_thinValueRealAt_parameter_deriv {m : ℕ} {R : ℝ} (hR : 0 < R) (o : KakeyaSharp.ThinSpace m)
+  {U ρ : KakeyaSharp.ThinCurrentSpace m → ℝ} (hU : ContDiff ℝ 3 U) (hρ : ContDiff ℝ 2 ρ)
+  (hadm : ∀ (p : KakeyaSharp.Space 3), KakeyaSharp.ThinAdmissibleAt R o (KakeyaSharp.thinSlice U p))
+  (hEq :
+    ∀ (p : KakeyaSharp.Space 3),
+      ∀ z ∈ KakeyaSharp.thinBallAt R o,
+        KakeyaSharp.Moore.mooreDet m (KakeyaSharp.thinQuaternionHessian (KakeyaSharp.thinSlice U p) z) = ρ (p, z))
+  (p : KakeyaSharp.Space 3) (a : Fin 3) (t : ℝ) :
+  HasDerivAt
+    (fun s =>
+      deriv (fun r => KakeyaSharp.thinValueRealAt R o (KakeyaSharp.thinSlice ρ (KakeyaSharp.parameterLine p a r))) s)
+    (-∫ (z : KakeyaSharp.ThinSpace m) in KakeyaSharp.thinBallAt R o,
+        KakeyaSharp.thinParameterDerivative U a (KakeyaSharp.parameterLine p a t) z *
+            (fderiv ℝ ρ (KakeyaSharp.parameterLine p a t, z)) (KakeyaSharp.parameterDirection a) +
+          U (KakeyaSharp.parameterLine p a t, z) *
+            ((fderiv ℝ (fderiv ℝ ρ) (KakeyaSharp.parameterLine p a t, z)) (KakeyaSharp.parameterDirection a))
+              (KakeyaSharp.parameterDirection a))
+    t
+KakeyaSharp.thinValueRealAt_current_laplacian_nonpos {m N : ℕ} {R : ℝ} (hR : 0 < R) (o : KakeyaSharp.ThinSpace m)
+  {U : KakeyaSharp.ThinCurrentSpace m → ℝ} (hU : ContDiff ℝ 3 U)
+  (hadm : ∀ (p : KakeyaSharp.Space 3), KakeyaSharp.ThinAdmissibleAt R o (KakeyaSharp.thinSlice U p))
+  {A : KakeyaSharp.ThinCurrentSpace m → Matrix (Fin (m + 1)) (Fin (m + 1)) (Quaternion ℝ)} (hA : ContDiff ℝ 2 A)
+  (hH : ∀ (y : KakeyaSharp.ThinCurrentSpace m), (A y).IsHermitian) (hd : KakeyaSharp.RealColumnConservation A)
+  (hEq :
+    ∀ (p : KakeyaSharp.Space 3),
+      ∀ z ∈ KakeyaSharp.thinBallAt R o,
+        KakeyaSharp.Moore.mooreDet m (KakeyaSharp.thinQuaternionHessian (KakeyaSharp.thinSlice U p) z) =
+          KakeyaSharp.currentDensity A (p, z))
+  (p : KakeyaSharp.Space 3)
+  (hpos :
+    ∀ z ∈ KakeyaSharp.thinBallAt R o,
+      ∀ (w : Fin m → Quaternion ℝ),
+        w ≠ 0 → 0 < KakeyaSharp.quaternionForm (KakeyaSharp.thinQuaternionHessian (KakeyaSharp.thinSlice U p) z) w)
+  (hzS :
+    ∀ (z : KakeyaSharp.ThinSpace m), ‖z.1 - o.1‖ ^ 2 + ‖z.2 - o.2‖ ^ 2 = R ^ 2 → KakeyaSharp.currentStress A (p, z) = 0)
+  (ρ : KakeyaSharp.ThinSpace m → Fin N → ℝ) (b : KakeyaSharp.ThinSpace m → Fin N → Fin m → Quaternion ℝ)
+  (hρ : ∀ z ∈ KakeyaSharp.thinBallAt R o, ∀ (l : Fin N), 0 ≤ ρ z l)
+  (hmass : ∀ z ∈ KakeyaSharp.thinBallAt R o, KakeyaSharp.currentDensity A (p, z) = ∑ l, ρ z l)
+  (hflux : ∀ z ∈ KakeyaSharp.thinBallAt R o, KakeyaSharp.currentFlux A (p, z) = ∑ l, ρ z l • b z l)
+  (hstress :
+    ∀ z ∈ KakeyaSharp.thinBallAt R o,
+      KakeyaSharp.currentStress A (p, z) = ∑ l, ρ z l • KakeyaSharp.QuaternionAlgebra.outer (b z l)) :
+  ∑ a,
+      deriv
+        (deriv fun t =>
+          KakeyaSharp.thinValueRealAt R o
+            (KakeyaSharp.thinSlice (KakeyaSharp.currentDensity A) (KakeyaSharp.parameterLine p a t)))
+        0 ≤
+    0
+'KakeyaSharp.Calculus.secondDerivative_slice_right' depends on axioms: [propext, Classical.choice, Quot.sound]
+'KakeyaSharp.Calculus.secondDerivative_directionalDerivative' depends on axioms: [propext, Classical.choice, Quot.sound]
+'KakeyaSharp.Calculus.fderiv_directionalHessian_apply' depends on axioms: [propext, Classical.choice, Quot.sound]
+'KakeyaSharp.fderiv_mooreDet_apply' depends on axioms: [propext, Classical.choice, Quot.sound]
+'KakeyaSharp.thinSolution_linearized' depends on axioms: [propext, Classical.choice, Quot.sound]
+'KakeyaSharp.thinParameterDerivative_boundary' depends on axioms: [propext, Classical.choice, Quot.sound]
+'KakeyaSharp.thinSolution_current_law' depends on axioms: [propext, Classical.choice, Quot.sound]
+'KakeyaSharp.thinSolution_current_energy' depends on axioms: [propext, Classical.choice, Quot.sound]
+'KakeyaSharp.hasDerivAt_thinParameterIntegral' depends on axioms: [propext, Classical.choice, Quot.sound]
+'KakeyaSharp.thinSolution_source_linearization' depends on axioms: [propext, Classical.choice, Quot.sound]
+'KakeyaSharp.hasDerivAt_thinValueRealAt_parameter' depends on axioms: [propext, Classical.choice, Quot.sound]
+'KakeyaSharp.hasDerivAt_thinValueRealAt_parameter_deriv' depends on axioms: [propext, Classical.choice, Quot.sound]
+'KakeyaSharp.thinValueRealAt_parameter_curvature' depends on axioms: [propext, Classical.choice, Quot.sound]
+'KakeyaSharp.Green.integral_double_divergence_transfer' depends on axioms: [propext, Classical.choice, Quot.sound]
+'KakeyaSharp.thinCurrent_stress_transfer' depends on axioms: [propext, Classical.choice, Quot.sound]
+'KakeyaSharp.thinValueRealAt_current_laplacian_nonpos' depends on axioms: [propext, Classical.choice, Quot.sound]
+def KakeyaSharp.Green.WeakSuperharmonicOn : Set (KakeyaSharp.Space 3) → (KakeyaSharp.Space 3 → ℝ) → Prop :=
+fun Ω f =>
+  MeasureTheory.LocallyIntegrableOn f Ω MeasureTheory.volume ∧
+    ∀ (φ : KakeyaSharp.Space 3 → ℝ),
+      ContDiff ℝ (↑⊤) φ →
+        HasCompactSupport φ →
+          tsupport φ ⊆ Ω →
+            (∀ (p : KakeyaSharp.Space 3), 0 ≤ φ p) →
+              MeasureTheory.Integrable (fun p => f p * Laplacian.laplacian φ p) MeasureTheory.volume ∧
+                ∫ (p : KakeyaSharp.Space 3), f p * Laplacian.laplacian φ p ≤ 0
+KakeyaSharp.thinValueRealAt_contDiff_two_of_solution {m : ℕ} {R : ℝ} (hR : 0 < R) (o : KakeyaSharp.ThinSpace m)
+  {U ρ : KakeyaSharp.ThinCurrentSpace m → ℝ} (hU : ContDiff ℝ 2 U) (hρ : ContDiff ℝ 2 ρ)
+  (hadm : ∀ (p : KakeyaSharp.Space 3), KakeyaSharp.ThinAdmissibleAt R o (KakeyaSharp.thinSlice U p))
+  (hEq :
+    ∀ (p : KakeyaSharp.Space 3),
+      ∀ z ∈ KakeyaSharp.thinBallAt R o,
+        KakeyaSharp.Moore.mooreDet m (KakeyaSharp.thinQuaternionHessian (KakeyaSharp.thinSlice U p) z) = ρ (p, z)) :
+  ContDiff ℝ 2 fun p => KakeyaSharp.thinValueRealAt R o (KakeyaSharp.thinSlice ρ p)
+KakeyaSharp.thinValueRealAt_current_weakSuperharmonic {m N : ℕ} {R : ℝ} (hR : 0 < R) (o : KakeyaSharp.ThinSpace m)
+  (Ω : Set (KakeyaSharp.Space 3)) {U : KakeyaSharp.ThinCurrentSpace m → ℝ} (hU : ContDiff ℝ 3 U)
+  (hadm : ∀ (p : KakeyaSharp.Space 3), KakeyaSharp.ThinAdmissibleAt R o (KakeyaSharp.thinSlice U p))
+  {A : KakeyaSharp.ThinCurrentSpace m → Matrix (Fin (m + 1)) (Fin (m + 1)) (Quaternion ℝ)} (hA : ContDiff ℝ 2 A)
+  (hH : ∀ (y : KakeyaSharp.ThinCurrentSpace m), (A y).IsHermitian) (hd : KakeyaSharp.RealColumnConservation A)
+  (hEq :
+    ∀ (p : KakeyaSharp.Space 3),
+      ∀ z ∈ KakeyaSharp.thinBallAt R o,
+        KakeyaSharp.Moore.mooreDet m (KakeyaSharp.thinQuaternionHessian (KakeyaSharp.thinSlice U p) z) =
+          KakeyaSharp.currentDensity A (p, z))
+  (hpos :
+    ∀ p ∈ Ω,
+      ∀ z ∈ KakeyaSharp.thinBallAt R o,
+        ∀ (w : Fin m → Quaternion ℝ),
+          w ≠ 0 → 0 < KakeyaSharp.quaternionForm (KakeyaSharp.thinQuaternionHessian (KakeyaSharp.thinSlice U p) z) w)
+  (hzS :
+    ∀ p ∈ Ω,
+      ∀ (z : KakeyaSharp.ThinSpace m),
+        ‖z.1 - o.1‖ ^ 2 + ‖z.2 - o.2‖ ^ 2 = R ^ 2 → KakeyaSharp.currentStress A (p, z) = 0)
+  (ρ : KakeyaSharp.ThinCurrentSpace m → Fin N → ℝ) (b : KakeyaSharp.ThinCurrentSpace m → Fin N → Fin m → Quaternion ℝ)
+  (hρ : ∀ p ∈ Ω, ∀ z ∈ KakeyaSharp.thinBallAt R o, ∀ (l : Fin N), 0 ≤ ρ (p, z) l)
+  (hmass : ∀ p ∈ Ω, ∀ z ∈ KakeyaSharp.thinBallAt R o, KakeyaSharp.currentDensity A (p, z) = ∑ l, ρ (p, z) l)
+  (hflux : ∀ p ∈ Ω, ∀ z ∈ KakeyaSharp.thinBallAt R o, KakeyaSharp.currentFlux A (p, z) = ∑ l, ρ (p, z) l • b (p, z) l)
+  (hstress :
+    ∀ p ∈ Ω,
+      ∀ z ∈ KakeyaSharp.thinBallAt R o,
+        KakeyaSharp.currentStress A (p, z) = ∑ l, ρ (p, z) l • KakeyaSharp.QuaternionAlgebra.outer (b (p, z) l)) :
+  KakeyaSharp.Green.WeakSuperharmonicOn Ω fun p =>
+    KakeyaSharp.thinValueRealAt R o (KakeyaSharp.thinSlice (KakeyaSharp.currentDensity A) p)
+KakeyaSharp.thinValueRealAt_weakSuperharmonic_regularization {m : ℕ} (hm : 1 ≤ m) {R : ℝ} (hR : 0 < R)
+  (o : KakeyaSharp.ThinSpace m) (Ω : Set (KakeyaSharp.Space 3)) (hΩ : IsOpen Ω) {ρ : KakeyaSharp.ThinCurrentSpace m → ℝ}
+  (hρ : Continuous ρ) {ε : ℕ → ℝ} (hε : Filter.Tendsto ε Filter.atTop (nhds 0)) (hεb : ∀ (n : ℕ), ε n ∈ Set.Icc 0 1)
+  (hweak :
+    ∀ (n : ℕ),
+      KakeyaSharp.Green.WeakSuperharmonicOn Ω fun p => KakeyaSharp.thinValueRealAt R o fun z => ρ (p, z) + ε n) :
+  KakeyaSharp.Green.WeakSuperharmonicOn Ω fun p => KakeyaSharp.thinValueRealAt R o (KakeyaSharp.thinSlice ρ p)
+KakeyaSharp.thinValueRealAt_current_weakSuperharmonic_of_regularized_solutions {m N : ℕ} (hm : 1 ≤ m) {R : ℝ}
+  (hR : 0 < R) (o : KakeyaSharp.ThinSpace m) (Ω : Set (KakeyaSharp.Space 3)) (hΩ : IsOpen Ω)
+  {A : KakeyaSharp.ThinCurrentSpace m → Matrix (Fin (m + 1)) (Fin (m + 1)) (Quaternion ℝ)} (hA : ContDiff ℝ 2 A)
+  (hH : ∀ (y : KakeyaSharp.ThinCurrentSpace m), (A y).IsHermitian) (hd : KakeyaSharp.RealColumnConservation A)
+  {ε : ℕ → ℝ} (hε : Filter.Tendsto ε Filter.atTop (nhds 0)) (hεb : ∀ (n : ℕ), ε n ∈ Set.Ioc 0 1)
+  (U : ℕ → KakeyaSharp.ThinCurrentSpace m → ℝ) (hU : ∀ (n : ℕ), ContDiff ℝ 3 (U n))
+  (hadm : ∀ (n : ℕ) (p : KakeyaSharp.Space 3), KakeyaSharp.ThinAdmissibleAt R o (KakeyaSharp.thinSlice (U n) p))
+  (hEq :
+    ∀ (n : ℕ) (p : KakeyaSharp.Space 3),
+      ∀ z ∈ KakeyaSharp.thinBallAt R o,
+        KakeyaSharp.Moore.mooreDet m (KakeyaSharp.thinQuaternionHessian (KakeyaSharp.thinSlice (U n) p) z) =
+          KakeyaSharp.currentDensity A (p, z) + ε n)
+  (hpos :
+    ∀ (n : ℕ),
+      ∀ p ∈ Ω,
+        ∀ z ∈ KakeyaSharp.thinBallAt R o,
+          ∀ (w : Fin m → Quaternion ℝ),
+            w ≠ 0 →
+              0 < KakeyaSharp.quaternionForm (KakeyaSharp.thinQuaternionHessian (KakeyaSharp.thinSlice (U n) p) z) w)
+  (hzS :
+    ∀ p ∈ Ω,
+      ∀ (z : KakeyaSharp.ThinSpace m),
+        ‖z.1 - o.1‖ ^ 2 + ‖z.2 - o.2‖ ^ 2 = R ^ 2 → KakeyaSharp.currentStress A (p, z) = 0)
+  (ρ : KakeyaSharp.ThinCurrentSpace m → Fin N → ℝ) (b : KakeyaSharp.ThinCurrentSpace m → Fin N → Fin m → Quaternion ℝ)
+  (hρ : ∀ p ∈ Ω, ∀ z ∈ KakeyaSharp.thinBallAt R o, ∀ (l : Fin N), 0 ≤ ρ (p, z) l)
+  (hmass : ∀ p ∈ Ω, ∀ z ∈ KakeyaSharp.thinBallAt R o, KakeyaSharp.currentDensity A (p, z) = ∑ l, ρ (p, z) l)
+  (hflux : ∀ p ∈ Ω, ∀ z ∈ KakeyaSharp.thinBallAt R o, KakeyaSharp.currentFlux A (p, z) = ∑ l, ρ (p, z) l • b (p, z) l)
+  (hstress :
+    ∀ p ∈ Ω,
+      ∀ z ∈ KakeyaSharp.thinBallAt R o,
+        KakeyaSharp.currentStress A (p, z) = ∑ l, ρ (p, z) l • KakeyaSharp.QuaternionAlgebra.outer (b (p, z) l)) :
+  KakeyaSharp.Green.WeakSuperharmonicOn Ω fun p =>
+    KakeyaSharp.thinValueRealAt R o (KakeyaSharp.thinSlice (KakeyaSharp.currentDensity A) p)
+'KakeyaSharp.continuous_setIntegral_compact' depends on axioms: [propext, Classical.choice, Quot.sound]
+'KakeyaSharp.hasFDerivAt_setIntegral_compact' depends on axioms: [propext, Classical.choice, Quot.sound]
+'KakeyaSharp.contDiff_two_setIntegral_compact' depends on axioms: [propext, Classical.choice, Quot.sound]
+'KakeyaSharp.Green.laplacian_space_eq_sum' depends on axioms: [propext, Classical.choice, Quot.sound]
+'KakeyaSharp.Green.secondDeriv_line' depends on axioms: [propext, Classical.choice, Quot.sound]
+'KakeyaSharp.Green.integral_laplacian_test' depends on axioms: [propext, Classical.choice, Quot.sound]
+'KakeyaSharp.Green.weakSuperharmonicOn_of_laplacian_nonpos' depends on axioms: [propext, Classical.choice, Quot.sound]
+'KakeyaSharp.thinValueRealAt_contDiff_two_of_solution' depends on axioms: [propext, Classical.choice, Quot.sound]
+'KakeyaSharp.thinValueRealAt_current_weakSuperharmonic' depends on axioms: [propext, Classical.choice, Quot.sound]
+'KakeyaSharp.Green.weakSuperharmonicOn_of_tendsto' depends on axioms: [propext, Classical.choice, Quot.sound]
+'KakeyaSharp.thinValueRealAt_weakSuperharmonic_regularization' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'KakeyaSharp.regularizedCurrent_isHermitian' depends on axioms: [propext, Classical.choice, Quot.sound]
+'KakeyaSharp.currentDensity_regularized' depends on axioms: [propext, Classical.choice, Quot.sound]
+'KakeyaSharp.currentFlux_regularized' depends on axioms: [propext, Classical.choice, Quot.sound]
+'KakeyaSharp.currentStress_regularized' depends on axioms: [propext, Classical.choice, Quot.sound]
+'KakeyaSharp.regularizedCurrent_conservation' depends on axioms: [propext, Classical.choice, Quot.sound]
+'KakeyaSharp.regularizedCurrent_mass' depends on axioms: [propext, Classical.choice, Quot.sound]
+'KakeyaSharp.currentDensity_regularized_pos' depends on axioms: [propext, Classical.choice, Quot.sound]
+'KakeyaSharp.regularizedCurrent_flux' depends on axioms: [propext, Classical.choice, Quot.sound]
+'KakeyaSharp.regularizedCurrent_stress' depends on axioms: [propext, Classical.choice, Quot.sound]
+'KakeyaSharp.thinValueRealAt_current_weakSuperharmonic_of_regularized_solutions' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+KakeyaSharp.thinValueRealAt_current_weakSuperharmonic_of_local_smoothness {m N : ℕ} {R : ℝ} (hR : 0 < R)
+  (o : KakeyaSharp.ThinSpace m) (Ω : Set (KakeyaSharp.Space 3)) (hΩ : IsOpen Ω) {U : KakeyaSharp.ThinCurrentSpace m → ℝ}
+  (hU : ∀ p ∈ Ω, ∀ z ∈ KakeyaSharp.thinClosedBallAt R o, ContDiffAt ℝ 3 U (p, z))
+  (hadm : ∀ p ∈ Ω, KakeyaSharp.ThinAdmissibleAt R o (KakeyaSharp.thinSlice U p))
+  {A : KakeyaSharp.ThinCurrentSpace m → Matrix (Fin (m + 1)) (Fin (m + 1)) (Quaternion ℝ)}
+  (hA : ∀ p ∈ Ω, ∀ z ∈ KakeyaSharp.thinClosedBallAt R o, ContDiffAt ℝ 2 A (p, z))
+  (hH : ∀ y ∈ Ω ×ˢ KakeyaSharp.thinBallAt R o, (A y).IsHermitian)
+  (hd : KakeyaSharp.RealColumnConservationOn (Ω ×ˢ KakeyaSharp.thinBallAt R o) A)
+  (hEq :
+    ∀ p ∈ Ω,
+      ∀ z ∈ KakeyaSharp.thinBallAt R o,
+        KakeyaSharp.Moore.mooreDet m (KakeyaSharp.thinQuaternionHessian (KakeyaSharp.thinSlice U p) z) =
+          KakeyaSharp.currentDensity A (p, z))
+  (hpos :
+    ∀ p ∈ Ω,
+      ∀ z ∈ KakeyaSharp.thinBallAt R o,
+        ∀ (w : Fin m → Quaternion ℝ),
+          w ≠ 0 → 0 < KakeyaSharp.quaternionForm (KakeyaSharp.thinQuaternionHessian (KakeyaSharp.thinSlice U p) z) w)
+  (hzS :
+    ∀ p ∈ Ω,
+      ∀ (z : KakeyaSharp.ThinSpace m),
+        ‖z.1 - o.1‖ ^ 2 + ‖z.2 - o.2‖ ^ 2 = R ^ 2 → KakeyaSharp.currentStress A (p, z) = 0)
+  (ρ : KakeyaSharp.ThinCurrentSpace m → Fin N → ℝ) (b : KakeyaSharp.ThinCurrentSpace m → Fin N → Fin m → Quaternion ℝ)
+  (hρ : ∀ p ∈ Ω, ∀ z ∈ KakeyaSharp.thinBallAt R o, ∀ (l : Fin N), 0 ≤ ρ (p, z) l)
+  (hmass : ∀ p ∈ Ω, ∀ z ∈ KakeyaSharp.thinBallAt R o, KakeyaSharp.currentDensity A (p, z) = ∑ l, ρ (p, z) l)
+  (hflux : ∀ p ∈ Ω, ∀ z ∈ KakeyaSharp.thinBallAt R o, KakeyaSharp.currentFlux A (p, z) = ∑ l, ρ (p, z) l • b (p, z) l)
+  (hstress :
+    ∀ p ∈ Ω,
+      ∀ z ∈ KakeyaSharp.thinBallAt R o,
+        KakeyaSharp.currentStress A (p, z) = ∑ l, ρ (p, z) l • KakeyaSharp.QuaternionAlgebra.outer (b (p, z) l)) :
+  KakeyaSharp.Green.WeakSuperharmonicOn Ω fun p =>
+    KakeyaSharp.thinValueRealAt R o (KakeyaSharp.thinSlice (KakeyaSharp.currentDensity A) p)
+KakeyaSharp.thinValueRealAt_current_weakSuperharmonic_of_local_regularized_solutions {m N : ℕ} (hm : 1 ≤ m) {R : ℝ}
+  (hR : 0 < R) (o : KakeyaSharp.ThinSpace m) (Ω : Set (KakeyaSharp.Space 3)) (hΩ : IsOpen Ω)
+  {A : KakeyaSharp.ThinCurrentSpace m → Matrix (Fin (m + 1)) (Fin (m + 1)) (Quaternion ℝ)}
+  (hA : ∀ p ∈ Ω, ∀ z ∈ KakeyaSharp.thinClosedBallAt R o, ContDiffAt ℝ 2 A (p, z))
+  (hH : ∀ y ∈ Ω ×ˢ KakeyaSharp.thinBallAt R o, (A y).IsHermitian)
+  (hd : KakeyaSharp.RealColumnConservationOn (Ω ×ˢ KakeyaSharp.thinBallAt R o) A) {ε : ℕ → ℝ}
+  (hε : Filter.Tendsto ε Filter.atTop (nhds 0)) (hεb : ∀ (n : ℕ), ε n ∈ Set.Ioc 0 1)
+  (U : ℕ → KakeyaSharp.ThinCurrentSpace m → ℝ)
+  (hU : ∀ (n : ℕ), ∀ p ∈ Ω, ∀ z ∈ KakeyaSharp.thinClosedBallAt R o, ContDiffAt ℝ 3 (U n) (p, z))
+  (hadm : ∀ (n : ℕ), ∀ p ∈ Ω, KakeyaSharp.ThinAdmissibleAt R o (KakeyaSharp.thinSlice (U n) p))
+  (hEq :
+    ∀ (n : ℕ),
+      ∀ p ∈ Ω,
+        ∀ z ∈ KakeyaSharp.thinBallAt R o,
+          KakeyaSharp.Moore.mooreDet m (KakeyaSharp.thinQuaternionHessian (KakeyaSharp.thinSlice (U n) p) z) =
+            KakeyaSharp.currentDensity A (p, z) + ε n)
+  (hpos :
+    ∀ (n : ℕ),
+      ∀ p ∈ Ω,
+        ∀ z ∈ KakeyaSharp.thinBallAt R o,
+          ∀ (w : Fin m → Quaternion ℝ),
+            w ≠ 0 →
+              0 < KakeyaSharp.quaternionForm (KakeyaSharp.thinQuaternionHessian (KakeyaSharp.thinSlice (U n) p) z) w)
+  (hzS :
+    ∀ p ∈ Ω,
+      ∀ (z : KakeyaSharp.ThinSpace m),
+        ‖z.1 - o.1‖ ^ 2 + ‖z.2 - o.2‖ ^ 2 = R ^ 2 → KakeyaSharp.currentStress A (p, z) = 0)
+  (ρ : KakeyaSharp.ThinCurrentSpace m → Fin N → ℝ) (b : KakeyaSharp.ThinCurrentSpace m → Fin N → Fin m → Quaternion ℝ)
+  (hρ : ∀ p ∈ Ω, ∀ z ∈ KakeyaSharp.thinBallAt R o, ∀ (l : Fin N), 0 ≤ ρ (p, z) l)
+  (hmass : ∀ p ∈ Ω, ∀ z ∈ KakeyaSharp.thinBallAt R o, KakeyaSharp.currentDensity A (p, z) = ∑ l, ρ (p, z) l)
+  (hflux : ∀ p ∈ Ω, ∀ z ∈ KakeyaSharp.thinBallAt R o, KakeyaSharp.currentFlux A (p, z) = ∑ l, ρ (p, z) l • b (p, z) l)
+  (hstress :
+    ∀ p ∈ Ω,
+      ∀ z ∈ KakeyaSharp.thinBallAt R o,
+        KakeyaSharp.currentStress A (p, z) = ∑ l, ρ (p, z) l • KakeyaSharp.QuaternionAlgebra.outer (b (p, z) l)) :
+  KakeyaSharp.Green.WeakSuperharmonicOn Ω fun p =>
+    KakeyaSharp.thinValueRealAt R o (KakeyaSharp.thinSlice (KakeyaSharp.currentDensity A) p)
+'KakeyaSharp.exists_global_contDiff_extension' depends on axioms: [propext, Classical.choice, Quot.sound]
+'KakeyaSharp.exists_global_contDiff_extension_near_slice' depends on axioms: [propext, Classical.choice, Quot.sound]
+'KakeyaSharp.Current.double_conservation_on' depends on axioms: [propext, Classical.choice, Quot.sound]
+'KakeyaSharp.current_mass_conservation_on' depends on axioms: [propext, Classical.choice, Quot.sound]
+'KakeyaSharp.current_momentum_conservation_on' depends on axioms: [propext, Classical.choice, Quot.sound]
+'KakeyaSharp.current_double_conservation_on' depends on axioms: [propext, Classical.choice, Quot.sound]
+'KakeyaSharp.thinSolution_linearized_on' depends on axioms: [propext, Classical.choice, Quot.sound]
+'KakeyaSharp.thinParameterDerivative_boundary_on' depends on axioms: [propext, Classical.choice, Quot.sound]
+'KakeyaSharp.thinSolution_source_linearization_on' depends on axioms: [propext, Classical.choice, Quot.sound]
+'KakeyaSharp.hasDerivAt_thinValueRealAt_parameter_on' depends on axioms: [propext, Classical.choice, Quot.sound]
+'KakeyaSharp.hasDerivAt_thinValueRealAt_parameter_deriv_on' depends on axioms: [propext, Classical.choice, Quot.sound]
+'KakeyaSharp.thinValueRealAt_parameter_curvature_on' depends on axioms: [propext, Classical.choice, Quot.sound]
+'KakeyaSharp.thinSolution_current_law_on' depends on axioms: [propext, Classical.choice, Quot.sound]
+'KakeyaSharp.thinSolution_current_energy_on' depends on axioms: [propext, Classical.choice, Quot.sound]
+'KakeyaSharp.thinCurrent_stress_transfer_on' depends on axioms: [propext, Classical.choice, Quot.sound]
+'KakeyaSharp.thinValueRealAt_current_laplacian_nonpos_on' depends on axioms: [propext, Classical.choice, Quot.sound]
+'KakeyaSharp.Green.secondDeriv_line_of_contDiffAt' depends on axioms: [propext, Classical.choice, Quot.sound]
+'KakeyaSharp.Green.weakSuperharmonicOn_of_contDiffOn_laplacian_nonpos' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'KakeyaSharp.thinValueRealAt_contDiffOn_two_of_solution' depends on axioms: [propext, Classical.choice, Quot.sound]
+'KakeyaSharp.thinValueRealAt_current_weakSuperharmonic_on' depends on axioms: [propext, Classical.choice, Quot.sound]
+'KakeyaSharp.regularizedCurrent_conservation_on' depends on axioms: [propext, Classical.choice, Quot.sound]
+'KakeyaSharp.thinValueRealAt_current_weakSuperharmonic_of_regularized_solutions_on' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'KakeyaSharp.ThinAdmissibleAt.congr_nhds' depends on axioms: [propext, Classical.choice, Quot.sound]
+'KakeyaSharp.thinValueRealAt_congr_source' depends on axioms: [propext, Classical.choice, Quot.sound]
+'KakeyaSharp.RealColumnConservationOn.congr_nhds' depends on axioms: [propext, Classical.choice, Quot.sound]
+'KakeyaSharp.thinValueRealAt_current_local_regular' depends on axioms: [propext, Classical.choice, Quot.sound]
+'KakeyaSharp.thinValueRealAt_current_weakSuperharmonic_of_local_smoothness' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'KakeyaSharp.Green.weakSuperharmonicOn_of_tendsto_on' depends on axioms: [propext, Classical.choice, Quot.sound]
+'KakeyaSharp.thinValueRealAt_weakSuperharmonic_regularization_on' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'KakeyaSharp.thinValueRealAt_current_weakSuperharmonic_of_local_regularized_solutions' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'KakeyaSharp.Packet.center_equations' depends on axioms: [propext, Classical.choice, Quot.sound]
+'KakeyaSharp.Packet.scalarEnergy_gap' depends on axioms: [propext, Classical.choice, Quot.sound]
+'KakeyaSharp.Packet.scalarEnergy_eq_phase_iff' depends on axioms: [propext, Classical.choice, Quot.sound]
+'KakeyaSharp.Packet.scalarPhase_completed_square' depends on axioms: [propext, Classical.choice, Quot.sound]
+'KakeyaSharp.Packet.energy_gap' depends on axioms: [propext, Classical.choice, Quot.sound]
+'KakeyaSharp.Packet.phase_unique_minimizer' depends on axioms: [propext, Classical.choice, Quot.sound]
+'KakeyaSharp.Packet.phase_completed_square' depends on axioms: [propext, Classical.choice, Quot.sound]
+'KakeyaSharp.Packet.phase_controls_deviations' depends on axioms: [propext, Classical.choice, Quot.sound]
+'KakeyaSharp.Packet.column_phase_tangency' depends on axioms: [propext, Classical.choice, Quot.sound]
+'KakeyaSharp.Packet.column_sandwich' depends on axioms: [propext, Classical.choice, Quot.sound]
+'KakeyaSharp.Packet.column_commutator' depends on axioms: [propext, Classical.choice, Quot.sound]
+'KakeyaSharp.Packet.column_mixed_product' depends on axioms: [propext, Classical.choice, Quot.sound]
+'KakeyaSharp.Packet.column_phaseGradient_tangency' depends on axioms: [propext, Classical.choice, Quot.sound]
+'KakeyaSharp.Packet.hasDerivAt_center_curve' depends on axioms: [propext, Classical.choice, Quot.sound]
+'KakeyaSharp.Packet.hasDerivAt_residual_curve' depends on axioms: [propext, Classical.choice, Quot.sound]
+'KakeyaSharp.Packet.center_x' depends on axioms: [propext, Classical.choice, Quot.sound]
+'KakeyaSharp.Packet.residual_x' depends on axioms: [propext, Classical.choice, Quot.sound]
+'KakeyaSharp.Packet.center_alpha' depends on axioms: [propext, Classical.choice, Quot.sound]
+'KakeyaSharp.Packet.residual_alpha' depends on axioms: [propext, Classical.choice, Quot.sound]
+'KakeyaSharp.Packet.center_transport' depends on axioms: [propext, Classical.choice, Quot.sound]
+'KakeyaSharp.Packet.residual_transport' depends on axioms: [propext, Classical.choice, Quot.sound]
+'KakeyaSharp.Packet.hasDerivAt_energy_at_center' depends on axioms: [propext, Classical.choice, Quot.sound]
+'KakeyaSharp.Packet.hasDerivAt_scalarPhase_curve' depends on axioms: [propext, Classical.choice, Quot.sound]
+'KakeyaSharp.Packet.prefactor_pos' depends on axioms: [propext, Classical.choice, Quot.sound]
+'KakeyaSharp.Packet.hasDerivAt_prefactor_curve' depends on axioms: [propext, Classical.choice, Quot.sound]
+'KakeyaSharp.Packet.prefactor_tau' depends on axioms: [propext, Classical.choice, Quot.sound]
+'KakeyaSharp.Packet.prefactor_s' depends on axioms: [propext, Classical.choice, Quot.sound]
+'KakeyaSharp.Packet.columnContraction_outer' depends on axioms: [propext, Classical.choice, Quot.sound]
+'KakeyaSharp.Packet.strongDivergence_smul' depends on axioms: [propext, Classical.choice, Quot.sound]
+'KakeyaSharp.Packet.strongDivergence_cutoff_rankOne' depends on axioms: [propext, Classical.choice, Quot.sound]
+'KakeyaSharp.Packet.realColumnConservationOn_cutoff_rankOne' depends on axioms: [propext, Classical.choice, Quot.sound]
+'KakeyaSharp.Packet.physicalFrame_unit' depends on axioms: [propext, Classical.choice, Quot.sound]
+'KakeyaSharp.Packet.physicalPhase_nonneg' depends on axioms: [propext, Classical.choice, Quot.sound]
+'KakeyaSharp.Packet.rawPacket_isHermitian' depends on axioms: [propext, Classical.choice, Quot.sound]
+'KakeyaSharp.Packet.rawPacket_density' depends on axioms: [propext, Classical.choice, Quot.sound]
+'KakeyaSharp.Packet.rawPacket_flux' depends on axioms: [propext, Classical.choice, Quot.sound]
+'KakeyaSharp.Packet.rawPacket_stress' depends on axioms: [propext, Classical.choice, Quot.sound]
+'KakeyaSharp.Packet.rawPacket_density_nonneg' depends on axioms: [propext, Classical.choice, Quot.sound]
+'KakeyaSharp.Packet.physicalPhase_contDiffAt' depends on axioms: [propext, Classical.choice, Quot.sound]
+'KakeyaSharp.Packet.physicalColumn_contDiffAt' depends on axioms: [propext, Classical.choice, Quot.sound]
+'KakeyaSharp.Packet.rawPacket_contDiffAt' depends on axioms: [propext, Classical.choice, Quot.sound]
+KakeyaSharp.Packet.rawPacket_contDiffAt {m : ℕ} {n : WithTop ℕ∞} {r : ℝ} (hr : 0 < r) (h : ℝ) (a v : Fin m → ℝ)
+  {χ : ℝ → ℝ} (hχ : ContDiff ℝ n χ) {y : KakeyaSharp.ThinCurrentSpace m} (hy : 0 < KakeyaSharp.Packet.radius y) :
+  ContDiffAt ℝ n (KakeyaSharp.Packet.rawPacket r h a v χ) y
+KakeyaSharp.Packet.realColumnConservationOn_cutoff_rankOne {m : ℕ} {D : Set (KakeyaSharp.ThinCurrentSpace m)}
+  {A : KakeyaSharp.ThinCurrentSpace m → Matrix (Fin (m + 1)) (Fin (m + 1)) KakeyaSharp.QuaternionAlgebra.Q}
+  {φ f : KakeyaSharp.ThinCurrentSpace m → ℝ} {χ : ℝ → ℝ}
+  (B : KakeyaSharp.ThinCurrentSpace m → Fin (m + 1) → KakeyaSharp.QuaternionAlgebra.Q)
+  (hA : ∀ y ∈ D, DifferentiableAt ℝ A y) (hφ : ∀ y ∈ D, DifferentiableAt ℝ φ y)
+  (hχ : ∀ y ∈ D, DifferentiableAt ℝ χ (φ y))
+  (hd :
+    ∀ y ∈ D,
+      ∀ (j : Fin (m + 1)),
+        KakeyaSharp.QuaternionAlgebra.strongDivergence KakeyaSharp.QuaternionAlgebra.threeSlots
+            (fun p => (fderiv ℝ A y) (KakeyaSharp.currentDirection p)) j =
+          0)
+  (hAB : ∀ y ∈ D, A y = f y • KakeyaSharp.QuaternionAlgebra.outer (B y))
+  (ht :
+    ∀ y ∈ D,
+      ∑ j,
+          star (B y j) *
+            KakeyaSharp.QuaternionAlgebra.gradientMap KakeyaSharp.QuaternionAlgebra.threeSlots
+              (fun p => (fderiv ℝ φ y) (KakeyaSharp.currentDirection p)) j =
+        0) :
+  KakeyaSharp.RealColumnConservationOn D fun y => χ (φ y) • A y
+'KakeyaSharp.Packet.hasDerivAt_radius_line' depends on axioms: [propext, Classical.choice, Quot.sound]
+'KakeyaSharp.Packet.hasDerivAt_ratioRe_line' depends on axioms: [propext, Classical.choice, Quot.sound]
+'KakeyaSharp.Packet.hasDerivAt_ratioIm_line' depends on axioms: [propext, Classical.choice, Quot.sound]
+'KakeyaSharp.Packet.hasDerivAt_scalarPhysicalPhase_line' depends on axioms: [propext, Classical.choice, Quot.sound]
+'KakeyaSharp.Packet.physicalPhase_fderiv' depends on axioms: [propext, Classical.choice, Quot.sound]
+'KakeyaSharp.Packet.physicalPhase_gradient' depends on axioms: [propext, Classical.choice, Quot.sound]
+'KakeyaSharp.Packet.physicalColumn_tangency' depends on axioms: [propext, Classical.choice, Quot.sound]
+'KakeyaSharp.Packet.hasDerivAt_centers_line' depends on axioms: [propext, Classical.choice, Quot.sound]
+'KakeyaSharp.Packet.hasDerivAt_residuals_line' depends on axioms: [propext, Classical.choice, Quot.sound]
+'KakeyaSharp.Packet.hasDerivAt_physicalColumn_line' depends on axioms: [propext, Classical.choice, Quot.sound]
+'KakeyaSharp.Packet.physicalColumn_fderiv' depends on axioms: [propext, Classical.choice, Quot.sound]
+'KakeyaSharp.Packet.columnRate_eq_entryJet' depends on axioms: [propext, Classical.choice, Quot.sound]
+'KakeyaSharp.Packet.spaceJet_divergence' depends on axioms: [propext, Classical.choice, Quot.sound]
+'KakeyaSharp.Packet.entryJet_acceleration' depends on axioms: [propext, Classical.choice, Quot.sound]
+'KakeyaSharp.Packet.physicalColumn_parameter_fderiv' depends on axioms: [propext, Classical.choice, Quot.sound]
+'KakeyaSharp.Packet.physicalColumn_spatial_fderiv' depends on axioms: [propext, Classical.choice, Quot.sound]
+'KakeyaSharp.Packet.physicalColumn_spatial_divergence' depends on axioms: [propext, Classical.choice, Quot.sound]
+'KakeyaSharp.Packet.physicalColumn_acceleration' depends on axioms: [propext, Classical.choice, Quot.sound]
+'KakeyaSharp.Packet.fderiv_smul_outer' depends on axioms: [propext, Classical.choice, Quot.sound]
+'KakeyaSharp.Packet.strongDivergence_smul_outer' depends on axioms: [propext, Classical.choice, Quot.sound]
+'KakeyaSharp.Packet.baseWeight_fderiv' depends on axioms: [propext, Classical.choice, Quot.sound]
+'KakeyaSharp.Packet.baseWeight_parameter_divergence' depends on axioms: [propext, Classical.choice, Quot.sound]
+'KakeyaSharp.Packet.physicalColumn_weighted_divergence' depends on axioms: [propext, Classical.choice, Quot.sound]
+'KakeyaSharp.Packet.uncutPacket_strongDivergence' depends on axioms: [propext, Classical.choice, Quot.sound]
+'KakeyaSharp.Packet.rawPacket_strongDivergence' depends on axioms: [propext, Classical.choice, Quot.sound]
+'KakeyaSharp.Packet.rawPacket_realColumnConservationOn' depends on axioms: [propext, Classical.choice, Quot.sound]
+'KakeyaSharp.Packet.phase_deviation_bounds' depends on axioms: [propext, Classical.choice, Quot.sound]
+'KakeyaSharp.Packet.phase_controls_x_distance' depends on axioms: [propext, Classical.choice, Quot.sound]
+'KakeyaSharp.Packet.phase_controls_ratio_distance' depends on axioms: [propext, Classical.choice, Quot.sound]
+'KakeyaSharp.Packet.ratio_reconstruction' depends on axioms: [propext, Classical.choice, Quot.sound]
+'KakeyaSharp.Packet.physical_transverse_distance' depends on axioms: [propext, Classical.choice, Quot.sound]
+'KakeyaSharp.Packet.physicalPhase_controls_distance' depends on axioms: [propext, Classical.choice, Quot.sound]
+'KakeyaSharp.Packet.rawPacket_ne_zero_phase_le' depends on axioms: [propext, Classical.choice, Quot.sound]
+'KakeyaSharp.Packet.physicalPhase_controls_spatial_norm' depends on axioms: [propext, Classical.choice, Quot.sound]
+'KakeyaSharp.Packet.rawPacket_eq_zero_of_supportBound' depends on axioms: [propext, Classical.choice, Quot.sound]
+'KakeyaSharp.Packet.supportBound_uniform' depends on axioms: [propext, Classical.choice, Quot.sound]
+'KakeyaSharp.Packet.packetFamily_contDiffAt' depends on axioms: [propext, Classical.choice, Quot.sound]
+'KakeyaSharp.Packet.packetFamily_isHermitian' depends on axioms: [propext, Classical.choice, Quot.sound]
+'KakeyaSharp.Packet.packetFamily_strongDivergence' depends on axioms: [propext, Classical.choice, Quot.sound]
+'KakeyaSharp.Packet.packetFamily_realColumnConservationOn' depends on axioms: [propext, Classical.choice, Quot.sound]
+'KakeyaSharp.Packet.packetFamily_density' depends on axioms: [propext, Classical.choice, Quot.sound]
+'KakeyaSharp.Packet.packetFamily_flux' depends on axioms: [propext, Classical.choice, Quot.sound]
+'KakeyaSharp.Packet.packetFamily_stress' depends on axioms: [propext, Classical.choice, Quot.sound]
+'KakeyaSharp.Packet.familyWeights_nonneg' depends on axioms: [propext, Classical.choice, Quot.sound]
+'KakeyaSharp.Packet.packetFamily_eq_zero_of_supportBound' depends on axioms: [propext, Classical.choice, Quot.sound]
+'KakeyaSharp.Packet.packetFamily_weakSuperharmonic_of_regularized_solutions' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+KakeyaSharp.Packet.rawPacket_strongDivergence {m : ℕ} {r : ℝ} (hr : 0 < r) (h : ℝ) (a v : Fin m → ℝ) {χ : ℝ → ℝ}
+  (hχ : ContDiff ℝ 1 χ) {y : KakeyaSharp.ThinCurrentSpace m} (hy : 0 < KakeyaSharp.Packet.radius y) (j : Fin (m + 1)) :
+  KakeyaSharp.QuaternionAlgebra.strongDivergence KakeyaSharp.QuaternionAlgebra.threeSlots
+      (fun p => (fderiv ℝ (KakeyaSharp.Packet.rawPacket r h a v χ) y) (KakeyaSharp.currentDirection p)) j =
+    0
+KakeyaSharp.Packet.packetFamily_weakSuperharmonic_of_regularized_solutions {m N : ℕ} (hm : 1 ≤ m) {r h R M : ℝ}
+  (hr : 0 < r) (hh : 0 < h) (hR : 0 < R) (a v : Fin N → Fin m → ℝ) {weights : Fin N → ℝ}
+  (hweights : ∀ (l : Fin N), 0 ≤ weights l) {χ : ℝ → ℝ} (hχ : ContDiff ℝ 2 χ) (hχpos : ∀ (u : ℝ), 0 ≤ χ u)
+  (hχsupp : ∀ (u : ℝ), M < u → χ u = 0) (Ω : Set (KakeyaSharp.Space 3)) (hΩ : IsOpen Ω)
+  (hY : ∀ p ∈ Ω, 0 < KakeyaSharp.Packet.radius (p, 0))
+  (hbound : ∀ p ∈ Ω, ∀ (l : Fin N), KakeyaSharp.Packet.supportBound r (h * M) (a l) (v l) p < R ^ 2) {ε : ℕ → ℝ}
+  (hε : Filter.Tendsto ε Filter.atTop (nhds 0)) (hεb : ∀ (n : ℕ), ε n ∈ Set.Ioc 0 1)
+  (U : ℕ → KakeyaSharp.ThinCurrentSpace m → ℝ)
+  (hU : ∀ (n : ℕ), ∀ p ∈ Ω, ∀ z ∈ KakeyaSharp.thinClosedBallAt R 0, ContDiffAt ℝ 3 (U n) (p, z))
+  (hadm : ∀ (n : ℕ), ∀ p ∈ Ω, KakeyaSharp.ThinAdmissibleAt R 0 (KakeyaSharp.thinSlice (U n) p))
+  (hEq :
+    ∀ (n : ℕ),
+      ∀ p ∈ Ω,
+        ∀ z ∈ KakeyaSharp.thinBallAt R 0,
+          KakeyaSharp.Moore.mooreDet m (KakeyaSharp.thinQuaternionHessian (KakeyaSharp.thinSlice (U n) p) z) =
+            KakeyaSharp.currentDensity (KakeyaSharp.Packet.packetFamily r h a v weights χ) (p, z) + ε n)
+  (hpos :
+    ∀ (n : ℕ),
+      ∀ p ∈ Ω,
+        ∀ z ∈ KakeyaSharp.thinBallAt R 0,
+          ∀ (w : Fin m → Quaternion ℝ),
+            w ≠ 0 →
+              0 < KakeyaSharp.quaternionForm (KakeyaSharp.thinQuaternionHessian (KakeyaSharp.thinSlice (U n) p) z) w) :
+  KakeyaSharp.Green.WeakSuperharmonicOn Ω fun p =>
+    KakeyaSharp.thinValueRealAt R 0
+      (KakeyaSharp.thinSlice (KakeyaSharp.currentDensity (KakeyaSharp.Packet.packetFamily r h a v weights χ)) p)
+KakeyaSharp.Dirichlet.exists_thinDirichletSolution {m : ℕ} (hm : 1 ≤ m) {R : ℝ} (hR : 0 < R)
+  (o : KakeyaSharp.ThinSpace m) {ρ : KakeyaSharp.ThinSpace m → ℝ} (hρ : ContDiff ℝ (↑⊤) ρ)
+  (hρpos : ∀ z ∈ KakeyaSharp.thinClosedBallAt R o, 0 < ρ z) :
+  Nonempty (KakeyaSharp.Dirichlet.ThinDirichletSolution R o ρ)
+KakeyaSharp.Dirichlet.exists_thinVariational_maximizer {m : ℕ} (hm : 1 ≤ m) {R : ℝ} (hR : 0 < R)
+  (o : KakeyaSharp.ThinSpace m) {ρ : KakeyaSharp.ThinSpace m → ℝ} (hρ : ContDiff ℝ (↑⊤) ρ)
+  (hρpos : ∀ z ∈ KakeyaSharp.thinClosedBallAt R o, 0 < ρ z) :
+  ∃ u,
+    KakeyaSharp.ThinAdmissibleAt R o u ∧
+      KakeyaSharp.thinVariationalValueAt R o ρ = ↑(KakeyaSharp.thinFunctionalAt R o ρ u) ∧
+        KakeyaSharp.thinValueRealAt R o ρ =
+          ↑m / (↑m + 1) * ∫ (z : KakeyaSharp.ThinSpace m) in KakeyaSharp.thinBallAt R o, -u z * ρ z
+KakeyaSharp.Dirichlet.exists_thinDirichlet_family {Z : Type} [NormedAddCommGroup Z] [NormedSpace ℝ Z]
+  [FiniteDimensional ℝ Z] {m : ℕ} {R : ℝ} (hR : 0 < R) {ρ : Z × KakeyaSharp.ThinSpace (m + 1) → ℝ}
+  (hs : ∀ (p : Z), ContDiff ℝ ↑⊤ fun z => ρ (p, z))
+  (hp : ∀ (p : Z), ∀ z ∈ KakeyaSharp.thinClosedBallAt R 0, 0 < ρ (p, z)) {Ω : Set Z} (hΩ : IsOpen Ω)
+  (hρ : ContDiffOn ℝ (↑⊤) ρ (Ω ×ˢ Set.univ)) :
+  ∃ S,
+    ∀ p ∈ Ω,
+      ∀ z ∈ KakeyaSharp.thinClosedBallAt R 0,
+        ∃ O,
+          IsOpen O ∧
+            (p, z) ∈ O ∧
+              ∃ g,
+                ContDiffOn ℝ (↑⊤) g O ∧ ∀ q ∈ O, q.1 ∈ Ω → q.2 ∈ KakeyaSharp.thinClosedBallAt R 0 → g q = (S q.1).u q.2
+KakeyaSharp.Packet.packetFamily_regularized_solution_family {m N : ℕ} (hm : 1 ≤ m) {r R ε : ℝ} (hr : 0 < r) (hR : 0 < R)
+  (hε : 0 < ε) (h : ℝ) (a v : Fin N → Fin m → ℝ) {weights : Fin N → ℝ} (hw : ∀ (l : Fin N), 0 ≤ weights l) {χ : ℝ → ℝ}
+  (hχ : ContDiff ℝ (↑⊤) χ) (hχpos : ∀ (t : ℝ), 0 ≤ χ t) (Ω : Set (KakeyaSharp.Space 3)) (hΩ : IsOpen Ω)
+  (hY : ∀ p ∈ Ω, 0 < KakeyaSharp.Packet.radius (p, 0)) :
+  ∃ U,
+    (∀ p ∈ Ω,
+        ContDiff ℝ 4 (KakeyaSharp.thinSlice U p) ∧
+          KakeyaSharp.ThinAdmissibleAt R 0 (KakeyaSharp.thinSlice U p) ∧
+            (∀ z ∈ KakeyaSharp.thinClosedBallAt R 0,
+                KakeyaSharp.Moore.mooreDet m (KakeyaSharp.thinQuaternionHessian (KakeyaSharp.thinSlice U p) z) =
+                  KakeyaSharp.currentDensity (KakeyaSharp.Packet.packetFamily r h a v weights χ) (p, z) + ε) ∧
+              ∀ z ∈ KakeyaSharp.thinClosedBallAt R 0,
+                ∀ (w : Fin m → Quaternion ℝ),
+                  w ≠ 0 →
+                    0 <
+                      KakeyaSharp.quaternionForm (KakeyaSharp.thinQuaternionHessian (KakeyaSharp.thinSlice U p) z) w) ∧
+      ∀ p ∈ Ω,
+        ∀ z ∈ KakeyaSharp.thinClosedBallAt R 0,
+          ∃ O,
+            IsOpen O ∧
+              (p, z) ∈ O ∧
+                ∃ g, ContDiffOn ℝ (↑⊤) g O ∧ ∀ q ∈ O, q.1 ∈ Ω → q.2 ∈ KakeyaSharp.thinClosedBallAt R 0 → g q = U q
+KakeyaSharp.Packet.packetFamily_weakSuperharmonic {m N : ℕ} (hm : 1 ≤ m) {r h R M : ℝ} (hr : 0 < r) (hh : 0 < h)
+  (hR : 0 < R) (a v : Fin N → Fin m → ℝ) {weights : Fin N → ℝ} (hw : ∀ (l : Fin N), 0 ≤ weights l) {χ : ℝ → ℝ}
+  (hχ : ContDiff ℝ (↑⊤) χ) (hχpos : ∀ (t : ℝ), 0 ≤ χ t) (hχsupp : ∀ (t : ℝ), M < t → χ t = 0)
+  (Ω : Set (KakeyaSharp.Space 3)) (hΩ : IsOpen Ω) (hY : ∀ p ∈ Ω, 0 < KakeyaSharp.Packet.radius (p, 0))
+  (hbound : ∀ p ∈ Ω, ∀ (l : Fin N), KakeyaSharp.Packet.supportBound r (h * M) (a l) (v l) p < R ^ 2) :
+  KakeyaSharp.Green.WeakSuperharmonicOn Ω fun p =>
+    KakeyaSharp.thinValueRealAt R 0
+      (KakeyaSharp.thinSlice (KakeyaSharp.currentDensity (KakeyaSharp.Packet.packetFamily r h a v weights χ)) p)
+'OAI.Analysis.PDE.Dirichlet.exists_periodic_moore_dirichlet_C4' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'OAI.Analysis.Fourier.WavePackets.exists_smooth_periodic_dirichlet_family' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'KakeyaSharp.Dirichlet.hessian_lift' depends on axioms: [propext, Classical.choice, Quot.sound]
+'KakeyaSharp.Dirichlet.defining_hessian_pos' depends on axioms: [propext, Classical.choice, Quot.sound]
+'KakeyaSharp.Dirichlet.defining_regular' depends on axioms: [propext, Classical.choice, Quot.sound]
+'KakeyaSharp.Dirichlet.exists_periodic_ball_C4' depends on axioms: [propext, Classical.choice, Quot.sound]
+'KakeyaSharp.Dirichlet.solution_fourth_invariant' depends on axioms: [propext, Classical.choice, Quot.sound]
+'KakeyaSharp.Dirichlet.invariant_hessian_descends' depends on axioms: [propext, Classical.choice, Quot.sound]
+'KakeyaSharp.Dirichlet.exists_thin_ball_C4' depends on axioms: [propext, Classical.choice, Quot.sound]
+'KakeyaSharp.Dirichlet.exists_thinDirichletSolution' depends on axioms: [propext, Classical.choice, Quot.sound]
+'KakeyaSharp.Dirichlet.ThinDirichletSolution.maximizes' depends on axioms: [propext, Classical.choice, Quot.sound]
+'KakeyaSharp.Dirichlet.ThinDirichletSolution.value_eq' depends on axioms: [propext, Classical.choice, Quot.sound]
+'KakeyaSharp.Dirichlet.exists_thinVariational_maximizer' depends on axioms: [propext, Classical.choice, Quot.sound]
+'KakeyaSharp.Dirichlet.descendBallSolution' depends on axioms: [propext, Classical.choice, Quot.sound]
+'KakeyaSharp.Dirichlet.ballData_locallyTrivial' depends on axioms: [propext, Classical.choice, Quot.sound]
+'KakeyaSharp.Dirichlet.exists_thinDirichlet_family' depends on axioms: [propext, Classical.choice, Quot.sound]
+'KakeyaSharp.Dirichlet.thinBallAt_zero_closure' depends on axioms: [propext, Classical.choice, Quot.sound]
+'KakeyaSharp.Dirichlet.thinHessian_eqOn_closed_of_eqOn' depends on axioms: [propext, Classical.choice, Quot.sound]
+'KakeyaSharp.Dirichlet.exists_local_joint_representative' depends on axioms: [propext, Classical.choice, Quot.sound]
+'KakeyaSharp.Packet.packetFamily_density_slice_smooth' depends on axioms: [propext, Classical.choice, Quot.sound]
+'KakeyaSharp.Packet.packetFamily_density_nonneg' depends on axioms: [propext, Classical.choice, Quot.sound]
+'KakeyaSharp.Packet.packetFamily_regularized_solution' depends on axioms: [propext, Classical.choice, Quot.sound]
+'KakeyaSharp.Packet.packetFamily_regularized_solution_family' depends on axioms: [propext, Classical.choice, Quot.sound]
+'KakeyaSharp.Packet.packetFamily_regularized_value_local_regular' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'KakeyaSharp.Packet.packetFamily_weakSuperharmonic' depends on axioms: [propext, Classical.choice, Quot.sound]
+KakeyaSharp.Packet.integral_packetWeight {m : ℕ} {r h : ℝ} (hr : 0 < r) (hh : 0 < h) (a v : Fin m → ℝ)
+  {p : KakeyaSharp.Space 3} (hp : 0 < KakeyaSharp.Packet.radius (p, 0)) {χ : ℝ → ℝ} (hχ : Continuous χ) :
+  ∫ (z : KakeyaSharp.ThinSpace m), KakeyaSharp.Packet.packetWeight r h a v χ (p, z) =
+    (√h ^ 3 / √r) ^ m * KakeyaSharp.Packet.cutoffMass m χ
+KakeyaSharp.Packet.packetWeight_integrable {m : ℕ} {r h : ℝ} (hr : 0 < r) (hh : 0 < h) (a v : Fin m → ℝ)
+  {p : KakeyaSharp.Space 3} (hp : 0 < KakeyaSharp.Packet.radius (p, 0)) {χ : ℝ → ℝ} (hχ : Continuous χ) {M : ℝ}
+  (hχsupp : ∀ (t : ℝ), M < t → χ t = 0) :
+  MeasureTheory.Integrable (fun z => KakeyaSharp.Packet.packetWeight r h a v χ (p, z)) MeasureTheory.volume
+KakeyaSharp.Packet.integral_normalizedPacketFamily_density {m N : ℕ} {r h : ℝ} (hr : 0 < r) (hh : 0 < h)
+  (a v : Fin N → Fin m → ℝ) (weights : Fin N → ℝ) {p : KakeyaSharp.Space 3} (hp : 0 < KakeyaSharp.Packet.radius (p, 0))
+  {χ : ℝ → ℝ} (hχ : Continuous χ) (hχpos : ∀ (t : ℝ), 0 ≤ χ t) (hχzero : 0 < χ 0) {M : ℝ}
+  (hχsupp : ∀ (t : ℝ), M < t → χ t = 0) :
+  ∫ (z : KakeyaSharp.ThinSpace m),
+      KakeyaSharp.currentDensity (KakeyaSharp.Packet.normalizedPacketFamily r h a v weights χ) (p, z) =
+    ∑ l, weights l
+KakeyaSharp.Packet.kakeyaPacketFamily_mass {m N : ℕ} {δ : ℝ} (hδ : 0 < δ) (b v : Fin N → Fin m → ℝ)
+  (weights : Fin N → ℝ) {p : KakeyaSharp.Space 3} (hp : 0 < KakeyaSharp.Packet.radius (p, 0)) :
+  ∫ (z : KakeyaSharp.ThinSpace m),
+      KakeyaSharp.currentDensity (KakeyaSharp.Packet.kakeyaPacketFamily δ b v weights) (p, z) =
+    δ ^ m * ∑ l, weights l
+KakeyaSharp.Packet.kakeyaPacketFamily_weakSuperharmonic {m N : ℕ} (hm : 1 ≤ m) {δ A V : ℝ} (hδ : 0 < δ) (hδ1 : δ ≤ 1)
+  (hA : 0 ≤ A) (b v : Fin N → Fin m → ℝ) {weights : Fin N → ℝ} (hw : ∀ (l : Fin N), 0 ≤ weights l)
+  (hb : ∀ (l : Fin N), ∑ j, b l j ^ 2 ≤ A) (hv : ∀ (l : Fin N), ∑ j, v l j ^ 2 ≤ V) :
+  KakeyaSharp.Green.WeakSuperharmonicOn (KakeyaSharp.Packet.packetDomain m) fun p =>
+    KakeyaSharp.thinValueRealAt (KakeyaSharp.Packet.packetOuterRadius A V) 0
+      (KakeyaSharp.thinSlice (KakeyaSharp.currentDensity (KakeyaSharp.Packet.kakeyaPacketFamily δ b v weights)) p)
+KakeyaSharp.Packet.kakeyaPacketFamily_value_continuous {m N : ℕ} (hm : 1 ≤ m) {δ R : ℝ} (hδ : 0 < δ) (hR : 0 < R)
+  (b v : Fin N → Fin m → ℝ) (weights : Fin N → ℝ) :
+  ContinuousOn
+    (fun p =>
+      KakeyaSharp.thinValueRealAt R 0
+        (KakeyaSharp.thinSlice (KakeyaSharp.currentDensity (KakeyaSharp.Packet.kakeyaPacketFamily δ b v weights)) p))
+    (KakeyaSharp.Packet.packetDomain m)
+'KakeyaSharp.Packet.unpack_measurePreserving' depends on axioms: [propext, Classical.choice, Quot.sound]
+'KakeyaSharp.Packet.integral_unpack' depends on axioms: [propext, Classical.choice, Quot.sound]
+'KakeyaSharp.Packet.det_shapeBlock' depends on axioms: [propext, Classical.choice, Quot.sound]
+'KakeyaSharp.Packet.det_shapeMatrix' depends on axioms: [propext, Classical.choice, Quot.sound]
+'KakeyaSharp.Packet.scalarPhase_affine' depends on axioms: [propext, Classical.choice, Quot.sound]
+'KakeyaSharp.Packet.physicalPhase_packetAffine' depends on axioms: [propext, Classical.choice, Quot.sound]
+'KakeyaSharp.Packet.prefactor_jacobian' depends on axioms: [propext, Classical.choice, Quot.sound]
+'KakeyaSharp.Packet.packetAffine_map_volume' depends on axioms: [propext, Classical.choice, Quot.sound]
+'KakeyaSharp.Packet.integral_packetAffine' depends on axioms: [propext, Classical.choice, Quot.sound]
+'KakeyaSharp.Packet.integrable_packetAffine_iff' depends on axioms: [propext, Classical.choice, Quot.sound]
+'KakeyaSharp.Packet.cutoff_packetSquare_integrable' depends on axioms: [propext, Classical.choice, Quot.sound]
+'KakeyaSharp.Packet.cutoffMass_pos' depends on axioms: [propext, Classical.choice, Quot.sound]
+'KakeyaSharp.Packet.integral_packetWeight' depends on axioms: [propext, Classical.choice, Quot.sound]
+'KakeyaSharp.Packet.packetWeight_integrable' depends on axioms: [propext, Classical.choice, Quot.sound]
+'KakeyaSharp.Packet.packetMass_pos' depends on axioms: [propext, Classical.choice, Quot.sound]
+'KakeyaSharp.Packet.packetMass_kakeya_scale' depends on axioms: [propext, Classical.choice, Quot.sound]
+'KakeyaSharp.Packet.integral_normalizedPacket_density' depends on axioms: [propext, Classical.choice, Quot.sound]
+'KakeyaSharp.Packet.normalizedPacketFamily_density_integrable' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'KakeyaSharp.Packet.integral_normalizedPacketFamily_density' depends on axioms: [propext, Classical.choice, Quot.sound]
+'KakeyaSharp.Packet.normalizedPacketFamily_weakSuperharmonic' depends on axioms: [propext, Classical.choice, Quot.sound]
+'KakeyaSharp.Packet.standardCutoff_smooth' depends on axioms: [propext, Classical.choice, Quot.sound]
+'KakeyaSharp.Packet.standardCutoff_mass_pos' depends on axioms: [propext, Classical.choice, Quot.sound]
+'KakeyaSharp.Packet.unitPacketFamily_mass' depends on axioms: [propext, Classical.choice, Quot.sound]
+'KakeyaSharp.Packet.unitPacketFamily_weakSuperharmonic' depends on axioms: [propext, Classical.choice, Quot.sound]
+'KakeyaSharp.Packet.kakeyaPacketFamily_mass' depends on axioms: [propext, Classical.choice, Quot.sound]
+'KakeyaSharp.Packet.kakeyaPacketFamily_density_integrable' depends on axioms: [propext, Classical.choice, Quot.sound]
+'KakeyaSharp.Packet.packetDomain_isOpen' depends on axioms: [propext, Classical.choice, Quot.sound]
+'KakeyaSharp.Packet.supportBound_fixed_radius' depends on axioms: [propext, Classical.choice, Quot.sound]
+'KakeyaSharp.Packet.kakeyaPacketFamily_eq_zero_outside' depends on axioms: [propext, Classical.choice, Quot.sound]
+'KakeyaSharp.Packet.kakeyaPacketFamily_weakSuperharmonic' depends on axioms: [propext, Classical.choice, Quot.sound]
+'KakeyaSharp.thinValueRealAt_continuousOn_parameter' depends on axioms: [propext, Classical.choice, Quot.sound]
+'KakeyaSharp.Packet.kakeyaPacketFamily_value_continuous' depends on axioms: [propext, Classical.choice, Quot.sound]
+'KakeyaSharp.Packet.kakeyaPacketFamily_value_nonneg' depends on axioms: [propext, Classical.choice, Quot.sound]
+KakeyaSharp.ThinAdmissibleAt.trace_bound {m : ℕ} (hm : 1 ≤ m) {R H : ℝ} (hR : 0 < R) (hH : 0 ≤ H)
+  {o : KakeyaSharp.ThinSpace m} {u φ : KakeyaSharp.ThinSpace m → ℝ} (hu : KakeyaSharp.ThinAdmissibleAt R o u)
+  (hφ : ∀ z ∈ KakeyaSharp.thinClosedBallAt R o, ContDiffAt ℝ 3 φ z)
+  (hbound : ∀ z ∈ KakeyaSharp.thinClosedBallAt R o, -H ≤ φ z ∧ φ z ≤ 0)
+  (hpφ :
+    ∀ z ∈ KakeyaSharp.thinBallAt R o,
+      ∀ (a : Fin m → Quaternion ℝ), 0 ≤ KakeyaSharp.quaternionForm (KakeyaSharp.thinQuaternionHessian φ z) a) :
+  ∫ (z : KakeyaSharp.ThinSpace m) in KakeyaSharp.thinBallAt R o,
+      (-u z) ^ (m + 1) * KakeyaSharp.Moore.mooreDet m (KakeyaSharp.thinQuaternionHessian φ z) ≤
+    KakeyaSharp.thinTraceConstant m * H ^ m * KakeyaSharp.determinantEnergyAt R o u
+KakeyaSharp.thinValueRealAt_weighted_bound {m : ℕ} (hm : 1 ≤ m) {R H : ℝ} (hR : 0 < R) (hH : 0 ≤ H)
+  (o : KakeyaSharp.ThinSpace m) {φ ρ b : KakeyaSharp.ThinSpace m → ℝ}
+  (hφ : ∀ z ∈ KakeyaSharp.thinClosedBallAt R o, ContDiffAt ℝ 3 φ z)
+  (hbound : ∀ z ∈ KakeyaSharp.thinClosedBallAt R o, -H ≤ φ z ∧ φ z ≤ 0)
+  (hpφ :
+    ∀ z ∈ KakeyaSharp.thinBallAt R o,
+      ∀ (a : Fin m → Quaternion ℝ), 0 ≤ KakeyaSharp.quaternionForm (KakeyaSharp.thinQuaternionHessian φ z) a)
+  (hρ : ContinuousOn ρ (KakeyaSharp.thinClosedBallAt R o)) (hb : ∀ z ∈ KakeyaSharp.thinBallAt R o, 0 ≤ b z)
+  (hdom :
+    ∀ z ∈ KakeyaSharp.thinBallAt R o, ρ z ≤ b z * KakeyaSharp.Moore.mooreDet m (KakeyaSharp.thinQuaternionHessian φ z))
+  (hi :
+    MeasureTheory.IntegrableOn
+      (fun z => b z ^ ((↑m + 1) / ↑m) * KakeyaSharp.Moore.mooreDet m (KakeyaSharp.thinQuaternionHessian φ z))
+      (KakeyaSharp.thinBallAt R o) MeasureTheory.volume) :
+  KakeyaSharp.thinValueRealAt R o ρ ≤
+    KakeyaSharp.thinWeightedConstant m * H *
+      ∫ (z : KakeyaSharp.ThinSpace m) in KakeyaSharp.thinBallAt R o,
+        b z ^ ((↑m + 1) / ↑m) * KakeyaSharp.Moore.mooreDet m (KakeyaSharp.thinQuaternionHessian φ z)
+KakeyaSharp.Packet.inputBarrier_determinant {m : ℕ} (hm : 1 ≤ m) {h R a b : ℝ} (hh : 0 < h) (hab : a ^ 2 + b ^ 2 = 1)
+  (z : KakeyaSharp.ThinSpace m) :
+  KakeyaSharp.Moore.mooreDet m (KakeyaSharp.thinQuaternionHessian (KakeyaSharp.Packet.inputBarrier h R a b) z) =
+    8 ^ m * h / (h + KakeyaSharp.Packet.inputQuadratic a b z) ^ (m + 1)
+KakeyaSharp.Packet.inputBarrier_value_le_log {m : ℕ} (hm : 1 ≤ m) {δ R a b : ℝ} (hδ : 0 < δ) (hδ1 : δ ≤ 1) (hR : 0 < R)
+  (hab : a ^ 2 + b ^ 2 = 1) {μ w : KakeyaSharp.ThinSpace m → ℝ} (hμ : ContinuousOn μ (KakeyaSharp.thinClosedBallAt R 0))
+  (hw : ∀ z ∈ KakeyaSharp.thinBallAt R 0, 0 ≤ w z)
+  (hdom :
+    ∀ z ∈ KakeyaSharp.thinBallAt R 0,
+      μ z ≤ w z * (8 ^ m * δ ^ 4 / (δ ^ 4 + KakeyaSharp.Packet.inputQuadratic a b z) ^ (m + 1)))
+  (hi :
+    MeasureTheory.IntegrableOn
+      (fun z => w z ^ ((↑m + 1) / ↑m) * (8 ^ m * δ ^ 4 / (δ ^ 4 + KakeyaSharp.Packet.inputQuadratic a b z) ^ (m + 1)))
+      (KakeyaSharp.thinBallAt R 0) MeasureTheory.volume) :
+  KakeyaSharp.thinValueRealAt R 0 μ ≤
+    KakeyaSharp.thinWeightedConstant m * KakeyaSharp.Packet.inputLogConstant R * Real.log (2 / δ) *
+      ∫ (z : KakeyaSharp.ThinSpace m) in KakeyaSharp.thinBallAt R 0,
+        w z ^ ((↑m + 1) / ↑m) * (8 ^ m * δ ^ 4 / (δ ^ 4 + KakeyaSharp.Packet.inputQuadratic a b z) ^ (m + 1))
+'KakeyaSharp.hasDerivAt_weighted_thinDet' depends on axioms: [propext, Classical.choice, Quot.sound]
+'KakeyaSharp.thinCofactor_composition_green' depends on axioms: [propext, Classical.choice, Quot.sound]
+'KakeyaSharp.thinCofactor_composition_nonpos' depends on axioms: [propext, Classical.choice, Quot.sound]
+'KakeyaSharp.thinDet_smooth_comparison' depends on axioms: [propext, Classical.choice, Quot.sound]
+'KakeyaSharp.thinTraceConstant_pos' depends on axioms: [propext, Classical.choice, Quot.sound]
+'KakeyaSharp.thinTrace_bound_global' depends on axioms: [propext, Classical.choice, Quot.sound]
+'KakeyaSharp.ThinAdmissibleAt.trace_bound_of_pos' depends on axioms: [propext, Classical.choice, Quot.sound]
+'KakeyaSharp.ThinAdmissibleAt.trace_bound' depends on axioms: [propext, Classical.choice, Quot.sound]
+'KakeyaSharp.lintegral_moment_le_of_scaled_tails' depends on axioms: [propext, Classical.choice, Quot.sound]
+'KakeyaSharp.withDensity_ofReal_apply_eq_integral_indicator' depends on axioms: [propext, Classical.choice, Quot.sound]
+'KakeyaSharp.lintegral_withDensity_ofReal_eq_integral' depends on axioms: [propext, Classical.choice, Quot.sound]
+'KakeyaSharp.thinQuaternionHessian_log' depends on axioms: [propext, Classical.choice, Quot.sound]
+'KakeyaSharp.thinLogBarrier_smooth' depends on axioms: [propext, Classical.choice, Quot.sound]
+'KakeyaSharp.thinLogBarrier_bounds' depends on axioms: [propext, Classical.choice, Quot.sound]
+'KakeyaSharp.thinLogBarrier_hessian' depends on axioms: [propext, Classical.choice, Quot.sound]
+'KakeyaSharp.thinLogBarrier_hessian_lower' depends on axioms: [propext, Classical.choice, Quot.sound]
+'KakeyaSharp.thinLogBarrier_determinant' depends on axioms: [propext, Classical.choice, Quot.sound]
+'KakeyaSharp.thinQuaternionHessian_sub_const' depends on axioms: [propext, Classical.choice, Quot.sound]
+'KakeyaSharp.thinDet_nonneg' depends on axioms: [propext, Classical.choice, Quot.sound]
+'KakeyaSharp.thinDet_sublevel_bound' depends on axioms: [propext, Classical.choice, Quot.sound]
+'KakeyaSharp.thinWeightedConstant_pos' depends on axioms: [propext, Classical.choice, Quot.sound]
+'KakeyaSharp.thin_scaled_young' depends on axioms: [propext, Classical.choice, Quot.sound]
+'KakeyaSharp.ThinAdmissibleAt.weighted_functional_bound_of_pos' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'KakeyaSharp.ThinAdmissibleAt.weighted_functional_bound' depends on axioms: [propext, Classical.choice, Quot.sound]
+'KakeyaSharp.thinValueRealAt_weighted_bound' depends on axioms: [propext, Classical.choice, Quot.sound]
+'KakeyaSharp.Packet.inputReal_direction' depends on axioms: [propext, Classical.choice, Quot.sound]
+'KakeyaSharp.Packet.inputImag_direction' depends on axioms: [propext, Classical.choice, Quot.sound]
+'KakeyaSharp.Packet.inputQuadratic_apply' depends on axioms: [propext, Classical.choice, Quot.sound]
+'KakeyaSharp.Packet.inputQuadratic_nonneg' depends on axioms: [propext, Classical.choice, Quot.sound]
+'KakeyaSharp.Packet.inputQuadratic_smooth' depends on axioms: [propext, Classical.choice, Quot.sound]
+'KakeyaSharp.Packet.inputQuadratic_hessian' depends on axioms: [propext, Classical.choice, Quot.sound]
+'KakeyaSharp.Packet.inputQuadratic_gradient' depends on axioms: [propext, Classical.choice, Quot.sound]
+'KakeyaSharp.Packet.inputQuadratic_gradient_size' depends on axioms: [propext, Classical.choice, Quot.sound]
+'KakeyaSharp.Packet.inputQuadratic_le' depends on axioms: [propext, Classical.choice, Quot.sound]
+'KakeyaSharp.Packet.inputBarrier_smooth' depends on axioms: [propext, Classical.choice, Quot.sound]
+'KakeyaSharp.Packet.inputBarrier_bounds' depends on axioms: [propext, Classical.choice, Quot.sound]
+'KakeyaSharp.Packet.inputBarrier_positive' depends on axioms: [propext, Classical.choice, Quot.sound]
+'KakeyaSharp.Packet.inputBarrier_determinant' depends on axioms: [propext, Classical.choice, Quot.sound]
+'KakeyaSharp.Packet.inputQuadratic_eq_ratios' depends on axioms: [propext, Classical.choice, Quot.sound]
+'KakeyaSharp.Packet.inputBarrier_value_bound' depends on axioms: [propext, Classical.choice, Quot.sound]
+'KakeyaSharp.Packet.inputLogConstant_pos' depends on axioms: [propext, Classical.choice, Quot.sound]
+'KakeyaSharp.Packet.inputBarrier_height_le_log' depends on axioms: [propext, Classical.choice, Quot.sound]
+'KakeyaSharp.Packet.inputBarrier_value_le_log' depends on axioms: [propext, Classical.choice, Quot.sound]
+'KakeyaSharp.Packet.normalMass_pos' depends on axioms: [propext, Classical.choice, Quot.sound]
+'KakeyaSharp.Packet.inputIntegralConstant_pos' depends on axioms: [propext, Classical.choice, Quot.sound]
+'KakeyaSharp.Packet.inputEstimateConstant_pos' depends on axioms: [propext, Classical.choice, Quot.sound]
+KakeyaSharp.Packet.kakeyaPacketFamily_input_estimate {m N : ℕ} (hm : 1 ≤ m) {δ A R : ℝ} (hδ : 0 < δ) (hδ1 : δ ≤ 1)
+  (hA : 0 ≤ A) (hR : 0 < R) (a v : Fin N → Fin m → ℝ) {weights : Fin N → ℝ} (hw : ∀ (l : Fin N), 0 ≤ weights l)
+  (ha : ∀ (l : Fin N), ∑ j, a l j ^ 2 ≤ A)
+  (hsep : ∀ (i j : Fin N), i ≠ j → δ ≤ dist (WithLp.toLp 2 (v i)) (WithLp.toLp 2 (v j))) {p : KakeyaSharp.Space 3}
+  (ht : p.ofLp 0 = 0) (hp : p.ofLp 1 ^ 2 + p.ofLp 2 ^ 2 = 1) :
+  KakeyaSharp.thinValueRealAt R 0
+      (KakeyaSharp.thinSlice (KakeyaSharp.currentDensity (KakeyaSharp.Packet.kakeyaPacketFamily δ a v weights)) p) ≤
+    KakeyaSharp.Packet.inputEstimateConstant m A R * Real.log (2 / δ) * δ ^ m *
+      ∑ l, weights l ^ KakeyaSharp.Packet.inputExponent m
+KakeyaSharp.Propagation.exists_singleLog_cylinder_constant :
+  ∃ C,
+    0 < C ∧
+      ∀ (ρ : ℝ),
+        0 < ρ →
+          ρ < 1 →
+            ∀ (f : OAI.Analysis.PDE.Concentration.CylinderSpace → ℝ),
+              ContDiffOn ℝ (↑⊤) f (KakeyaSharp.Propagation.cylinderDomain ρ) →
+                (∀ x ∈ KakeyaSharp.Propagation.cylinderDomain ρ, 0 ≤ f x) →
+                  (∀ x ∈ KakeyaSharp.Propagation.cylinderDomain ρ, Laplacian.laplacian f x ≤ 0) →
+                    ∀ (θ : ℝ),
+                      ∫ (t : ℝ) in 1..2,
+                          ∫ (φ : ℝ) in 0..2 * Real.pi, f (OAI.Analysis.PDE.Concentration.cylinderPoint t ρ φ) ≤
+                        C * (1 + |Real.log ρ|) * f (OAI.Analysis.PDE.Concentration.cylinderPoint 0 1 θ)
+'KakeyaSharp.Packet.radius_eq_one_of_unit' depends on axioms: [propext, Classical.choice, Quot.sound]
+'KakeyaSharp.Packet.phase_controls_input_normal' depends on axioms: [propext, Classical.choice, Quot.sound]
+'KakeyaSharp.Packet.input_phase_support' depends on axioms: [propext, Classical.choice, Quot.sound]
+'KakeyaSharp.Packet.input_cutoff_support' depends on axioms: [propext, Classical.choice, Quot.sound]
+'KakeyaSharp.Packet.prefactor_input_le_one' depends on axioms: [propext, Classical.choice, Quot.sound]
+'KakeyaSharp.Packet.standardCutoff_le_one' depends on axioms: [propext, Classical.choice, Quot.sound]
+'KakeyaSharp.Packet.directionWeight_nonneg' depends on axioms: [propext, Classical.choice, Quot.sound]
+'KakeyaSharp.Packet.inputDensityConstant_pos' depends on axioms: [propext, Classical.choice, Quot.sound]
+'KakeyaSharp.Packet.kakeya_scale_weight' depends on axioms: [propext, Classical.choice, Quot.sound]
+'KakeyaSharp.Packet.kakeyaPacketFamily_density_formula' depends on axioms: [propext, Classical.choice, Quot.sound]
+'KakeyaSharp.Packet.input_kernel_dominates_constant' depends on axioms: [propext, Classical.choice, Quot.sound]
+'KakeyaSharp.Packet.kakeyaPacketFamily_input_domination' depends on axioms: [propext, Classical.choice, Quot.sound]
+'KakeyaSharp.Packet.inputCoordinateMatrix_det' depends on axioms: [propext, Classical.choice, Quot.sound]
+'KakeyaSharp.Packet.inputCoordinates_unpack' depends on axioms: [propext, Classical.choice, Quot.sound]
+'KakeyaSharp.Packet.inputCoordinates_measurePreserving' depends on axioms: [propext, Classical.choice, Quot.sound]
+'KakeyaSharp.Packet.inputAlpha_inputCoordinates' depends on axioms: [propext, Classical.choice, Quot.sound]
+'KakeyaSharp.Packet.inputQuadratic_inputCoordinates' depends on axioms: [propext, Classical.choice, Quot.sound]
+'KakeyaSharp.Packet.norm_sq_le_inputQuadratic_inputCoordinates' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'KakeyaSharp.Packet.normalMass_nonneg' depends on axioms: [propext, Classical.choice, Quot.sound]
+'KakeyaSharp.Packet.normalKernel_nonneg' depends on axioms: [propext, Classical.choice, Quot.sound]
+'KakeyaSharp.Packet.normalKernel_continuous' depends on axioms: [propext, Classical.choice, Quot.sound]
+'KakeyaSharp.Packet.normalKernel_ball_integral_le' depends on axioms: [propext, Classical.choice, Quot.sound]
+'KakeyaSharp.Packet.normalKernel_integrable' depends on axioms: [propext, Classical.choice, Quot.sound]
+'KakeyaSharp.Packet.normalKernel_integral_le' depends on axioms: [propext, Classical.choice, Quot.sound]
+'KakeyaSharp.Packet.inputKernel_nonneg' depends on axioms: [propext, Classical.choice, Quot.sound]
+'KakeyaSharp.Packet.inputKernel_continuous' depends on axioms: [propext, Classical.choice, Quot.sound]
+'KakeyaSharp.Packet.inputAlpha_continuous' depends on axioms: [propext, Classical.choice, Quot.sound]
+'KakeyaSharp.Packet.inputKernel_inputCoordinates_le' depends on axioms: [propext, Classical.choice, Quot.sound]
+'KakeyaSharp.Packet.input_weighted_integrable' depends on axioms: [propext, Classical.choice, Quot.sound]
+'KakeyaSharp.Packet.input_weighted_integral_le' depends on axioms: [propext, Classical.choice, Quot.sound]
+'KakeyaSharp.Packet.directionMass_pos' depends on axioms: [propext, Classical.choice, Quot.sound]
+'KakeyaSharp.Packet.direction_ball_volume' depends on axioms: [propext, Classical.choice, Quot.sound]
+'KakeyaSharp.Packet.direction_closedBall_volume' depends on axioms: [propext, Classical.choice, Quot.sound]
+'KakeyaSharp.Packet.direction_cap_card_le' depends on axioms: [propext, Classical.choice, Quot.sound]
+'KakeyaSharp.Packet.directionWeight_measurable' depends on axioms: [propext, Classical.choice, Quot.sound]
+'KakeyaSharp.Packet.directionMajorant_nonneg' depends on axioms: [propext, Classical.choice, Quot.sound]
+'KakeyaSharp.Packet.directionWeight_rpow_le' depends on axioms: [propext, Classical.choice, Quot.sound]
+'KakeyaSharp.Packet.directionMajorant_integrable' depends on axioms: [propext, Classical.choice, Quot.sound]
+'KakeyaSharp.Packet.directionMajorant_integral' depends on axioms: [propext, Classical.choice, Quot.sound]
+'KakeyaSharp.Packet.directionIntegralConstant_pos' depends on axioms: [propext, Classical.choice, Quot.sound]
+'KakeyaSharp.Packet.directionWeight_rpow_integrable' depends on axioms: [propext, Classical.choice, Quot.sound]
+'KakeyaSharp.Packet.directionWeight_rpow_integral_le' depends on axioms: [propext, Classical.choice, Quot.sound]
+'KakeyaSharp.Packet.inputExponent_ge_one' depends on axioms: [propext, Classical.choice, Quot.sound]
+'KakeyaSharp.Packet.inputIntegralConstant_nonneg' depends on axioms: [propext, Classical.choice, Quot.sound]
+'KakeyaSharp.Packet.inputEstimateConstant_nonneg' depends on axioms: [propext, Classical.choice, Quot.sound]
+'KakeyaSharp.Packet.input_direction_weight_integrable' depends on axioms: [propext, Classical.choice, Quot.sound]
+'KakeyaSharp.Packet.input_direction_weight_measurable' depends on axioms: [propext, Classical.choice, Quot.sound]
+'KakeyaSharp.Packet.kakeya_input_weighted_integrable' depends on axioms: [propext, Classical.choice, Quot.sound]
+'KakeyaSharp.Packet.kakeya_input_weighted_integral_le' depends on axioms: [propext, Classical.choice, Quot.sound]
+'KakeyaSharp.Packet.kakeyaPacketFamily_input_estimate' depends on axioms: [propext, Classical.choice, Quot.sound]
+'KakeyaSharp.Propagation.outerBox_isOpen' depends on axioms: [propext, Classical.choice, Quot.sound]
+'KakeyaSharp.Propagation.shell_subset_outerBox' depends on axioms: [propext, Classical.choice, Quot.sound]
+'KakeyaSharp.Propagation.outerBox_ball_subset' depends on axioms: [propext, Classical.choice, Quot.sound]
+'KakeyaSharp.Propagation.exists_outerBox_mixing_constant' depends on axioms: [propext, Classical.choice, Quot.sound]
+'KakeyaSharp.Propagation.exists_outerBox_trace_constant' depends on axioms: [propext, Classical.choice, Quot.sound]
+'KakeyaSharp.Propagation.cylinderDomain_isOpen' depends on axioms: [propext, Classical.choice, Quot.sound]
+'KakeyaSharp.Propagation.outerBox_subset_cylinderDomain' depends on axioms: [propext, Classical.choice, Quot.sound]
+'KakeyaSharp.Propagation.cylinderShell_subset_domain' depends on axioms: [propext, Classical.choice, Quot.sound]
+'KakeyaSharp.Propagation.exists_singleLog_cylinder_constant' depends on axioms: [propext, Classical.choice, Quot.sound]
+KakeyaSharp.Propagation.exists_weak_singleLog_cylinder_constant :
+  ∃ C,
+    0 < C ∧
+      ∀ (ρ : ℝ),
+        0 < ρ →
+          ρ < 1 →
+            ∀ (Ω : Set (KakeyaSharp.Space 3)),
+              IsOpen Ω →
+                KakeyaSharp.Propagation.cylinderCompact ρ ⊆ Ω →
+                  ∀ (f : KakeyaSharp.Space 3 → ℝ),
+                    ContinuousOn f Ω →
+                      KakeyaSharp.Green.WeakSuperharmonicOn Ω f →
+                        (∀ x ∈ Ω, 0 ≤ f x) →
+                          ∀ (θ : ℝ),
+                            ∫ (t : ℝ) in 1..2,
+                                ∫ (φ : ℝ) in 0..2 * Real.pi, f (OAI.Analysis.PDE.Concentration.cylinderPoint t ρ φ) ≤
+                              C * (1 + |Real.log ρ|) * f (OAI.Analysis.PDE.Concentration.cylinderPoint 0 1 θ)
+KakeyaSharp.Packet.exists_kakeyaPacketFamily_output_upper_constant {m : ℕ} (hm : 1 ≤ m) {A : ℝ} (hA : 0 ≤ A) (V : ℝ) :
+  ∃ C,
+    0 < C ∧
+      ∀ (N : ℕ) (δ : ℝ),
+        0 < δ →
+          δ < 1 →
+            ∀ (a v : Fin N → Fin m → ℝ) (weights : Fin N → ℝ),
+              (∀ (l : Fin N), 0 ≤ weights l) →
+                (∀ (l : Fin N), ∑ j, a l j ^ 2 ≤ A) →
+                  (∀ (l : Fin N), ∑ j, v l j ^ 2 ≤ V) →
+                    (∀ (i j : Fin N), i ≠ j → δ ≤ dist (WithLp.toLp 2 (v i)) (WithLp.toLp 2 (v j))) →
+                      ∫ (t : ℝ) in 1..2,
+                          ∫ (θ : ℝ) in 0..2 * Real.pi,
+                            KakeyaSharp.thinValueRealAt (KakeyaSharp.Packet.propagationOuterRadius A V) 0
+                              (KakeyaSharp.thinSlice
+                                (KakeyaSharp.currentDensity (KakeyaSharp.Packet.kakeyaPacketFamily δ a v weights))
+                                (OAI.Analysis.PDE.Concentration.cylinderPoint t (δ ^ 4) θ)) ≤
+                        C * Real.log (2 / δ) ^ 2 * δ ^ m * ∑ l, weights l ^ KakeyaSharp.Packet.inputExponent m
+KakeyaSharp.thinValueRealAt_localization {m N : ℕ} (hm : 1 ≤ m) {R : ℝ} (hR : 0 < R) (o : KakeyaSharp.ThinSpace m)
+  (r : Fin N → ℝ) (c : Fin N → KakeyaSharp.ThinSpace m) (hr : ∀ (j : Fin N), 0 < r j)
+  (hsub : ∀ (j : Fin N), KakeyaSharp.thinClosedBallAt (r j) (c j) ⊆ KakeyaSharp.thinBallAt R o)
+  (hdis : Pairwise fun i j => Disjoint (KakeyaSharp.thinBallAt (r i) (c i)) (KakeyaSharp.thinBallAt (r j) (c j)))
+  {ρ : KakeyaSharp.ThinSpace m → ℝ} (hρ : ContDiff ℝ (↑⊤) ρ) (hp : ∀ z ∈ KakeyaSharp.thinClosedBallAt R o, 0 ≤ ρ z) :
+  ∑ j, KakeyaSharp.thinValueRealAt (r j) (c j) ρ ≤ KakeyaSharp.thinValueRealAt R o ρ
+KakeyaSharp.Packet.kakeyaPacketFamily_localized_output_lower {m N J : ℕ} (hm : 1 ≤ m) {δ R : ℝ} (hδ : 0 < δ)
+  (hδ1 : δ ≤ 1) (hR : 0 < R) (a v : Fin N → Fin m → ℝ) {weights : Fin N → ℝ} (hw : ∀ (l : Fin N), 0 ≤ weights l)
+  (r ε : Fin J → ℝ) (c : Fin J → KakeyaSharp.ThinSpace m) (s : Fin J → Finset (Fin N)) (hr : ∀ (j : Fin J), 0 < r j)
+  (hε : ∀ (j : Fin J), 0 < ε j) (hεr : ∀ (j : Fin J), ε j ≤ r j / 10) (hrδ : ∀ (j : Fin J), r j ≤ δ ^ 3 / 4)
+  (hεδ : ∀ (j : Fin J), ε j ≤ δ ^ 4 / 4) (hc : ∀ (j : Fin J), (c j).2 = 0)
+  (hsub : ∀ (j : Fin J), KakeyaSharp.thinClosedBallAt (r j) (c j) ⊆ KakeyaSharp.thinBallAt R 0)
+  (hdis : Pairwise fun i j => Disjoint (KakeyaSharp.thinBallAt (r i) (c i)) (KakeyaSharp.thinBallAt (r j) (c j)))
+  {p : KakeyaSharp.Space 3} (hp : KakeyaSharp.Packet.radius (p, 0) = δ ^ 4) (ht : (p.ofLp 0 - 1) ^ 2 ≤ (δ ^ 2) ^ 2)
+  (hv : ∀ (j : Fin J), ∀ l ∈ s j, ∑ k, v l k ^ 2 ≤ 1 / 16)
+  (haxis : ∀ (j : Fin J), ∀ l ∈ s j, ‖(c j).1 - KakeyaSharp.Packet.outputAxis δ (a l) (v l) p‖ ≤ δ ^ 3 / 8) :
+  ∑ j,
+      KakeyaSharp.thinLowerConstant m * r j ^ m * ε j ^ (2 * m + 2) *
+          (KakeyaSharp.Packet.outputDensityScale m δ * ∑ l ∈ s j, weights l) ^ ((↑m + 1) / ↑m) *
+        Real.log (r j / ε j) ≤
+    KakeyaSharp.thinValueRealAt R 0
+      (KakeyaSharp.thinSlice (KakeyaSharp.currentDensity (KakeyaSharp.Packet.kakeyaPacketFamily δ a v weights)) p)
+KakeyaSharp.Packet.output_lower_scaling {m : ℕ} (hm : 2 ≤ m) {δ r₀ ε₀ M : ℝ} (hδ : 0 < δ) (hM : 0 ≤ M) :
+  KakeyaSharp.thinLowerConstant m * (r₀ * δ ^ 3) ^ m * (ε₀ * δ ^ 4) ^ (2 * m + 2) *
+        (KakeyaSharp.Packet.outputDensityScale m δ * M) ^ KakeyaSharp.Packet.inputExponent m *
+      Real.log (r₀ * δ ^ 3 / (ε₀ * δ ^ 4)) =
+    KakeyaSharp.Packet.outputLowerConstant m r₀ ε₀ * δ ^ (m - 2) * M ^ KakeyaSharp.Packet.inputExponent m *
+      Real.log (r₀ / (ε₀ * δ))
+'KakeyaSharp.Propagation.second_fderiv_convolution_kernel' depends on axioms: [propext, Classical.choice, Quot.sound]
+'KakeyaSharp.Propagation.laplacian_convolution_kernel' depends on axioms: [propext, Classical.choice, Quot.sound]
+'KakeyaSharp.Propagation.laplacian_reflect_translate' depends on axioms: [propext, Classical.choice, Quot.sound]
+'KakeyaSharp.Propagation.mollified_smooth' depends on axioms: [propext, Classical.choice, Quot.sound]
+'KakeyaSharp.Propagation.translated_mollifier_support' depends on axioms: [propext, Classical.choice, Quot.sound]
+'KakeyaSharp.Propagation.mollified_laplacian_nonpos' depends on axioms: [propext, Classical.choice, Quot.sound]
+'KakeyaSharp.Propagation.mollified_nonneg' depends on axioms: [propext, Classical.choice, Quot.sound]
+'KakeyaSharp.Propagation.mollified_tendsto' depends on axioms: [propext, Classical.choice, Quot.sound]
+'KakeyaSharp.Propagation.mollified_norm_le' depends on axioms: [propext, Classical.choice, Quot.sound]
+'KakeyaSharp.Propagation.exists_local_superharmonic_approximation' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'KakeyaSharp.Propagation.cylinderCompact_isCompact' depends on axioms: [propext, Classical.choice, Quot.sound]
+'KakeyaSharp.Propagation.cylinderDomain_subset_compact' depends on axioms: [propext, Classical.choice, Quot.sound]
+'KakeyaSharp.Propagation.tracePoint_mem_compact' depends on axioms: [propext, Classical.choice, Quot.sound]
+'KakeyaSharp.Propagation.inputPoint_mem_compact' depends on axioms: [propext, Classical.choice, Quot.sound]
+'KakeyaSharp.Propagation.cylinderTrace_tendsto' depends on axioms: [propext, Classical.choice, Quot.sound]
+'KakeyaSharp.Propagation.exists_weak_singleLog_cylinder_constant' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'KakeyaSharp.Packet.propagationPacketDomain_isOpen' depends on axioms: [propext, Classical.choice, Quot.sound]
+'KakeyaSharp.Packet.propagationOuterRadius_pos' depends on axioms: [propext, Classical.choice, Quot.sound]
+'KakeyaSharp.Packet.propagationOuterRadius_sq_gt' depends on axioms: [propext, Classical.choice, Quot.sound]
+'KakeyaSharp.Packet.supportBound_propagation_uniform' depends on axioms: [propext, Classical.choice, Quot.sound]
+'KakeyaSharp.Packet.kakeyaPacketFamily_propagation_weakSuperharmonic' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'KakeyaSharp.Packet.kakeyaPacketFamily_propagation_density_continuous' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'KakeyaSharp.Packet.kakeyaPacketFamily_propagation_value_continuous' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'KakeyaSharp.Packet.kakeyaPacketFamily_propagation_value_nonneg' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'KakeyaSharp.Packet.cylinderCompact_subset_propagationPacketDomain' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'KakeyaSharp.Packet.exists_kakeyaPacketFamily_propagation_constant' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'KakeyaSharp.Packet.propagationLog_le' depends on axioms: [propext, Classical.choice, Quot.sound]
+'KakeyaSharp.Packet.exists_kakeyaPacketFamily_output_upper_constant' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'KakeyaSharp.Dirichlet.thin_dirichlet_comparison_zero' depends on axioms: [propext, Classical.choice, Quot.sound]
+'KakeyaSharp.Dirichlet.thinQuaternionHessian_comp_add' depends on axioms: [propext, Classical.choice, Quot.sound]
+'KakeyaSharp.Dirichlet.thin_dirichlet_comparison' depends on axioms: [propext, Classical.choice, Quot.sound]
+'KakeyaSharp.Dirichlet.ThinDirichletSolution.le_on_subball' depends on axioms: [propext, Classical.choice, Quot.sound]
+'KakeyaSharp.thinValueRealAt_localization_positive' depends on axioms: [propext, Classical.choice, Quot.sound]
+'KakeyaSharp.thinValueRealAt_localization' depends on axioms: [propext, Classical.choice, Quot.sound]
+'KakeyaSharp.thinValueRealAt_localized_thin_lower' depends on axioms: [propext, Classical.choice, Quot.sound]
+'KakeyaSharp.Packet.ratio_norm_identity' depends on axioms: [propext, Classical.choice, Quot.sound]
+'KakeyaSharp.Packet.output_phase_le_half' depends on axioms: [propext, Classical.choice, Quot.sound]
+'KakeyaSharp.Packet.output_cutoff_eq_one' depends on axioms: [propext, Classical.choice, Quot.sound]
+'KakeyaSharp.Packet.output_prefactor_lower' depends on axioms: [propext, Classical.choice, Quot.sound]
+'KakeyaSharp.Packet.outputDensityScale_pos' depends on axioms: [propext, Classical.choice, Quot.sound]
+'KakeyaSharp.Packet.kakeyaPacketFamily_output_density_lower' depends on axioms: [propext, Classical.choice, Quot.sound]
+'KakeyaSharp.Packet.output_core_error' depends on axioms: [propext, Classical.choice, Quot.sound]
+'KakeyaSharp.Packet.kakeyaPacketFamily_density_slice_smooth' depends on axioms: [propext, Classical.choice, Quot.sound]
+'KakeyaSharp.Packet.kakeyaPacketFamily_density_nonneg' depends on axioms: [propext, Classical.choice, Quot.sound]
+'KakeyaSharp.Packet.kakeyaPacketFamily_localized_output_lower' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'KakeyaSharp.Packet.outputDensityConstant_pos' depends on axioms: [propext, Classical.choice, Quot.sound]
+'KakeyaSharp.Packet.outputDensityScale_eq' depends on axioms: [propext, Classical.choice, Quot.sound]
+'KakeyaSharp.Packet.outputLowerConstant_pos' depends on axioms: [propext, Classical.choice, Quot.sound]
+'KakeyaSharp.Packet.output_delta_power' depends on axioms: [propext, Classical.choice, Quot.sound]
+'KakeyaSharp.Packet.output_lower_scaling' depends on axioms: [propext, Classical.choice, Quot.sound]
+KakeyaSharp.Packet.exists_normalizedTube_constant {m : ℕ} (hm : 1 ≤ m) {A : ℝ} (hA : 0 ≤ A) :
+  ∃ C,
+    0 < C ∧
+      ∀ (N : ℕ) (δ : ℝ),
+        0 < δ →
+          δ < 1 →
+            ∀ (a v : Fin N → Fin m → ℝ) (weights : Fin N → ℝ),
+              (∀ (l : Fin N), 0 ≤ weights l) →
+                (∀ (l : Fin N), ∑ j, a l j ^ 2 ≤ A) →
+                  (∀ (l : Fin N), ∑ j, v l j ^ 2 ≤ 1 / 16) →
+                    (∀ (i j : Fin N), i ≠ j → δ ≤ dist (WithLp.toLp 2 (v i)) (WithLp.toLp 2 (v j))) →
+                      KakeyaSharp.Packet.normalizedTubeMoment δ a v weights ≤
+                        C * Real.log (2 / δ) * δ ^ m * ∑ l, weights l ^ KakeyaSharp.Packet.inputExponent m
+KakeyaSharp.Packet.exists_enlargedGraphTube_constant {m : ℕ} (hm : 1 ≤ m) {A : ℝ} (hA : 0 ≤ A) :
+  ∃ C,
+    0 < C ∧
+      ∀ (N : ℕ) (δ : ℝ),
+        0 < δ →
+          δ < 1 →
+            ∀ (a v : Fin N → Fin m → ℝ) (weights : Fin N → ℝ),
+              (∀ (l : Fin N), 0 ≤ weights l) →
+                (∀ (l : Fin N), ∑ j, a l j ^ 2 ≤ A) →
+                  (∀ (l : Fin N), ∑ j, v l j ^ 2 ≤ 1 / 16) →
+                    (∀ (i j : Fin N), i ≠ j → δ ≤ dist (WithLp.toLp 2 (v i)) (WithLp.toLp 2 (v j))) →
+                      KakeyaSharp.Packet.normalizedTubeMoment (128 * δ) a v weights ≤
+                        C * Real.log (2 / δ) * δ ^ m * ∑ l, weights l ^ KakeyaSharp.Packet.inputExponent m
+'KakeyaSharp.Packet.sliceOverlap_nonneg' depends on axioms: [propext, Classical.choice, Quot.sound]
+'KakeyaSharp.Packet.coverWeight_nonneg' depends on axioms: [propext, Classical.choice, Quot.sound]
+'KakeyaSharp.Packet.sliceOverlap_le_total' depends on axioms: [propext, Classical.choice, Quot.sound]
+'KakeyaSharp.Packet.sliceOverlap_measurable' depends on axioms: [propext, Classical.choice, Quot.sound]
+'KakeyaSharp.Packet.sliceOverlap_le_coverWeight' depends on axioms: [propext, Classical.choice, Quot.sound]
+'KakeyaSharp.Packet.sliceMajorant_integrable' depends on axioms: [propext, Classical.choice, Quot.sound]
+'KakeyaSharp.Packet.sliceOverlap_power_le' depends on axioms: [propext, Classical.choice, Quot.sound]
+'KakeyaSharp.Packet.sliceOverlap_power_integrable' depends on axioms: [propext, Classical.choice, Quot.sound]
+'KakeyaSharp.Packet.coverMass_pos' depends on axioms: [propext, Classical.choice, Quot.sound]
+'KakeyaSharp.Packet.coverMajorant_nonneg' depends on axioms: [propext, Classical.choice, Quot.sound]
+'KakeyaSharp.Packet.sliceOverlap_le_coverMajorant' depends on axioms: [propext, Classical.choice, Quot.sound]
+'KakeyaSharp.Packet.coverMajorant_integrable' depends on axioms: [propext, Classical.choice, Quot.sound]
+'KakeyaSharp.Packet.coverMajorant_integral' depends on axioms: [propext, Classical.choice, Quot.sound]
+'KakeyaSharp.Packet.sliceOverlap_integral_le_cover' depends on axioms: [propext, Classical.choice, Quot.sound]
+'KakeyaSharp.Packet.graphAxis_norm_le' depends on axioms: [propext, Classical.choice, Quot.sound]
+'KakeyaSharp.Packet.sliceOverlap_support' depends on axioms: [propext, Classical.choice, Quot.sound]
+'KakeyaSharp.Packet.output_ball_in_outer' depends on axioms: [propext, Classical.choice, Quot.sound]
+'KakeyaSharp.Packet.output_balls_disjoint' depends on axioms: [propext, Classical.choice, Quot.sound]
+'KakeyaSharp.Packet.outputAxis_at_time' depends on axioms: [propext, Classical.choice, Quot.sound]
+'KakeyaSharp.Packet.output_parameter_radius' depends on axioms: [propext, Classical.choice, Quot.sound]
+'KakeyaSharp.Packet.outputSliceConstant_pos' depends on axioms: [propext, Classical.choice, Quot.sound]
+'KakeyaSharp.Packet.kakeyaPacketFamily_output_slice_lower' depends on axioms: [propext, Classical.choice, Quot.sound]
+'KakeyaSharp.Packet.sliceIntegral_nonneg' depends on axioms: [propext, Classical.choice, Quot.sound]
+'KakeyaSharp.Packet.sliceIntegral_measurable' depends on axioms: [propext, Classical.choice, Quot.sound]
+'KakeyaSharp.Packet.sliceMajorant_integral' depends on axioms: [propext, Classical.choice, Quot.sound]
+'KakeyaSharp.Packet.sliceIntegral_uniform_bound' depends on axioms: [propext, Classical.choice, Quot.sound]
+'KakeyaSharp.Packet.sliceIntegral_intervalIntegrable' depends on axioms: [propext, Classical.choice, Quot.sound]
+'KakeyaSharp.Propagation.continuous_cylinder_trace' depends on axioms: [propext, Classical.choice, Quot.sound]
+'KakeyaSharp.Packet.kakeyaPacketFamily_output_integral_lower' depends on axioms: [propext, Classical.choice, Quot.sound]
+'KakeyaSharp.Packet.exists_normalizedTube_constant' depends on axioms: [propext, Classical.choice, Quot.sound]
+'KakeyaSharp.Packet.graphAxis_shifted' depends on axioms: [propext, Classical.choice, Quot.sound]
+'KakeyaSharp.Packet.shiftedIntercept_bound' depends on axioms: [propext, Classical.choice, Quot.sound]
+'KakeyaSharp.Packet.graph_point_covered' depends on axioms: [propext, Classical.choice, Quot.sound]
+'KakeyaSharp.Packet.sliceOverlap_enlarged_le_sum' depends on axioms: [propext, Classical.choice, Quot.sound]
+'KakeyaSharp.Packet.sliceIntegral_enlarged_le_sum' depends on axioms: [propext, Classical.choice, Quot.sound]
+'KakeyaSharp.Packet.normalizedTubeMoment_enlarged_le_sum' depends on axioms: [propext, Classical.choice, Quot.sound]
+'KakeyaSharp.Packet.exists_enlargedGraphTube_constant' depends on axioms: [propext, Classical.choice, Quot.sound]
+KakeyaSharp.sharpTubeBound_of_three_le {n : ℕ} (hn : 3 ≤ n) : KakeyaSharp.SharpTubeBound n
+KakeyaSharp.sharpMaximalBound_of_three_le {n : ℕ} (hn : 3 ≤ n) : KakeyaSharp.SharpMaximalBound n
+theorem KakeyaSharp.sharpTubeBound_of_three_le : ∀ {n : ℕ}, 3 ≤ n → KakeyaSharp.SharpTubeBound n :=
+fun {n} hn =>
+  KakeyaSharp.sharpTubeBound_of_two_le
+    (Decidable.byContradiction fun a => KakeyaSharp.sharpTubeBound_of_three_le._proof_1_1 hn a)
+theorem KakeyaSharp.sharpMaximalBound_of_three_le : ∀ {n : ℕ}, 3 ≤ n → KakeyaSharp.SharpMaximalBound n :=
+fun {n} hn =>
+  KakeyaSharp.sharpMaximalBound_of_two_le
+    (Decidable.byContradiction fun a => KakeyaSharp.sharpMaximalBound_of_three_le._proof_1_1 hn a)
+'KakeyaSharp.Graph.weightedTubeMoment_partition_le' depends on axioms: [propext, Classical.choice, Quot.sound]
+'KakeyaSharp.Graph.exists_allDirectionTube_constant' depends on axioms: [propext, Classical.choice, Quot.sound]
+'KakeyaSharp.Graph.weightedTubeOverlap_nonneg' depends on axioms: [propext, Classical.choice, Quot.sound]
+'KakeyaSharp.Graph.weightedTubeOverlap_measurable' depends on axioms: [propext, Classical.choice, Quot.sound]
+'KakeyaSharp.Graph.weightedTubeOverlap_power_le_window' depends on axioms: [propext, Classical.choice, Quot.sound]
+'KakeyaSharp.Graph.half_scale_log_le' depends on axioms: [propext, Classical.choice, Quot.sound]
+'KakeyaSharp.Graph.exists_chart_graph_window_constant' depends on axioms: [propext, Classical.choice, Quot.sound]
+'KakeyaSharp.Graph.exists_chartTube_constant' depends on axioms: [propext, Classical.choice, Quot.sound]
+'KakeyaSharp.Graph.chartRotation_center' depends on axioms: [propext, Classical.choice, Quot.sound]
+'KakeyaSharp.Graph.exists_finite_direction_charts' depends on axioms: [propext, Classical.choice, Quot.sound]
+'KakeyaSharp.Graph.rotated_tube_preimage' depends on axioms: [propext, Classical.choice, Quot.sound]
+'KakeyaSharp.Graph.integral_rotation' depends on axioms: [propext, Classical.choice, Quot.sound]
+'KakeyaSharp.Graph.rotation_preserves_separation' depends on axioms: [propext, Classical.choice, Quot.sound]
+'KakeyaSharp.Graph.exists_globalChartTube_constant' depends on axioms: [propext, Classical.choice, Quot.sound]
+'KakeyaSharp.Graph.insert_zero' depends on axioms: [propext, Classical.choice, Quot.sound]
+'KakeyaSharp.Graph.insert_succ' depends on axioms: [propext, Classical.choice, Quot.sound]
+'KakeyaSharp.Graph.tail_insert' depends on axioms: [propext, Classical.choice, Quot.sound]
+'KakeyaSharp.Graph.insert_head_tail' depends on axioms: [propext, Classical.choice, Quot.sound]
+'KakeyaSharp.Graph.tail_add' depends on axioms: [propext, Classical.choice, Quot.sound]
+'KakeyaSharp.Graph.tail_sub' depends on axioms: [propext, Classical.choice, Quot.sound]
+'KakeyaSharp.Graph.tail_smul' depends on axioms: [propext, Classical.choice, Quot.sound]
+'KakeyaSharp.Graph.tail_zero' depends on axioms: [propext, Classical.choice, Quot.sound]
+'KakeyaSharp.Graph.norm_sq_head_tail' depends on axioms: [propext, Classical.choice, Quot.sound]
+'KakeyaSharp.Graph.abs_head_le_norm' depends on axioms: [propext, Classical.choice, Quot.sound]
+'KakeyaSharp.Graph.norm_tail_le' depends on axioms: [propext, Classical.choice, Quot.sound]
+'KakeyaSharp.Graph.dist_tail_le' depends on axioms: [propext, Classical.choice, Quot.sound]
+'KakeyaSharp.Graph.norm_insert_zero' depends on axioms: [propext, Classical.choice, Quot.sound]
+'KakeyaSharp.Graph.coordinates_measurePreserving' depends on axioms: [propext, Classical.choice, Quot.sound]
+'KakeyaSharp.Graph.integral_coordinates' depends on axioms: [propext, Classical.choice, Quot.sound]
+'KakeyaSharp.Graph.norm_north' depends on axioms: [propext, Classical.choice, Quot.sound]
+'KakeyaSharp.Graph.norm_insert_one_ge_one' depends on axioms: [propext, Classical.choice, Quot.sound]
+'KakeyaSharp.Graph.normalize_sub_le' depends on axioms: [propext, Classical.choice, Quot.sound]
+'KakeyaSharp.Graph.insert_slope_eq' depends on axioms: [propext, Classical.choice, Quot.sound]
+'KakeyaSharp.Graph.normalize_slope_eq' depends on axioms: [propext, Classical.choice, Quot.sound]
+'KakeyaSharp.Graph.direction_dist_le_slope_dist' depends on axioms: [propext, Classical.choice, Quot.sound]
+'KakeyaSharp.Graph.small_slope_of_near_north' depends on axioms: [propext, Classical.choice, Quot.sound]
+'KakeyaSharp.Graph.slope_sq_sum_of_near_north' depends on axioms: [propext, Classical.choice, Quot.sound]
+'KakeyaSharp.Graph.slope_separated' depends on axioms: [propext, Classical.choice, Quot.sound]
+'KakeyaSharp.Graph.graphAxis_intercept' depends on axioms: [propext, Classical.choice, Quot.sound]
+'KakeyaSharp.Graph.graph_error_identity' depends on axioms: [propext, Classical.choice, Quot.sound]
+'KakeyaSharp.Graph.tube_transverse_error' depends on axioms: [propext, Classical.choice, Quot.sound]
+'KakeyaSharp.Graph.tube_time_window' depends on axioms: [propext, Classical.choice, Quot.sound]
+'KakeyaSharp.Graph.tube_near_north_in_graph' depends on axioms: [propext, Classical.choice, Quot.sound]
+'KakeyaSharp.Graph.powerWindow_nonneg' depends on axioms: [propext, Classical.choice, Quot.sound]
+'KakeyaSharp.Graph.powerWindow_measurable' depends on axioms: [propext, Classical.choice, Quot.sound]
+'KakeyaSharp.Graph.powerWindow_slice_integral' depends on axioms: [propext, Classical.choice, Quot.sound]
+'KakeyaSharp.Graph.powerWindow_integrable' depends on axioms: [propext, Classical.choice, Quot.sound]
+'KakeyaSharp.Graph.powerWindow_integral' depends on axioms: [propext, Classical.choice, Quot.sound]
+'KakeyaSharp.Packet.sliceOverlap_mono_radius' depends on axioms: [propext, Classical.choice, Quot.sound]
+'KakeyaSharp.Packet.sliceIntegral_mono_radius' depends on axioms: [propext, Classical.choice, Quot.sound]
+'KakeyaSharp.Packet.normalizedTubeMoment_mono_radius' depends on axioms: [propext, Classical.choice, Quot.sound]
+'KakeyaSharp.Packet.exists_globalGraphTube_broad_constant' depends on axioms: [propext, Classical.choice, Quot.sound]
+'KakeyaSharp.Packet.exists_globalGraphTube_broad_timeInterval_constant' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'KakeyaSharp.Packet.exists_globalGraphTube_constant' depends on axioms: [propext, Classical.choice, Quot.sound]
+'KakeyaSharp.Packet.normalizedTubeMoment_crude_bound' depends on axioms: [propext, Classical.choice, Quot.sound]
+'KakeyaSharp.Packet.coarseGraphConstant_pos' depends on axioms: [propext, Classical.choice, Quot.sound]
+'KakeyaSharp.Packet.normalizedTubeMoment_coarse_bound' depends on axioms: [propext, Classical.choice, Quot.sound]
+'KakeyaSharp.Packet.exists_globalGraphTube_closedScale_constant' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'KakeyaSharp.Packet.graphAxis_timeShift' depends on axioms: [propext, Classical.choice, Quot.sound]
+'KakeyaSharp.Packet.sliceOverlap_timeShift' depends on axioms: [propext, Classical.choice, Quot.sound]
+'KakeyaSharp.Packet.sliceIntegral_timeShift' depends on axioms: [propext, Classical.choice, Quot.sound]
+'KakeyaSharp.Packet.normalizedTubeMoment_timeShift' depends on axioms: [propext, Classical.choice, Quot.sound]
+'KakeyaSharp.Packet.sliceIntegral_intervalIntegrable_all' depends on axioms: [propext, Classical.choice, Quot.sound]
+'KakeyaSharp.Packet.exists_globalGraphTube_timeInterval_constant' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'KakeyaSharp.Packet.groupWeights_nonneg' depends on axioms: [propext, Classical.choice, Quot.sound]
+'KakeyaSharp.Packet.groupWeights_power_sum' depends on axioms: [propext, Classical.choice, Quot.sound]
+'KakeyaSharp.Packet.relativeIntercept_bound' depends on axioms: [propext, Classical.choice, Quot.sound]
+'KakeyaSharp.Packet.sliceOverlap_group_sum' depends on axioms: [propext, Classical.choice, Quot.sound]
+'KakeyaSharp.Packet.sliceOverlap_group_translate' depends on axioms: [propext, Classical.choice, Quot.sound]
+'KakeyaSharp.Packet.sliceIntegral_group_translate' depends on axioms: [propext, Classical.choice, Quot.sound]
+'KakeyaSharp.Packet.normalizedTubeMoment_group_translate' depends on axioms: [propext, Classical.choice, Quot.sound]
+'KakeyaSharp.Packet.spatialGroupFactor_pos' depends on axioms: [propext, Classical.choice, Quot.sound]
+'KakeyaSharp.Packet.sliceOverlap_group_near' depends on axioms: [propext, Classical.choice, Quot.sound]
+'KakeyaSharp.Packet.sliceOverlap_spatial_power_le' depends on axioms: [propext, Classical.choice, Quot.sound]
+'KakeyaSharp.Packet.sliceIntegral_spatial_le' depends on axioms: [propext, Classical.choice, Quot.sound]
+'KakeyaSharp.Packet.normalizedTubeMoment_spatial_le' depends on axioms: [propext, Classical.choice, Quot.sound]
+'KakeyaSharp.sharpTubeBound_of_three_le' depends on axioms: [propext, Classical.choice, Quot.sound]
+'KakeyaSharp.sharpMaximalBound_of_three_le' depends on axioms: [propext, Classical.choice, Quot.sound]
+'KakeyaSharp.Graph.weightedTubeOverlap_power_integrable' depends on axioms: [propext, Classical.choice, Quot.sound]
+'KakeyaSharp.Graph.mem_tube_translate' depends on axioms: [propext, Classical.choice, Quot.sound]
+'KakeyaSharp.Graph.relativeCenter_norm_le' depends on axioms: [propext, Classical.choice, Quot.sound]
+'KakeyaSharp.Graph.weightedTubeOverlap_group_sum' depends on axioms: [propext, Classical.choice, Quot.sound]
+'KakeyaSharp.Graph.weightedTubeOverlap_group_translate' depends on axioms: [propext, Classical.choice, Quot.sound]
+'KakeyaSharp.Graph.weightedTubeMoment_group_translate' depends on axioms: [propext, Classical.choice, Quot.sound]
+'KakeyaSharp.Graph.weightedTubeOverlap_group_near' depends on axioms: [propext, Classical.choice, Quot.sound]
+'KakeyaSharp.Graph.groupWeights_sum_reindex' depends on axioms: [propext, Classical.choice, Quot.sound]
+'KakeyaSharp.Graph.groupWeights_power_reindex' depends on axioms: [propext, Classical.choice, Quot.sound]
+'KakeyaSharp.Graph.weightedTubeOverlap_group_reindex' depends on axioms: [propext, Classical.choice, Quot.sound]
+'KakeyaSharp.Graph.weightedTubeOverlap_rotation' depends on axioms: [propext, Classical.choice, Quot.sound]
+'KakeyaSharp.Graph.weightedTubeMoment_rotation' depends on axioms: [propext, Classical.choice, Quot.sound]
+'KakeyaSharp.Graph.tubeGroupFactor_pos' depends on axioms: [propext, Classical.choice, Quot.sound]
+'KakeyaSharp.Graph.weightedTubeOverlap_spatial_power_le' depends on axioms: [propext, Classical.choice, Quot.sound]
+'KakeyaSharp.Graph.weightedTubeMoment_spatial_le' depends on axioms: [propext, Classical.choice, Quot.sound]
+KakeyaSharp.boundaryKernel_radial_le {a r : ℝ} (ha : 0 < a) (hr : r ∈ Set.Icc 0 1) :
+  KakeyaSharp.boundaryKernel a (1 - r ^ 2) ≤ 1 + 1 / (a + (1 - r))
+'KakeyaSharp.boundaryKernel_radial_le' depends on axioms: [propext, Classical.choice, Quot.sound]
+KakeyaSharp.spatial_boundary_integral_log_of_one_le {m : ℕ} (hm : 1 ≤ m) {η : ℝ} (hη : 0 < η) (hη10 : η ≤ 1 / 10) :
+  ∫ (x : KakeyaSharp.Space m) in Metric.ball 0 1, KakeyaSharp.boundaryKernel (η ^ 2) (1 - ‖x‖ ^ 2) ≤
+    6 * ↑m * KakeyaSharp.spatialVolume m * Real.log (1 / η)
+'KakeyaSharp.spatial_boundary_integral_log_of_one_le' depends on axioms: [propext, Classical.choice, Quot.sound]
+KakeyaSharp.Packet.output_delta_power_real {m : ℕ} (hm : 1 ≤ m) {δ : ℝ} (hδ : 0 < δ) :
+  δ ^ (3 * m) * δ ^ (4 * (2 * m + 2)) * (δ ^ (-(10 * ↑m))) ^ KakeyaSharp.Packet.inputExponent m = δ ^ (↑m - 2)
+'KakeyaSharp.Packet.output_delta_power_real' depends on axioms: [propext, Classical.choice, Quot.sound]
+KakeyaSharp.Packet.output_lower_scaling_real {m : ℕ} (hm : 1 ≤ m) {δ r₀ ε₀ M : ℝ} (hδ : 0 < δ) (hM : 0 ≤ M) :
+  KakeyaSharp.thinLowerConstant m * (r₀ * δ ^ 3) ^ m * (ε₀ * δ ^ 4) ^ (2 * m + 2) *
+        (KakeyaSharp.Packet.outputDensityScale m δ * M) ^ KakeyaSharp.Packet.inputExponent m *
+      Real.log (r₀ * δ ^ 3 / (ε₀ * δ ^ 4)) =
+    KakeyaSharp.Packet.outputLowerConstant m r₀ ε₀ * δ ^ (↑m - 2) * M ^ KakeyaSharp.Packet.inputExponent m *
+      Real.log (r₀ / (ε₀ * δ))
+'KakeyaSharp.Packet.output_lower_scaling_real' depends on axioms: [propext, Classical.choice, Quot.sound]
+KakeyaSharp.sharpTubeBound_of_two_le {n : ℕ} (hn : 2 ≤ n) : KakeyaSharp.SharpTubeBound n
+'KakeyaSharp.sharpTubeBound_of_two_le' depends on axioms: [propext, Classical.choice, Quot.sound]
+KakeyaSharp.sharpMaximalBound_of_two_le {n : ℕ} (hn : 2 ≤ n) : KakeyaSharp.SharpMaximalBound n
+'KakeyaSharp.sharpMaximalBound_of_two_le' depends on axioms: [propext, Classical.choice, Quot.sound]
+theorem KakeyaSharp.sharpTubeBound_of_two_le : ∀ {n : ℕ}, 2 ≤ n → KakeyaSharp.SharpTubeBound n :=
+fun {n} hn =>
+  Nat.casesAuxOn (motive := fun x => 2 ≤ x → KakeyaSharp.SharpTubeBound x) n
+    (fun hn => Classical.byContradiction fun a => KakeyaSharp.sharpTubeBound_of_two_le._proof_1_1 hn)
+    (fun m hn =>
+      have hm := Decidable.byContradiction fun a => KakeyaSharp.sharpTubeBound_of_two_le._proof_1_2 m hn a;
+      Exists.casesOn (KakeyaSharp.Graph.exists_allDirectionTube_constant hm) fun C h =>
+        And.casesOn h fun hC hbound =>
+          Exists.intro C
+            ⟨hC, fun N δ hδ hδ1 v c hv hsep weights hw =>
+              have h := hbound N δ hδ hδ1 v c weights hw hv hsep;
+              Eq.mpr
+                (id
+                  (congr
+                    (congrArg LE.le
+                      (congrArg (MeasureTheory.integral MeasureTheory.volume)
+                        (funext fun y =>
+                          congrArg
+                            (HPow.hPow (∑ i, (KakeyaSharp.tube (2 * δ) (v i) (c i)).indicator (fun x => weights i) y))
+                            (congr
+                              (congrArg HDiv.hDiv (Eq.trans (Nat.cast_add m 1) (congrArg (HAdd.hAdd ↑m) Nat.cast_one)))
+                              (Eq.trans
+                                (congrFun'
+                                  (congrArg HSub.hSub
+                                    (Eq.trans (Nat.cast_add m 1) (congrArg (HAdd.hAdd ↑m) Nat.cast_one)))
+                                  1)
+                                (add_sub_cancel_right (↑m) 1))))))
+                    (congr
+                      (congrArg HMul.hMul
+                        (congrArg (HMul.hMul (C * Real.log (2 / δ))) (congrArg (HPow.hPow δ) (Nat.add_sub_cancel m 1))))
+                      (Finset.sum_congr (Eq.refl Finset.univ) fun x a =>
+                        congrArg (HPow.hPow (weights x))
+                          (congr
+                            (congrArg HDiv.hDiv (Eq.trans (Nat.cast_add m 1) (congrArg (HAdd.hAdd ↑m) Nat.cast_one)))
+                            (Eq.trans
+                              (congrFun'
+                                (congrArg HSub.hSub
+                                  (Eq.trans (Nat.cast_add m 1) (congrArg (HAdd.hAdd ↑m) Nat.cast_one)))
+                                1)
+                              (add_sub_cancel_right (↑m) 1)))))))
+                h⟩)
+    hn
+theorem KakeyaSharp.sharpMaximalBound_of_two_le : ∀ {n : ℕ}, 2 ≤ n → KakeyaSharp.SharpMaximalBound n :=
+fun {n} hn => KakeyaSharp.sharpMaximal_of_sharpTube hn (KakeyaSharp.sharpTubeBound_of_two_le hn)

@@ -1,0 +1,14 @@
+{
+  "checked_at_utc": "2026-11-14",
+  "pipeline_repository": "https://github.com/PalomarRegistry/PalomarSubmission",
+  "pipeline_commit": "14aa8d6b3c2f14a8540605e37144560b9a00e7e7",
+  "metadata_contract": "passed",
+  "source_text_requirements": {
+    "schema_version": 1,
+    "module_required": true,
+    "maximum_lines": 10000,
+    "files_checked": 1895
+  },
+  "source_diagnostics": [],
+  "scope": "Official non-executing metadata validator and textual source checks only. Lean parser confirmation, license matching, build, Comparator and independent replay are separate checks."
+}
