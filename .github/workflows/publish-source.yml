@@ -1,0 +1,48 @@
+name: Publish reviewed Kakeya source
+"on":
+  push:
+    branches: [publish-kakeya-source]
+permissions:
+  contents: write
+jobs:
+  publish:
+    if: github.repository == 'mrklwk/kakeya-sharp'
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262
+        with:
+          ref: main
+      - name: Verify and publish the reviewed tree
+        env:
+          K_STAGE: ${{ runner.temp }}/kakeya-reviewed-source
+        shell: bash
+        run: |
+          set -euo pipefail
+          test "$(git rev-parse HEAD)" = 7873c4c99f97ed9d1bc2df5ab05b7f80a5e8331a
+          python3 - <<'PY'
+          from pathlib import Path, PurePosixPath
+          import os, hashlib, zipfile
+          archive = Path("Kakeya_Palomar_submission_candidate_2026-11-14.zip")
+          assert hashlib.sha256(archive.read_bytes()).hexdigest() == "5995ce311a30206888dc670179f439766437a302afe83d95aa29ffcff2849e81"
+          stage = Path(os.environ["K_STAGE"])
+          stage.mkdir()
+          with zipfile.ZipFile(archive) as z:
+              assert len(z.infolist()) == 1963
+              for info in z.infolist():
+                  rel = PurePosixPath(info.filename)
+                  assert not rel.is_absolute() and rel.parts[0] == "Kakeya_Palomar"
+                  assert ".." not in rel.parts and ".git" not in rel.parts
+                  target = stage.joinpath(*rel.parts[1:])
+                  target.parent.mkdir(parents=True, exist_ok=True)
+                  target.write_bytes(z.read(info))
+          PY
+          cmp .github/workflows/palomar.yml "$K_STAGE/.github/workflows/palomar.yml"
+          git --work-tree="$K_STAGE" add --all --force
+          test "$(git write-tree)" = d4c4ee7652c0562d9ba4cf17772c14c3e39b1012
+          git --work-tree="$K_STAGE" diff --cached --exit-code -- .github/workflows
+          git config user.name "Mark Lewko"
+          git config user.email "244564904+mrklwk@users.noreply.github.com"
+          git --work-tree="$K_STAGE" commit -m "Publish reviewed Kakeya formalization and submission package" -m "Source tree matches local candidate e8ade80a23ff580a606bba9d963f5f0aadff7d52 exactly."
+          git push origin HEAD:refs/heads/main
+          git rev-parse HEAD
