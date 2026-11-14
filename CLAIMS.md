@@ -20,12 +20,14 @@ Lean configuration, not Palomar acceptance or an independent human review.
 | Matching maximal lower bound and no iterated-log improvement | Written radial proof | `STATEMENT_AND_OPTIMALITY.md`; not formalized |
 | Matching Besicovitch construction in every dimension | External preprint result | Fernández-Delgado–de la Salle, arXiv:2607.14824, Theorem 1.3; not formalized here |
 | Optimal numerical constants or a sharp Hausdorff gauge | Not claimed | The constants depend on fixed dimension |
-| Lean 4.35.0 and pinned newer mathlib | Not yet checked | Build the exact target configuration before Palomar preflight |
+| Lean 4.35.0 and pinned newer mathlib | Initial full preflight failed at the Solution build; compatibility edits await revalidation | `provenance/palomar-preflight-43625069473.json`, `provenance/lean435-port.json` |
 | Official metadata and textual source checks | Passed locally | `provenance/palomar-static-validation.json` |
 | Official Palomar Comparator and independent replay | Not run | `.github/workflows/palomar.yml`, `comparator.json` |
 | Claude formal and narrative review | Completed; supported narrative and evidence corrections integrated | `review/claude/INTEGRATION.md`, `review/claude/QUEUE.json`; AI review, not independent human review or kernel replay |
 | Independent human mathematical review | Not completed | Do not infer this from AI review or compilation |
-| Public GitHub repository and Palomar submission | Not created/submitted by this task | `RELEASE.md` lists the remaining steps |
+| Public GitHub repository and Palomar submission | Source published; Palomar intake not started | <https://github.com/mrklwk/kakeya-sharp>; `RELEASE.md` lists the remaining steps |
 
-The original checkpoint and proof source are preserved. Narrative edits and
-review preparation do not alter the two target statements or their proofs.
+The original checkpoint and reviewed source revisions are preserved. The
+subsequent Lean 4.35.0 compatibility port changes arguments and imports in
+19 files, with no change to the two target statements. Historical checks do
+not validate this later revision; it requires a new full preflight.

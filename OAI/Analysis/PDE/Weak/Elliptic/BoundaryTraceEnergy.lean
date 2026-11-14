@@ -31,7 +31,7 @@ theorem cell_weighted_energy_lower
     intro i
     by_cases hi : i = j
     · subst i
-      simpa [F] using (contDiff_apply ℝ ℝ j).sub
+      simpa [F] using (contDiff_apply ℝ (fun _ => ℝ) j).sub
         (contDiff_const : ContDiff ℝ 1 (fun _ : OAI.Analysis.PDE.Variational.CellCoordinates m ↦ b j))
     · simpa only [F, ite_eq_right hi] using
         (contDiff_const : ContDiff ℝ 1 (fun _ : OAI.Analysis.PDE.Variational.CellCoordinates m ↦ (0 : ℝ)))

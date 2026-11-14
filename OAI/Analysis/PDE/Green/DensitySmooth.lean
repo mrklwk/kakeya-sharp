@@ -1,6 +1,6 @@
 /- Modified for the Palomar submission: module header, public imports,
-and exposed public declarations. Original proof bodies are retained.
-See MODULE_MIGRATION.json for the checkpoint and ported file hashes. -/
+and exposed public declarations, with Lean 4.35/mathlib API compatibility edits.
+See MODULE_MIGRATION.json and provenance/lean435-port.json for the changes. -/
 module
 
 public import OAI.Analysis.PDE.Green.CombinedDensity
@@ -46,7 +46,7 @@ theorem contDiff_spatialPencilEnergyDensity {n s : ℕ} (e : Fin s → Quaternio
     intro i
     apply contDiff_pi.mpr
     intro j
-    exact (contDiff_apply_apply ℝ (Quaternion ℝ) i.succ j.succ).comp hmat
+    exact (contDiff_apply_apply ℝ (E := Quaternion ℝ) i.succ j.succ).comp hmat
   let f : OAI.Analysis.PDE.Dirichlet.CoordinateSpace (n + 1) s × ℝ → ℝ := fun p =>
     OAI.LinearAlgebra.Moore.mooreDet n ((OAI.Analysis.PDE.Dirichlet.quaternionHessian e B p.1 + p.2 • OAI.Analysis.PDE.Dirichlet.quaternionHessian e u p.1).submatrix
       Fin.succ Fin.succ)
@@ -80,7 +80,7 @@ theorem contDiff_combinedEnergyDensity {n s : ℕ} (e : Fin s → Quaternion ℝ
     (hB : ContDiff ℝ ∞ B) (hu : ContDiff ℝ ∞ u) :
     ContDiff ℝ ∞ (combinedEnergyDensity e lam A B u) := by
   have hmass : ContDiff ℝ ∞ (fun x => (A x 0 0).re) :=
-    (contDiff_quaternion_real ∞).comp ((contDiff_apply_apply ℝ (Quaternion ℝ) 0 0).comp hA)
+    (contDiff_quaternion_real ∞).comp ((contDiff_apply_apply ℝ (E := Quaternion ℝ) 0 0).comp hA)
   exact (hu.neg.mul hmass).add (contDiff_const.mul (contDiff_spatialPencilEnergyDensity e hB hu))
 
 end OAI.Analysis.PDE.Green

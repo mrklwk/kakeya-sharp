@@ -1,6 +1,6 @@
 /- Modified for the Palomar submission: module header, public imports,
-and exposed public declarations. Original proof bodies are retained.
-See MODULE_MIGRATION.json for the checkpoint and ported file hashes. -/
+and exposed public declarations, with Lean 4.35/mathlib API compatibility edits.
+See MODULE_MIGRATION.json and provenance/lean435-port.json for the changes. -/
 module
 
 public import OAI.Analysis.PDE.Green.BoxGreen
@@ -34,7 +34,7 @@ theorem cell_weighted_energy_identity
     by_cases hi : i = j
     · subst i
       have h : ContDiff ℝ 1 (fun x : Fin (m + 1) → ℝ ↦ x j - a j) :=
-        (contDiff_apply ℝ ℝ j).sub contDiff_const
+        (contDiff_apply ℝ (fun _ => ℝ) j).sub contDiff_const
       simpa [F] using h
     · simpa only [F, ite_eq_right hi] using (contDiff_const : ContDiff ℝ 1 (fun _ :
         (Fin (m + 1) → ℝ) ↦ (0 : ℝ)))

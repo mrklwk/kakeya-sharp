@@ -1,6 +1,6 @@
 /- Modified for the Palomar submission: module header, public imports,
-and exposed public declarations. Original proof bodies are retained.
-See MODULE_MIGRATION.json for the checkpoint and ported file hashes. -/
+and exposed public declarations, with Lean 4.35/mathlib API compatibility edits.
+See MODULE_MIGRATION.json and provenance/lean435-port.json for the changes. -/
 module
 
 public import OAI.Analysis.PDE.Variational.WeakGradient
@@ -25,7 +25,7 @@ def cellZeroExtension {H : Type*} [NormedAddCommGroup H]
 theorem memLp_cellZeroExtension {H : Type*} [NormedAddCommGroup H]
     (a b : CellCoordinates m) (f : Lp H 2 (volume.restrict (Icc a b))) :
     MemLp (cellZeroExtension a b f) 2 volume :=
-  (memLp_indicator_iff_restrict measurableSet_Icc).mpr (Lp.memLp f)
+  (memLp_indicator_iff_restrict measurableSet_Icc.nullMeasurableSet).mpr (Lp.memLp f)
 
 theorem cellInterior_test_face_zero (a b : CellCoordinates m)
     {φ : CellCoordinates m → ℝ} (hφ : tsupport φ ⊆ cellInterior a b)

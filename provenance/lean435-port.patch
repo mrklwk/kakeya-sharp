@@ -1,0 +1,442 @@
+diff --git a/KakeyaSharp/Moore/Smooth.lean b/KakeyaSharp/Moore/Smooth.lean
+index db3bca5..301d0f7 100644
+--- a/KakeyaSharp/Moore/Smooth.lean
++++ b/KakeyaSharp/Moore/Smooth.lean
+@@ -1,6 +1,6 @@
+ /- Modified for the Palomar submission: module header, public imports,
+-and exposed public declarations. Original proof bodies are retained.
+-See MODULE_MIGRATION.json for the checkpoint and ported file hashes. -/
++and exposed public declarations, with Lean 4.35/mathlib API compatibility edits.
++See MODULE_MIGRATION.json and provenance/lean435-port.json for the changes. -/
+ module
+ 
+ public import KakeyaSharp.Moore.Cofactor
+@@ -20,7 +20,7 @@ open scoped ContDiff Matrix.Norms.Elementwise
+ theorem contDiff_skewComplexify_entry {n : ℕ} (k : ℕ∞ω) (i j : Fin n × Fin 2) :
+     ContDiff ℝ k (fun A : Matrix (Fin n) (Fin n) (Quaternion ℝ) ↦ skewComplexify A i j) := by
+   exact (skewQuaternionEntryCLM i.2 j.2).contDiff.comp
+-    (contDiff_apply_apply ℝ (Quaternion ℝ) i.1 j.1)
++    (contDiff_apply_apply ℝ (E := Quaternion ℝ) i.1 j.1)
+ 
+ theorem contDiff_mooreDet (n : ℕ) (k : ℕ∞ω) : ContDiff ℝ k (mooreDet n) := by
+   change ContDiff ℝ k (Complex.reCLM ∘ fun A : Matrix (Fin n) (Fin n) (Quaternion ℝ) ↦
+diff --git a/KakeyaSharp/SharpTransfer.lean b/KakeyaSharp/SharpTransfer.lean
+index e863655..de40790 100644
+--- a/KakeyaSharp/SharpTransfer.lean
++++ b/KakeyaSharp/SharpTransfer.lean
+@@ -1,6 +1,6 @@
+ /- Modified for the Palomar submission: module header, public imports,
+-and exposed public declarations. Original proof bodies are retained.
+-See MODULE_MIGRATION.json for the checkpoint and ported file hashes. -/
++and exposed public declarations, with Lean 4.35/mathlib API compatibility edits.
++See MODULE_MIGRATION.json and provenance/lean435-port.json for the changes. -/
+ module
+ 
+ public import KakeyaSharp.DirectionIntegral
+@@ -41,7 +41,7 @@ lemma memLp_weighted_tubes {n m : ℕ} (δ : ℝ) (v x : Fin m → Space n)
+       (ENNReal.ofReal q) volume := by
+   apply memLp_finsetSum
+   intro i _
+-  exact memLp_indicator_const _ (measurableSet_tube _ _ _) _
++  exact memLp_indicator_const _ (measurableSet_tube _ _ _).nullMeasurableSet _
+     (.inr (volume_tube_lt_top _ _ _).ne)
+ 
+ /-- A scale-dependent overlap norm bound, with all constants quantified. -/
+diff --git a/KakeyaSharp/ThinSolutionCurrent.lean b/KakeyaSharp/ThinSolutionCurrent.lean
+index 760d32e..517b130 100644
+--- a/KakeyaSharp/ThinSolutionCurrent.lean
++++ b/KakeyaSharp/ThinSolutionCurrent.lean
+@@ -1,6 +1,6 @@
+ /- Modified for the Palomar submission: module header, public imports,
+-and exposed public declarations. Original proof bodies are retained.
+-See MODULE_MIGRATION.json for the checkpoint and ported file hashes. -/
++and exposed public declarations, with Lean 4.35/mathlib API compatibility edits.
++See MODULE_MIGRATION.json and provenance/lean435-port.json for the changes. -/
+ module
+ 
+ public import KakeyaSharp.ThinParameterHessian
+@@ -38,7 +38,7 @@ theorem currentFlux_contDiff {m : ℕ} {n : ℕ∞ω}
+     (hA : ContDiff ℝ n A) : ContDiff ℝ n (currentFlux A) := by
+   apply contDiff_pi.mpr
+   intro i
+-  exact (contDiff_apply_apply ℝ (Quaternion ℝ) i.succ 0).comp hA
++  exact (contDiff_apply_apply ℝ (E := Quaternion ℝ) i.succ 0).comp hA
+ 
+ theorem currentStress_contDiff {m : ℕ} {n : ℕ∞ω}
+     {A : ThinCurrentSpace m → Matrix (Fin (m+1)) (Fin (m+1)) (Quaternion ℝ)}
+@@ -47,7 +47,7 @@ theorem currentStress_contDiff {m : ℕ} {n : ℕ∞ω}
+   intro i
+   apply contDiff_pi.mpr
+   intro j
+-  exact (contDiff_apply_apply ℝ (Quaternion ℝ) i.succ j.succ).comp hA
++  exact (contDiff_apply_apply ℝ (E := Quaternion ℝ) i.succ j.succ).comp hA
+ 
+ theorem thinSolution_current_law {m : ℕ} {R : ℝ} (o : ThinSpace m)
+     {U : ThinCurrentSpace m → ℝ} (hU : ContDiff ℝ 3 U)
+diff --git a/OAI/Analysis/Calculus/Current/Smooth.lean b/OAI/Analysis/Calculus/Current/Smooth.lean
+index b9b7429..1ee8b3a 100644
+--- a/OAI/Analysis/Calculus/Current/Smooth.lean
++++ b/OAI/Analysis/Calculus/Current/Smooth.lean
+@@ -1,6 +1,6 @@
+ /- Modified for the Palomar submission: module header, public imports,
+-and exposed public declarations. Original proof bodies are retained.
+-See MODULE_MIGRATION.json for the checkpoint and ported file hashes. -/
++and exposed public declarations, with Lean 4.35/mathlib API compatibility edits.
++See MODULE_MIGRATION.json and provenance/lean435-port.json for the changes. -/
+ module
+ 
+ public import OAI.Analysis.Calculus.Current.Wave
+@@ -67,19 +67,19 @@ theorem contDiffAt_ratio {d : ℕ} (z : Index d → ℂ) (hY : z none ≠ 0) (i
+ theorem contDiffAt_movingUnit {d : ℕ} (z : Index d → ℂ) (hY : z none ≠ 0) :
+     ContDiffAt ℝ ⊤ (movingUnit (d := d)) z := by
+   have hy : ContDiffAt ℝ ⊤ (fun w : Index d → ℂ => ‖w none‖) z :=
+-    (contDiffAt_apply ℝ ℂ none z).norm ℂ hY
++    (contDiffAt_apply ℝ (fun _ => ℂ) none z).norm ℂ hY
+   have hC : ContDiffAt ℝ ⊤ (fun w : Index d → ℂ => (‖w none‖ : ℂ)) z :=
+     Complex.ofRealCLM.contDiff.contDiffAt.comp z hy
+   have hn : (‖z none‖ : ℂ) ≠ 0 := by exact_mod_cast norm_ne_zero_iff.mpr hY
+   change ContDiffAt ℝ ⊤ (fun w : Index d → ℂ => w none / (‖w none‖ : ℂ)) z
+   simpa only [div_eq_mul_inv] using
+-    (contDiffAt_apply ℝ ℂ none z).mul (hC.fun_inv hn)
++    (contDiffAt_apply ℝ (fun _ => ℂ) none z).mul (hC.fun_inv hn)
+ 
+ theorem contDiffAt_modeEnvelope {d : ℕ} (κ : ℝ) (v : Fin d → ℝ)
+     (z : Index d → ℂ) (hY : z none ≠ 0) :
+     ContDiffAt ℝ ⊤ (modeEnvelope κ v) z := by
+   have hy : ContDiffAt ℝ ⊤ (fun w : Index d → ℂ => ‖w none‖) z :=
+-    (contDiffAt_apply ℝ ℂ none z).norm ℂ hY
++    (contDiffAt_apply ℝ (fun _ => ℂ) none z).norm ℂ hY
+   have hn : ‖z none‖ ≠ 0 := norm_ne_zero_iff.mpr hY
+   have hd : ContDiffAt ℝ ⊤ (fun w => squaredDistance (ratio w) v) z := by
+     apply ContDiffAt.sum
+diff --git a/OAI/Analysis/Fourier/WavePackets/Local.lean b/OAI/Analysis/Fourier/WavePackets/Local.lean
+index 6fa5158..7bebd84 100644
+--- a/OAI/Analysis/Fourier/WavePackets/Local.lean
++++ b/OAI/Analysis/Fourier/WavePackets/Local.lean
+@@ -1,6 +1,6 @@
+ /- Modified for the Palomar submission: module header, public imports,
+-and exposed public declarations. Original proof bodies are retained.
+-See MODULE_MIGRATION.json for the checkpoint and ported file hashes. -/
++and exposed public declarations, with Lean 4.35/mathlib API compatibility edits.
++See MODULE_MIGRATION.json and provenance/lean435-port.json for the changes. -/
+ module
+ 
+ public import OAI.Analysis.Fourier.WavePackets.Periodization
+@@ -52,7 +52,7 @@ theorem eLpNorm_eq_restrict_of_ae_support {α F : Type*} [MeasurableSpace α]
+     [NormedAddCommGroup F] {μ : Measure α} {f : α → F} {s : Set α}
+     (hs : MeasurableSet s) (hf : ∀ᵐ x ∂μ, f x ≠ 0 → x ∈ s) (p : ℝ≥0∞) :
+     eLpNorm f p μ = eLpNorm f p (μ.restrict s) := by
+-  rw [← eLpNorm_indicator_eq_eLpNorm_restrict hs]
++  rw [← eLpNorm_indicator_eq_eLpNorm_restrict hs.nullMeasurableSet]
+   apply eLpNorm_congr_ae
+   filter_upwards [hf] with x hx
+   by_cases hxs : x ∈ s
+diff --git a/OAI/Analysis/Fourier/WavePackets/Packet/Coefficients.lean b/OAI/Analysis/Fourier/WavePackets/Packet/Coefficients.lean
+index d5f7534..7a1adce 100644
+--- a/OAI/Analysis/Fourier/WavePackets/Packet/Coefficients.lean
++++ b/OAI/Analysis/Fourier/WavePackets/Packet/Coefficients.lean
+@@ -1,6 +1,6 @@
+ /- Modified for the Palomar submission: module header, public imports,
+-and exposed public declarations. Original proof bodies are retained.
+-See MODULE_MIGRATION.json for the checkpoint and ported file hashes. -/
++and exposed public declarations, with Lean 4.35/mathlib API compatibility edits.
++See MODULE_MIGRATION.json and provenance/lean435-port.json for the changes. -/
+ module
+ 
+ public import OAI.Analysis.Fourier.WavePackets.PulledCoefficients
+@@ -51,7 +51,7 @@ theorem contDiff_packetPaddedSource {n : ℕ} {ι : Type*} [Fintype ι]
+     (OAI.Analysis.PDE.Concentration.contDiff_extendedPhysicalLatticeCurrent R h a hh ha κ cR cI v).comp
+       (contDiff_packetPaddedEmbedding n)
+   exact contDiff_const.mul ((OAI.Analysis.PDE.Green.contDiff_quaternion_real ∞).comp
+-    ((contDiff_apply_apply ℝ (Quaternion ℝ) 0 0).comp hA))
++    ((contDiff_apply_apply ℝ (E := Quaternion ℝ) 0 0).comp hA))
+ 
+ theorem packetPaddedBackground_periodic {n : ℕ}
+     (R : OAI.Analysis.Calculus.Current.SpatialSpace (n + 1) ≃L[ℝ] OAI.Analysis.Calculus.Current.SpatialSpace (n + 1))
+diff --git a/OAI/Analysis/Fourier/WavePackets/Packet/FixedData.lean b/OAI/Analysis/Fourier/WavePackets/Packet/FixedData.lean
+index d91eb53..ac7e87a 100644
+--- a/OAI/Analysis/Fourier/WavePackets/Packet/FixedData.lean
++++ b/OAI/Analysis/Fourier/WavePackets/Packet/FixedData.lean
+@@ -1,6 +1,6 @@
+ /- Modified for the Palomar submission: module header, public imports,
+-and exposed public declarations. Original proof bodies are retained.
+-See MODULE_MIGRATION.json for the checkpoint and ported file hashes. -/
++and exposed public declarations, with Lean 4.35/mathlib API compatibility edits.
++See MODULE_MIGRATION.json and provenance/lean435-port.json for the changes. -/
+ module
+ 
+ public import OAI.Analysis.Fourier.WavePackets.PhysicalFixedGeometry
+@@ -56,7 +56,7 @@ theorem exists_packet_fixed_data_exact {n : ℕ} {ι : Type*} [Fintype ι]
+           Fin (n + 3) → Fin (n + 3) → Quaternion ℝ)) :=
+       (OAI.Analysis.PDE.Concentration.contDiff_extendedPhysicalLatticeCurrent R h a hh ha κ cR cI v).comp hemb
+     exact contDiff_const.mul ((OAI.Analysis.PDE.Green.contDiff_quaternion_real ∞).comp
+-      ((contDiff_apply_apply ℝ (Quaternion ℝ) 0 0).comp hA))
++      ((contDiff_apply_apply ℝ (E := Quaternion ℝ) 0 0).comp hA))
+   have hBp : OAI.Analysis.PDE.Dirichlet.LatticePeriodic (OAI.Analysis.PDE.Concentration.physicalSpatialSplit (n + 1)) (OAI.Analysis.PDE.Concentration.packetSpatialBasis R) B := by
+     apply OAI.Analysis.PDE.Concentration.latticePeriodic_fiber_of_cell_period (OAI.Analysis.PDE.Concentration.packetFullCoordinates n) R
+       (u := fun x => lam * OAI.Analysis.PDE.Concentration.extendedPhysicalBackground (n + 1) a ha x) (z := z)
+diff --git a/OAI/Analysis/Normed/Function/Sobolev/HalfspaceTestGeometry.lean b/OAI/Analysis/Normed/Function/Sobolev/HalfspaceTestGeometry.lean
+index dac8ada..e7a1786 100644
+--- a/OAI/Analysis/Normed/Function/Sobolev/HalfspaceTestGeometry.lean
++++ b/OAI/Analysis/Normed/Function/Sobolev/HalfspaceTestGeometry.lean
+@@ -1,6 +1,6 @@
+ /- Modified for the Palomar submission: module header, public imports,
+-and exposed public declarations. Original proof bodies are retained.
+-See MODULE_MIGRATION.json for the checkpoint and ported file hashes. -/
++and exposed public declarations, with Lean 4.35/mathlib API compatibility edits.
++See MODULE_MIGRATION.json and provenance/lean435-port.json for the changes. -/
+ module
+ 
+ public import OAI.Analysis.Normed.Function.Sobolev.HalfspaceCutoff
+@@ -20,7 +20,7 @@ def halfspaceTest (n : ℕ) (k : Fin d) (φ : (Fin d→ℝ)→ℝ) (x : Fin d→
+ 
+ theorem contDiff_halfspaceTest (n : ℕ) (k : Fin d) {φ : (Fin d→ℝ)→ℝ}
+     (hφ : ContDiff ℝ 1 φ) : ContDiff ℝ 1 (halfspaceTest n k φ) :=
+-  (((contDiff_halfspaceGapCutoff n).of_le (by simp)).comp (contDiff_apply ℝ ℝ k)).mul hφ
++  (((contDiff_halfspaceGapCutoff n).of_le (by simp)).comp (contDiff_apply ℝ (fun _ => ℝ) k)).mul hφ
+ 
+ theorem halfspaceTest_support (n : ℕ) (k : Fin d) (φ : (Fin d→ℝ)→ℝ) :
+     tsupport (halfspaceTest n k φ)⊆{x|0<x k} := by
+diff --git a/OAI/Analysis/PDE/Dirichlet/CoefficientExtension.lean b/OAI/Analysis/PDE/Dirichlet/CoefficientExtension.lean
+index 5621128..a022c40 100644
+--- a/OAI/Analysis/PDE/Dirichlet/CoefficientExtension.lean
++++ b/OAI/Analysis/PDE/Dirichlet/CoefficientExtension.lean
+@@ -1,6 +1,6 @@
+ /- Modified for the Palomar submission: module header, public imports,
+-and exposed public declarations. Original proof bodies are retained.
+-See MODULE_MIGRATION.json for the checkpoint and ported file hashes. -/
++and exposed public declarations, with Lean 4.35/mathlib API compatibility edits.
++See MODULE_MIGRATION.json and provenance/lean435-port.json for the changes. -/
+ module
+ 
+ public import OAI.Analysis.PDE.Dirichlet.L2Coefficient
+@@ -38,7 +38,7 @@ theorem identityExtendCoefficient_measurable (Ω : Set X) (hΩ : MeasurableSet 
+     (A : X → E →L[ℝ] E) (hA : AEStronglyMeasurable A (μ.restrict Ω)) :
+     AEStronglyMeasurable (identityExtendCoefficient Ω A) μ := by
+   classical
+-  exact hA.piecewise hΩ aestronglyMeasurable_const
++  exact hA.piecewise hΩ.nullMeasurableSet aestronglyMeasurable_const
+ 
+ theorem identityExtendCoefficient_bound (Ω : Set X) (A : X → E →L[ℝ] E)
+     {M : ℝ} (hAM : ∀ᵐ x ∂μ, x ∈ Ω → ‖A x‖ ≤ M) :
+diff --git a/OAI/Analysis/PDE/Dirichlet/HolderCompactness.lean b/OAI/Analysis/PDE/Dirichlet/HolderCompactness.lean
+index 8b41acd..7b8f69f 100644
+--- a/OAI/Analysis/PDE/Dirichlet/HolderCompactness.lean
++++ b/OAI/Analysis/PDE/Dirichlet/HolderCompactness.lean
+@@ -1,8 +1,10 @@
+ /- Modified for the Palomar submission: module header, public imports,
+-and exposed public declarations. Original proof bodies are retained.
+-See MODULE_MIGRATION.json for the checkpoint and ported file hashes. -/
++and exposed public declarations, with Lean 4.35/mathlib API compatibility edits.
++See MODULE_MIGRATION.json and provenance/lean435-port.json for the changes. -/
+ module
+ 
++public import Mathlib.Topology.MetricSpace.Equicontinuity
++
+ public import Mathlib.Topology.ContinuousMap.Bounded.ArzelaAscoli
+ public import Mathlib.Topology.Sequences
+ public import Mathlib.Analysis.SpecialFunctions.Pow.Continuity
+diff --git a/OAI/Analysis/PDE/Green/DensitySmooth.lean b/OAI/Analysis/PDE/Green/DensitySmooth.lean
+index 8a94ee0..f7cf875 100644
+--- a/OAI/Analysis/PDE/Green/DensitySmooth.lean
++++ b/OAI/Analysis/PDE/Green/DensitySmooth.lean
+@@ -1,6 +1,6 @@
+ /- Modified for the Palomar submission: module header, public imports,
+-and exposed public declarations. Original proof bodies are retained.
+-See MODULE_MIGRATION.json for the checkpoint and ported file hashes. -/
++and exposed public declarations, with Lean 4.35/mathlib API compatibility edits.
++See MODULE_MIGRATION.json and provenance/lean435-port.json for the changes. -/
+ module
+ 
+ public import OAI.Analysis.PDE.Green.CombinedDensity
+@@ -46,7 +46,7 @@ theorem contDiff_spatialPencilEnergyDensity {n s : ℕ} (e : Fin s → Quaternio
+     intro i
+     apply contDiff_pi.mpr
+     intro j
+-    exact (contDiff_apply_apply ℝ (Quaternion ℝ) i.succ j.succ).comp hmat
++    exact (contDiff_apply_apply ℝ (E := Quaternion ℝ) i.succ j.succ).comp hmat
+   let f : OAI.Analysis.PDE.Dirichlet.CoordinateSpace (n + 1) s × ℝ → ℝ := fun p =>
+     OAI.LinearAlgebra.Moore.mooreDet n ((OAI.Analysis.PDE.Dirichlet.quaternionHessian e B p.1 + p.2 • OAI.Analysis.PDE.Dirichlet.quaternionHessian e u p.1).submatrix
+       Fin.succ Fin.succ)
+@@ -80,7 +80,7 @@ theorem contDiff_combinedEnergyDensity {n s : ℕ} (e : Fin s → Quaternion ℝ
+     (hB : ContDiff ℝ ∞ B) (hu : ContDiff ℝ ∞ u) :
+     ContDiff ℝ ∞ (combinedEnergyDensity e lam A B u) := by
+   have hmass : ContDiff ℝ ∞ (fun x => (A x 0 0).re) :=
+-    (contDiff_quaternion_real ∞).comp ((contDiff_apply_apply ℝ (Quaternion ℝ) 0 0).comp hA)
++    (contDiff_quaternion_real ∞).comp ((contDiff_apply_apply ℝ (E := Quaternion ℝ) 0 0).comp hA)
+   exact (hu.neg.mul hmass).add (contDiff_const.mul (contDiff_spatialPencilEnergyDensity e hB hu))
+ 
+ end OAI.Analysis.PDE.Green
+diff --git a/OAI/Analysis/PDE/Green/JacobianSmooth.lean b/OAI/Analysis/PDE/Green/JacobianSmooth.lean
+index 8d52bea..1077090 100644
+--- a/OAI/Analysis/PDE/Green/JacobianSmooth.lean
++++ b/OAI/Analysis/PDE/Green/JacobianSmooth.lean
+@@ -1,6 +1,6 @@
+ /- Modified for the Palomar submission: module header, public imports,
+-and exposed public declarations. Original proof bodies are retained.
+-See MODULE_MIGRATION.json for the checkpoint and ported file hashes. -/
++and exposed public declarations, with Lean 4.35/mathlib API compatibility edits.
++See MODULE_MIGRATION.json and provenance/lean435-port.json for the changes. -/
+ module
+ 
+ public import OAI.Analysis.PDE.Green.Physical.Change
+@@ -34,7 +34,7 @@ theorem contDiff_continuousLinearMap_det (E : Type*) [NormedAddCommGroup E]
+   apply contDiff_const.mul
+   apply contDiff_prod
+   intro i _
+-  exact (contDiff_apply_apply ℝ ℝ (σ i) i).comp T.contDiff
++  exact (contDiff_apply_apply ℝ (E := ℝ) (σ i) i).comp T.contDiff
+ 
+ theorem contDiffAt_physicalInverseJacobian {d : ℕ} (a : ℝ) (τ : ℂ)
+     (u : Option (Fin d) → ℂ) (hD : OAI.Analysis.Calculus.Current.fiberDenominator (fun i => u (some i)) ≠ 0) :
+diff --git a/OAI/Analysis/PDE/Variational/ExtensionMap.lean b/OAI/Analysis/PDE/Variational/ExtensionMap.lean
+index 42c6017..11a0890 100644
+--- a/OAI/Analysis/PDE/Variational/ExtensionMap.lean
++++ b/OAI/Analysis/PDE/Variational/ExtensionMap.lean
+@@ -1,6 +1,6 @@
+ /- Modified for the Palomar submission: module header, public imports,
+-and exposed public declarations. Original proof bodies are retained.
+-See MODULE_MIGRATION.json for the checkpoint and ported file hashes. -/
++and exposed public declarations, with Lean 4.35/mathlib API compatibility edits.
++See MODULE_MIGRATION.json and provenance/lean435-port.json for the changes. -/
+ module
+ 
+ public import OAI.Analysis.PDE.Variational.ZeroExtension
+@@ -47,7 +47,7 @@ def cellZeroExtensionLinear (a b : CellCoordinates m) :
+ theorem norm_cellZeroExtensionLinear (a b : CellCoordinates m)
+     (f : Lp H 2 (volume.restrict (Icc a b))) : ‖cellZeroExtensionLinear a b f‖ = ‖f‖ := by
+   change ‖(memLp_cellZeroExtension a b f).toLp (cellZeroExtension a b f)‖ = ‖f‖
+-  rw [Lp.norm_toLp, cellZeroExtension, eLpNorm_indicator_eq_eLpNorm_restrict measurableSet_Icc,
++  rw [Lp.norm_toLp, cellZeroExtension, eLpNorm_indicator_eq_eLpNorm_restrict measurableSet_Icc.nullMeasurableSet,
+     Lp.norm_def]
+ 
+ def cellZeroExtensionL2 (a b : CellCoordinates m) :
+diff --git a/OAI/Analysis/PDE/Variational/Poincare.lean b/OAI/Analysis/PDE/Variational/Poincare.lean
+index 75b245f..61934f5 100644
+--- a/OAI/Analysis/PDE/Variational/Poincare.lean
++++ b/OAI/Analysis/PDE/Variational/Poincare.lean
+@@ -1,6 +1,6 @@
+ /- Modified for the Palomar submission: module header, public imports,
+-and exposed public declarations. Original proof bodies are retained.
+-See MODULE_MIGRATION.json for the checkpoint and ported file hashes. -/
++and exposed public declarations, with Lean 4.35/mathlib API compatibility edits.
++See MODULE_MIGRATION.json and provenance/lean435-port.json for the changes. -/
+ module
+ 
+ public import OAI.Analysis.PDE.Green.BoxGreen
+@@ -34,7 +34,7 @@ theorem cell_weighted_energy_identity
+     by_cases hi : i = j
+     · subst i
+       have h : ContDiff ℝ 1 (fun x : Fin (m + 1) → ℝ ↦ x j - a j) :=
+-        (contDiff_apply ℝ ℝ j).sub contDiff_const
++        (contDiff_apply ℝ (fun _ => ℝ) j).sub contDiff_const
+       simpa [F] using h
+     · simpa only [F, ite_eq_right hi] using (contDiff_const : ContDiff ℝ 1 (fun _ :
+         (Fin (m + 1) → ℝ) ↦ (0 : ℝ)))
+diff --git a/OAI/Analysis/PDE/Variational/ZeroExtension.lean b/OAI/Analysis/PDE/Variational/ZeroExtension.lean
+index d3f222e..82e3740 100644
+--- a/OAI/Analysis/PDE/Variational/ZeroExtension.lean
++++ b/OAI/Analysis/PDE/Variational/ZeroExtension.lean
+@@ -1,6 +1,6 @@
+ /- Modified for the Palomar submission: module header, public imports,
+-and exposed public declarations. Original proof bodies are retained.
+-See MODULE_MIGRATION.json for the checkpoint and ported file hashes. -/
++and exposed public declarations, with Lean 4.35/mathlib API compatibility edits.
++See MODULE_MIGRATION.json and provenance/lean435-port.json for the changes. -/
+ module
+ 
+ public import OAI.Analysis.PDE.Variational.WeakGradient
+@@ -25,7 +25,7 @@ def cellZeroExtension {H : Type*} [NormedAddCommGroup H]
+ theorem memLp_cellZeroExtension {H : Type*} [NormedAddCommGroup H]
+     (a b : CellCoordinates m) (f : Lp H 2 (volume.restrict (Icc a b))) :
+     MemLp (cellZeroExtension a b f) 2 volume :=
+-  (memLp_indicator_iff_restrict measurableSet_Icc).mpr (Lp.memLp f)
++  (memLp_indicator_iff_restrict measurableSet_Icc.nullMeasurableSet).mpr (Lp.memLp f)
+ 
+ theorem cellInterior_test_face_zero (a b : CellCoordinates m)
+     {φ : CellCoordinates m → ℝ} (hφ : tsupport φ ⊆ cellInterior a b)
+diff --git a/OAI/Analysis/PDE/Weak/Boundary/L2Pullback.lean b/OAI/Analysis/PDE/Weak/Boundary/L2Pullback.lean
+index 2037596..d648722 100644
+--- a/OAI/Analysis/PDE/Weak/Boundary/L2Pullback.lean
++++ b/OAI/Analysis/PDE/Weak/Boundary/L2Pullback.lean
+@@ -1,6 +1,6 @@
+ /- Modified for the Palomar submission: module header, public imports,
+-and exposed public declarations. Original proof bodies are retained.
+-See MODULE_MIGRATION.json for the checkpoint and ported file hashes. -/
++and exposed public declarations, with Lean 4.35/mathlib API compatibility edits.
++See MODULE_MIGRATION.json and provenance/lean435-port.json for the changes. -/
+ module
+ 
+ public import Mathlib.MeasureTheory.Function.LpSpace.Basic
+@@ -36,7 +36,7 @@ theorem boundedComposeL2_ae (μ : Measure X) (ν : Measure Y) (G : X → Y)
+ 
+ def zeroExtendL2Fun (μ : Measure X) (U : Set X) (hU : MeasurableSet U)
+     (u : Lp F 2 (μ.restrict U)) : Lp F 2 μ :=
+-  ((memLp_indicator_iff_restrict hU).mpr (Lp.memLp u)).toLp (U.indicator u)
++  ((memLp_indicator_iff_restrict hU.nullMeasurableSet).mpr (Lp.memLp u)).toLp (U.indicator u)
+ 
+ omit [NormedSpace ℝ F] in
+ theorem zeroExtendL2Fun_ae (μ : Measure X) (U : Set X) (hU : MeasurableSet U)
+@@ -80,8 +80,8 @@ def zeroExtendL2Linear (μ : Measure X) (U : Set X) (hU : MeasurableSet U) :
+ 
+ theorem norm_zeroExtendL2Linear (μ : Measure X) (U : Set X) (hU : MeasurableSet U)
+     (u : Lp F 2 (μ.restrict U)) : ‖zeroExtendL2Linear μ U hU u‖ = ‖u‖ := by
+-  change ‖((memLp_indicator_iff_restrict hU).mpr (Lp.memLp u)).toLp (U.indicator u)‖ = _
+-  rw [Lp.norm_toLp, Lp.norm_def, eLpNorm_indicator_eq_eLpNorm_restrict hU]
++  change ‖((memLp_indicator_iff_restrict hU.nullMeasurableSet).mpr (Lp.memLp u)).toLp (U.indicator u)‖ = _
++  rw [Lp.norm_toLp, Lp.norm_def, eLpNorm_indicator_eq_eLpNorm_restrict hU.nullMeasurableSet]
+ 
+ def zeroExtendL2 (μ : Measure X) (U : Set X) (hU : MeasurableSet U) :
+     Lp F 2 (μ.restrict U) →L[ℝ] Lp F 2 μ :=
+diff --git a/OAI/Analysis/PDE/Weak/Elliptic/BoundaryTraceEnergy.lean b/OAI/Analysis/PDE/Weak/Elliptic/BoundaryTraceEnergy.lean
+index 7b5a0fd..d150079 100644
+--- a/OAI/Analysis/PDE/Weak/Elliptic/BoundaryTraceEnergy.lean
++++ b/OAI/Analysis/PDE/Weak/Elliptic/BoundaryTraceEnergy.lean
+@@ -31,7 +31,7 @@ theorem cell_weighted_energy_lower
+     intro i
+     by_cases hi : i = j
+     · subst i
+-      simpa [F] using (contDiff_apply ℝ ℝ j).sub
++      simpa [F] using (contDiff_apply ℝ (fun _ => ℝ) j).sub
+         (contDiff_const : ContDiff ℝ 1 (fun _ : OAI.Analysis.PDE.Variational.CellCoordinates m ↦ b j))
+     · simpa only [F, ite_eq_right hi] using
+         (contDiff_const : ContDiff ℝ 1 (fun _ : OAI.Analysis.PDE.Variational.CellCoordinates m ↦ (0 : ℝ)))
+diff --git a/OAI/Analysis/PDE/Weak/Elliptic/CutoffExistence.lean b/OAI/Analysis/PDE/Weak/Elliptic/CutoffExistence.lean
+index ea59ff0..975a92b 100644
+--- a/OAI/Analysis/PDE/Weak/Elliptic/CutoffExistence.lean
++++ b/OAI/Analysis/PDE/Weak/Elliptic/CutoffExistence.lean
+@@ -1,8 +1,10 @@
+ /- Modified for the Palomar submission: module header, public imports,
+-and exposed public declarations. Original proof bodies are retained.
+-See MODULE_MIGRATION.json for the checkpoint and ported file hashes. -/
++and exposed public declarations, with Lean 4.35/mathlib API compatibility edits.
++See MODULE_MIGRATION.json and provenance/lean435-port.json for the changes. -/
+ module
+ 
++public import Mathlib.Analysis.InnerProductSpace.EuclideanDist
++
+ public import Mathlib.Analysis.Calculus.BumpFunction.FiniteDimension
+ 
+ @[expose] public section
+diff --git a/OAI/LinearAlgebra/Moore/Smooth.lean b/OAI/LinearAlgebra/Moore/Smooth.lean
+index 6b4cf8e..a815c9a 100644
+--- a/OAI/LinearAlgebra/Moore/Smooth.lean
++++ b/OAI/LinearAlgebra/Moore/Smooth.lean
+@@ -1,6 +1,6 @@
+ /- Modified for the Palomar submission: module header, public imports,
+-and exposed public declarations. Original proof bodies are retained.
+-See MODULE_MIGRATION.json for the checkpoint and ported file hashes. -/
++and exposed public declarations, with Lean 4.35/mathlib API compatibility edits.
++See MODULE_MIGRATION.json and provenance/lean435-port.json for the changes. -/
+ module
+ 
+ public import OAI.LinearAlgebra.Moore.Cofactor
+@@ -20,7 +20,7 @@ open scoped ContDiff Matrix.Norms.Elementwise
+ theorem contDiff_skewComplexify_entry {n : ℕ} (k : ℕ∞ω) (i j : Fin n × Fin 2) :
+     ContDiff ℝ k (fun A : Matrix (Fin n) (Fin n) (Quaternion ℝ) ↦ skewComplexify A i j) := by
+   exact (skewQuaternionEntryCLM i.2 j.2).contDiff.comp
+-    (contDiff_apply_apply ℝ (Quaternion ℝ) i.1 j.1)
++    (contDiff_apply_apply ℝ (E := Quaternion ℝ) i.1 j.1)
+ 
+ theorem contDiff_mooreDet (n : ℕ) (k : ℕ∞ω) : ContDiff ℝ k (mooreDet n) := by
+   change ContDiff ℝ k (Complex.reCLM ∘ fun A : Matrix (Fin n) (Fin n) (Quaternion ℝ) ↦

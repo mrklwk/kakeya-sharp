@@ -1,6 +1,6 @@
 /- Modified for the Palomar submission: module header, public imports,
-and exposed public declarations. Original proof bodies are retained.
-See MODULE_MIGRATION.json for the checkpoint and ported file hashes. -/
+and exposed public declarations, with Lean 4.35/mathlib API compatibility edits.
+See MODULE_MIGRATION.json and provenance/lean435-port.json for the changes. -/
 module
 
 public import OAI.Analysis.Calculus.Current.Wave
@@ -67,19 +67,19 @@ theorem contDiffAt_ratio {d : ℕ} (z : Index d → ℂ) (hY : z none ≠ 0) (i 
 theorem contDiffAt_movingUnit {d : ℕ} (z : Index d → ℂ) (hY : z none ≠ 0) :
     ContDiffAt ℝ ⊤ (movingUnit (d := d)) z := by
   have hy : ContDiffAt ℝ ⊤ (fun w : Index d → ℂ => ‖w none‖) z :=
-    (contDiffAt_apply ℝ ℂ none z).norm ℂ hY
+    (contDiffAt_apply ℝ (fun _ => ℂ) none z).norm ℂ hY
   have hC : ContDiffAt ℝ ⊤ (fun w : Index d → ℂ => (‖w none‖ : ℂ)) z :=
     Complex.ofRealCLM.contDiff.contDiffAt.comp z hy
   have hn : (‖z none‖ : ℂ) ≠ 0 := by exact_mod_cast norm_ne_zero_iff.mpr hY
   change ContDiffAt ℝ ⊤ (fun w : Index d → ℂ => w none / (‖w none‖ : ℂ)) z
   simpa only [div_eq_mul_inv] using
-    (contDiffAt_apply ℝ ℂ none z).mul (hC.fun_inv hn)
+    (contDiffAt_apply ℝ (fun _ => ℂ) none z).mul (hC.fun_inv hn)
 
 theorem contDiffAt_modeEnvelope {d : ℕ} (κ : ℝ) (v : Fin d → ℝ)
     (z : Index d → ℂ) (hY : z none ≠ 0) :
     ContDiffAt ℝ ⊤ (modeEnvelope κ v) z := by
   have hy : ContDiffAt ℝ ⊤ (fun w : Index d → ℂ => ‖w none‖) z :=
-    (contDiffAt_apply ℝ ℂ none z).norm ℂ hY
+    (contDiffAt_apply ℝ (fun _ => ℂ) none z).norm ℂ hY
   have hn : ‖z none‖ ≠ 0 := norm_ne_zero_iff.mpr hY
   have hd : ContDiffAt ℝ ⊤ (fun w => squaredDistance (ratio w) v) z := by
     apply ContDiffAt.sum

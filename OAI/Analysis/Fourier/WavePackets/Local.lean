@@ -1,6 +1,6 @@
 /- Modified for the Palomar submission: module header, public imports,
-and exposed public declarations. Original proof bodies are retained.
-See MODULE_MIGRATION.json for the checkpoint and ported file hashes. -/
+and exposed public declarations, with Lean 4.35/mathlib API compatibility edits.
+See MODULE_MIGRATION.json and provenance/lean435-port.json for the changes. -/
 module
 
 public import OAI.Analysis.Fourier.WavePackets.Periodization
@@ -52,7 +52,7 @@ theorem eLpNorm_eq_restrict_of_ae_support {α F : Type*} [MeasurableSpace α]
     [NormedAddCommGroup F] {μ : Measure α} {f : α → F} {s : Set α}
     (hs : MeasurableSet s) (hf : ∀ᵐ x ∂μ, f x ≠ 0 → x ∈ s) (p : ℝ≥0∞) :
     eLpNorm f p μ = eLpNorm f p (μ.restrict s) := by
-  rw [← eLpNorm_indicator_eq_eLpNorm_restrict hs]
+  rw [← eLpNorm_indicator_eq_eLpNorm_restrict hs.nullMeasurableSet]
   apply eLpNorm_congr_ae
   filter_upwards [hf] with x hx
   by_cases hxs : x ∈ s

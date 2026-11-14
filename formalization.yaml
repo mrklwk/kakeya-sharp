@@ -192,7 +192,9 @@ review:
     4.34.1 against cached OpenAI and mathlib artifacts; those dependencies
     were not rebuilt. The retained earlier Lake build log is a completion
     tail. The review and accepted editorial changes are recorded in
-    review/claude/INTEGRATION.md. The Lean proof sources are unchanged.
+    review/claude/INTEGRATION.md. Subsequent Lean 4.35.0 compatibility edits
+    are recorded in provenance/lean435-port.json and require fresh validation;
+    the accepted Claude review applies to its recorded earlier source identity.
 
 alignment:
   namespace: "KakeyaPalomar"

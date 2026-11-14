@@ -1,6 +1,6 @@
 /- Modified for the Palomar submission: module header, public imports,
-and exposed public declarations. Original proof bodies are retained.
-See MODULE_MIGRATION.json for the checkpoint and ported file hashes. -/
+and exposed public declarations, with Lean 4.35/mathlib API compatibility edits.
+See MODULE_MIGRATION.json and provenance/lean435-port.json for the changes. -/
 module
 
 public import OAI.Analysis.Fourier.WavePackets.PhysicalFixedGeometry
@@ -56,7 +56,7 @@ theorem exists_packet_fixed_data_exact {n : ℕ} {ι : Type*} [Fintype ι]
           Fin (n + 3) → Fin (n + 3) → Quaternion ℝ)) :=
       (OAI.Analysis.PDE.Concentration.contDiff_extendedPhysicalLatticeCurrent R h a hh ha κ cR cI v).comp hemb
     exact contDiff_const.mul ((OAI.Analysis.PDE.Green.contDiff_quaternion_real ∞).comp
-      ((contDiff_apply_apply ℝ (Quaternion ℝ) 0 0).comp hA))
+      ((contDiff_apply_apply ℝ (E := Quaternion ℝ) 0 0).comp hA))
   have hBp : OAI.Analysis.PDE.Dirichlet.LatticePeriodic (OAI.Analysis.PDE.Concentration.physicalSpatialSplit (n + 1)) (OAI.Analysis.PDE.Concentration.packetSpatialBasis R) B := by
     apply OAI.Analysis.PDE.Concentration.latticePeriodic_fiber_of_cell_period (OAI.Analysis.PDE.Concentration.packetFullCoordinates n) R
       (u := fun x => lam * OAI.Analysis.PDE.Concentration.extendedPhysicalBackground (n + 1) a ha x) (z := z)

@@ -1,6 +1,6 @@
 /- Modified for the Palomar submission: module header, public imports,
-and exposed public declarations. Original proof bodies are retained.
-See MODULE_MIGRATION.json for the checkpoint and ported file hashes. -/
+and exposed public declarations, with Lean 4.35/mathlib API compatibility edits.
+See MODULE_MIGRATION.json and provenance/lean435-port.json for the changes. -/
 module
 
 public import OAI.Analysis.PDE.Dirichlet.L2Coefficient
@@ -38,7 +38,7 @@ theorem identityExtendCoefficient_measurable (Ω : Set X) (hΩ : MeasurableSet �
     (A : X → E →L[ℝ] E) (hA : AEStronglyMeasurable A (μ.restrict Ω)) :
     AEStronglyMeasurable (identityExtendCoefficient Ω A) μ := by
   classical
-  exact hA.piecewise hΩ aestronglyMeasurable_const
+  exact hA.piecewise hΩ.nullMeasurableSet aestronglyMeasurable_const
 
 theorem identityExtendCoefficient_bound (Ω : Set X) (A : X → E →L[ℝ] E)
     {M : ℝ} (hAM : ∀ᵐ x ∂μ, x ∈ Ω → ‖A x‖ ≤ M) :

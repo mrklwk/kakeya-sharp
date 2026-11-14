@@ -1,0 +1,113 @@
+{
+  "schema_version": 1,
+  "base_public_commit": "9a20b2896cdab913f21d7db197af3b30306f8250",
+  "base_local_commit": "e8ade80a23ff580a606bba9d963f5f0aadff7d52",
+  "lean_toolchain": "leanprover/lean4:v4.35.0",
+  "mathlib_commit": "56a005855ea17e0b0958f73ec801ae140b0a1679",
+  "trigger_report": "palomar-preflight-43625069473.json",
+  "status": "compatibility edits prepared; full preflight pending",
+  "statement_changes": false,
+  "change_summary": [
+    "Pass the now-implicit value type by name to contDiff_apply_apply.",
+    "Pass the constant type family to the generalized contDiff_apply and contDiffAt_apply.",
+    "Convert MeasurableSet proofs to NullMeasurableSet proofs for the generalized indicator and piecewise lemmas.",
+    "Import metric equicontinuity and Euclidean distance explicitly instead of relying on private transitive imports."
+  ],
+  "changes": [
+    {
+      "path": "KakeyaSharp/Moore/Smooth.lean",
+      "before_sha256": "5eea63bc49272e8d8eeda8dfe46d035bfbea328d7dd11434baee19fefe2fcd61",
+      "after_sha256": "b06d337307b7a95fe1e970c43fd73bd1445d7c18ccc845d54dc855537f8d6287"
+    },
+    {
+      "path": "KakeyaSharp/SharpTransfer.lean",
+      "before_sha256": "ce7adfaf8f8e1ea1cb9f7e5c6f4495efe79427fe67bcc14461ac037f62c8d96b",
+      "after_sha256": "82ea23662231ebe49104d0c938b5003534789b8cbcbbbc8629abf6eb543a4a70"
+    },
+    {
+      "path": "KakeyaSharp/ThinSolutionCurrent.lean",
+      "before_sha256": "6213eba38f9ec8d2f8cf3170cc9a6889a479b6e56b415074bbef915b70588fb7",
+      "after_sha256": "480bfcef165849b91eb6c3c3b363c6bd80daef685e6c1ca3d547452eb696c52a"
+    },
+    {
+      "path": "OAI/Analysis/Calculus/Current/Smooth.lean",
+      "before_sha256": "995c56efaf03bae7305baa74a30a1927c05b4f9389e887801db1b88cca49f938",
+      "after_sha256": "fdddaccdcc5fc9ee2d44e3bbe2ec75f0fb7c749fd13955f8f7c39fae8503d7dd"
+    },
+    {
+      "path": "OAI/Analysis/Fourier/WavePackets/Local.lean",
+      "before_sha256": "8338214b3744be0a1d505e381aef6c554910ae652f58493ece616f112cfb5219",
+      "after_sha256": "12e30cec0a32e2cfd2c37aae88a2aa6959b9c6ebb453e6f5c3e27d8390a7d3c6"
+    },
+    {
+      "path": "OAI/Analysis/Fourier/WavePackets/Packet/Coefficients.lean",
+      "before_sha256": "748213e378f197c2f56fa93af4e11afbb9f90bda86bfb4737b9a471c8a99c016",
+      "after_sha256": "663fc63da32a64b09c159fc8cd94235bce7c5fe95ac9c5c30c1a40ffb9e211ec"
+    },
+    {
+      "path": "OAI/Analysis/Fourier/WavePackets/Packet/FixedData.lean",
+      "before_sha256": "1671e92dfa960422645536aee0f8b579344adb6bc6812050566d880d4cd5f226",
+      "after_sha256": "9daaf67164d52eafb16abc4342eed0462dcfd8cfdf01b3e2ac672faa916feeb8"
+    },
+    {
+      "path": "OAI/Analysis/Normed/Function/Sobolev/HalfspaceTestGeometry.lean",
+      "before_sha256": "7a294d9615a1449f4cd08214435d776f3f3f85f5c797dd20ca27575468e5c629",
+      "after_sha256": "71c83bc444df4916b30c8847963427cb01eb344f2fa1c6b77de71dab6a7b316b"
+    },
+    {
+      "path": "OAI/Analysis/PDE/Dirichlet/CoefficientExtension.lean",
+      "before_sha256": "61227a77f6b0663c4931ceb86dd146538a08b97fabb19db254ce9348468b390d",
+      "after_sha256": "30af2081445267bee8e20216ba0262dc11e9f0b8d665f01da50c56c8ef290c74"
+    },
+    {
+      "path": "OAI/Analysis/PDE/Dirichlet/HolderCompactness.lean",
+      "before_sha256": "67a0683ee3b34cc5236d148ea49deb0894baf5fc4bb1fa3dbf87d7294a340dba",
+      "after_sha256": "0db6f46fc845b01cd9a457691b03aa40120a992f6fd76a7e5f867d6227dae621"
+    },
+    {
+      "path": "OAI/Analysis/PDE/Green/DensitySmooth.lean",
+      "before_sha256": "987eaa3dc028f6799623d37e8d73b841ca91a1a43f280eab0171fe4f8f1156f6",
+      "after_sha256": "4b01647654851ef88604cfdf1a51a3c4ddfd3ef5a2310a3eccf9fdda240e4cce"
+    },
+    {
+      "path": "OAI/Analysis/PDE/Green/JacobianSmooth.lean",
+      "before_sha256": "7dc4ef302c2beab4184d5523232bccd021272b0babde64911ac734d9c91c7a88",
+      "after_sha256": "bd9ac6a548313137566f5096b819b295dc6fd458d8844720f6ba4f4c1b591a2c"
+    },
+    {
+      "path": "OAI/Analysis/PDE/Variational/ExtensionMap.lean",
+      "before_sha256": "953409cadae64eb0ccc286b02afa68f91dde2c11ee1b5d435eb60ff0c5fabd0a",
+      "after_sha256": "00adcddc5e59c659523656237b0e2d065e90b8db5b76121a33e1a1236689f737"
+    },
+    {
+      "path": "OAI/Analysis/PDE/Variational/Poincare.lean",
+      "before_sha256": "e331bc98ce7bd7ad0d46636543ddc8a4fe800180e221e120b6989d4fee4dd6f2",
+      "after_sha256": "6bf70b381bf906c7e3f526949bfa7dc4782804fdda7ebb9de380d70e80228c98"
+    },
+    {
+      "path": "OAI/Analysis/PDE/Variational/ZeroExtension.lean",
+      "before_sha256": "bc7f879d6f2a89944bc6dbce894cd1010a4da47db27d0587db83dc26d12c96ca",
+      "after_sha256": "d55b233ad120a7d808d6a08eb0ee7d2f568462a45c12af799896944c1d497563"
+    },
+    {
+      "path": "OAI/Analysis/PDE/Weak/Boundary/L2Pullback.lean",
+      "before_sha256": "791a463fb1caeaa9bb3f1f98f4cd8851c16b538bb70c9579c29a2314f49730f1",
+      "after_sha256": "f412d137dd2e5c1813a428847e4e0de64fdd0b6fbd7a28b387d58ed151c6b1a7"
+    },
+    {
+      "path": "OAI/Analysis/PDE/Weak/Elliptic/BoundaryTraceEnergy.lean",
+      "before_sha256": "7d8301c52864527ff6f2099d4b415c04523e7578b39f77ac69c89145596b0a95",
+      "after_sha256": "ccd86c33c077e521c76106f24060ee6f6950a2b508b57efe742e876f9a3abf67"
+    },
+    {
+      "path": "OAI/Analysis/PDE/Weak/Elliptic/CutoffExistence.lean",
+      "before_sha256": "918fdc3152ae4c90ba71e899ba4a1e5d2f1dd988168778e58602527e1fa31b1b",
+      "after_sha256": "6b01943b6887aa15189fd8e1decdd6d7ed8893c95d3f23ba5fb3cdc6a16e56b6"
+    },
+    {
+      "path": "OAI/LinearAlgebra/Moore/Smooth.lean",
+      "before_sha256": "8e7310bf85d7ebda884ad939fbacbb61f496644175adfd204b05588c1da37298",
+      "after_sha256": "fa42193a21a1ed26b4a14467a91ceabfb06b0056f7a38222b4ac2d60905c8205"
+    }
+  ]
+}

@@ -1,6 +1,6 @@
 /- Modified for the Palomar submission: module header, public imports,
-and exposed public declarations. Original proof bodies are retained.
-See MODULE_MIGRATION.json for the checkpoint and ported file hashes. -/
+and exposed public declarations, with Lean 4.35/mathlib API compatibility edits.
+See MODULE_MIGRATION.json and provenance/lean435-port.json for the changes. -/
 module
 
 public import KakeyaSharp.Moore.Cofactor
@@ -20,7 +20,7 @@ open scoped ContDiff Matrix.Norms.Elementwise
 theorem contDiff_skewComplexify_entry {n : ℕ} (k : ℕ∞ω) (i j : Fin n × Fin 2) :
     ContDiff ℝ k (fun A : Matrix (Fin n) (Fin n) (Quaternion ℝ) ↦ skewComplexify A i j) := by
   exact (skewQuaternionEntryCLM i.2 j.2).contDiff.comp
-    (contDiff_apply_apply ℝ (Quaternion ℝ) i.1 j.1)
+    (contDiff_apply_apply ℝ (E := Quaternion ℝ) i.1 j.1)
 
 theorem contDiff_mooreDet (n : ℕ) (k : ℕ∞ω) : ContDiff ℝ k (mooreDet n) := by
   change ContDiff ℝ k (Complex.reCLM ∘ fun A : Matrix (Fin n) (Fin n) (Quaternion ℝ) ↦

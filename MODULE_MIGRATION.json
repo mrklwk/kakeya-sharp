@@ -1,6 +1,6 @@
 {
   "source_checkpoint": "0.19.0",
-  "operation": "Add module header; replace import with public import; add @[expose] public section. All further changes are recorded in provenance/module-port.patch.",
+  "operation": "Add module header; replace import with public import; add @[expose] public section. Further changes are recorded in provenance/module-port.patch and provenance/lean435-port.patch.",
   "files": [
     {
       "path": "Audit.lean",
@@ -509,8 +509,8 @@
     {
       "path": "KakeyaSharp/Moore/Smooth.lean",
       "checkpoint_sha256": "b42a6d897b5da30ff79e99adce40f6d7873ffee23a6f57c8fa30a12d44e87d68",
-      "ported_sha256": "5eea63bc49272e8d8eeda8dfe46d035bfbea328d7dd11434baee19fefe2fcd61",
-      "additional_port_changes": false
+      "ported_sha256": "b06d337307b7a95fe1e970c43fd73bd1445d7c18ccc845d54dc855537f8d6287",
+      "additional_port_changes": true
     },
     {
       "path": "KakeyaSharp/Packet/Affine.lean",
@@ -911,8 +911,8 @@
     {
       "path": "KakeyaSharp/SharpTransfer.lean",
       "checkpoint_sha256": "a2eadeb3f3a307f96699eab238b0ca17b8c4d49313fe6025f0e7e71052f7ccc7",
-      "ported_sha256": "ce7adfaf8f8e1ea1cb9f7e5c6f4495efe79427fe67bcc14461ac037f62c8d96b",
-      "additional_port_changes": false
+      "ported_sha256": "82ea23662231ebe49104d0c938b5003534789b8cbcbbbc8629abf6eb543a4a70",
+      "additional_port_changes": true
     },
     {
       "path": "KakeyaSharp/SpatialScaling.lean",
@@ -1067,8 +1067,8 @@
     {
       "path": "KakeyaSharp/ThinSolutionCurrent.lean",
       "checkpoint_sha256": "6218b11262c5feedaedfd2cc450e6e471d6df8f4f8241891217c58208bbc6976",
-      "ported_sha256": "6213eba38f9ec8d2f8cf3170cc9a6889a479b6e56b415074bbef915b70588fb7",
-      "additional_port_changes": false
+      "ported_sha256": "480bfcef165849b91eb6c3c3b363c6bd80daef685e6c1ca3d547452eb696c52a",
+      "additional_port_changes": true
     },
     {
       "path": "KakeyaSharp/ThinSolutionCurrentLocal.lean",
@@ -1655,8 +1655,8 @@
     {
       "path": "OAI/Analysis/Calculus/Current/Smooth.lean",
       "checkpoint_sha256": "76e56869062d5e11edd6c8443dbb8503881af6c814ce29c956539ddc5d7ad601",
-      "ported_sha256": "995c56efaf03bae7305baa74a30a1927c05b4f9389e887801db1b88cca49f938",
-      "additional_port_changes": false
+      "ported_sha256": "fdddaccdcc5fc9ee2d44e3bbe2ec75f0fb7c749fd13955f8f7c39fae8503d7dd",
+      "additional_port_changes": true
     },
     {
       "path": "OAI/Analysis/Calculus/Current/SourceProperties.lean",
@@ -2285,8 +2285,8 @@
     {
       "path": "OAI/Analysis/Fourier/WavePackets/Local.lean",
       "checkpoint_sha256": "7113825615e2cf3efda42c57cbb0985d52c11cfd48279e6df09ab7b63d9c1c14",
-      "ported_sha256": "8338214b3744be0a1d505e381aef6c554910ae652f58493ece616f112cfb5219",
-      "additional_port_changes": false
+      "ported_sha256": "12e30cec0a32e2cfd2c37aae88a2aa6959b9c6ebb453e6f5c3e27d8390a7d3c6",
+      "additional_port_changes": true
     },
     {
       "path": "OAI/Analysis/Fourier/WavePackets/MovingPushback.lean",
@@ -2321,8 +2321,8 @@
     {
       "path": "OAI/Analysis/Fourier/WavePackets/Packet/Coefficients.lean",
       "checkpoint_sha256": "228e476fa20b32fe5af349ba81da8b5f29d354caad718b8a0d457a0f5b3ad446",
-      "ported_sha256": "748213e378f197c2f56fa93af4e11afbb9f90bda86bfb4737b9a471c8a99c016",
-      "additional_port_changes": false
+      "ported_sha256": "663fc63da32a64b09c159fc8cd94235bce7c5fe95ac9c5c30c1a40ffb9e211ec",
+      "additional_port_changes": true
     },
     {
       "path": "OAI/Analysis/Fourier/WavePackets/Packet/FamilyBarriers.lean",
@@ -2339,8 +2339,8 @@
     {
       "path": "OAI/Analysis/Fourier/WavePackets/Packet/FixedData.lean",
       "checkpoint_sha256": "1c67c14a8bc0f1788124468558ca4203b6f33ee7d3241b815d24ca8058666562",
-      "ported_sha256": "1671e92dfa960422645536aee0f8b579344adb6bc6812050566d880d4cd5f226",
-      "additional_port_changes": false
+      "ported_sha256": "9daaf67164d52eafb16abc4342eed0462dcfd8cfdf01b3e2ac672faa916feeb8",
+      "additional_port_changes": true
     },
     {
       "path": "OAI/Analysis/Fourier/WavePackets/Packet/ParameterFields.lean",
@@ -2897,8 +2897,8 @@
     {
       "path": "OAI/Analysis/Normed/Function/Sobolev/HalfspaceTestGeometry.lean",
       "checkpoint_sha256": "d9ef9db3e35117cdcb26c2352fe1ccb1756ed52ad56ed2dbaf3f1db37a553d49",
-      "ported_sha256": "7a294d9615a1449f4cd08214435d776f3f3f85f5c797dd20ca27575468e5c629",
-      "additional_port_changes": false
+      "ported_sha256": "71c83bc444df4916b30c8847963427cb01eb344f2fa1c6b77de71dab6a7b316b",
+      "additional_port_changes": true
     },
     {
       "path": "OAI/Analysis/Normed/Function/Sobolev/PiEmbedding.lean",
@@ -4625,8 +4625,8 @@
     {
       "path": "OAI/Analysis/PDE/Dirichlet/CoefficientExtension.lean",
       "checkpoint_sha256": "d3efef422ce9555f4b57de4c7f9e3606c2f8dad9ba596b7bce60e8540c7cea24",
-      "ported_sha256": "61227a77f6b0663c4931ceb86dd146538a08b97fabb19db254ce9348468b390d",
-      "additional_port_changes": false
+      "ported_sha256": "30af2081445267bee8e20216ba0262dc11e9f0b8d665f01da50c56c8ef290c74",
+      "additional_port_changes": true
     },
     {
       "path": "OAI/Analysis/PDE/Dirichlet/CoerciveData.lean",
@@ -4961,8 +4961,8 @@
     {
       "path": "OAI/Analysis/PDE/Dirichlet/HolderCompactness.lean",
       "checkpoint_sha256": "efe09c36703f02c64a7600e54873bbfc613f4adab88417f65625e924a9f43187",
-      "ported_sha256": "67a0683ee3b34cc5236d148ea49deb0894baf5fc4bb1fa3dbf87d7294a340dba",
-      "additional_port_changes": false
+      "ported_sha256": "0db6f46fc845b01cd9a457691b03aa40120a992f6fd76a7e5f867d6227dae621",
+      "additional_port_changes": true
     },
     {
       "path": "OAI/Analysis/PDE/Dirichlet/IndexedHolderApprox.lean",
@@ -7967,8 +7967,8 @@
     {
       "path": "OAI/Analysis/PDE/Green/DensitySmooth.lean",
       "checkpoint_sha256": "af95fc2a5d1d6fe3a32f86d551f9792b48a50c23f5de2213f4b82bdd3598b71f",
-      "ported_sha256": "987eaa3dc028f6799623d37e8d73b841ca91a1a43f280eab0171fe4f8f1156f6",
-      "additional_port_changes": false
+      "ported_sha256": "4b01647654851ef88604cfdf1a51a3c4ddfd3ef5a2310a3eccf9fdda240e4cce",
+      "additional_port_changes": true
     },
     {
       "path": "OAI/Analysis/PDE/Green/EuclideanCell.lean",
@@ -8051,8 +8051,8 @@
     {
       "path": "OAI/Analysis/PDE/Green/JacobianSmooth.lean",
       "checkpoint_sha256": "3e2ae5846dbfab0747bb049c2d9d9423992cdf1534be7bc50ca0edf26c9d4526",
-      "ported_sha256": "7dc4ef302c2beab4184d5523232bccd021272b0babde64911ac734d9c91c7a88",
-      "additional_port_changes": false
+      "ported_sha256": "bd9ac6a548313137566f5096b819b295dc6fd458d8844720f6ba4f4c1b591a2c",
+      "additional_port_changes": true
     },
     {
       "path": "OAI/Analysis/PDE/Green/LocalExtension.lean",
@@ -10235,8 +10235,8 @@
     {
       "path": "OAI/Analysis/PDE/Variational/ExtensionMap.lean",
       "checkpoint_sha256": "c4eccf0a7375d44217c3c48cfce9a9f8ef903c80a60924ae771d6c9f2ebd9265",
-      "ported_sha256": "953409cadae64eb0ccc286b02afa68f91dde2c11ee1b5d435eb60ff0c5fabd0a",
-      "additional_port_changes": false
+      "ported_sha256": "00adcddc5e59c659523656237b0e2d065e90b8db5b76121a33e1a1236689f737",
+      "additional_port_changes": true
     },
     {
       "path": "OAI/Analysis/PDE/Variational/FundamentalDomain.lean",
@@ -10331,8 +10331,8 @@
     {
       "path": "OAI/Analysis/PDE/Variational/Poincare.lean",
       "checkpoint_sha256": "cb0c1553cdbebb567e2ddc486486468c1caf41d35fa88096400e31b3bfec31d9",
-      "ported_sha256": "e331bc98ce7bd7ad0d46636543ddc8a4fe800180e221e120b6989d4fee4dd6f2",
-      "additional_port_changes": false
+      "ported_sha256": "6bf70b381bf906c7e3f526949bfa7dc4782804fdda7ebb9de380d70e80228c98",
+      "additional_port_changes": true
     },
     {
       "path": "OAI/Analysis/PDE/Variational/ShiftedGeometry.lean",
@@ -10373,8 +10373,8 @@
     {
       "path": "OAI/Analysis/PDE/Variational/ZeroExtension.lean",
       "checkpoint_sha256": "d9f8bbc6a8769b2a00c766b0a9ef31525fc47d94256b20a64ab27712e362c1bb",
-      "ported_sha256": "bc7f879d6f2a89944bc6dbce894cd1010a4da47db27d0587db83dc26d12c96ca",
-      "additional_port_changes": false
+      "ported_sha256": "d55b233ad120a7d808d6a08eb0ee7d2f568462a45c12af799896944c1d497563",
+      "additional_port_changes": true
     },
     {
       "path": "OAI/Analysis/PDE/Variational/ZeroTraceApproximation.lean",
@@ -10529,8 +10529,8 @@
     {
       "path": "OAI/Analysis/PDE/Weak/Boundary/L2Pullback.lean",
       "checkpoint_sha256": "0d816f93e257e497c5fe52dbaa8c6b9e619f4aa51f316a3d5024149e41c455f5",
-      "ported_sha256": "791a463fb1caeaa9bb3f1f98f4cd8851c16b538bb70c9579c29a2314f49730f1",
-      "additional_port_changes": false
+      "ported_sha256": "f412d137dd2e5c1813a428847e4e0de64fdd0b6fbd7a28b387d58ed151c6b1a7",
+      "additional_port_changes": true
     },
     {
       "path": "OAI/Analysis/PDE/Weak/Boundary/LocalFamily.lean",
@@ -10769,7 +10769,7 @@
     {
       "path": "OAI/Analysis/PDE/Weak/Elliptic/BoundaryTraceEnergy.lean",
       "checkpoint_sha256": "2242c06e5581b485faa6671472a5adcffb7cff389551b2f027fa9f36f37ce82f",
-      "ported_sha256": "7d8301c52864527ff6f2099d4b415c04523e7578b39f77ac69c89145596b0a95",
+      "ported_sha256": "ccd86c33c077e521c76106f24060ee6f6950a2b508b57efe742e876f9a3abf67",
       "additional_port_changes": true
     },
     {
@@ -10841,8 +10841,8 @@
     {
       "path": "OAI/Analysis/PDE/Weak/Elliptic/CutoffExistence.lean",
       "checkpoint_sha256": "90bb4c1cfabe938ab562010422b73c8f4d4dab29f8c4eebb039aab83f93280eb",
-      "ported_sha256": "918fdc3152ae4c90ba71e899ba4a1e5d2f1dd988168778e58602527e1fa31b1b",
-      "additional_port_changes": false
+      "ported_sha256": "6b01943b6887aa15189fd8e1decdd6d7ed8893c95d3f23ba5fb3cdc6a16e56b6",
+      "additional_port_changes": true
     },
     {
       "path": "OAI/Analysis/PDE/Weak/Elliptic/CutoffTest.lean",
@@ -11333,8 +11333,8 @@
     {
       "path": "OAI/LinearAlgebra/Moore/Smooth.lean",
       "checkpoint_sha256": "ba8467eb823e5192c1bffd76fa8fd38bcbe537129c408325d03a00072add1955",
-      "ported_sha256": "8e7310bf85d7ebda884ad939fbacbb61f496644175adfd204b05588c1da37298",
-      "additional_port_changes": false
+      "ported_sha256": "fa42193a21a1ed26b4a14467a91ceabfb06b0056f7a38222b4ac2d60905c8205",
+      "additional_port_changes": true
     },
     {
       "path": "OAI/LinearAlgebra/Moore/Square.lean",
@@ -11350,9 +11350,17 @@
     }
   ],
   "additional_changes": [
+    "KakeyaSharp/Moore/Smooth.lean",
+    "KakeyaSharp/SharpTransfer.lean",
+    "KakeyaSharp/ThinSolutionCurrent.lean",
+    "OAI/Analysis/Calculus/Current/Smooth.lean",
     "OAI/Analysis/Fourier/Wave/Basic.lean",
     "OAI/Analysis/Fourier/WavePackets/Dirichlet/ParameterBase.lean",
     "OAI/Analysis/Fourier/WavePackets/Dirichlet/ParameterFamily.lean",
+    "OAI/Analysis/Fourier/WavePackets/Local.lean",
+    "OAI/Analysis/Fourier/WavePackets/Packet/Coefficients.lean",
+    "OAI/Analysis/Fourier/WavePackets/Packet/FixedData.lean",
+    "OAI/Analysis/Normed/Function/Sobolev/HalfspaceTestGeometry.lean",
     "OAI/Analysis/PDE/Dirichlet/Boundary/Continuity/Inverse.lean",
     "OAI/Analysis/PDE/Dirichlet/Boundary/InverseOperator.lean",
     "OAI/Analysis/PDE/Dirichlet/Boundary/UniformInverse.lean",
@@ -11360,6 +11368,8 @@
     "OAI/Analysis/PDE/Dirichlet/C2HolderPeriodicDerivative.lean",
     "OAI/Analysis/PDE/Dirichlet/C2HolderPeriodicDerivativeValue.lean",
     "OAI/Analysis/PDE/Dirichlet/C2HolderPeriodicSmooth.lean",
+    "OAI/Analysis/PDE/Dirichlet/CoefficientExtension.lean",
+    "OAI/Analysis/PDE/Dirichlet/HolderCompactness.lean",
     "OAI/Analysis/PDE/Dirichlet/Path/FourthLimit.lean",
     "OAI/Analysis/PDE/Dirichlet/Periodic/DerivativeInjective.lean",
     "OAI/Analysis/PDE/Dirichlet/Rough/GeometricIFT.lean",
@@ -11373,6 +11383,8 @@
     "OAI/Analysis/PDE/Elliptic/Boundary/Fourth/Pullback.lean",
     "OAI/Analysis/PDE/Elliptic/Boundary/Fourth/Tangential.lean",
     "OAI/Analysis/PDE/Green/BoundaryBound.lean",
+    "OAI/Analysis/PDE/Green/DensitySmooth.lean",
+    "OAI/Analysis/PDE/Green/JacobianSmooth.lean",
     "OAI/Analysis/PDE/Green/Localized/Flux.lean",
     "OAI/Analysis/PDE/Green/RegularBoundary.lean",
     "OAI/Analysis/PDE/Schauder/Calculus/Deformation/Base.lean",
@@ -11383,6 +11395,12 @@
     "OAI/Analysis/PDE/Schauder/Calculus/Schauder/CutoffEquation.lean",
     "OAI/Analysis/PDE/Schauder/Calculus/Schauder/HolderPullback.lean",
     "OAI/Analysis/PDE/Schauder/Calculus/Schauder/UniformCutoff.lean",
-    "OAI/Analysis/PDE/Weak/Elliptic/BoundaryTraceEnergy.lean"
+    "OAI/Analysis/PDE/Variational/ExtensionMap.lean",
+    "OAI/Analysis/PDE/Variational/Poincare.lean",
+    "OAI/Analysis/PDE/Variational/ZeroExtension.lean",
+    "OAI/Analysis/PDE/Weak/Boundary/L2Pullback.lean",
+    "OAI/Analysis/PDE/Weak/Elliptic/BoundaryTraceEnergy.lean",
+    "OAI/Analysis/PDE/Weak/Elliptic/CutoffExistence.lean",
+    "OAI/LinearAlgebra/Moore/Smooth.lean"
   ]
 }

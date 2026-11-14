@@ -1,6 +1,6 @@
 /- Modified for the Palomar submission: module header, public imports,
-and exposed public declarations. Original proof bodies are retained.
-See MODULE_MIGRATION.json for the checkpoint and ported file hashes. -/
+and exposed public declarations, with Lean 4.35/mathlib API compatibility edits.
+See MODULE_MIGRATION.json and provenance/lean435-port.json for the changes. -/
 module
 
 public import KakeyaSharp.DirectionIntegral
@@ -41,7 +41,7 @@ lemma memLp_weighted_tubes {n m : ℕ} (δ : ℝ) (v x : Fin m → Space n)
       (ENNReal.ofReal q) volume := by
   apply memLp_finsetSum
   intro i _
-  exact memLp_indicator_const _ (measurableSet_tube _ _ _) _
+  exact memLp_indicator_const _ (measurableSet_tube _ _ _).nullMeasurableSet _
     (.inr (volume_tube_lt_top _ _ _).ne)
 
 /-- A scale-dependent overlap norm bound, with all constants quantified. -/

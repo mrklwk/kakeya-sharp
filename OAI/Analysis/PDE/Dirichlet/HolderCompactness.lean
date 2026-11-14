@@ -1,7 +1,9 @@
 /- Modified for the Palomar submission: module header, public imports,
-and exposed public declarations. Original proof bodies are retained.
-See MODULE_MIGRATION.json for the checkpoint and ported file hashes. -/
+and exposed public declarations, with Lean 4.35/mathlib API compatibility edits.
+See MODULE_MIGRATION.json and provenance/lean435-port.json for the changes. -/
 module
+
+public import Mathlib.Topology.MetricSpace.Equicontinuity
 
 public import Mathlib.Topology.ContinuousMap.Bounded.ArzelaAscoli
 public import Mathlib.Topology.Sequences

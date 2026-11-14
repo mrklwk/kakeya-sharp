@@ -48,3 +48,13 @@ conversion and the proof bridges. Their exact configuration is retained
 under `provenance/local-check-*`. They do not validate the newer mathlib
 revision or substitute for the required Lean 4.35.0 and Palomar checks.
 Those outstanding checks are recorded explicitly in `VALIDATION.json`.
+
+The first official full preflight of the published source ran on Lean 4.35.0
+and stopped at the Solution build. Its report is retained in
+`provenance/palomar-preflight-43625069473.json`. The compatibility port in
+`provenance/lean435-port.patch` updates projection smoothness lemma arguments,
+passes null-measurability proofs to generalized indicator and piecewise lemmas,
+and imports metric equicontinuity and Euclidean distance explicitly.
+The same changed APIs are updated in dependent modules that the first failure
+prevented from compiling. These edits preserve theorem statements and require
+a new full preflight; the Lean 4.34.1 and Claude receipts remain historical.

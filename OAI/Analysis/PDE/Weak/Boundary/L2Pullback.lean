@@ -1,6 +1,6 @@
 /- Modified for the Palomar submission: module header, public imports,
-and exposed public declarations. Original proof bodies are retained.
-See MODULE_MIGRATION.json for the checkpoint and ported file hashes. -/
+and exposed public declarations, with Lean 4.35/mathlib API compatibility edits.
+See MODULE_MIGRATION.json and provenance/lean435-port.json for the changes. -/
 module
 
 public import Mathlib.MeasureTheory.Function.LpSpace.Basic
@@ -36,7 +36,7 @@ theorem boundedComposeL2_ae (μ : Measure X) (ν : Measure Y) (G : X → Y)
 
 def zeroExtendL2Fun (μ : Measure X) (U : Set X) (hU : MeasurableSet U)
     (u : Lp F 2 (μ.restrict U)) : Lp F 2 μ :=
-  ((memLp_indicator_iff_restrict hU).mpr (Lp.memLp u)).toLp (U.indicator u)
+  ((memLp_indicator_iff_restrict hU.nullMeasurableSet).mpr (Lp.memLp u)).toLp (U.indicator u)
 
 omit [NormedSpace ℝ F] in
 theorem zeroExtendL2Fun_ae (μ : Measure X) (U : Set X) (hU : MeasurableSet U)
@@ -80,8 +80,8 @@ def zeroExtendL2Linear (μ : Measure X) (U : Set X) (hU : MeasurableSet U) :
 
 theorem norm_zeroExtendL2Linear (μ : Measure X) (U : Set X) (hU : MeasurableSet U)
     (u : Lp F 2 (μ.restrict U)) : ‖zeroExtendL2Linear μ U hU u‖ = ‖u‖ := by
-  change ‖((memLp_indicator_iff_restrict hU).mpr (Lp.memLp u)).toLp (U.indicator u)‖ = _
-  rw [Lp.norm_toLp, Lp.norm_def, eLpNorm_indicator_eq_eLpNorm_restrict hU]
+  change ‖((memLp_indicator_iff_restrict hU.nullMeasurableSet).mpr (Lp.memLp u)).toLp (U.indicator u)‖ = _
+  rw [Lp.norm_toLp, Lp.norm_def, eLpNorm_indicator_eq_eLpNorm_restrict hU.nullMeasurableSet]
 
 def zeroExtendL2 (μ : Measure X) (U : Set X) (hU : MeasurableSet U) :
     Lp F 2 (μ.restrict U) →L[ℝ] Lp F 2 μ :=

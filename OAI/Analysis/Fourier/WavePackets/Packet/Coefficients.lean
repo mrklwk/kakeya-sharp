@@ -1,6 +1,6 @@
 /- Modified for the Palomar submission: module header, public imports,
-and exposed public declarations. Original proof bodies are retained.
-See MODULE_MIGRATION.json for the checkpoint and ported file hashes. -/
+and exposed public declarations, with Lean 4.35/mathlib API compatibility edits.
+See MODULE_MIGRATION.json and provenance/lean435-port.json for the changes. -/
 module
 
 public import OAI.Analysis.Fourier.WavePackets.PulledCoefficients
@@ -51,7 +51,7 @@ theorem contDiff_packetPaddedSource {n : ℕ} {ι : Type*} [Fintype ι]
     (OAI.Analysis.PDE.Concentration.contDiff_extendedPhysicalLatticeCurrent R h a hh ha κ cR cI v).comp
       (contDiff_packetPaddedEmbedding n)
   exact contDiff_const.mul ((OAI.Analysis.PDE.Green.contDiff_quaternion_real ∞).comp
-    ((contDiff_apply_apply ℝ (Quaternion ℝ) 0 0).comp hA))
+    ((contDiff_apply_apply ℝ (E := Quaternion ℝ) 0 0).comp hA))
 
 theorem packetPaddedBackground_periodic {n : ℕ}
     (R : OAI.Analysis.Calculus.Current.SpatialSpace (n + 1) ≃L[ℝ] OAI.Analysis.Calculus.Current.SpatialSpace (n + 1))

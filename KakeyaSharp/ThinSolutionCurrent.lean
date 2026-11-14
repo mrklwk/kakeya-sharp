@@ -1,6 +1,6 @@
 /- Modified for the Palomar submission: module header, public imports,
-and exposed public declarations. Original proof bodies are retained.
-See MODULE_MIGRATION.json for the checkpoint and ported file hashes. -/
+and exposed public declarations, with Lean 4.35/mathlib API compatibility edits.
+See MODULE_MIGRATION.json and provenance/lean435-port.json for the changes. -/
 module
 
 public import KakeyaSharp.ThinParameterHessian
@@ -38,7 +38,7 @@ theorem currentFlux_contDiff {m : ℕ} {n : ℕ∞ω}
     (hA : ContDiff ℝ n A) : ContDiff ℝ n (currentFlux A) := by
   apply contDiff_pi.mpr
   intro i
-  exact (contDiff_apply_apply ℝ (Quaternion ℝ) i.succ 0).comp hA
+  exact (contDiff_apply_apply ℝ (E := Quaternion ℝ) i.succ 0).comp hA
 
 theorem currentStress_contDiff {m : ℕ} {n : ℕ∞ω}
     {A : ThinCurrentSpace m → Matrix (Fin (m+1)) (Fin (m+1)) (Quaternion ℝ)}
@@ -47,7 +47,7 @@ theorem currentStress_contDiff {m : ℕ} {n : ℕ∞ω}
   intro i
   apply contDiff_pi.mpr
   intro j
-  exact (contDiff_apply_apply ℝ (Quaternion ℝ) i.succ j.succ).comp hA
+  exact (contDiff_apply_apply ℝ (E := Quaternion ℝ) i.succ j.succ).comp hA
 
 theorem thinSolution_current_law {m : ℕ} {R : ℝ} (o : ThinSpace m)
     {U : ThinCurrentSpace m → ℝ} (hU : ContDiff ℝ 3 U)

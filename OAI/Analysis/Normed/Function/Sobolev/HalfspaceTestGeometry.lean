@@ -1,6 +1,6 @@
 /- Modified for the Palomar submission: module header, public imports,
-and exposed public declarations. Original proof bodies are retained.
-See MODULE_MIGRATION.json for the checkpoint and ported file hashes. -/
+and exposed public declarations, with Lean 4.35/mathlib API compatibility edits.
+See MODULE_MIGRATION.json and provenance/lean435-port.json for the changes. -/
 module
 
 public import OAI.Analysis.Normed.Function.Sobolev.HalfspaceCutoff
@@ -20,7 +20,7 @@ def halfspaceTest (n : ℕ) (k : Fin d) (φ : (Fin d→ℝ)→ℝ) (x : Fin d→
 
 theorem contDiff_halfspaceTest (n : ℕ) (k : Fin d) {φ : (Fin d→ℝ)→ℝ}
     (hφ : ContDiff ℝ 1 φ) : ContDiff ℝ 1 (halfspaceTest n k φ) :=
-  (((contDiff_halfspaceGapCutoff n).of_le (by simp)).comp (contDiff_apply ℝ ℝ k)).mul hφ
+  (((contDiff_halfspaceGapCutoff n).of_le (by simp)).comp (contDiff_apply ℝ (fun _ => ℝ) k)).mul hφ
 
 theorem halfspaceTest_support (n : ℕ) (k : Fin d) (φ : (Fin d→ℝ)→ℝ) :
     tsupport (halfspaceTest n k φ)⊆{x|0<x k} := by

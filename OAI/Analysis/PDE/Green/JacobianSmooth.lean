@@ -1,6 +1,6 @@
 /- Modified for the Palomar submission: module header, public imports,
-and exposed public declarations. Original proof bodies are retained.
-See MODULE_MIGRATION.json for the checkpoint and ported file hashes. -/
+and exposed public declarations, with Lean 4.35/mathlib API compatibility edits.
+See MODULE_MIGRATION.json and provenance/lean435-port.json for the changes. -/
 module
 
 public import OAI.Analysis.PDE.Green.Physical.Change
@@ -34,7 +34,7 @@ theorem contDiff_continuousLinearMap_det (E : Type*) [NormedAddCommGroup E]
   apply contDiff_const.mul
   apply contDiff_prod
   intro i _
-  exact (contDiff_apply_apply ℝ ℝ (σ i) i).comp T.contDiff
+  exact (contDiff_apply_apply ℝ (E := ℝ) (σ i) i).comp T.contDiff
 
 theorem contDiffAt_physicalInverseJacobian {d : ℕ} (a : ℝ) (τ : ℂ)
     (u : Option (Fin d) → ℂ) (hD : OAI.Analysis.Calculus.Current.fiberDenominator (fun i => u (some i)) ≠ 0) :

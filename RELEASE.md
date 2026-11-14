@@ -1,8 +1,14 @@
 # GitHub and Palomar preparation
 
-The source package is prepared for independent review. Neither a public
-repository nor a Palomar submission has been created for this candidate.
-The proposed repository name is `mrklwk/kakeya-sharp`.
+The complete source is public at <https://github.com/mrklwk/kakeya-sharp>.
+The initial source commit is `9a20b2896cdab913f21d7db197af3b30306f8250`;
+its Git tree matches the reviewed local candidate exactly. No Palomar
+submission or registration has been created.
+
+The first official full preflight failed at the Lean 4.35.0 Solution build.
+The report is `provenance/palomar-preflight-43625069473.json`. The subsequent
+mathlib compatibility edits are recorded in `provenance/lean435-port.json`
+and require publication and a fresh full preflight before intake.
 
 ## Review the prepared result
 
@@ -13,7 +19,8 @@ are formalized and which are mathematical consequences or external facts.
 
 Claude's formal and narrative review completed on 14 November 2026.
 The review and accepted editorial changes are recorded in
-`review/claude/INTEGRATION.md`; the checked Lean sources are unchanged.
+`review/claude/INTEGRATION.md`; that integration left the Lean sources unchanged.
+The later compatibility edits are outside that review's recorded source revision.
 The review recompiled 212 local files in Lean 4.34.1 against cached upstream
 artifacts. It does not complete the supported-toolchain preflight below.
 
