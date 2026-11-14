@@ -1,6 +1,6 @@
 /- Modified for the Palomar submission: module header, public imports,
-and exposed public declarations. Original proof bodies are retained.
-See MODULE_MIGRATION.json for the checkpoint and ported file hashes. -/
+and exposed public declarations, with Lean 4.35/mathlib API compatibility edits.
+See MODULE_MIGRATION.json and provenance/lean435-port.json for the changes. -/
 module
 
 public import OAI.Analysis.PDE.Weak.Boundary.H1Pullback
@@ -31,7 +31,7 @@ theorem chartH1Pair_smooth
     (hψU : tsupport ψ ⊆ U) (hψG : ∀ y ∈ U, ψ y = u (G y)) :
     chartH1Pair U hU.measurableSet G (hG.of_le (by simp)) hc hmap hM (smoothH1Pair u hu hsu) =
       smoothH1Pair ψ hψ hsψ := by
-  have hq : Measure.QuasiMeasurePreserving G (volume.restrict U) volume :=
+  have hq : QuasiMeasurePreserving G (volume.restrict U) volume :=
     ⟨hG.continuous.measurable, Measure.absolutelyContinuous_of_le_smul hmap⟩
   have hvalue := (ae_restrict_iff' hU.measurableSet).mp
     (hq.ae (smoothH1Pair_value_ae u hu hsu))

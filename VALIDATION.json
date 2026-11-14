@@ -1,6 +1,6 @@
 {
   "date_utc": "2026-11-14",
-  "candidate_status": "published on GitHub; initial Lean 4.35.0 preflight failed at the Solution build; compatibility edits prepared for revalidation; not submitted",
+  "candidate_status": "published on GitHub; latest completed Lean 4.35.0 preflight failed at solution-build in three modules; second compatibility round prepared; not submitted",
   "original_checkpoint": {
     "version": "0.19.0",
     "lean": "4.34.1",
@@ -43,19 +43,25 @@
   "target_toolchain": {
     "lean": "4.35.0",
     "mathlib": "56a005855ea17e0b0958f73ec801ae140b0a1679",
-    "build_status": "initial published source failed; compatibility fixes require a new full build",
-    "reason": "The official full workflow compiled source under Lean 4.35.0 and reported mathlib API and import errors. See provenance/palomar-preflight-43625069473.json and provenance/lean435-port.json.",
+    "build_status": "latest completed full build failed; second compatibility round requires a new full build",
+    "reason": "The second completed official full build reported a deprecated namespace/field-notation issue, two MemLp.indicator argument mismatches, and one finite elaboration timeout. See provenance/palomar-preflight-43633942604.json and provenance/lean435-port.json.",
     "manifest_source": "https://github.com/leanprover-community/mathlib4/blob/56a005855ea17e0b0958f73ec801ae140b0a1679/lake-manifest.json"
   },
   "palomar_full_preflight": {
-    "status": "initial run failed at solution-build; corrected source awaiting rerun",
+    "status": "latest completed run failed at solution-build; corrected source awaiting rerun",
     "mode": "full",
     "execution_profile": "palomar-standard-v1",
     "workflow": ".github/workflows/palomar.yml",
     "requires": "A passing full official report for the corrected public commit.",
-    "checked_commit": "9a20b2896cdab913f21d7db197af3b30306f8250",
-    "workflow_url": "https://github.com/mrklwk/kakeya-sharp/actions/runs/43625069473",
-    "report": "provenance/palomar-preflight-43625069473.json"
+    "checked_commit": "9d9a2ae495e41656abfeface98e5b9b9493c0aaa",
+    "workflow_url": "https://github.com/mrklwk/kakeya-sharp/actions/runs/43633942604",
+    "report": "provenance/palomar-preflight-43633942604.json",
+    "canceled_duplicate": {
+      "workflow_url": "https://github.com/mrklwk/kakeya-sharp/actions/runs/43637229138",
+      "checked_commit": "9e66b8a7c0a71337584a2aa8d49ffc02a9dd2ca7",
+      "status": "cancelled",
+      "reason": "Same Lean sources as the failed run; only the plain-text registry abstract differed."
+    }
   },
   "comparator": {
     "status": "not run on the required toolchain",
@@ -143,8 +149,8 @@
     ]
   },
   "post_review_port": {
-    "status": "prepared; revalidation pending",
-    "changed_lean_files": 19,
+    "status": "second compatibility round prepared; revalidation pending",
+    "changed_lean_files": 24,
     "changes": "provenance/lean435-port.json",
     "patch": "provenance/lean435-port.patch",
     "target_statements_changed": false,

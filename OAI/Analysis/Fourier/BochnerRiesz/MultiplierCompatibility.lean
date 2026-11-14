@@ -1,6 +1,6 @@
 /- Modified for the Palomar submission: module header, public imports,
-and exposed public declarations. Original proof bodies are retained.
-See MODULE_MIGRATION.json for the checkpoint and ported file hashes. -/
+and exposed public declarations, with Lean 4.35/mathlib API compatibility edits.
+See MODULE_MIGRATION.json and provenance/lean435-port.json for the changes. -/
 module
 
 public import OAI.Analysis.Fourier.BochnerRiesz.FourierCompatibility
@@ -26,6 +26,7 @@ theorem fourier_toLp_ae {n : ℕ} {f : Space n → ℂ} (hf : Integrable f) (hf2
   exact (fourierL2_coe _ hi).trans (Filter.Eventually.of_forall
     (fun ξ ↦ Real.fourier_congr_ae hc ξ))
 
+set_option maxHeartbeats 1000000 in
 /-- The natural-domain L² multiplier has its usual inverse-integral
 representative for continuous compactly supported symbols and L¹∩L² input. -/
 theorem fourierMultiplierL2_coe {n : ℕ} {m f : Space n → ℂ}

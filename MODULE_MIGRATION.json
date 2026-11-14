@@ -2021,8 +2021,8 @@
     {
       "path": "OAI/Analysis/Fourier/BochnerRiesz/MultiplierCompatibility.lean",
       "checkpoint_sha256": "96284de8e5aa5f3354a1f29e48f262f024133c6c7c093b7eeb239eb39dc53eea",
-      "ported_sha256": "184459843062cca6867d95a3c25441b6af838a477742577089721f43ecb1d36b",
-      "additional_port_changes": false
+      "ported_sha256": "2b651b3650dfaec5fa12844feea2d6ee4e71f17e0c0a668fa68118930989268d",
+      "additional_port_changes": true
     },
     {
       "path": "OAI/Analysis/Fourier/LocalSmoothing/Definitions.lean",
@@ -2921,8 +2921,8 @@
     {
       "path": "OAI/Analysis/Normed/Function/Sobolev/Reflection/Extension.lean",
       "checkpoint_sha256": "fde909281d23387848d246694bd67ba93eb085308d2176dd4a52888ac160f509",
-      "ported_sha256": "2285deb85e5edbed4ec7244d6d0e96a2a7c7684e41ab44df1c3b71f641c31591",
-      "additional_port_changes": false
+      "ported_sha256": "cdc81339ba2e07ac4d43554aa8e9b2b171161478e2933acae73968440e14fc20",
+      "additional_port_changes": true
     },
     {
       "path": "OAI/Analysis/Normed/Function/Sobolev/Reflection/Family.lean",
@@ -2939,8 +2939,8 @@
     {
       "path": "OAI/Analysis/Normed/Function/Sobolev/Reflection/Measure.lean",
       "checkpoint_sha256": "be08abee66cc81e89ef3ee94ec061436314c51e8a46e67c19630de2c100c7292",
-      "ported_sha256": "4f04a4812d0ce6061cf9d551f38c40259b846ccadf9b428b04bae63577bf39e4",
-      "additional_port_changes": false
+      "ported_sha256": "05cd6dec9cc93c8d6d09cf45dfdcbd46e95668adcf9d74c80fb27ddfd2c3af28",
+      "additional_port_changes": true
     },
     {
       "path": "OAI/Analysis/Normed/Function/Sobolev/Reflection/Support.lean",
@@ -10385,8 +10385,8 @@
     {
       "path": "OAI/Analysis/PDE/Weak/Boundary/Chart/AE.lean",
       "checkpoint_sha256": "d63c8e81c5d34dc53fb4fefb475499480b3a4b3c47cdd7d3cfc3a642de4cf57d",
-      "ported_sha256": "b93b0b0da75ec8ee86500eee75fb3e69a4c389526db012323c43a40c396457c8",
-      "additional_port_changes": false
+      "ported_sha256": "c4f64cd775592f078ac3dbe8e4581c22a3f12bf13005564cad416c8c38ed3a5c",
+      "additional_port_changes": true
     },
     {
       "path": "OAI/Analysis/PDE/Weak/Boundary/Chart/Coefficient.lean",
@@ -10469,8 +10469,8 @@
     {
       "path": "OAI/Analysis/PDE/Weak/Boundary/H1Chart.lean",
       "checkpoint_sha256": "181d28bca6c1a320ca51392466c300d2871e313e74ab07ce367567d1ea4aa6d6",
-      "ported_sha256": "2710d04af80dcc094d97225248129f1e0d15be82c2e68872e12e1499aa832ec6",
-      "additional_port_changes": false
+      "ported_sha256": "8d8e307eca4d71000c2a73ed8d1818d6a6232cbedae04165ee8821c7b67b741b",
+      "additional_port_changes": true
     },
     {
       "path": "OAI/Analysis/PDE/Weak/Boundary/H1Pullback.lean",
@@ -11354,6 +11354,7 @@
     "KakeyaSharp/SharpTransfer.lean",
     "KakeyaSharp/ThinSolutionCurrent.lean",
     "OAI/Analysis/Calculus/Current/Smooth.lean",
+    "OAI/Analysis/Fourier/BochnerRiesz/MultiplierCompatibility.lean",
     "OAI/Analysis/Fourier/Wave/Basic.lean",
     "OAI/Analysis/Fourier/WavePackets/Dirichlet/ParameterBase.lean",
     "OAI/Analysis/Fourier/WavePackets/Dirichlet/ParameterFamily.lean",
@@ -11361,6 +11362,8 @@
     "OAI/Analysis/Fourier/WavePackets/Packet/Coefficients.lean",
     "OAI/Analysis/Fourier/WavePackets/Packet/FixedData.lean",
     "OAI/Analysis/Normed/Function/Sobolev/HalfspaceTestGeometry.lean",
+    "OAI/Analysis/Normed/Function/Sobolev/Reflection/Extension.lean",
+    "OAI/Analysis/Normed/Function/Sobolev/Reflection/Measure.lean",
     "OAI/Analysis/PDE/Dirichlet/Boundary/Continuity/Inverse.lean",
     "OAI/Analysis/PDE/Dirichlet/Boundary/InverseOperator.lean",
     "OAI/Analysis/PDE/Dirichlet/Boundary/UniformInverse.lean",
@@ -11398,6 +11401,8 @@
     "OAI/Analysis/PDE/Variational/ExtensionMap.lean",
     "OAI/Analysis/PDE/Variational/Poincare.lean",
     "OAI/Analysis/PDE/Variational/ZeroExtension.lean",
+    "OAI/Analysis/PDE/Weak/Boundary/Chart/AE.lean",
+    "OAI/Analysis/PDE/Weak/Boundary/H1Chart.lean",
     "OAI/Analysis/PDE/Weak/Boundary/L2Pullback.lean",
     "OAI/Analysis/PDE/Weak/Elliptic/BoundaryTraceEnergy.lean",
     "OAI/Analysis/PDE/Weak/Elliptic/CutoffExistence.lean",

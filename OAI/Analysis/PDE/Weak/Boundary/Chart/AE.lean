@@ -1,6 +1,6 @@
 /- Modified for the Palomar submission: module header, public imports,
-and exposed public declarations. Original proof bodies are retained.
-See MODULE_MIGRATION.json for the checkpoint and ported file hashes. -/
+and exposed public declarations, with Lean 4.35/mathlib API compatibility edits.
+See MODULE_MIGRATION.json and provenance/lean435-port.json for the changes. -/
 module
 
 public import OAI.Analysis.PDE.Weak.Boundary.Chart.Measure
@@ -20,7 +20,7 @@ theorem chart_quasiMeasurePreserving (μ : Measure E) [μ.IsAddHaarMeasure]
     {G P : E → E} (hG : Continuous G) (hP : ContDiff ℝ 1 P)
     (hGU : MapsTo G U V) (hPV : MapsTo P V U)
     (hPG : ∀ y ∈ U, P (G y) = y) (hGP : ∀ z ∈ V, G (P z) = z) :
-    Measure.QuasiMeasurePreserving G (μ.restrict U) μ := by
+    QuasiMeasurePreserving G (μ.restrict U) μ := by
   have hVc : IsCompact (closure V) :=
     Metric.isCompact_of_isClosed_isBounded isClosed_closure hVb.closure
   have hd : Continuous (fun y => (fderiv ℝ P y).det) :=

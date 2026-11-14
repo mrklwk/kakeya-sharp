@@ -22,10 +22,11 @@ examined on 14 November 2026. Consult `VALIDATION.json` for completed checks
 and outstanding verification. A passing older-toolchain build is not a
 passing Palomar run. This repository has not been registered with Palomar.
 
-The first full Palomar preflight on the published source failed during the
-Lean 4.35.0 Solution build because of changed mathlib arguments and imports.
-Compatibility edits in 19 files are recorded in `provenance/lean435-port.json`
-and require a fresh full preflight. The two target statements are unchanged;
+The latest completed full Palomar preflight stopped during the Lean 4.35.0
+Solution build in three upstream modules. The report is retained in
+`provenance/palomar-preflight-43633942604.json`. Compatibility edits across
+two rounds now affect 24 files; they are recorded in
+`provenance/lean435-port.json` and require a fresh full preflight. The two target statements are unchanged;
 the older checks and Claude review apply to their recorded source revisions.
 
 ## Results

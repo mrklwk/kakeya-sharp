@@ -58,3 +58,14 @@ and imports metric equicontinuity and Euclidean distance explicitly.
 The same changed APIs are updated in dependent modules that the first failure
 prevented from compiling. These edits preserve theorem statements and require
 a new full preflight; the Lean 4.34.1 and Claude receipts remain historical.
+
+The next completed full preflight reached 10883 of 10933 build jobs and
+reported three failing upstream modules. Its complete mechanical report is
+`provenance/palomar-preflight-43633942604.json`. The second round updates
+`MemLp.indicator` arguments, replaces the deprecated
+`Measure.QuasiMeasurePreserving` alias with `QuasiMeasurePreserving` in
+three declarations, and gives `fourierMultiplierL2_coe` a finite budget of
+1000000 elaboration heartbeats. Two of the namespace edits cover downstream
+uses of the same alias. The cumulative patch now affects 24 Lean files.
+The target statements and axiom policy remain unchanged. No passing Lean
+4.35.0 build, Comparator result, or independent replay is claimed.

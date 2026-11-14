@@ -1,6 +1,6 @@
 /- Modified for the Palomar submission: module header, public imports,
-and exposed public declarations. Original proof bodies are retained.
-See MODULE_MIGRATION.json for the checkpoint and ported file hashes. -/
+and exposed public declarations, with Lean 4.35/mathlib API compatibility edits.
+See MODULE_MIGRATION.json and provenance/lean435-port.json for the changes. -/
 module
 
 public import OAI.Analysis.Normed.Function.Sobolev.Reflection.Measure
@@ -32,8 +32,8 @@ theorem memLp_reflectionExtension (k : Fin d) (a c : Fin N → ℝ)
     measurableSet_lt measurable_const (measurable_pi_apply k)
   have hneg : MeasurableSet {x : Fin d → ℝ | x k < 0} :=
     measurableSet_lt (measurable_pi_apply k) measurable_const
-  exact (hu.indicator hpos).add (memLp_finsetSum _ (fun j _ ↦
-    ((memLp_normalScale k (ha j) hu).const_mul (c j)).indicator hneg))
+  exact (hu.indicator hpos.nullMeasurableSet).add (memLp_finsetSum _ (fun j _ ↦
+    ((memLp_normalScale k (ha j) hu).const_mul (c j)).indicator hneg.nullMeasurableSet))
 
 theorem integrable_reflectionExtension (k : Fin d) (a c : Fin N → ℝ)
     (ha : ∀j, a j ≠ 0) {u : (Fin d → ℝ) → ℝ}

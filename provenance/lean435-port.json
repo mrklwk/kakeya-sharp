@@ -5,13 +5,16 @@
   "lean_toolchain": "leanprover/lean4:v4.35.0",
   "mathlib_commit": "56a005855ea17e0b0958f73ec801ae140b0a1679",
   "trigger_report": "palomar-preflight-43625069473.json",
-  "status": "compatibility edits prepared; full preflight pending",
+  "status": "second compatibility round prepared; full preflight pending",
   "statement_changes": false,
   "change_summary": [
     "Pass the now-implicit value type by name to contDiff_apply_apply.",
     "Pass the constant type family to the generalized contDiff_apply and contDiffAt_apply.",
     "Convert MeasurableSet proofs to NullMeasurableSet proofs for the generalized indicator and piecewise lemmas.",
-    "Import metric equicontinuity and Euclidean distance explicitly instead of relying on private transitive imports."
+    "Import metric equicontinuity and Euclidean distance explicitly instead of relying on private transitive imports.",
+    "Use the current QuasiMeasurePreserving namespace instead of the deprecated Measure alias, including two downstream uses of the same API.",
+    "Supply null-measurability proofs to both MemLp.indicator calls in reflection extension.",
+    "Raise the finite elaboration budget to 1000000 heartbeats for fourierMultiplierL2_coe only."
   ],
   "changes": [
     {
@@ -35,6 +38,11 @@
       "after_sha256": "fdddaccdcc5fc9ee2d44e3bbe2ec75f0fb7c749fd13955f8f7c39fae8503d7dd"
     },
     {
+      "path": "OAI/Analysis/Fourier/BochnerRiesz/MultiplierCompatibility.lean",
+      "before_sha256": "184459843062cca6867d95a3c25441b6af838a477742577089721f43ecb1d36b",
+      "after_sha256": "2b651b3650dfaec5fa12844feea2d6ee4e71f17e0c0a668fa68118930989268d"
+    },
+    {
       "path": "OAI/Analysis/Fourier/WavePackets/Local.lean",
       "before_sha256": "8338214b3744be0a1d505e381aef6c554910ae652f58493ece616f112cfb5219",
       "after_sha256": "12e30cec0a32e2cfd2c37aae88a2aa6959b9c6ebb453e6f5c3e27d8390a7d3c6"
@@ -53,6 +61,16 @@
       "path": "OAI/Analysis/Normed/Function/Sobolev/HalfspaceTestGeometry.lean",
       "before_sha256": "7a294d9615a1449f4cd08214435d776f3f3f85f5c797dd20ca27575468e5c629",
       "after_sha256": "71c83bc444df4916b30c8847963427cb01eb344f2fa1c6b77de71dab6a7b316b"
+    },
+    {
+      "path": "OAI/Analysis/Normed/Function/Sobolev/Reflection/Extension.lean",
+      "before_sha256": "2285deb85e5edbed4ec7244d6d0e96a2a7c7684e41ab44df1c3b71f641c31591",
+      "after_sha256": "cdc81339ba2e07ac4d43554aa8e9b2b171161478e2933acae73968440e14fc20"
+    },
+    {
+      "path": "OAI/Analysis/Normed/Function/Sobolev/Reflection/Measure.lean",
+      "before_sha256": "4f04a4812d0ce6061cf9d551f38c40259b846ccadf9b428b04bae63577bf39e4",
+      "after_sha256": "05cd6dec9cc93c8d6d09cf45dfdcbd46e95668adcf9d74c80fb27ddfd2c3af28"
     },
     {
       "path": "OAI/Analysis/PDE/Dirichlet/CoefficientExtension.lean",
@@ -90,6 +108,16 @@
       "after_sha256": "d55b233ad120a7d808d6a08eb0ee7d2f568462a45c12af799896944c1d497563"
     },
     {
+      "path": "OAI/Analysis/PDE/Weak/Boundary/Chart/AE.lean",
+      "before_sha256": "b93b0b0da75ec8ee86500eee75fb3e69a4c389526db012323c43a40c396457c8",
+      "after_sha256": "c4f64cd775592f078ac3dbe8e4581c22a3f12bf13005564cad416c8c38ed3a5c"
+    },
+    {
+      "path": "OAI/Analysis/PDE/Weak/Boundary/H1Chart.lean",
+      "before_sha256": "2710d04af80dcc094d97225248129f1e0d15be82c2e68872e12e1499aa832ec6",
+      "after_sha256": "8d8e307eca4d71000c2a73ed8d1818d6a6232cbedae04165ee8821c7b67b741b"
+    },
+    {
       "path": "OAI/Analysis/PDE/Weak/Boundary/L2Pullback.lean",
       "before_sha256": "791a463fb1caeaa9bb3f1f98f4cd8851c16b538bb70c9579c29a2314f49730f1",
       "after_sha256": "f412d137dd2e5c1813a428847e4e0de64fdd0b6fbd7a28b387d58ed151c6b1a7"
@@ -108,6 +136,32 @@
       "path": "OAI/LinearAlgebra/Moore/Smooth.lean",
       "before_sha256": "8e7310bf85d7ebda884ad939fbacbb61f496644175adfd204b05588c1da37298",
       "after_sha256": "fa42193a21a1ed26b4a14467a91ceabfb06b0056f7a38222b4ac2d60905c8205"
+    }
+  ],
+  "trigger_reports": [
+    "palomar-preflight-43625069473.json",
+    "palomar-preflight-43633942604.json"
+  ],
+  "rounds": [
+    {
+      "round": 1,
+      "trigger_report": "palomar-preflight-43625069473.json",
+      "changed_lean_files": 19,
+      "outcome": "Next completed full build failed in three further modules; no Comparator or independent kernel stage reached."
+    },
+    {
+      "round": 2,
+      "trigger_report": "palomar-preflight-43633942604.json",
+      "base_local_commit": "69f9ca07a5dd1c5103f07a03067501bc916b8bd8",
+      "base_public_commit": "9e66b8a7c0a71337584a2aa8d49ffc02a9dd2ca7",
+      "changed_paths": [
+        "OAI/Analysis/Fourier/BochnerRiesz/MultiplierCompatibility.lean",
+        "OAI/Analysis/Normed/Function/Sobolev/Reflection/Extension.lean",
+        "OAI/Analysis/Normed/Function/Sobolev/Reflection/Measure.lean",
+        "OAI/Analysis/PDE/Weak/Boundary/Chart/AE.lean",
+        "OAI/Analysis/PDE/Weak/Boundary/H1Chart.lean"
+      ],
+      "status": "prepared; official full preflight required"
     }
   ]
 }

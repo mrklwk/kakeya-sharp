@@ -5,10 +5,12 @@ The initial source commit is `9a20b2896cdab913f21d7db197af3b30306f8250`;
 its Git tree matches the reviewed local candidate exactly. No Palomar
 submission or registration has been created.
 
-The first official full preflight failed at the Lean 4.35.0 Solution build.
-The report is `provenance/palomar-preflight-43625069473.json`. The subsequent
-mathlib compatibility edits are recorded in `provenance/lean435-port.json`
-and require publication and a fresh full preflight before intake.
+Two completed official full preflights stopped at the Lean 4.35.0 Solution
+build. The latest report, `provenance/palomar-preflight-43633942604.json`,
+identifies three remaining upstream modules. The second compatibility round
+is recorded in `provenance/lean435-port.json` and requires publication and
+a fresh full preflight before intake. Neither run reached the Comparator
+or independent kernel replay.
 
 ## Review the prepared result
 

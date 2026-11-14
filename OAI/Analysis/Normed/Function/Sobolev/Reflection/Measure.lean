@@ -1,6 +1,6 @@
 /- Modified for the Palomar submission: module header, public imports,
-and exposed public declarations. Original proof bodies are retained.
-See MODULE_MIGRATION.json for the checkpoint and ported file hashes. -/
+and exposed public declarations, with Lean 4.35/mathlib API compatibility edits.
+See MODULE_MIGRATION.json and provenance/lean435-port.json for the changes. -/
 module
 
 public import OAI.Analysis.Normed.Function.Sobolev.Reflection.Map
@@ -14,7 +14,7 @@ namespace OAI.Analysis.Normed.Function.Sobolev
 variable {d : ℕ}
 
 theorem normalScale_quasiMeasurePreserving (k : Fin d) {a : ℝ} (ha : a≠0) :
-    Measure.QuasiMeasurePreserving (normalScale k a) volume volume := by
+    QuasiMeasurePreserving (normalScale k a) volume volume := by
   refine ⟨(normalScale k a).continuous.measurable,?_⟩
   rw [map_volume_normalScale k ha]
   intro s hs
