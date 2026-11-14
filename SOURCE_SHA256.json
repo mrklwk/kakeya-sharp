@@ -1914,7 +1914,7 @@
   "UPSTREAM_DIRICHLET.json": "093a6ed249eee7beda0deaa7801413423e909cc3458333d9ebe7a2325be74bb8",
   "VALIDATION.json": "45fa88426cbf71981feb69ad65cc003906ae6a3f54c10ea1ca119300148dafc6",
   "comparator.json": "d7ae76c59bc55f0ee657659958311a5b16c74f271b37bdc2e31abdd535424423",
-  "formalization.yaml": "d80a9b066d2fc140b27d3bdc3ba9a58c2fba06ebc6a7d6103c92be132b005b68",
+  "formalization.yaml": "cfc3083ec723277035d619307012dc83357b46e822939a21440206ac36ebeee8",
   "lake-manifest.json": "d761bb69966fc7331e2c46018c5e135a0f58261115be5519ded124659388b49b",
   "lakefile.toml": "6582337c36ef59b6070eb5a0412fe487cce7abb688ae0e8358b09fd17a62ee61",
   "lean-toolchain": "ca5f1f601d34c49079e38d7e7041eb0f2a9c227fbc1df0f404820069a052330c",
