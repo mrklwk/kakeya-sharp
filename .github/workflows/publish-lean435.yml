@@ -20,35 +20,96 @@ jobs:
       - uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262
         with:
           ref: main
-      - name: Publish exact mathematical rendering
+      - name: Publish exact validated source tree
         id: publish
         shell: bash
         run: |
           set -euo pipefail
-          test "$(git rev-parse HEAD)" = 4debd63b173fe4aba9f30e474c36328ef1b8cc04
+          test "$(git rev-parse HEAD)" = 9d9a2ae495e41656abfeface98e5b9b9493c0aaa
           python3 - <<'PY'
+          import base64, os
           from pathlib import Path
-          names = ["README.md", "ABSTRACT.md", "SUMMARY.md", "STATEMENT_AND_OPTIMALITY.md", "INFORMAL.md", "review/claude/REQUEST.md"]
-          for name in names:
-              p = Path(name)
-              inside = False
-              out = []
-              for line in p.read_text().splitlines(keepends=True):
-                  if line.rstrip("\r\n") == "$$":
-                      out.append(("```math" if not inside else "```") + "\n")
-                      inside = not inside
-                  else:
-                      out.append(line)
-              assert not inside, name
-              p.write_text("".join(out))
+          payload = """
+          ZGlmZiAtLWdpdCBhL1NPVVJDRV9TSEEyNTYuanNvbiBiL1NPVVJDRV9TSEEyNTYuanNvbgppbmRleCBiZTk1YmUyZDc1MDE3MmZi
+          MjlmMDNkZGE5MzE5OGI2OWM3YWU0ZDhmLi5iMDM0YjlkM2VhMTljM2ZiMWE5ZTVjNTU0NTQ2OWJjY2Y4OGRhOGU0IDEwMDY0NAot
+          LS0gYS9TT1VSQ0VfU0hBMjU2Lmpzb24KKysrIGIvU09VUkNFX1NIQTI1Ni5qc29uCkBAIC0xOTE0LDcgKzE5MTQsNyBAQAogICAi
+          VVBTVFJFQU1fRElSSUNITEVULmpzb24iOiAiMDkzYTZlZDI0OWVlZTdiZWRhMGRlYWE3ODAxNDEzNDIzZTkwOWNjMzQ1ODMzM2Q5
+          ZWJlN2EyMzI1YmU3NGJiOCIsCiAgICJWQUxJREFUSU9OLmpzb24iOiAiNDVmYTg4NDI2Y2JmNzE5ODFmZWI2OWFkNjVjYzAwMzkw
+          NmFlNmEzZjU0YzEwZWExY2ExMTkzMDAxNDhkYWZjNiIsCiAgICJjb21wYXJhdG9yLmpzb24iOiAiZDdhZTc2YzU5YmM1NWYwZWU2
+          NTc2NTk5NTgzMTFhNWIxNmM3NGYyNzFiMzdiZGMyZTMxYWJkZDUzNTQyNDQyMyIsCi0gICJmb3JtYWxpemF0aW9uLnlhbWwiOiAi
+          ZDgwYTliMDY2ZDJmYzE0MGIyN2QzYmRjM2JhOWE1OGMyZmJhMDZlYmM2YTdkNjEwM2M5MmJlMTMyYjAwNWI2OCIsCisgICJmb3Jt
+          YWxpemF0aW9uLnlhbWwiOiAiY2ZjMzA4M2VjNzIzMjc3MDM1ZDYxOTMwNzAxMmRjODMzNTdiNDZlODIyOTM5YTIxNDQwMjA2YWMz
+          NmViZWVlOCIsCiAgICJsYWtlLW1hbmlmZXN0Lmpzb24iOiAiZDc2MWJiNjk5NjZmYzczMzFlMmM0NjAxOGM1ZTEzNWEwZjU4MjYx
+          MTE1YmU1NTE5ZGVkMTI0NjU5Mzg4YjQ5YiIsCiAgICJsYWtlZmlsZS50b21sIjogIjY1ODIzMzdjMzZlZjU5YjYwNzBlYjVhMDQx
+          MmZlNDg3Y2NlN2FiYjY4OGFlMGU4MzU4YjA5ZmQxN2E2MmVlNjEiLAogICAibGVhbi10b29sY2hhaW4iOiAiY2E1ZjFmNjAxZDM0
+          YzQ5MDc5ZTM4ZDdlNzA0MWViMGYyYTljMjI3ZmJjMWRmMGY0MDQ4MjAwNjlhMDUyMzMwYyIsCmRpZmYgLS1naXQgYS9mb3JtYWxp
+          emF0aW9uLnlhbWwgYi9mb3JtYWxpemF0aW9uLnlhbWwKaW5kZXggZGI4ZTMzNGYzNjQxZTRlMjNjOTMzMTI2OTUzMzI1MDMyODVh
+          ZDdmNy4uMDFlYTllMWQwOGU4MTU5ODVlMjUyNDgzNmRmODNlMWQ3ZWJmYjYwZSAxMDA2NDQKLS0tIGEvZm9ybWFsaXphdGlvbi55
+          YW1sCisrKyBiL2Zvcm1hbGl6YXRpb24ueWFtbApAQCAtMyw1MiArMywyMSBAQCB2ZXJzaW9uOiAidjAuNCIKIHByb2plY3Q6CiAg
+          IG5hbWU6ICJTaGFycCBsb2dhcml0aG1pYyBLYWtleWEgZXN0aW1hdGVzIGluIGV2ZXJ5IGRpbWVuc2lvbiIKICAgZGVzY3JpcHRp
+          b246IHwtCi0gICAgV2UgZm9ybWFsaXplIGluIExlYW4gdHdvIGxvZ2FyaXRobWljIHVwcGVyIGJvdW5kcyBmb3IgdGhlIEV1Y2xp
+          ZGVhbiBLYWtleWEgbWF4aW1hbCBvcGVyYXRvciBhbmQgdHViZSBvdmVybGFwIGluIGV2ZXJ5IGludGVnZXIgZGltZW5zaW9uICRu
+          XGdlMiQuCi0gICAgRm9yICRyPjAkLCBhIHVuaXQgdmVjdG9yICRcb21lZ2EkLCBhbmQgYSBjZW50ZXIgJHhcaW5cbWF0aGJiIFJe
+          biQsIGxldCAkVF9yKFxvbWVnYSx4KSQgYmUgdGhlIG9wZW4gcmFkaXVzLSRyJCBuZWlnaGJvcmhvb2Qgb2YgdGhlIHVuaXQgc2Vn
+          bWVudCBjZW50ZXJlZCBhdCAkeCQgaW4gZGlyZWN0aW9uICRcb21lZ2EkLgotICAgIFdyaXRlICR8VF9yKFxvbWVnYSx4KXwkIGZv
+          ciBpdHMgTGViZXNndWUgdm9sdW1lLCBhbmQgZGVmaW5lCi0KLSAgICAkJAotICAgIEtfXGRlbHRhIGYoXG9tZWdhKQotICAgIDo9
+          XHN1cF97eFxpblxtYXRoYmIgUl5ufQotICAgIFxmcmFjezF9e3xUX1xkZWx0YShcb21lZ2EseCl8fQotICAgIFxpbnRfe1RfXGRl
+          bHRhKFxvbWVnYSx4KX0gfGYoeSl8XCxkeS4KLSAgICAkJAotCi0gICAgRm9yIGV2ZXJ5ICQwPFxkZWx0YVxsZTEkIGFuZCBldmVy
+          eSBjb21wbGV4LXZhbHVlZCAkZlxpbiBMXm4oXG1hdGhiYiBSXm4pJCwgd2UgcHJvdmUKLQotICAgICQkCi0gICAgXHxLX1xkZWx0
+          YSBmXHxfe0xebihTXntuLTF9KX0KLSAgICBcbGUgQ19uXGJpZ2xbXGxvZygyL1xkZWx0YSlcYmlncl1eeyhuLTEpL259Ci0gICAg
+          XHxmXHxfe0xebihcbWF0aGJiIFJebil9LgotICAgICQkCi0KLSAgICBGb3IgdGhlIHR1YmUgZXN0aW1hdGUsIGZpeCAkMDxcZGVs
+          dGFcbGUxJCBhbmQgYW55IGZpbml0ZSBmYW1pbHkgb2YgZGlyZWN0aW9ucyAkXG9tZWdhXzEsXGxkb3RzLFxvbWVnYV9OXGluIFNe
+          e24tMX0kIHNhdGlzZnlpbmcgJHxcb21lZ2FfaS1cb21lZ2FfanxcZ2VcZGVsdGEkIGZvciAkaVxuZSBqJC4KLSAgICBDaG9vc2Ug
+          YXJiaXRyYXJ5IGNlbnRlcnMgJHhfMSxcbGRvdHMseF9OXGluXG1hdGhiYiBSXm4kIGFuZCBub25uZWdhdGl2ZSByZWFsIHdlaWdo
+          dHMgJGFfMSxcbGRvdHMsYV9OJC4KLSAgICBXcml0aW5nICQxX1QkIGZvciB0aGUgaW5kaWNhdG9yIG9mIGEgdHViZSAkVCQsIHdl
+          IHByb3ZlCi0KLSAgICAkJAotICAgIFxpbnRfe1xtYXRoYmIgUl5ufQotICAgIFxsZWZ0KFxzdW1fe2o9MX1ee059IGFfalwsMV97
+          VF97MlxkZWx0YX0oXG9tZWdhX2oseF9qKX0oeSlccmlnaHQpXntcIVxmcmFje259e24tMX19Ci0gICAgXCxkeQotICAgIFxsZQot
+          ICAgIENfblwsXGxvZygyL1xkZWx0YSlcLFxkZWx0YV57bi0xfQotICAgIFxzdW1fe2o9MX1ee059IGFfal57XGZyYWN7bn17bi0x
+          fX0uCi0gICAgJCQKLQotICAgIFRoZSBjb25zdGFudHMgZGVwZW5kIG9ubHkgb24gJG4kLgotICAgIFRoZSBzYW1lIGluZXF1YWxp
+          dHkgaG9sZHMgZm9yIHJhZGl1cy0kXGRlbHRhJCB0dWJlcyBieSBpbmNsdXNpb24uCi0gICAgSMO2bGRlcidzIGluZXF1YWxpdHkg
+          dGhlcmVmb3JlIGdpdmVzLCBmb3IgJE4kIHN1Y2ggdHViZXMgJFRfaj1UX1xkZWx0YShcb21lZ2Ffaix4X2opJCwKLQotICAgICQk
+          Ci0gICAgXGxlZnR8XGJpZ2N1cF97aj0xfV57Tn1UX2pccmlnaHR8Ci0gICAgXGdlIGNfblwsXGZyYWN7TlxkZWx0YV57bi0xfX17
+          W1xsb2coMi9cZGVsdGEpXV57bi0xfX0uCi0gICAgJCQKLQotICAgIEEgZGlyZWN0aW9uIG5ldCBnaXZlcyB2b2x1bWUgYXQgbGVh
+          c3QgJGNfbltcbG9nKDIvXGRlbHRhKV1eey0obi0xKX0kIGZvciB0aGUgJFxkZWx0YSQtbmVpZ2hib3Job29kIG9mIGV2ZXJ5IEth
+          a2V5YSBzZXQsIG1hdGNoaW5nIHRoZSBjb25zdHJ1Y3Rpb24gb2YgRmVybsOhbmRlei1EZWxnYWRvIGFuZCBkZSBsYSBTYWxsZS4K
+          LSAgICBDb25zZXF1ZW50bHkgZXZlcnkgYm91bmRlZCBLYWtleWEgc2V0IGhhcyBNaW5rb3dza2kgZGltZW5zaW9uICRuJCwgYW5k
+          IHRoZSBtYXhpbWFsIGVzdGltYXRlIGltcGxpZXMgdGhlIEtha2V5YSBtYXhpbWFsIGZ1bmN0aW9uIGNvbmplY3R1cmUgaW4gZXZl
+          cnkgZGltZW5zaW9uLgotICAgIFdyaXR0ZW4gbG93ZXItYm91bmQgYXJndW1lbnRzIGVzdGFibGlzaCB0aGUgb3B0aW1hbGl0eSBv
+          ZiB0aGUgbG9nYXJpdGhtaWMgcG93ZXJzLCBpbmNsdWRpbmcgdGhlIGV4Y2x1c2lvbiBvZiBhIGdyb3dpbmcgaXRlcmF0ZWQtbG9n
+          YXJpdGhtIGltcHJvdmVtZW50IGluIHRoZSBtYXhpbWFsIGVzdGltYXRlLgotCi0gICAgT25seSB0aGUgdHdvIHVwcGVyIGVzdGlt
+          YXRlcyBhcmUgTGVhbiB0aGVvcmVtczsgdGhlIGdlb21ldHJpYyBjb25zZXF1ZW5jZXMgYW5kIHNoYXJwbmVzcyBhcmd1bWVudHMg
+          YXJlIG5vdCBmb3JtYWxpemVkIGhlcmUuCisgICAgV2UgZm9ybWFsaXplIHR3byBzaGFycCBsb2dhcml0aG1pYyBLYWtleWEgdXBw
+          ZXIgYm91bmRzIGluIGV2ZXJ5IGludGVnZXIgZGltZW5zaW9uIG4g4omlIDIuIEZvciAwIDwgzrQg4omkCisgICAgMSwgdGhlIEth
+          a2V5YSBtYXhpbWFsIG9wZXJhdG9yIHRha2VzIHRoZSBsYXJnZXN0IGF2ZXJhZ2Ugb2YgfGZ8IG92ZXIgb3BlbiByYWRpdXMtzrQg
+          bmVpZ2hib3Job29kcyBvZgorICAgIHVuaXQgc2VnbWVudHMgaW4gZWFjaCBkaXJlY3Rpb24uIEl0cyBub3JtIGZyb20gTOKBvyji
+          hJ3igb8pIHRvIEzigb8oU+KBv+KBu8K5KSBpcyBhdCBtb3N0IEPigplbbG9nKDIvzrQpXV4oKG7iiJIxKS9uKS4KKyAgICBUaGUg
+          dHViZSBlc3RpbWF0ZSBhcHBsaWVzIHRvIGFueSBmaW5pdGUgZmFtaWx5IG9mIE4gdW5pdCBkaXJlY3Rpb25zIHdpdGggcGFpcndp
+          c2UgRXVjbGlkZWFuIGRpc3RhbmNlCisgICAgYXQgbGVhc3QgzrQsIGFyYml0cmFyeSBjZW50ZXJzLCBhbmQgbm9ubmVnYXRpdmUg
+          d2VpZ2h0cyBh4rG8LiBMZXQgVOKxvCBiZSB0aGUgb3BlbiByYWRpdXMtMs60IG5laWdoYm9yaG9vZAorICAgIG9mIHRoZSBjb3Jy
+          ZXNwb25kaW5nIGNlbnRlcmVkIHVuaXQgc2VnbWVudCwgbGV0IDFfVCBkZW5vdGUgdGhlIGluZGljYXRvciBvZiBULCBhbmQgc2V0
+          IHEgPSBuLyhu4oiSMSkuCisgICAgVGhlIGludGVncmFsIG92ZXIg4oSd4oG/IG9mICjiiJHisbwgYeKxvCAxX3tU4rG8fSlecSBp
+          cyBhdCBtb3N0IEPigpkgbG9nKDIvzrQpIM60Xihu4oiSMSkg4oiR4rG8IGHisbxecS4gQWxsIGNvbnN0YW50cworICAgIGRlcGVu
+          ZCBvbmx5IG9uIG4uIFRoZSBzYW1lIGVzdGltYXRlIGhvbGRzIGZvciByYWRpdXMtzrQgdHViZXMuIEjDtmxkZXIncyBpbmVxdWFs
+          aXR5IGdpdmVzIHR1YmUtdW5pb24KKyAgICB2b2x1bWUgYXQgbGVhc3QgY+KCmU7OtF4obuKIkjEpL1tsb2coMi/OtCldXihu4oiS
+          MSksIGFuZCBhIGRpcmVjdGlvbiBuZXQgZ2l2ZXMgdm9sdW1lIGF0IGxlYXN0CisgICAgY+KCmS9bbG9nKDIvzrQpXV4obuKIkjEp
+          IGZvciB0aGUgzrQtbmVpZ2hib3Job29kIG9mIGV2ZXJ5IEtha2V5YSBzZXQuIFRoaXMgbWF0Y2hlcyB0aGUgY29uc3RydWN0aW9u
+          IG9mCisgICAgRmVybsOhbmRlei1EZWxnYWRvIGFuZCBkZSBsYSBTYWxsZS4gVGhlIGVzdGltYXRlcyBpbXBseSB0aGUgS2FrZXlh
+          IG1heGltYWwgZnVuY3Rpb24gY29uamVjdHVyZSBhbmQKKyAgICBmdWxsIE1pbmtvd3NraSBkaW1lbnNpb24gZm9yIGV2ZXJ5IGJv
+          dW5kZWQgS2FrZXlhIHNldC4gV3JpdHRlbiBsb3dlci1ib3VuZCBhcmd1bWVudHMgZXN0YWJsaXNoCisgICAgb3B0aW1hbGl0eSBv
+          ZiB0aGUgbG9nYXJpdGhtaWMgcG93ZXJzLiBPbmx5IHRoZSB0d28gdXBwZXIgZXN0aW1hdGVzIGFyZSBMZWFuIHRoZW9yZW1zOyB0
+          aGUgZ2VvbWV0cmljCisgICAgY29uc2VxdWVuY2VzIGFuZCBzaGFycG5lc3MgYXJndW1lbnRzIGFyZSBub3QgZm9ybWFsaXplZCBo
+          ZXJlLiBUaGUgYWNjb21wYW55aW5nIGFic3RyYWN0IGFuZCBzdW1tYXJ5CisgICAgZ2l2ZSB0aGUgZnVsbHkgdHlwZXNldCBzdGF0
+          ZW1lbnRzLgogICBhdXRob3JzOgogICAgIC0gbmFtZTogIk1hcmsgTGV3a28iCiAgICAgICBnaXRodWI6ICJtcmtsd2siCg==
+          """
+          Path(os.environ["RUNNER_TEMP"], "source.patch").write_bytes(base64.b64decode(payload))
           PY
-          python3 scripts/package_source.py --output "$RUNNER_TEMP/kakeya-source.zip"
-          git add -- README.md ABSTRACT.md SUMMARY.md STATEMENT_AND_OPTIMALITY.md INFORMAL.md review/claude/REQUEST.md SOURCE_SHA256.json
-          test "$(git write-tree)" = aa8edd4ee0f9093290118bc8aa30c9dfc4f9e0af
+          git apply --index "$RUNNER_TEMP/source.patch"
+          test "$(git write-tree)" = 25c815c1229e6d3dcaaf88f7fd143b71f7fc20e6
           git diff --cached --exit-code -- .github/workflows
+          python3 scripts/check_submission.py
           git config user.name "Mark Lewko"
           git config user.email "244564904+mrklwk@users.noreply.github.com"
-          git commit -m "Preserve mathematical escapes in GitHub display blocks" -m "Source tree matches local candidate 542d24cf77dd8f46ca9aab15bc11c602104f9c97 exactly."
+          git commit -m "Publish prepared Palomar submission revision" -m "Source tree matches local candidate 69f9ca07a5dd1c5103f07a03067501bc916b8bd8 exactly."
           git push origin HEAD:refs/heads/main
           echo "source_commit=$(git rev-parse HEAD)" >> "$GITHUB_OUTPUT"
           git rev-parse HEAD
@@ -60,9 +121,8 @@ jobs:
       repository: ${{ github.repository }}
       commit: ${{ needs.publish.outputs.source_commit }}
       pipeline_commit: 14aa8d6b3c2f14a8540605e37144560b9a00e7e7
-      request_id: kakeyacheck4
+      request_id: kakeyacheck5
       mode: full
       execution_profile: palomar-standard-v1
       options: >-
         {"comparator_config_path":"comparator.json","authorization_relationship":"I am a responsible author or maintainer"}
-
