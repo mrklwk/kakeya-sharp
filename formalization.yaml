@@ -3,21 +3,23 @@ version: "v0.4"
 project:
   name: "Sharp logarithmic Kakeya estimates in every dimension"
   description: |-
-    We formalize two sharp logarithmic Kakeya upper bounds in every integer dimension n ≥ 2. For 0 < δ ≤
-    1, the Kakeya maximal operator takes the largest average of |f| over open radius-δ neighborhoods of
-    unit segments in each direction. Its norm from Lⁿ(ℝⁿ) to Lⁿ(Sⁿ⁻¹) is at most Cₙ[log(2/δ)]^((n−1)/n).
-    The tube estimate applies to any finite family of N unit directions with pairwise Euclidean distance
-    at least δ, arbitrary centers, and nonnegative weights aⱼ. Let Tⱼ be the open radius-2δ neighborhood
-    of the corresponding centered unit segment, let 1_T denote the indicator of T, and set q = n/(n−1).
-    The integral over ℝⁿ of (∑ⱼ aⱼ 1_{Tⱼ})^q is at most Cₙ log(2/δ) δ^(n−1) ∑ⱼ aⱼ^q. All constants
-    depend only on n. The same estimate holds for radius-δ tubes. Hölder's inequality gives tube-union
-    volume at least cₙNδ^(n−1)/[log(2/δ)]^(n−1), and a direction net gives volume at least
-    cₙ/[log(2/δ)]^(n−1) for the δ-neighborhood of every Kakeya set. This matches the construction of
-    Fernández-Delgado and de la Salle. The estimates imply the Kakeya maximal function conjecture and
-    full Minkowski dimension for every bounded Kakeya set. Written lower-bound arguments establish
-    optimality of the logarithmic powers. Only the two upper estimates are Lean theorems; the geometric
-    consequences and sharpness arguments are not formalized here. The accompanying abstract and summary
-    give the fully typeset statements.
+    Building on OpenAI’s local smoothing work, we obtain the sharp logarithmic Kakeya maximal inequality in every dimension, with substantial ChatGPT assistance.
+
+    For n ≥ 2 and 0 < δ ≤ 1, let K_δ f(v) be the supremum of the average of |f| over all unit-length, radius-δ tubes in direction v ∈ S^(n−1). Then
+
+    ‖K_δ f‖_{Lⁿ(S^(n−1))} ≲ₙ (log(2/δ))^((n−1)/n) ‖f‖_{Lⁿ(ℝⁿ)}.
+
+    There is also a weighted tube formulation. Let T_j be unit-length, radius-2δ tubes with δ-separated directions and arbitrary centers, and let a_j ≥ 0. If q = n/(n−1), then
+
+    ∫_{ℝⁿ} (∑_j a_j 1_{T_j})^q ≲ₙ δ^(n−1) log(2/δ) ∑_j a_j^q.
+
+    In particular, every Kakeya set E ⊂ ℝⁿ satisfies
+
+    |N_δ(E)| ≳ₙ (log(2/δ))^(−(n−1)),
+
+    where N_δ(E) is the open δ-neighborhood of E. This power is sharp: Fernández-Delgado and de la Salle construct Kakeya sets with matching neighborhood-volume upper bounds in every dimension. The logarithmic power in the maximal inequality is also sharp, as the radial example |x|^(−1) 1_{2δ<|x|<1/2} shows.
+
+    The repository contains Lean formalizations of the maximal and weighted tube inequalities. The geometric consequence and the sharpness constructions are not formalized here.
   authors:
     - name: "Mark Lewko"
       github: "mrklwk"
